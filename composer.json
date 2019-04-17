@@ -1,0 +1,27 @@
+{
+    "name": "prokerala/astrology",
+    "description": "Prokerala Astrology Calculators",
+    "type": "library",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "ProKerala",
+            "email": "support@prokerala.com",
+            "homepage": "https://www.prokerala.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Prokerala\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Prokerala\\test\\": "tests/"
+        }
+    }
+}
