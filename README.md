@@ -10,11 +10,23 @@ PHP needs to be a minimum version of PHP 5.6.0.
 
 If your project uses composer, run the below command
 
-> composer require prokerala/astrology-api:1.*
+```
 
-If you are not using composer, download the latest release from the releases section. You should download the astrology-api.zip file. After that include autoload.php in your application and you can use the API as usual.
+composer require prokerala/astrology-sdk
+
+```
+
+
+If you are not using composer, download the latest release from the releases section. You should download the zip file. After that include autoload.php in your application and you can use the API as usual.
 
 ## Usage
+
+
+
+### Panchang details
+ayanamsa is always 1
+datetime should be in ISO 8601 format
+coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 
 ```
 
@@ -41,53 +53,40 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 const API_KEY = 'YOUR_API_KEY_HERE';
 
 
-/**
-* To get Panchang details
-* ayanamsa is always 1
-* datetime should be ISO 8601 format
-* coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
-**/
+ try {
+  
+     $latitude = 10.214747;
+     $longitude = 78.097626;
+     $ayanamsa = 1;
+     $datetime_string = '2004-02-01T15:19:21Z';
+     $datetime = new DateTime($datetime_string);
 
-// try {
-    
-//     // $latitude = '1s0.214747';
-//     $latitude = 10.214747;
-//     $longitude = 78.097626;
-//     $ayanamsa = 1;
-//     $datetime_string = '2004-02-01T15:19:21Z';
-//     $datetime = new DateTime($datetime_string);
+     $client = new Client(API_KEY);
+     $location = new Location($latitude, $longitude);
+     $panchang = new Panchang($client);
 
-//     $client = new Client(API_KEY);
-//     $location = new Location($latitude, $longitude);
-//     $panchang = new Panchang($client);
+     $result = $panchang->process($location, $datetime);
+     print_r($result);
+     print_r($result->getTithi());
+     $tithi = $result->getTithi()[0];
+     print_r("\n\n".$tithi->getStartTime());
+     print_r("\n\n".$tithi->getName());
+     print_r("\n\n".$result->getInput()->datetime);
 
-//     $result = $panchang->process($location, $datetime);
-//     print_r($result);
-//     print_r($result->getTithi());
-//     $tithi = $result->getTithi()[0];
-//     print_r("\n\n".$tithi->getStartTime());
-//     print_r("\n\n".$tithi->getName());
-//     print_r("\n\n".$result->getInput()->datetime);
+ } catch (RateLimitExceededException $e) {
+     echo "RateLimitExceededException \n\n";
+ } catch (QuotaExceededException $e) {
+     echo "QuotaExceededException \n\n";
+ } catch (InvalidArgumentException $e) {
+     echo "InvalidArgumentException \n\n";
+ } catch (\Exception $e) {
+     echo "Exception  \n\n";
+ }
 
-// } catch (RateLimitExceededException $e) {
-//     echo "Exception 1 \n\n";
-//     print_r($e);
-// } catch (QuotaExceededException $e) {
-//     echo "Exception 2 \n\n";
-//     print_r($e);
-// } catch (InvalidArgumentException $e) {
-//     echo "Exception 3 \n\n";
-//     print_r($e);
-// } catch (\Exception $e) {
-//     echo "Exception 4 \n\n";
-//     print_r($e);
-// }
-
-// exit;
 
 
 /**
-* To get Planet Positions details
+* Planet Positions details
 * ayanamsa is always 1
 * dob should be ISO 8601 format
 * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
@@ -124,10 +123,9 @@ const API_KEY = 'YOUR_API_KEY_HERE';
 // }
     
 
-// exit;
 
 /**
-* To get Manglik/Mangal Dosha details
+* Manglik/Mangal Dosha details
 * ayanamsa is always 1
 * datetime should be ISO 8601 format
 * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
@@ -170,11 +168,10 @@ const API_KEY = 'YOUR_API_KEY_HERE';
 // }
     
 
-// exit;
 
 
 /**
-* To get Kundali Matching/Gun Milan/Ashta Koot details
+* Kundali Matching/Gun Milan/Ashta Koot details
 * (It is the north indian match making method)
 * 
 * ayanamsa is always 1
@@ -229,10 +226,9 @@ const API_KEY = 'YOUR_API_KEY_HERE';
 // }
     
 
-// exit;
 
 /**
-* To get Horoscope Matching/Dasha Porutham/Dasha Koot details
+* Horoscope Matching/Dasha Porutham/Dasha Koot details
 * (It is the south indian match making method)
 *
 * system is either kerala/tamil
@@ -286,18 +282,14 @@ try {
 }
     
 
-exit;
 
 
 ```
-For further help, see our documentation on  https://api.prokerala.com/docs/
+For further help, Please visit our documentation at  https://api.prokerala.com/docs/
 
 ## License
 The Prokerala Astrology API PHP SDK is released under the MIT License. See  [LICENSE](https://api.prokerala.com/license.txt) file for more details.
 
 ## About
-prokerala-astrology-api-php is guided and supported by the Prokerala Developer Experience Team.
 
-prokerala-astrology-api-php is maintained and funded by Ennexa Technologies, Pvt Ltd. The names and logos for prokerala-astrology-api-php are trademarks of  Technologies, Pvt Ltd.
-
-
+prokerala-astrology-sdk is developed by Ennexa Technologies, Pvt Ltd.

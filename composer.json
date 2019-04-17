@@ -1,6 +1,6 @@
 {
-    "name": "prokerala/astrology",
-    "description": "Prokerala Astrology Calculators",
+    "name": "prokerala/astrology-sdk",
+    "description": "Prokerala.com Astrology API Client Library for PHP.",
     "type": "library",
     "require": {
         "php": ">=5.5.0"
