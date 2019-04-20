@@ -29,15 +29,17 @@ use \Prokerala\Common\Api\Exception\RateLimitExceededException;
 class Client
 {
     private $_cHandle;
-    private $_baseUri = 'http://api.prokerla.loc:8000/v1/astrology/';
+    private $_baseUri = 'https://api.prokerala.com/v1/astrology/';
     
     private $_response = null;
     private $_responseCode = null;
+    public $response_code = null;
+    public $base_uri = null;
 
     /**
      * Constructor
      *
-     * @param string $token API token value
+     * @param string $key API token value
      **/
     public function __construct($key)
     {
@@ -47,6 +49,8 @@ class Client
         curl_setopt($this->_cHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->_cHandle, CURLOPT_AUTOREFERER, true);
         curl_setopt($this->_cHandle, CURLOPT_ENCODING, '');
+        curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($this->_cHandle, CURLOPT_USERAGENT, 'Prokerala SDK API Request');
         curl_setopt($this->_cHandle, CURLOPT_HTTPHEADER, ['Authorization: bearer '. $key]);
 
@@ -85,6 +89,7 @@ class Client
         curl_setopt($this->_cHandle, CURLOPT_CUSTOMREQUEST, null);
         curl_setopt($this->_cHandle, CURLOPT_HTTPGET, true);
         curl_setopt($this->_cHandle, CURLOPT_URL, $url);
+
         $this->_response = curl_exec($this->_cHandle);
         $this->response_code = curl_getinfo($this->_cHandle, CURLINFO_HTTP_CODE);
       
