@@ -35,12 +35,12 @@ Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 <?php
 include '../vendor/autoload.php';
 
-use Prokerala\Astrology\Astro;
-
 use Prokerala\Common\Api\Client;
 use Prokerala\Api\Token;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
+use Prokerala\Api\Astrology\Result\Nakshatra;
+use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\Panchang;
 use Prokerala\Api\Astrology\Service\HoroscopeMatch;
 use Prokerala\Api\Astrology\Service\KundliMatch;
