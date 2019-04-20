@@ -37,9 +37,9 @@ class Panchang
 
     public $nakshatra = null;
     public $tithi = null;
-    public $karna = null;
+    public $karana = null;
     public $yoga = null;
-    public $vasara = null;
+    public $week_day = null;
     public $input = null;
 
     /**
@@ -121,7 +121,7 @@ class Panchang
      **/
     public function getVasara()
     {
-        return $this->vasara;
+        return $this->week_day;
     }
 
     /**
@@ -150,7 +150,7 @@ class Panchang
      **/
     public function getKarna()
     {
-        return $this->karna;
+        return $this->karana;
     }
 
     /**

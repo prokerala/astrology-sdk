@@ -66,11 +66,28 @@ try {
     $panchang = new Panchang($client);
 
     $result = $panchang->process($location, $datetime);
-    print_r($result);
     print_r($result->getTithi());
+    print_r($result->getNakshatra());
+    print_r($result->getKarna());
+    print_r($result->getVasara());
+    print_r($result->getYoga());
+
     $tithi = $result->getTithi()[0];
     print_r("\n\n".$tithi->getStartTime());
     print_r("\n\n".$tithi->getName());
+
+    foreach ($result->getNakshatra() as $key => $value) {
+        $arNakshatra[$key] = [
+            'id' => $value->getId(),
+            'name' => $value->getName(),
+            'start' => $value->getStartTime(),
+            'end' => $value->getEndTime(),
+        ];
+    }
+    print_r($arNakshatra);
+
+    print_r("\n\n".Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
+    
     print_r("\n\n".$result->getInput()->datetime);
 
 } catch (RateLimitExceededException $e) {
@@ -106,7 +123,14 @@ try {
     $planet_position = new PlanetPosition($client);
 
     $planet_position_result = $planet_position->process($location, $datetime);
-    print_r($planet_position_result->getPlanets());
+    
+    $arPlanet = $planet_position_result->getPlanets();
+
+    print_r($arPlanet);
+
+    print_r($arPlanet[Planet::PLANET_MOON]->getName());
+    
+    print_r($arPlanet[Planet::PLANET_MOON]->getDegree());
     
 } catch (RateLimitExceededException $e) {
      echo "RateLimitExceededException \n\n";
@@ -142,11 +166,18 @@ Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
         $manglik_service = new MangalDosha($client);
 
         $mangal_dosha = $manglik_service->process($location, $datetime);
+        
         print_r($mangal_dosha->getInput());
+    
         $mangal_dosha_result = $mangal_dosha->getResult();
+        
         print_r($mangal_dosha_result);
+        
         print_r($mangal_dosha_result->result->nakshatra);
+        
         print_r($mangal_dosha_result->result->nakshatra[0]->getName());
+        
+        print_r($mangal_dosha_result->result->manglik_status);
     
     } catch (RateLimitExceededException $e) {
          echo "RateLimitExceededException \n\n";
@@ -199,10 +230,15 @@ Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
         $kundli_match = $kundli_match_service->process($bride_profile, $groom_profile);
      
         print_r($kundli_match->getInput());
+   
         $kundli_match_result = $kundli_match->getResult();
+       
         print_r($kundli_match_result);
+       
         print_r($kundli_match_result->bridegroom_details);
+       
         print_r($kundli_match_result->bridegroom_details->nakshatra_details->getName());
+       
         print_r($kundli_match_result->result);
 
     } catch (RateLimitExceededException $e) {
@@ -251,17 +287,23 @@ try {
 
     $horoscope_match = $horoscope_match_service->process($bride_profile, $groom_profile, $system);
     
-    print_r($horoscope_match->getInput());
+    print_r( $horoscope_match->getInput() );
     
     $horoscope_match_result = $horoscope_match->getResult();
     
-    print_r($horoscope_match_result);
-    print_r($horoscope_match_result->bridegroom_details);
-    print_r($horoscope_match_result->bridegroom_details->nakshatra_details->getName());
-    print_r("\n\n".$horoscope_match_result->papa_samaya_result->papa_status);
-    print_r("\n\n".$horoscope_match_result->average_porutham);
-    print_r("\n\n".$horoscope_match_result->compatibility);
-    print_r((array)$horoscope_match_result->detailed_information);
+    print_r( $horoscope_match_result );
+    
+    print_r( $horoscope_match_result->bridegroom_details );
+    
+    print_r( $horoscope_match_result->bridegroom_details->nakshatra_details->getName() );
+    
+    print_r( "\n\n" . $horoscope_match_result->papa_samaya_result->papa_status );
+    
+    print_r( "\n\n" . $horoscope_match_result->average_porutham );
+    
+    print_r( "\n\n" . $horoscope_match_result->compatibility );
+    
+    print_r( (array)$horoscope_match_result->detailed_information );
 
 
 } catch (RateLimitExceededException $e) {

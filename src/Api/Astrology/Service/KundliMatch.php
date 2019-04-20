@@ -94,6 +94,9 @@ class KundliMatch
                                 $this->result->$res_key->$res_key1 = new $class($res_value1);
                             }
                         } else {
+                            if (!property_exists($this->result, $res_key)) {
+                                $this->result->$res_key = new \stdClass;
+                            }
                             $this->result->$res_key->$res_key1 = $res_value1;
                         }
                     }
