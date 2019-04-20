@@ -22,13 +22,13 @@ namespace Prokerala\Api\Astrology\Result;
  **/
 class Vasara
 {
-    public const VASARA_MONDAY = 0;
-    public const VASARA_TUESDAY = 1;
-    public const VASARA_WEDNESDAY = 2;
-    public const VASARA_THURSDAY = 3;
-    public const VASARA_FRIDAY = 4;
-    public const VASARA_SATURDAY = 5;
-    public const VASARA_SUNDAY = 6;
+    const VASARA_MONDAY = 0;
+    const VASARA_TUESDAY = 1;
+    const VASARA_WEDNESDAY = 2;
+    const VASARA_THURSDAY = 3;
+    const VASARA_FRIDAY = 4;
+    const VASARA_SATURDAY = 5;
+    const VASARA_SUNDAY = 6;
 
     public static $arVasara = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -37,7 +37,7 @@ class Vasara
     /**
      * Init Vasara
      *
-     * @param array $data Vasara details
+     * @param object $data Vasara details
      **/
     public function __construct($data) 
     {

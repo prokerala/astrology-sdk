@@ -41,6 +41,8 @@ class KundliMatch
     public $karna = null;
     public $yoga = null;
     public $vasara = null;
+    public $result = null;
+    public $input = null;
 
     /**
      * Function returns KundliMatch details
@@ -51,7 +53,7 @@ class KundliMatch
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \StdClass;
+        $this->result = new \stdClass;
 
     }
 
@@ -163,7 +165,7 @@ class KundliMatch
      * @param  object $client client class object
      * @return void
      **/
-    public function setAyanamsa(int $ayanamsa)
+    public function setAyanamsa($ayanamsa)
     {
         $this->ayanamsa = $ayanamsa;
     }

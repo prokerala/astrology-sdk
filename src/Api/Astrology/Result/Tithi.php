@@ -22,22 +22,22 @@ namespace Prokerala\Api\Astrology\Result;
  **/
 class Tithi
 {
-    public const TITHI_PRATIPADA = 1;
-    public const TITHI_DWITIYA = 2;
-    public const TITHI_TRITIYA = 3;
-    public const TITHI_CHATURTHI = 4;
-    public const TITHI_PANCHAMI = 5;
-    public const TITHI_SHASHTHI = 6;
-    public const TITHI_SAPTAMI = 7;
-    public const TITHI_ASHTAMI = 8;
-    public const TITHI_NAVAMI = 9;
-    public const TITHI_DASHAMI = 10;
-    public const TITHI_EKADASHI = 11;
-    public const TITHI_DWADASHI = 12;
-    public const TITHI_TRAYODASHI = 13;
-    public const TITHI_CHATURDASHI = 14;
-    public const TITHI_PURNIMA = 15;
-    public const TITHI_AMAVASYA = 16;
+    const TITHI_PRATIPADA = 1;
+    const TITHI_DWITIYA = 2;
+    const TITHI_TRITIYA = 3;
+    const TITHI_CHATURTHI = 4;
+    const TITHI_PANCHAMI = 5;
+    const TITHI_SHASHTHI = 6;
+    const TITHI_SAPTAMI = 7;
+    const TITHI_ASHTAMI = 8;
+    const TITHI_NAVAMI = 9;
+    const TITHI_DASHAMI = 10;
+    const TITHI_EKADASHI = 11;
+    const TITHI_DWADASHI = 12;
+    const TITHI_TRAYODASHI = 13;
+    const TITHI_CHATURDASHI = 14;
+    const TITHI_PURNIMA = 15;
+    const TITHI_AMAVASYA = 16;
 
     public static $arTithi = [
     ["paksha" => "Shukla", "tithi" => "Pratipada"],
@@ -74,20 +74,20 @@ class Tithi
 
     protected $id;
     protected $name;
-    protected $startTime;
-    protected $endTime;
+    protected $start;
+    protected $end;
     protected $paksha;
     /**
      * Init Tithi
      *
-     * @param array $data tithi details
+     * @param object $data tithi details
      **/
     public function __construct($data) 
     {
         $this->id = $data->id;
         $this->name = self::$arTithi[$data->id]["tithi"];
-        $this->startTime = $data->start;
-        $this->endTime = $data->end;
+        $this->start = $data->start;
+        $this->end = $data->end;
         $this->paksha = $data->paksha;
     }
 
@@ -117,7 +117,7 @@ class Tithi
      **/
     public function getStartTime() 
     {
-        return $this->startTime;
+        return $this->start;
     }
 
     /**
@@ -127,7 +127,7 @@ class Tithi
      **/
     public function getEndTime()
     {
-        return $this->endTime;
+        return $this->end;
     }
 
     /**

@@ -40,6 +40,8 @@ class MangalDosha
     public $karna = null;
     public $yoga = null;
     public $vasara = null;
+    public $result = null;
+    public $input = null;
 
     /**
      * Function returns panchang details
@@ -50,7 +52,7 @@ class MangalDosha
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \StdClass;
+        $this->result = new \stdClass;
 
     }
 
@@ -87,13 +89,13 @@ class MangalDosha
                                 $class = $classNameSpace.$this->arClassNameMap[$res_key1];
 
                                 if (!property_exists($this->result, $res_key)) {
-                                    $this->result->$res_key = new \StdClass;
+                                    $this->result->$res_key = new \stdClass;
                                 }
                                 $this->result->$res_key->$res_key1 = new $class($res_value1);
                             }
                         } else {
                             if (!property_exists($this->result, $res_key)) {
-                                $this->result->$res_key = new \StdClass;
+                                $this->result->$res_key = new \stdClass;
                             }
                             $this->result->$res_key->$res_key1 = $res_value1;
                         }
@@ -132,7 +134,7 @@ class MangalDosha
      * @param  object $client client class object
      * @return void
      **/
-    public function setAyanamsa(int $ayanamsa)
+    public function setAyanamsa($ayanamsa)
     {
         $this->ayanamsa = $ayanamsa;
     }

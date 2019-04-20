@@ -22,16 +22,16 @@ namespace Prokerala\Api\Astrology\Result;
  **/
 class Planet
 {
-    public const PLANET_SUN = 0;
-    public const PLANET_MOON = 1;
-    public const PLANET_MERCURY = 2;
-    public const PLANET_VENUS = 3;
-    public const PLANET_MARS = 4;
-    public const PLANET_JUPITER = 5;
-    public const PLANET_SATURN = 6;
-    public const PLANET_RAHU = 10;
-    public const PLANET_KETU = 12;
-    public const PLANET_ASCENDANT = 14;
+    const PLANET_SUN = 0;
+    const PLANET_MOON = 1;
+    const PLANET_MERCURY = 2;
+    const PLANET_VENUS = 3;
+    const PLANET_MARS = 4;
+    const PLANET_JUPITER = 5;
+    const PLANET_SATURN = 6;
+    const PLANET_RAHU = 10;
+    const PLANET_KETU = 12;
+    const PLANET_ASCENDANT = 14;
 
     public static $arPlanet = [0 => "Sun", 1 => "Moon", 2 => "Mercury", 3 => "Venus", 4 => "Mars", 5 => "Jupiter", 6 => "Saturn", 10 => "Rahu", 12 => "Ketu", 14 => "Ascendant"];
 
@@ -47,7 +47,7 @@ class Planet
     /**
      * Init Planet
      *
-     * @param array $data Planet details
+     * @param object $data Planet details
      **/
     public function __construct($data) 
     {
@@ -97,7 +97,7 @@ class Planet
     /**
      * Function returns the Retrograde status
      *
-     * @return boolian 
+     * @return bool
      **/
     public function isRetrograde() 
     {

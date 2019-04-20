@@ -27,35 +27,39 @@ use \Prokerala\Common\Api\Exception\RateLimitExceededException;
 /**
  * Defines the HoroscopeMatch
  *
- **/
+ *
+ * @property \stdClass result
+ */
 class HoroscopeMatch
 {
     use AstroTrait;
 
     protected $apiClient = null;
-    protected $slug = "horoscope-matching";
+    protected $slug = 'horoscope-matching';
     protected $ayanamsa = 1;
-
+    public $result = null;
+    public $input = null;
     /**
      * Function returns HoroscopeMatch details
      *
-     * @param  object $client api client object
-     * @return void
-     **/
+     * @param Client $client api client object
+     */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \StdClass;
-
+        $this->result = new \stdClass;
     }
 
     /**
      * Function returns HoroscopeMatch details
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
-     * @return array
-     **/
+     * @param Profile $bride_profile
+     * @param Profile $groom_profile
+     * @param $system
+     * @return HoroscopeMatch
+     * @throws QuotaExceededException
+     * @throws RateLimitExceededException
+     */
     public function process(Profile $bride_profile, Profile $groom_profile, $system)
     {
         $classNameSpace = "\\Prokerala\\Api\\Astrology\\Result\\";
@@ -86,13 +90,13 @@ class HoroscopeMatch
                                 $class = $classNameSpace.$this->arClassNameMap[$res_key1];
 
                                 if (!property_exists($this->result, $res_key)) {
-                                    $this->result->$res_key = new \StdClass;
+                                    $this->result->$res_key = new \stdClass;
                                 }
                                 $this->result->$res_key->$res_key1 = new $class($res_value1);
                             }
                         } else {
                             if (!property_exists($this->result, $res_key)) {
-                                $this->result->$res_key = new \StdClass;
+                                $this->result->$res_key = new \stdClass;
                             }
                             $this->result->$res_key->$res_key1 = $res_value1;
                         }
@@ -133,7 +137,7 @@ class HoroscopeMatch
      * @param  object $client client class object
      * @return void
      **/
-    public function setAyanamsa(int $ayanamsa)
+    public function setAyanamsa($ayanamsa)
     {
         $this->ayanamsa = $ayanamsa;
     }

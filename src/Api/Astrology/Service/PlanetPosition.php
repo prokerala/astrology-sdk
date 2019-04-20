@@ -35,11 +35,8 @@ class PlanetPosition
     protected $slug = "planet-position";
     protected $ayanamsa = 1;
 
-    public $nakshatra = null;
-    public $tithi = null;
-    public $karna = null;
-    public $yoga = null;
-    public $vasara = null;
+    public $input = null;
+    public $planet_positions = null;
 
     /**
      * Function returns panchang details
@@ -107,7 +104,7 @@ class PlanetPosition
      * @param  object $client client class object
      * @return void
      **/
-    public function setAyanamsa(int $ayanamsa)
+    public function setAyanamsa($ayanamsa)
     {
         $this->ayanamsa = $ayanamsa;
     }

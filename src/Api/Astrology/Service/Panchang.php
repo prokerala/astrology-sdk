@@ -40,6 +40,7 @@ class Panchang
     public $karna = null;
     public $yoga = null;
     public $vasara = null;
+    public $input = null;
 
     /**
      * Function returns panchang details
@@ -107,7 +108,7 @@ class Panchang
      * @param  object $client client class object
      * @return void
      **/
-    public function setAyanamsa(int $ayanamsa)
+    public function setAyanamsa($ayanamsa)
     {
         $this->ayanamsa = $ayanamsa;
     }

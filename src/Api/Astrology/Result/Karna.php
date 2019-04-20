@@ -22,35 +22,35 @@ namespace Prokerala\Api\Astrology\Result;
  **/
 class Karna
 {
-    public const KARANA_BAVA = 0;
-    public const KARANA_BALAVA = 1;
-    public const KARANA_KAULAVA = 2;
-    public const KARANA_TAITILA = 3;
-    public const KARANA_GARIJA = 4;
-    public const KARANA_VANIJA = 5;
-    public const KARANA_VISHTI = 6;
-    public const KARANA_KIMSTUGHNA = 7;
-    public const KARANA_SHAKUNI = 8;
-    public const KARANA_CHATUSHPADA = 9;
-    public const KARANA_NAGA = 10;
+    const KARANA_BAVA = 0;
+    const KARANA_BALAVA = 1;
+    const KARANA_KAULAVA = 2;
+    const KARANA_TAITILA = 3;
+    const KARANA_GARIJA = 4;
+    const KARANA_VANIJA = 5;
+    const KARANA_VISHTI = 6;
+    const KARANA_KIMSTUGHNA = 7;
+    const KARANA_SHAKUNI = 8;
+    const KARANA_CHATUSHPADA = 9;
+    const KARANA_NAGA = 10;
 
     public static $arKarna = ["Bava", "Balava", "Kaulava", "Taitila", "Garija", "Vanija", "Vishti", "Shakuni", "Chatushpada", "Naga", "Kimstughna"];
 
     protected $id;
     protected $name;
-    protected $startTime;
-    protected $endTime;
+    protected $start;
+    protected $end;
     /**
      * Init Karna
      *
-     * @param array $data karna details
+     * @param object $data karna details
      **/
     public function __construct($data) 
     {
         $this->id = $data->id;
         $this->name = self::$arKarna[$data->id];
-        $this->startTime = $data->start;
-        $this->endTime = $data->end;
+        $this->start = $data->start;
+        $this->end = $data->end;
     }
 
     /**
@@ -79,7 +79,7 @@ class Karna
      **/
     public function getStartTime() 
     {
-        return $this->startTime;
+        return $this->start;
     }
 
     /**
@@ -89,7 +89,7 @@ class Karna
      **/
     public function getEndTime()
     {
-        return $this->endTime;
+        return $this->end;
     }
 
     /**

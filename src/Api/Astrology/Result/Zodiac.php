@@ -22,18 +22,18 @@ namespace Prokerala\Api\Astrology\Result;
  **/
 class Zodiac
 {
-    public const RASI_MESHA = 0;
-    public const RASI_VRISHABHA = 1;
-    public const RASI_MITHUNA = 2;
-    public const RASI_KARKA = 3;
-    public const RASI_SIMHA = 4;
-    public const RASI_KANYA = 5;
-    public const RASI_TULA = 6;
-    public const RASI_VRISCHIKA = 7;
-    public const RASI_DHANU = 8;
-    public const RASI_MAKARA = 9;
-    public const RASI_KUMBHA = 10;
-    public const RASI_MEENA = 11;
+    const RASI_MESHA = 0;
+    const RASI_VRISHABHA = 1;
+    const RASI_MITHUNA = 2;
+    const RASI_KARKA = 3;
+    const RASI_SIMHA = 4;
+    const RASI_KANYA = 5;
+    const RASI_TULA = 6;
+    const RASI_VRISCHIKA = 7;
+    const RASI_DHANU = 8;
+    const RASI_MAKARA = 9;
+    const RASI_KUMBHA = 10;
+    const RASI_MEENA = 11;
 
     public static $arZodiac = ["Mesha", "Vrishabha", "Mithuna", "Karka", "Simha", "Kanya", "Tula", "Vrischika", "Dhanu", "Makara", "Kumbha", "Meena"];
 
@@ -44,9 +44,9 @@ class Zodiac
     protected $start = null;
     protected $end = null;
     /**
-     * Init MoonZodiac
+     * Init Zodiac
      *
-     * @param array $data MoonZodiac details
+     * @param object $data Zodiac details
      **/
     public function __construct($data) 
     {
@@ -60,11 +60,11 @@ class Zodiac
         }
 
         if (property_exists($data, 'start')) {
-            $this->startTime = $data->start;
+            $this->start = $data->start;
         }
         
         if (property_exists($data, 'end')) {
-            $this->endTime = $data->end;
+            $this->end = $data->end;
         }
     }
 
@@ -114,7 +114,7 @@ class Zodiac
      **/
     public function getStartTime() 
     {
-        return $this->startTime;
+        return $this->start;
     }
 
     /**
@@ -124,7 +124,7 @@ class Zodiac
      **/
     public function getEndTime()
     {
-        return $this->endTime;
+        return $this->end;
     }
 
     /**

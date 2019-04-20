@@ -8,6 +8,7 @@ use Prokerala\Common\Api\Client;
 use Prokerala\Api\Token;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
+use Prokerala\Api\Astrology\Result\Nakshatra;
 use Prokerala\Api\Astrology\Service\Panchang;
 use Prokerala\Api\Astrology\Service\HoroscopeMatch;
 use Prokerala\Api\Astrology\Service\KundliMatch;
@@ -18,7 +19,7 @@ use Prokerala\Common\Api\Exception\InvalidArgumentsException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-const API_KEY = 'YOUR_API_KEY';
+const API_KEY = '2655c8dc12557b0246a9e39fb46a3390f9dc607d9104dee14bdef8d1baa4dbbd';
 
 
 /**
@@ -46,6 +47,7 @@ try {
     $tithi = $result->getTithi()[0];
     print_r("\n\n".$tithi->getStartTime());
     print_r("\n\n".$tithi->getName());
+    print_r("\n\n".Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
     print_r("\n\n".$result->getInput()->datetime);
 
 } catch (RateLimitExceededException $e) {
@@ -58,7 +60,7 @@ try {
     echo "Exception  \n\n";
 }
 
-
+exit;
 
 /**
  * Planet Positions details

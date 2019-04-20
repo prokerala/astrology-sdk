@@ -29,6 +29,9 @@ class Profile
      *
      * @param array $data nakshatra details
      **/
+    public $location = null;
+    public $datetime = null;
+
     public function __construct(Location $location, $datetime) 
     {
         $this->location = $location;
