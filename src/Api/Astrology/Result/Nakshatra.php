@@ -50,7 +50,7 @@ class Nakshatra
     const NAKSHATRA_UTTARA_BHADRAPADA = 25;
     const NAKSHATRA_REVATI = 26;
 
-    public static $arNakshatra = ["Ashwini", "Bharani", "Krithika", "Rohini", "Mrigashirsha", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva", "Phalguni", "Uttara", "Phalguni", "Hasta", "Chitra", "Swati", "Vishaka", "Anuradha", "Jyeshta", "Moola", "Purva", "Ashadha", "Uttara", "Ashadha", "Shravana", "Dhanishta", "Shatabhisha", "Purva", "Bhadrapada", "Uttara", "Bhadrapada", "Revati"];
+    public static $arNakshatra = ["Ashwini", "Bharani", "Krithika", "Rohini", "Mrigashirsha", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishaka", "Anuradha", "Jyeshta", "Moola", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"];
 
     protected $id;
     protected $name;
