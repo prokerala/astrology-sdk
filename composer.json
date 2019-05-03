@@ -3,9 +3,9 @@
     "description": "Prokerala.com Astrology API Client Library for PHP.",
     "type": "library",
     "require": {
-        "php": ">=5.5.0"
+        "php": ">=5.6.0"
     },
-    "license": "mit",
+    "license": "MIT",
     "authors": [
         {
             "name": "ProKerala",
@@ -13,7 +13,7 @@
             "homepage": "https://www.prokerala.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Prokerala\\": "src/"
