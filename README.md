@@ -319,6 +319,51 @@ try {
 
 ```
 
+### Nakshatra Porutham
+
+(Nakshatras Numbered from Aswini to Revathi as 1 - 27, If nakshatra have pada should be numbered as nakshatra-pada format eg: Krithika - 1st Pada as 3-1 ...)
+
+bride and groom stars should be a valid number format eg : `21-3` or 20 
+
+
+```
+try {
+$client = new Client( API_KEY );
+$lang = 'en';
+$bride_star = 2;
+$groom_star = '21-2';
+
+$nakshatra_match_service = new NakshatraPorutham( $client );
+
+$nakshatra_match = $nakshatra_match_service->process( $bride_star, $groom_star, $lang );
+
+print_r( $nakshatra_match->getInput() );
+
+$nakshatra_match_result = $nakshatra_match->getResult();
+
+print_r( $nakshatra_match_result );
+
+print_r( $nakshatra_match_result->result );
+
+print_r( $nakshatra_match_result->result->dina );
+
+print_r( $nakshatra_match_result->porutham_details );
+
+print_r( $nakshatra_match_result->nakshatras_details);
+
+
+} catch (RateLimitExceededException $e) {
+echo "RateLimitExceededException \n\n";
+} catch (QuotaExceededException $e) {
+echo "QuotaExceededException \n\n";
+} catch (InvalidArgumentException $e) {
+echo "InvalidArgumentException \n\n";
+} catch (\Exception $e) {
+echo "Exception \n\n";
+}
+```
+
+
 For further help, Please visit our documentation at  https://api.prokerala.com/docs/
 
 ## License

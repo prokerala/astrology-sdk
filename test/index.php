@@ -35,7 +35,8 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = 1;
-    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
     $client = new Client(API_KEY);
@@ -91,7 +92,8 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = 1;
-    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
     $client = new Client(API_KEY);
@@ -131,7 +133,8 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = 1;
-    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
     $client = new Client(API_KEY);
@@ -184,14 +187,16 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = 1;
-    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $bride_dob = new DateTime($datetime_string);
     $bride_location = new Location($latitude, $longitude);
     $bride_profile = new Profile($bride_location, $bride_dob);
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $datetime_string = '2019-01-01T15:19:21Z';
+    $datetime_string = '2019-01-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2019-01-01T15:19:21+05:30';////input time in user timezone
     $groom_dob = new DateTime($datetime_string);
     $groom_location = new Location($latitude, $longitude);
     $groom_profile = new Profile($groom_location, $groom_dob);
@@ -240,7 +245,8 @@ try {
     $longitude = 78.097626;
     $ayanamsa = 1;
     $system = "kerala";
-    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $bride_dob = new DateTime( $datetime_string );
     $bride_location = new Location( $latitude, $longitude );
     $bride_profile = new Profile( $bride_location, $bride_dob );
@@ -285,3 +291,47 @@ try {
     echo "Exception  \n\n";
 }
 
+ /**
+ * Nakshatra Porutham/
+ * (It is the south indian match making method)
+ *
+ * Language is english
+ * (Nakshatras Numbered from Aswini to Revathi as 1 - 27, If nakshatra have pada should be numbered as nakshatra-pada format eg: Krithika - 1st Pada as 3-1 ...)
+
+ *bride and groom stars should be a valid number format eg : `21-3` or 20   
+ **/
+
+try {
+    $client = new Client( API_KEY );
+    $lang = 'en';
+    $bride_star = 2;//Bhrani
+    $groom_star = '21-2';//Uttara Ashadha - 2nd Pada,
+
+    $nakshatra_match_service = new NakshatraPorutham( $client );
+
+    $nakshatra_match = $nakshatra_match_service->process( $bride_star, $groom_star, $lang );
+
+    print_r( $nakshatra_match->getInput() );
+    
+    $nakshatra_match_result = $nakshatra_match->getResult();
+    
+    print_r( $nakshatra_match_result );
+
+    print_r( $nakshatra_match_result->result );
+
+    print_r( $nakshatra_match_result->result->dina );
+
+    print_r( $nakshatra_match_result->porutham_details );
+    
+    print_r( $nakshatra_match_result->nakshatras_details);
+
+
+} catch (RateLimitExceededException $e) {
+    echo "RateLimitExceededException \n\n";
+} catch (QuotaExceededException $e) {
+    echo "QuotaExceededException \n\n";
+} catch (InvalidArgumentException $e) {
+    echo "InvalidArgumentException \n\n";
+} catch (\Exception $e) {
+    echo "Exception  \n\n";
+}
