@@ -8,6 +8,7 @@ use Prokerala\Common\Api\Client;
 use Prokerala\Api\Token;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
+use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Result\Nakshatra;
 use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\Panchang;
@@ -20,12 +21,13 @@ use Prokerala\Common\Api\Exception\InvalidArgumentsException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-const API_KEY = 'YOUR_API_KEY';
+const API_KEY = 'API';
 
 
 /**
  * Panchang Details
- * ayanamsa is always 1
+ * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
+ * eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
  * datetime should be in ISO 8601 format
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  **/
@@ -34,15 +36,20 @@ try {
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
-    $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
+    // $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
     $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
     $client = new Client(API_KEY);
     $location = new Location($latitude, $longitude);
     $panchang = new Panchang($client);
+    
+    /**
+    * If you want to use different ayanamsa, use the setAyanamsa() method.
+    */
 
+    $panchang->setAyanamsa(Ayanamsa::RAMAN);
+    
     $result = $panchang->process($location, $datetime);
 
     print_r($result->getTithi());
@@ -79,10 +86,9 @@ try {
     echo "Exception  \n\n";
 }
 
-
 /**
  * Planet Positions details
- * ayanamsa is always 1
+ * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
  * datetime should be in ISO 8601 format
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  **/
@@ -91,7 +97,7 @@ try {
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
@@ -119,10 +125,9 @@ try {
     echo "Exception  \n\n";
 }
 
-
 /**
  * Manglik/Mangal Dosha details
- * ayanamsa is always 1
+ * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
  * datetime should be in ISO 8601 format
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  **/
@@ -132,7 +137,7 @@ try {
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
@@ -171,12 +176,11 @@ try {
  * Kundali Matching/Gun Milan/Ashta Koot details
  * (It is the north indian match making method)
  *
- * Ayanamsa is always 1
+ * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
  * dob/datetime should be in ISO 8601 format
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  **/
 
-$ayanamsa = 1;
 $bride_dob = '2004-02-12T15:19:21+00:00';
 $bride_coordinates = '10.214747,78.097626';
 $groom_dob = '2004-02-12T15:19:21+00:00';
@@ -186,7 +190,7 @@ try {
     $client = new Client(API_KEY);
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $bride_dob = new DateTime($datetime_string);
@@ -234,7 +238,7 @@ try {
  * (It is the south indian match making method)
  *
  * System should be either kerala/tamil
- * ayanamsa is always 1
+ * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
  * dob should be in ISO 8601 format
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  **/
@@ -243,7 +247,7 @@ try {
     $client = new Client( API_KEY );
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $system = "kerala";
     $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
@@ -258,7 +262,7 @@ try {
     $groom_location = new Location( $latitude, $longitude );
     $groom_profile = new Profile( $groom_location, $groom_dob );
 
-    $horoscope_match_service = new HoroscopeMatch( $client );
+    $horoscope_match_service = new HoroscopeMatch( $client, $ayanamsa );
 
     $horoscope_match = $horoscope_match_service->process( $bride_profile, $groom_profile, $system );
 
@@ -307,7 +311,7 @@ try {
     $bride_star = 2;//Bhrani
     $groom_star = '21-2';//Uttara Ashadha - 2nd Pada,
 
-    $nakshatra_match_service = new NakshatraPorutham( $client );
+    $nakshatra_match_service = new NakshatraPorutham($client);
 
     $nakshatra_match = $nakshatra_match_service->process( $bride_star, $groom_star, $lang );
 

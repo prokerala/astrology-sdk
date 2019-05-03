@@ -24,7 +24,8 @@ If you are not using composer, download the latest release from the releases sec
 
 
 ### Panchang details
-Ayanamsa is always 1
+Ayanamsa can be Lahiri, Raman or KP. (Default ayanamsa is Lahiri)
+eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
 
 Datetime should be in ISO 8601 format
 
@@ -39,6 +40,7 @@ use Prokerala\Common\Api\Client;
 use Prokerala\Api\Token;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
+use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Result\Nakshatra;
 use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\Panchang;
@@ -57,13 +59,20 @@ try {
   
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
     $datetime_string = '2004-02-01T15:19:21Z';
     $datetime = new DateTime($datetime_string);
 
     $client = new Client(API_KEY);
     $location = new Location($latitude, $longitude);
     $panchang = new Panchang($client);
+    
+
+    /**
+    * If you want to use different ayanamsa, use the setAyanamsa() method.
+    * Default ayanamsa is Lahiri
+    */
+
+    $panchang->setAyanamsa(Ayanamsa::RAMAN);
 
     $result = $panchang->process($location, $datetime);
     print_r($result->getTithi());
@@ -104,7 +113,8 @@ try {
 
 
 ### Planet Positions details
-Ayanamsa is always 1
+Ayanamsa can be Lahiri, Raman or KP. (Default ayanamsa is Lahiri)
+eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
 
 Datetime should be in ISO 8601 format
 
@@ -114,7 +124,7 @@ Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 try {
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';
     $datetime = new DateTime($datetime_string);
 
@@ -146,7 +156,8 @@ try {
 
 
 ### Manglik/Mangal Dosha details
-Ayanamsa is always 1
+Ayanamsa can be Lahiri, Raman or KP. (Default ayanamsa is Lahiri)
+eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
 
 Datetime should be in ISO 8601 format
 
@@ -157,7 +168,7 @@ try {
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';
     $datetime = new DateTime($datetime_string);
 
@@ -194,14 +205,14 @@ try {
 ### Kundali Matching/Gun Milan/Ashta Koot details
 (It is the north indian match making method)
  
-Ayanamsa is always 1
+Ayanamsa can be Lahiri, Raman or KP. (Default ayanamsa is Lahiri)
+eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
 
 Dob/Datetime should be ISO 8601 format
 
 Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 
 ```
-$ayanamsa = 1;
 $bride_dob = '2004-02-12T15:19:21+00:00';
 $bride_coordinates = '10.214747,78.097626';
 $groom_dob = '2004-02-12T15:19:21+00:00';
@@ -209,10 +220,9 @@ $groom_coordinates = '10.214747,78.097626';
 
 try {
     $client = new Client(API_KEY);
-    // $latitude = '1s0.214747';
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $datetime_string = '2004-02-01T15:19:21Z';
     $bride_dob = new DateTime($datetime_string);
     $bride_location = new Location($latitude, $longitude);
@@ -258,7 +268,8 @@ try {
 
 System is either kerala/tamil
 
-Ayanamsa is always 1
+Ayanamsa can be Lahiri, Raman or KP. (Default ayanamsa is Lahiri)
+eg : Ayanamsa::LAHIRI, Ayanamsa::RAMAN, Ayanamsa::KP
 
 Dob/Datetime should be in ISO 8601 format
 
@@ -269,7 +280,7 @@ try {
     $client = new Client(API_KEY);
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $ayanamsa = 1;
+    $ayanamsa = Ayanamsa::LAHIRI;
     $system = "kerala";
     $datetime_string = '2004-02-01T15:19:21Z';
     $bride_dob = new DateTime($datetime_string);
