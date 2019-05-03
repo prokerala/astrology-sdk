@@ -1,6 +1,6 @@
 # Getting Started with Prokerala Astrology API
 
-This API integration guide will help you get started with your astrology website or mobile app in no time. Prokerala API integration helps you generate custom horoscope, perform horoscope matching, check mangal dosha and much more.
+This API integration guide will help you get started with your astrology website or mobile app in no time. [Prokerala API](https://api.prokerala.com) integration helps you generate custom [horoscope](https://www.prokerala.com/astrology/birth-chart/), perform [horoscope matching](https://www.prokerala.com/astrology/kundali-matching/), check [mangal dosha](https://www.prokerala.com/astrology/mangal-dosha/manglik.php), [panchang](https://www.prokerala.com/astrology/panchang/) and much more.
 
 ## Requirements
 
@@ -153,41 +153,41 @@ Datetime should be in ISO 8601 format
 Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 
 ```
-    try {
- 
-        $latitude = 10.214747;
-        $longitude = 78.097626;
-        $ayanamsa = 1;
-        $datetime_string = '2004-02-01T15:19:21Z';
-        $datetime = new DateTime($datetime_string);
+try {
 
-        $client = new Client(API_KEY);
-        $location = new Location($latitude, $longitude);
-        $manglik_service = new MangalDosha($client);
+    $latitude = 10.214747;
+    $longitude = 78.097626;
+    $ayanamsa = 1;
+    $datetime_string = '2004-02-01T15:19:21Z';
+    $datetime = new DateTime($datetime_string);
 
-        $mangal_dosha = $manglik_service->process($location, $datetime);
-        
-        print_r($mangal_dosha->getInput());
+    $client = new Client(API_KEY);
+    $location = new Location($latitude, $longitude);
+    $manglik_service = new MangalDosha($client);
+
+    $mangal_dosha = $manglik_service->process($location, $datetime);
     
-        $mangal_dosha_result = $mangal_dosha->getResult();
-        
-        print_r($mangal_dosha_result);
-        
-        print_r($mangal_dosha_result->result->nakshatra);
-        
-        print_r($mangal_dosha_result->result->nakshatra[0]->getName());
-        
-        print_r($mangal_dosha_result->result->manglik_status);
+    print_r($mangal_dosha->getInput());
+
+    $mangal_dosha_result = $mangal_dosha->getResult();
     
-    } catch (RateLimitExceededException $e) {
-         echo "RateLimitExceededException \n\n";
-    } catch (QuotaExceededException $e) {
-        echo "QuotaExceededException \n\n";
-    } catch (InvalidArgumentException $e) {
-        echo "InvalidArgumentException \n\n";
-    } catch (\Exception $e) {
-        echo "Exception  \n\n";
-    }
+    print_r($mangal_dosha_result);
+    
+    print_r($mangal_dosha_result->result->nakshatra);
+    
+    print_r($mangal_dosha_result->result->nakshatra[0]->getName());
+    
+    print_r($mangal_dosha_result->result->manglik_status);
+
+} catch (RateLimitExceededException $e) {
+     echo "RateLimitExceededException \n\n";
+} catch (QuotaExceededException $e) {
+    echo "QuotaExceededException \n\n";
+} catch (InvalidArgumentException $e) {
+    echo "InvalidArgumentException \n\n";
+} catch (\Exception $e) {
+    echo "Exception  \n\n";
+}
 ```
 
 
@@ -201,55 +201,55 @@ Dob/Datetime should be ISO 8601 format
 Coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
 
 ```
+$ayanamsa = 1;
+$bride_dob = '2004-02-12T15:19:21+00:00';
+$bride_coordinates = '10.214747,78.097626';
+$groom_dob = '2004-02-12T15:19:21+00:00';
+$groom_coordinates = '10.214747,78.097626';
+
+try {
+    $client = new Client(API_KEY);
+    // $latitude = '1s0.214747';
+    $latitude = 10.214747;
+    $longitude = 78.097626;
     $ayanamsa = 1;
-    $bride_dob = '2004-02-12T15:19:21+00:00';
-    $bride_coordinates = '10.214747,78.097626';
-    $groom_dob = '2004-02-12T15:19:21+00:00';
-    $groom_coordinates = '10.214747,78.097626';
+    $datetime_string = '2004-02-01T15:19:21Z';
+    $bride_dob = new DateTime($datetime_string);
+    $bride_location = new Location($latitude, $longitude);
+    $bride_profile = new Profile($bride_location, $bride_dob);
 
-    try {
-        $client = new Client(API_KEY);
-        // $latitude = '1s0.214747';
-        $latitude = 10.214747;
-        $longitude = 78.097626;
-        $ayanamsa = 1;
-        $datetime_string = '2004-02-01T15:19:21Z';
-        $bride_dob = new DateTime($datetime_string);
-        $bride_location = new Location($latitude, $longitude);
-        $bride_profile = new Profile($bride_location, $bride_dob);
+    $latitude = 10.214747;
+    $longitude = 78.097626;
+    $datetime_string = '2019-01-01T15:19:21Z';
+    $groom_dob = new DateTime($datetime_string);
+    $groom_location = new Location($latitude, $longitude);
+    $groom_profile = new Profile($groom_location, $groom_dob);
 
-        $latitude = 10.214747;
-        $longitude = 78.097626;
-        $datetime_string = '2019-01-01T15:19:21Z';
-        $groom_dob = new DateTime($datetime_string);
-        $groom_location = new Location($latitude, $longitude);
-        $groom_profile = new Profile($groom_location, $groom_dob);
+    $kundli_match_service = new KundliMatch($client);
 
-        $kundli_match_service = new KundliMatch($client);
+    $kundli_match = $kundli_match_service->process($bride_profile, $groom_profile);
+ 
+    print_r($kundli_match->getInput());
 
-        $kundli_match = $kundli_match_service->process($bride_profile, $groom_profile);
-     
-        print_r($kundli_match->getInput());
+    $kundli_match_result = $kundli_match->getResult();
    
-        $kundli_match_result = $kundli_match->getResult();
-       
-        print_r($kundli_match_result);
-       
-        print_r($kundli_match_result->bridegroom_details);
-       
-        print_r($kundli_match_result->bridegroom_details->nakshatra_details->getName());
-       
-        print_r($kundli_match_result->result);
+    print_r($kundli_match_result);
+   
+    print_r($kundli_match_result->bridegroom_details);
+   
+    print_r($kundli_match_result->bridegroom_details->nakshatra_details->getName());
+   
+    print_r($kundli_match_result->result);
 
-    } catch (RateLimitExceededException $e) {
-         echo "RateLimitExceededException \n\n";
-    } catch (QuotaExceededException $e) {
-        echo "QuotaExceededException \n\n";
-    } catch (InvalidArgumentException $e) {
-        echo "InvalidArgumentException \n\n";
-    } catch (\Exception $e) {
-        echo "Exception  \n\n";
-    }
+} catch (RateLimitExceededException $e) {
+     echo "RateLimitExceededException \n\n";
+} catch (QuotaExceededException $e) {
+    echo "QuotaExceededException \n\n";
+} catch (InvalidArgumentException $e) {
+    echo "InvalidArgumentException \n\n";
+} catch (\Exception $e) {
+    echo "Exception  \n\n";
+}
     
 ```
 
@@ -328,38 +328,38 @@ bride and groom stars should be a valid number format eg : `21-3` or 20
 
 ```
 try {
-$client = new Client( API_KEY );
-$lang = 'en';
-$bride_star = 2;
-$groom_star = '21-2';
+    $client = new Client( API_KEY );
+    $lang = 'en';
+    $bride_star = 2;
+    $groom_star = '21-2';
 
-$nakshatra_match_service = new NakshatraPorutham( $client );
+    $nakshatra_match_service = new NakshatraPorutham( $client );
 
-$nakshatra_match = $nakshatra_match_service->process( $bride_star, $groom_star, $lang );
+    $nakshatra_match = $nakshatra_match_service->process( $bride_star, $groom_star, $lang );
 
-print_r( $nakshatra_match->getInput() );
+    print_r( $nakshatra_match->getInput() );
 
-$nakshatra_match_result = $nakshatra_match->getResult();
+    $nakshatra_match_result = $nakshatra_match->getResult();
 
-print_r( $nakshatra_match_result );
+    print_r( $nakshatra_match_result );
 
-print_r( $nakshatra_match_result->result );
+    print_r( $nakshatra_match_result->result );
 
-print_r( $nakshatra_match_result->result->dina );
+    print_r( $nakshatra_match_result->result->dina );
 
-print_r( $nakshatra_match_result->porutham_details );
+    print_r( $nakshatra_match_result->porutham_details );
 
-print_r( $nakshatra_match_result->nakshatras_details);
+    print_r( $nakshatra_match_result->nakshatras_details);
 
 
 } catch (RateLimitExceededException $e) {
-echo "RateLimitExceededException \n\n";
+    echo "RateLimitExceededException \n\n";
 } catch (QuotaExceededException $e) {
-echo "QuotaExceededException \n\n";
+    echo "QuotaExceededException \n\n";
 } catch (InvalidArgumentException $e) {
-echo "InvalidArgumentException \n\n";
+    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-echo "Exception \n\n";
+    echo "Exception \n\n";
 }
 ```
 
@@ -367,8 +367,5 @@ echo "Exception \n\n";
 For further help, Please visit our documentation at  https://api.prokerala.com/docs/
 
 ## License
-The Prokerala Astrology API PHP SDK is released under the MIT License. See  [LICENSE](https://github.com/prokerala/astrology-api-sdk/blob/master/LICENSE) file for more details.
 
-## About
-
-prokerala/astrology-api-sdk is developed by Ennexa Technologies, Pvt Ltd.
+Copyright &commat; [Prokerala.com](https://www.prokerala.com). The Prokerala [Astrology](https://www.prokerala.com/astrology/) API PHP SDK is released under the [MIT License](https://github.com/prokerala/astrology-sdk/blob/master/LICENSE).
