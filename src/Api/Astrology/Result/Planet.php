@@ -29,11 +29,11 @@ class Planet
     const PLANET_MARS = 4;
     const PLANET_JUPITER = 5;
     const PLANET_SATURN = 6;
-    const PLANET_RAHU = 10;
-    const PLANET_KETU = 12;
-    const PLANET_ASCENDANT = 14;
+    const PLANET_RAHU = 101;
+    const PLANET_KETU = 102;
+    const PLANET_ASCENDANT = 100;
 
-    public static $arPlanet = [0 => "Sun", 1 => "Moon", 2 => "Mercury", 3 => "Venus", 4 => "Mars", 5 => "Jupiter", 6 => "Saturn", 10 => "Rahu", 12 => "Ketu", 14 => "Ascendant"];
+    public static $arPlanet = [0 => "Sun", 1 => "Moon", 2 => "Mercury", 3 => "Venus", 4 => "Mars", 5 => "Jupiter", 6 => "Saturn", 101 => "Rahu", 102 => "Ketu", 100 => "Ascendant"];
 
     protected $id;
     protected $name;
@@ -43,13 +43,13 @@ class Planet
     protected $degree;
     protected $rasi;
     protected $rasiLord;
-     
+
     /**
      * Init Planet
      *
      * @param object $data Planet details
      **/
-    public function __construct($data) 
+    public function __construct($data)
     {
         $this->id = $data->id;
         $this->name = self::$arPlanet[$data->id];
@@ -68,18 +68,18 @@ class Planet
     /**
      * Function returns the name
      *
-     * @return string 
+     * @return string
      **/
-    public function getName() 
+    public function getName()
     {
         return $this->name;
     }
     /**
      * Function returns the id
      *
-     * @return int 
+     * @return int
      **/
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
@@ -87,9 +87,9 @@ class Planet
     /**
      * Function returns the id
      *
-     * @return int 
+     * @return int
      **/
-    public function getLongitude() 
+    public function getLongitude()
     {
         return $this->longitude;
     }
@@ -99,7 +99,7 @@ class Planet
      *
      * @return bool
      **/
-    public function isRetrograde() 
+    public function isRetrograde()
     {
         return $this->isReverse;
     }
@@ -109,7 +109,7 @@ class Planet
      *
      * @return int
      **/
-    public function getPosition() 
+    public function getPosition()
     {
         return $this->position;
     }
@@ -119,7 +119,7 @@ class Planet
      *
      * @return string
      **/
-    public function getDegree() 
+    public function getDegree()
     {
         return $this->degree;
     }
@@ -128,7 +128,7 @@ class Planet
      *
      * @return string
      **/
-    public function getRasi() 
+    public function getRasi()
     {
         return $this->rasi;
     }
@@ -138,7 +138,7 @@ class Planet
      *
      * @return string
      **/
-    public function getRasiLord() 
+    public function getRasiLord()
     {
         return $this->rasiLord;
     }
