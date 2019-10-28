@@ -17,6 +17,7 @@ namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Common\Api\Client;
 
 /**
@@ -50,10 +51,8 @@ class PlanetPosition
      * @param  object $datetime date and time
      * @return array
      */
-    public function process(Location $location, $datetime)
+    public function process(Location $location, \DateTimeInterface $datetime)
     {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
-
         $arParameter = [
             'datetime' => $datetime->format('Y-m-d\\TH:i:s\\Z'),
             'coordinates' => $location->getCoordinates(),
@@ -63,21 +62,15 @@ class PlanetPosition
         $result = $this->apiClient->doGet($this->slug, $arParameter);
 
         $this->input = $result->request;
-        foreach ($result->response as $res_key => $res_value) {
-            if (isset($this->arClassNameMap[$res_key])) {
-                if (is_array($res_value)) {
-                    foreach ($res_value as $rkey => $rvalue) {
-                        $class = $classNameSpace . $this->arClassNameMap[$res_key];
-                        $this->{$res_key}[] = new $class($rvalue);
-                    }
-                } else {
-                    $class = $classNameSpace . $this->arClassNameMap[$res_key];
-                    $this->{$res_key} = new $class($res_value);
-                }
-            } else {
-                $this->{$res_key} = $res_value;
-            }
+        $planet_position = [];
+        foreach ($result->response->planet_positions as $planetPosition) {
+            $planet = new Planet($planetPosition);
+            $planet_position[$planet->getId()] = $planet;
         }
+
+        $this->planet_positions = $planet_position;
+        $this->chart_positions = $result->response->chart_positions;
+        $this->first_house = $result->response->first_house;
 
         return $this;
     }
