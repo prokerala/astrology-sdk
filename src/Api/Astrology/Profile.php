@@ -7,32 +7,28 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Ennexa <api@prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
-namespace Prokerala\Api\Astrology;
+ * @see     https://github.com/prokerala/astrology
+ */
 
-use \Prokerala\Api\Astrology\Location;
+namespace Prokerala\Api\Astrology;
 
 /**
  * Defines Profile
- *
- **/
+ */
 class Profile
 {
     /**
      * Init Profile
      *
      * @param array $data nakshatra details
-     **/
-    protected $location = null;
-    protected $datetime = null;
+     */
+    protected $location;
+    protected $datetime;
 
-    public function __construct(Location $location, \DateTimeInterface $datetime) 
+    public function __construct(Location $location, \DateTimeInterface $datetime)
     {
         $this->location = $location;
         $this->datetime = $datetime;
@@ -41,19 +37,19 @@ class Profile
     /**
      * Function returns the datetime
      *
-     * @return object 
-     **/
-    public function getDateTime() 
+     * @return object
+     */
+    public function getDateTime()
     {
         return $this->datetime;
     }
-    
+
     /**
      * Function returns the location
      *
-     * @return object 
-     **/
-    public function getLocation() 
+     * @return object
+     */
+    public function getLocation()
     {
         return $this->location;
     }

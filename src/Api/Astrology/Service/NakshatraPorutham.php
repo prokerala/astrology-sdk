@@ -7,24 +7,21 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Ennexa <api@prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
+ * @see     https://github.com/prokerala/astrology
+ */
+
 namespace Prokerala\Api\Astrology\Service;
 
-use \Prokerala\Api\Astrology\AstroTrait;
-use \Prokerala\Common\Api\Client;
-use \Prokerala\Common\Api\Exception\InvalidArgumentException;
-use \Prokerala\Common\Api\Exception\QuotaExceededException;
-use \Prokerala\Common\Api\Exception\RateLimitExceededException;
+use Prokerala\Api\Astrology\AstroTrait;
+use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 /**
  * Defines the HoroscopeMatch
- *
  *
  * @property \stdClass result
  */
@@ -32,11 +29,12 @@ class NakshatraPorutham
 {
     use AstroTrait;
 
-    protected $apiClient = null;
+    protected $apiClient;
     protected $slug = 'nakshatra-porutham';
     protected $lang = 'en';
-    protected $result = null;
-    protected $input = null;
+    protected $result;
+    protected $input;
+
     /**
      * Function returns NakshatraPorutham details
      *
@@ -45,7 +43,7 @@ class NakshatraPorutham
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \stdClass;
+        $this->result = new \stdClass();
     }
 
     /**
@@ -54,9 +52,9 @@ class NakshatraPorutham
      * @param $bride_star
      * @param $groom_star
      * @param $system
-     * @return NakshatraPorutham
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
+     * @return NakshatraPorutham
      */
     public function process($bride_star, $groom_star)
     {
@@ -66,31 +64,28 @@ class NakshatraPorutham
             'lang' => $this->lang,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
-        
+
         $this->input = $result->request;
 
-
         foreach ($result->response as $res_key => $res_value) {
-            $this->result->$res_key = new \stdClass();
-            if (in_array($res_key, [1 => "result", "porutham_details", "nakshatras_details"])) {
+            $this->result->{$res_key} = new \stdClass();
+            if (in_array($res_key, [1 => 'result', 'porutham_details', 'nakshatras_details'])) {
                 foreach ($res_value as $res_key1 => $res_value1) {
-                    $this->result->$res_key->$res_key1 = $res_value1;
+                    $this->result->{$res_key}->{$res_key1} = $res_value1;
                 }
             } else {
-                $this->result->$res_key = $res_value;
+                $this->result->{$res_key} = $res_value;
             }
         }
-      
+
         return $this;
     }
-
 
     /**
      * Function returns porutham details
      *
-     * @param  object $client client class object
-     * @return void
-     **/
+     * @param object $client client class object
+     */
     public function setApiClient(Client $client)
     {
         $this->apiClient = $client;
@@ -100,7 +95,7 @@ class NakshatraPorutham
      * Function returns porutham details
      *
      * @return object
-     **/
+     */
     public function getResult()
     {
         return $this->result;
@@ -110,7 +105,7 @@ class NakshatraPorutham
      * Function returns input details
      *
      * @return object
-     **/
+     */
     public function getInput()
     {
         return $this->input;

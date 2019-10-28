@@ -7,20 +7,17 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Vimal <api@api.prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
+ * @see     https://github.com/prokerala/astrology
+ */
+
 namespace Prokerala\Api\Astrology;
 
 /**
  * Defines
- *
- **/
-
+ */
 trait AstroTrait
 {
     public $arClassNameMap = [
@@ -34,14 +31,14 @@ trait AstroTrait
         'moon_rasi' => 'Zodiac',
         'rasi_details' => 'Zodiac',
     ];
-    
+
     /**
      * Function returns the name
      *
-     * @param  string $index index value from response
-     * @param  boolean $fullyQualified return fully qualified class name
-     * @return string 
-     **/
+     * @param  string $index          index value from response
+     * @param  bool   $fullyQualified return fully qualified class name
+     * @return string
+     */
     public function getClassName($index, $fullyQualified = false)
     {
         if (!isset($this->arClassNameMap[$index])) {
@@ -49,7 +46,7 @@ trait AstroTrait
         }
 
         if ($fullyQualified) {
-            return "\\Prokerala\\Api\\Astrology\\Result\\" . $this->arClassNameMap[$index];
+            return '\\Prokerala\\Api\\Astrology\\Result\\' . $this->arClassNameMap[$index];
         }
 
         return $this->arClassNameMap[$index];

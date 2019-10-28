@@ -8,24 +8,19 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Ennexa <api@prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
+ * @see     https://github.com/prokerala/astrology
+ */
 
 namespace Prokerala\Common\Api\Exception;
-
 
 /**
  * RateLimitExceededException
  *
  * PHP version 5
- *
- **/
+ */
 class RateLimitExceededException extends \Exception
 {
-    
 }

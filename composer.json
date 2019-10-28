@@ -23,5 +23,8 @@
         "psr-4": {
             "Prokerala\\test\\": "tests/"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15"
     }
 }

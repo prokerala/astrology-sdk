@@ -7,13 +7,12 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Vimal <api@api.prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
+ * @see     https://github.com/prokerala/astrology
+ */
+
 namespace Prokerala\Api;
 
 /**
@@ -22,22 +21,20 @@ namespace Prokerala\Api;
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Vimal <api@api.prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
-
+ * @see     https://github.com/prokerala/astrology
+ */
 class Token
 {
     public $key;
+
     /**
      * Init Token
      *
-     * @param string $key 
-     **/
+     * @param string $key
+     */
     public function __construct($key)
     {
         $this->key = $key;

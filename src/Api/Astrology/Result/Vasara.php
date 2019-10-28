@@ -7,39 +7,38 @@
  * PHP version 5
  *
  * @category API_SDK
- * @package  Astrology
  * @author   Ennexa <api@prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
- * @access   public
- **/
+ * @see     https://github.com/prokerala/astrology
+ */
+
 namespace Prokerala\Api\Astrology\Result;
 
 /**
  * Defines Vasara
- *
- **/
+ */
 class Vasara
 {
-    const VASARA_MONDAY = 0;
-    const VASARA_TUESDAY = 1;
-    const VASARA_WEDNESDAY = 2;
-    const VASARA_THURSDAY = 3;
-    const VASARA_FRIDAY = 4;
-    const VASARA_SATURDAY = 5;
-    const VASARA_SUNDAY = 6;
+    public const VASARA_MONDAY = 0;
+    public const VASARA_TUESDAY = 1;
+    public const VASARA_WEDNESDAY = 2;
+    public const VASARA_THURSDAY = 3;
+    public const VASARA_FRIDAY = 4;
+    public const VASARA_SATURDAY = 5;
+    public const VASARA_SUNDAY = 6;
 
-    public static $arVasara = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    public static $arVasara = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     protected $id;
     protected $name;
+
     /**
      * Init Vasara
      *
      * @param object $data Vasara details
-     **/
-    public function __construct($data) 
+     */
+    public function __construct($data)
     {
         $this->id = $data->id;
         $this->name = self::$arVasara[$data->id];
@@ -48,18 +47,19 @@ class Vasara
     /**
      * Function returns the name
      *
-     * @return string 
-     **/
-    public function getName() 
+     * @return string
+     */
+    public function getName()
     {
         return $this->name;
     }
+
     /**
      * Function returns the id
      *
-     * @return int 
-     **/
-    public function getId() 
+     * @return int
+     */
+    public function getId()
     {
         return $this->id;
     }
@@ -68,7 +68,7 @@ class Vasara
      * Function returns Vasara list
      *
      * @return array
-     **/
+     */
     public function getVasaraList()
     {
         return self::$arVasara;
