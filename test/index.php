@@ -10,6 +10,7 @@ use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\HoroscopeMatch;
 use Prokerala\Api\Astrology\Service\KundliMatch;
 use Prokerala\Api\Astrology\Service\MangalDosha;
+use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Api\Astrology\Service\Panchang;
 use Prokerala\Api\Astrology\Service\PlanetPosition;
 use Prokerala\Common\Api\Client;
