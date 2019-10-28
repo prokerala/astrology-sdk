@@ -65,54 +65,26 @@ class MangalDosha
      **/
     public function process(Location $location, $datetime)
     {
-        $classNameSpace = "\\Prokerala\\Api\\Astrology\\Result\\";
-
         $arParameter = [
             'datetime' => $datetime->format("c"),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
-        
         $this->input = $result->request;
-        foreach ($result->response as $res_key => $res_value) {
-            if (isset($this->arClassNameMap[$res_key]) || count((array)$res_value) > 1) {
-                if (is_object($res_value) && count((array)$res_value) > 1) {
-                    foreach ((array)$res_value as $res_key1 => $res_value1) {
-                        if (isset($this->arClassNameMap[$res_key1])) {
-                            if (is_array($res_value1)) {
-                                foreach ($res_value1 as $rrkey => $rrvalue) {
-                                    $class = $classNameSpace.$this->arClassNameMap[$res_key1];
-                                    $this->result->$res_key->$res_key1[] = new $class($rrvalue);
-                                }
-                            } else {
-                                $class = $classNameSpace.$this->arClassNameMap[$res_key1];
-
-                                if (!property_exists($this->result, $res_key)) {
-                                    $this->result->$res_key = new \stdClass;
-                                }
-                                $this->result->$res_key->$res_key1 = new $class($res_value1);
-                            }
-                        } else {
-                            if (!property_exists($this->result, $res_key)) {
-                                $this->result->$res_key = new \stdClass;
-                            }
-                            $this->result->$res_key->$res_key1 = $res_value1;
-                        }
-                    }
-                } else {
-                    if (is_array($res_value)) {
-                        foreach ($res_value as $rkey => $rvalue) {
-                            $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                            $this->result->$res_key[] = new $class($rvalue);
-                        }
+        foreach ($result->response->result as $res_key => $res_value) {
+            $class = $this->getClassName($res_key, true);
+            if ($class) {
+                foreach ($res_value as $res_value1) {
+                    if ($res_value == "planet_positions") {
+                        $planet = new $class($res_value1);
+                        $this->result->result->$res_key[$planet->getId()] = $planet;
                     } else {
-                        $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                        $this->result->$res_key = new $class($res_value);
+                        $this->result->result->$res_key[] = new $class($res_value1);
                     }
                 }
             } else {
-                $this->result->$res_key = $res_value;
+                $this->result->result->$res_key = $res_value;
             }
         }
         return $this;

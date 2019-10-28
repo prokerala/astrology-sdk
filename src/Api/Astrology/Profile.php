@@ -29,10 +29,10 @@ class Profile
      *
      * @param array $data nakshatra details
      **/
-    public $location = null;
-    public $datetime = null;
+    protected $location = null;
+    protected $datetime = null;
 
-    public function __construct(Location $location, $datetime) 
+    public function __construct(Location $location, \DateTimeInterface $datetime) 
     {
         $this->location = $location;
         $this->datetime = $datetime;
@@ -43,7 +43,7 @@ class Profile
      *
      * @return object 
      **/
-    public function getDatetime() 
+    public function getDateTime() 
     {
         return $this->datetime;
     }

@@ -39,13 +39,19 @@ trait AstroTrait
      * Function returns the name
      *
      * @param  string $index index value from response
+     * @param  boolean $fullyQualified return fully qualified class name
      * @return string 
      **/
-    public function getClassName($index)
+    public function getClassName($index, $fullyQualified = false)
     {
-        if (isset($this->arClassNameMap[$index])) {
-            return $this->arClassNameMap[$index];
+        if (!isset($this->arClassNameMap[$index])) {
+            return null;
         }
-        return null;
+
+        if ($fullyQualified) {
+            return "\\Prokerala\\Api\\Astrology\\Result\\" . $this->arClassNameMap[$index];
+        }
+
+        return $this->arClassNameMap[$index];
     }
 }

@@ -35,12 +35,12 @@ class Panchang
     protected $slug = "panchang";
     protected $ayanamsa = 1;
 
-    public $nakshatra = null;
-    public $tithi = null;
-    public $karana = null;
-    public $yoga = null;
-    public $week_day = null;
-    public $input = null;
+    protected $nakshatra = null;
+    protected $tithi = null;
+    protected $karana = null;
+    protected $yoga = null;
+    protected $week_day = null;
+    protected $input = null;
 
     /**
      * Function returns panchang details
@@ -62,7 +62,6 @@ class Panchang
      **/
     public function process(Location $location, $datetime)
     {
-        $classNameSpace = "\\Prokerala\\Api\\Astrology\\Result\\";
 
         $arParameter = [
             'datetime' => $datetime->format("Y-m-d\TH:i:s\Z"),
@@ -74,14 +73,13 @@ class Panchang
         
         $this->input = $result->request;
         foreach ($result->response as $res_key => $res_value) {
-            if (isset($this->arClassNameMap[$res_key])) {
+            $class = $this->getClassName($res_key, true);
+            if ($class) {
                 if (is_array($res_value)) {
                     foreach ($res_value as $rkey => $rvalue) {
-                        $class = $classNameSpace.$this->arClassNameMap[$res_key];
                         $this->$res_key[] = new $class($rvalue);
                     }
                 } else {
-                    $class = $classNameSpace.$this->arClassNameMap[$res_key];
                     $this->$res_key = new $class($res_value);
                 }
                 

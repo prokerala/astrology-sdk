@@ -36,13 +36,13 @@ class KundliMatch
     protected $slug = "kundli-matching";
     protected $ayanamsa = 1;
 
-    public $nakshatra = null;
-    public $tithi = null;
-    public $karna = null;
-    public $yoga = null;
-    public $vasara = null;
-    public $result = null;
-    public $input = null;
+    protected $nakshatra = null;
+    protected $tithi = null;
+    protected $karna = null;
+    protected $yoga = null;
+    protected $vasara = null;
+    protected $result = null;
+    protected $input = null;
 
     /**
      * Function returns KundliMatch details
@@ -69,53 +69,33 @@ class KundliMatch
         $classNameSpace = "\\Prokerala\\Api\\Astrology\\Result\\";
 
         $arParameter = [
-            'bride_dob' => $bride_profile->getDatetime()->format("Y-m-d\TH:i:s\Z"),
+            'bride_dob' => $bride_profile->getDateTime()->format("Y-m-d\TH:i:s\Z"),
             'bride_coordinates' => $bride_profile->getLocation()->getCoordinates(),
-            'bridegroom_dob' => $groom_profile->getDatetime()->format("Y-m-d\TH:i:s\Z"),
+            'bridegroom_dob' => $groom_profile->getDateTime()->format("Y-m-d\TH:i:s\Z"),
             'bridegroom_coordinates' => $groom_profile->getLocation()->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
         
         $this->input = $result->request;
-        
-        foreach ($result->response as $res_key => $res_value) {
-            if (isset($this->arClassNameMap[$res_key]) || count((array)$res_value) > 1) {
-                if (is_object($res_value) && count((array)$res_value) > 1) {
-                    foreach ((array)$res_value as $res_key1 => $res_value1) {
-                        if (isset($this->arClassNameMap[$res_key1])) {
-                            if (is_array($res_value1)) {
-                                foreach ($res_value1 as $rrkey => $rrvalue) {
-                                    $class = $classNameSpace.$this->arClassNameMap[$res_key1];
-                                    $this->result->$res_key->$res_key1[] = new $class($rrvalue);
-                                }
-                            } else {
-                                $class = $classNameSpace.$this->arClassNameMap[$res_key1];
-                                $this->result->$res_key->$res_key1 = new $class($res_value1);
-                            }
-                        } else {
-                            if (!property_exists($this->result, $res_key)) {
-                                $this->result->$res_key = new \stdClass;
-                            }
-                            $this->result->$res_key->$res_key1 = $res_value1;
-                        }
-                    }
-                } else {
-                    if (is_array($res_value)) {
-                        foreach ($res_value as $rkey => $rvalue) {
-                            $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                            $this->result->$res_key[] = new $class($rvalue);
+        foreach (['bride_details' => $result->response->bride_details, 'bridegroom_details' => $result->response->bridegroom_details] as $res_key => $res_value) {
+            foreach ($res_value as $res_key1 => $res_value1) {
+                $class = $this->getClassName($res_key1, true);
+                if ($class) {
+                    if ($res_key1 == "planet_positions") {
+                        foreach ($res_value1 as $planet_positions) {
+                            $planet = new $class($planet_positions);
+                            $this->result->$res_key->$res_key1[$planet->getId()] = $planet;
                         }
                     } else {
-                        $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                        $this->result->$res_key = new $class($res_value);
+                        $this->result->$res_key->$res_key1 = new $class($res_value1);
                     }
+                } else {
+                    $this->result->$res_key->$res_key1 = $res_value1;
                 }
-            } else {
-                $this->result->$res_key = $res_value;
             }
         }
-      
+        $this->result->result = $result->response->result;
         return $this;
     }
 

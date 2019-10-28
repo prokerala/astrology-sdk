@@ -1,6 +1,6 @@
 <?php
 /**
- * (c) Ennexa <api@prokerala.com>
+ * (c) Ennexa Technologies <api@prokerala.com>
  *
  * This source file is subject to the MIT license.
  *
@@ -9,9 +9,9 @@
  * @category API_SDK
  * @package  Astrology
  * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
+ * @license  MIT License (https://api.prokerala.com/license.txt)
  * @version  GIT: 1.0
- * @link     https://github.com/prokerala/astrology
+ * @link     https://github.com/prokerala/astrology-sdk
  * @access   public
  **/
 namespace Prokerala\Api\Astrology;

@@ -31,21 +31,12 @@ class Ayanamsa
      *
      * @return float 
      **/
-    public function showAll() 
+    public function getAyanamsaList() 
     {
         return [
-        	[
-        		'name' => 'Lahiri',
-        		'value' => self::LAHIRI,
-        	],
-        	[
-        		'name' => 'Raman',
-        		'value' => self::RAMAN,
-        	],
-        	[
-        		'name' => 'KP',
-        		'value' => self::KP,
-        	]
+    		self::LAHIRI => 'Lahiri',
+    		self::RAMAN => 'Raman',
+    		self::KP => 'KP',
         ];
     }
 }

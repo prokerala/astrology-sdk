@@ -35,8 +35,8 @@ class NakshatraPorutham
     protected $apiClient = null;
     protected $slug = 'nakshatra-porutham';
     protected $lang = 'en';
-    public $result = null;
-    public $input = null;
+    protected $result = null;
+    protected $input = null;
     /**
      * Function returns NakshatraPorutham details
      *
@@ -60,54 +60,21 @@ class NakshatraPorutham
      */
     public function process($bride_star, $groom_star)
     {
-        $classNameSpace = "\\Prokerala\\Api\\Astrology\\Result\\";
-
         $arParameter = [
             'bride_star' => $bride_star,
             'bridegroom_star' => $groom_star,
             'lang' => $this->lang,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
-        // print_r($result);
-        // exit;
         
         $this->input = $result->request;
-        
-        foreach ($result->response as $res_key => $res_value) {
-            if (isset($this->arClassNameMap[$res_key]) || count((array)$res_value) > 1) {
-                if (is_object($res_value) && count((array)$res_value) > 1) {
-                    foreach ((array)$res_value as $res_key1 => $res_value1) {
-                        if (isset($this->arClassNameMap[$res_key1])) {
-                            if (is_array($res_value1)) {
-                                foreach ($res_value1 as $rrkey => $rrvalue) {
-                                    $class = $classNameSpace.$this->arClassNameMap[$res_key1];
-                                    $this->result->$res_key->$res_key1[] = new $class($rrvalue);
-                                }
-                            } else {
-                                $class = $classNameSpace.$this->arClassNameMap[$res_key1];
 
-                                if (!property_exists($this->result, $res_key)) {
-                                    $this->result->$res_key = new \stdClass;
-                                }
-                                $this->result->$res_key->$res_key1 = new $class($res_value1);
-                            }
-                        } else {
-                            if (!property_exists($this->result, $res_key)) {
-                                $this->result->$res_key = new \stdClass;
-                            }
-                            $this->result->$res_key->$res_key1 = $res_value1;
-                        }
-                    }
-                } else {
-                    if (is_array($res_value)) {
-                        foreach ($res_value as $rkey => $rvalue) {
-                            $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                            $this->result->$res_key[] = new $class($rvalue);
-                        }
-                    } else {
-                        $class = $classNameSpace.$this->arClassNameMap[$res_key];
-                        $this->result->$res_key = new $class($res_value);
-                    }
+
+        foreach ($result->response as $res_key => $res_value) {
+            $this->result->$res_key = new \stdClass();
+            if (in_array($res_key, [1 => "result", "porutham_details", "nakshatras_details"])) {
+                foreach ($res_value as $res_key1 => $res_value1) {
+                    $this->result->$res_key->$res_key1 = $res_value1;
                 }
             } else {
                 $this->result->$res_key = $res_value;
