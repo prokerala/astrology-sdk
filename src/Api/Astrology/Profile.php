@@ -25,8 +25,8 @@ class Profile
      *
      * @param array $data nakshatra details
      */
-    protected $location;
-    protected $datetime;
+    public $location;
+    public $datetime;
 
     public function __construct(Location $location, \DateTimeInterface $datetime)
     {
