@@ -42,15 +42,16 @@ class Client
      */
     public function __construct($key)
     {
-        $this->_cHandle = curl_init();
+        $version = json_decode(file_get_contents(__DIR__ . '/../../../composer.json'))->version;
 
+        $this->_cHandle = curl_init();
         curl_setopt($this->_cHandle, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($this->_cHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->_cHandle, CURLOPT_AUTOREFERER, true);
         curl_setopt($this->_cHandle, CURLOPT_ENCODING, '');
         curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($this->_cHandle, CURLOPT_USERAGENT, 'Prokerala SDK API Request');
+        curl_setopt($this->_cHandle, CURLOPT_USERAGENT, "PHP SDK Client v{$version}");
         curl_setopt($this->_cHandle, CURLOPT_HTTPHEADER, ['Authorization: bearer ' . $key]);
     }
 
