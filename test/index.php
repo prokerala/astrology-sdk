@@ -1,6 +1,6 @@
 <?php
 
-include '../vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Location;
@@ -14,10 +14,11 @@ use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Api\Astrology\Service\Panchang;
 use Prokerala\Api\Astrology\Service\PlanetPosition;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\InvalidArgumentException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-const API_KEY = 'API';
+const API_KEY = 'YOUR_API_KEY_HERE';
 
 /*
  * Panchang Details
@@ -27,6 +28,22 @@ const API_KEY = 'API';
  * coordinates should be valid latitude and longitude eg : `10.214747,78.097626`
  */
 
+$apiKey = API_KEY === 'YOUR_API_KEY_HERE' ? getenv('API_KEY') : API_KEY;
+
+function handleException($e) {
+    echo PHP_EOL;
+
+    if ($e instanceof QuotaExceededException) {
+        echo "ERROR: You have exceeded your quota allocation for the day", PHP_EOL;
+        exit(1);
+    } else if ($e instanceof RateLimitedException) {
+        echo "ERROR: Rate limit exceeded. Throttle your requests.", PHP_EOL;
+        exit(2);
+    } else {
+        echo "API Request Failed with error {$e->getMessage()}", PHP_EOL, PHP_EOL;
+    }
+}
+
 try {
     $latitude = 10.214747;
     $longitude = 78.097626;
@@ -34,7 +51,7 @@ try {
     $datetime_string = '2004-02-01T15:19:21+05:30'; //input time in user timezone
     $datetime = new DateTime($datetime_string);
 
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
     $panchang = new Panchang($client);
 
@@ -67,14 +84,8 @@ try {
     print_r("\n\n" . Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
 
     print_r("\n\n" . $result->getInput()->datetime);
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
 
 /*
@@ -92,7 +103,7 @@ try {
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
     $planet_position = new PlanetPosition($client);
 
@@ -104,14 +115,8 @@ try {
     print_r($arPlanet[Planet::PLANET_MOON]->getName());
 
     print_r($arPlanet[Planet::PLANET_MOON]->getDegree());
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
 
 /*
@@ -129,7 +134,7 @@ try {
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
     $datetime = new DateTime($datetime_string);
 
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
     $manglik_service = new MangalDosha($client);
 
@@ -146,14 +151,8 @@ try {
     print_r($mangal_dosha_result->result->nakshatra[0]->getName());
 
     print_r($mangal_dosha_result->result->manglik_status);
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
 
 /**
@@ -170,7 +169,7 @@ $groom_dob = '2004-02-12T15:19:21+00:00';
 $groom_coordinates = '10.214747,78.097626';
 
 try {
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
@@ -203,14 +202,8 @@ try {
     print_r($kundli_match_result->bridegroom_details->nakshatra_details->getName());
 
     print_r($kundli_match_result->result);
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
 
 /*
@@ -224,7 +217,7 @@ try {
  */
 
 try {
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
@@ -263,14 +256,8 @@ try {
     print_r("\n\n" . $horoscope_match_result->compatibility);
 
     print_r((array)$horoscope_match_result->detailed_information);
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
 
  /*
@@ -284,7 +271,7 @@ try {
  */
 
 try {
-    $client = new Client(API_KEY);
+    $client = new Client($apiKey);
     $lang = 'en';
     $bride_star = 2; //Bhrani
     $groom_star = '21-2'; //Uttara Ashadha - 2nd Pada,
@@ -306,12 +293,6 @@ try {
     print_r($nakshatra_match_result->porutham_details);
 
     print_r($nakshatra_match_result->nakshatras_details);
-} catch (RateLimitExceededException $e) {
-    echo "RateLimitExceededException \n\n";
-} catch (QuotaExceededException $e) {
-    echo "QuotaExceededException \n\n";
-} catch (InvalidArgumentException $e) {
-    echo "InvalidArgumentException \n\n";
 } catch (\Exception $e) {
-    echo "Exception  \n\n";
+    handleException($e);
 }
