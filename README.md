@@ -77,7 +77,7 @@ try {
     $result = $panchang->process($location, $datetime);
     print_r($result->getTithi());
     print_r($result->getNakshatra());
-    print_r($result->getKarna());
+    print_r($result->getKarana());
     print_r($result->getVasara());
     print_r($result->getYoga());
 

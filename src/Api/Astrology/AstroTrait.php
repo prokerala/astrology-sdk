@@ -26,7 +26,7 @@ trait AstroTrait
         'nakshatra_details' => 'Nakshatra',
         'tithi' => 'Tithi',
         'yoga' => 'Yoga',
-        'karana' => 'Karna',
+        'karana' => 'Karana',
         'planet_positions' => 'Planet',
         'moon_rasi' => 'Zodiac',
         'rasi_details' => 'Zodiac',

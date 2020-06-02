@@ -136,10 +136,20 @@ class Panchang
 
     /**
      * Function returns karna details
-     *
+     * @deprecated Use self::getKarana
      * @return object
      */
     public function getKarna()
+    {
+        return $this->getKarana();
+    }
+
+    /**
+     * Function returns karna details
+     *
+     * @return object
+     */
+    public function getKarana()
     {
         return $this->karana;
     }
