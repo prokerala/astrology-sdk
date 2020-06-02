@@ -33,8 +33,8 @@ class HoroscopeMatch
     protected $apiClient;
     protected $slug = 'horoscope-matching';
     protected $ayanamsa = 1;
-    public $result;
-    public $input;
+    protected $result;
+    protected $input;
 
     /**
      * Function returns HoroscopeMatch details

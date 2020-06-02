@@ -30,12 +30,12 @@ class Panchang
     protected $slug = 'panchang';
     protected $ayanamsa = 1;
 
-    public $nakshatra;
-    public $tithi;
-    public $karana;
-    public $yoga;
-    public $week_day;
-    public $input;
+    protected $nakshatra;
+    protected $tithi;
+    protected $karana;
+    protected $yoga;
+    protected $week_day;
+    protected $input;
 
     /**
      * Function returns panchang details

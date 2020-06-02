@@ -31,13 +31,8 @@ class KundliMatch
     protected $slug = 'kundli-matching';
     protected $ayanamsa = 1;
 
-    public $nakshatra;
-    public $tithi;
-    public $karna;
-    public $yoga;
-    public $vasara;
-    public $result;
-    public $input;
+    protected $result;
+    protected $input;
 
     /**
      * Function returns KundliMatch details

@@ -32,8 +32,9 @@ class NakshatraPorutham
     protected $apiClient;
     protected $slug = 'nakshatra-porutham';
     protected $lang = 'en';
-    public $result;
-    public $input;
+
+    protected $result;
+    protected $input;
 
     /**
      * Function returns NakshatraPorutham details

@@ -27,8 +27,8 @@ class PlanetPosition
 {
     use AstroTrait;
 
-    public $input;
-    public $planet_positions;
+    protected $input;
+    protected $planet_positions;
 
     protected $apiClient;
     protected $slug = 'planet-position';

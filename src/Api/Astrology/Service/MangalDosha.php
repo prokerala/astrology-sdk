@@ -26,17 +26,12 @@ class MangalDosha
 {
     use AstroTrait;
 
-    public $nakshatra;
-    public $tithi;
-    public $karna;
-    public $yoga;
-    public $vasara;
-    public $result;
-    public $input;
-
     protected $apiClient;
     protected $slug = 'manglik';
     protected $ayanamsa = 1;
+
+    protected $result;
+    protected $input;
 
     /**
      * Function returns panchang details
