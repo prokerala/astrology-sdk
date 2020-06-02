@@ -31,7 +31,18 @@ class Planet
     public const PLANET_KETU = 102;
     public const PLANET_ASCENDANT = 100;
 
-    public static $arPlanet = [0 => 'Sun', 1 => 'Moon', 2 => 'Mercury', 3 => 'Venus', 4 => 'Mars', 5 => 'Jupiter', 6 => 'Saturn', 101 => 'Rahu', 102 => 'Ketu', 100 => 'Ascendant'];
+    private static $arPlanet = [
+        0 => 'Sun',
+        1 => 'Moon',
+        2 => 'Mercury',
+        3 => 'Venus',
+        4 => 'Mars',
+        5 => 'Jupiter',
+        6 => 'Saturn',
+        101 => 'Rahu',
+        102 => 'Ketu',
+        100 => 'Ascendant',
+    ];
 
     protected $id;
     protected $name;

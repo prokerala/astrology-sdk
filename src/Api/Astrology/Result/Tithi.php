@@ -37,7 +37,7 @@ class Tithi
     public const TITHI_PURNIMA = 15;
     public const TITHI_AMAVASYA = 16;
 
-    public static $arTithi = [
+    private static $arTithi = [
         ['paksha' => 'Shukla', 'tithi' => 'Pratipada'],
         ['paksha' => 'Shukla', 'tithi' => 'Dwitiya'],
         ['paksha' => 'Shukla', 'tithi' => 'Tritiya'],

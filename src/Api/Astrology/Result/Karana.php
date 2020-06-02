@@ -32,7 +32,11 @@ class Karana extends Karna
     public const KARANA_CHATUSHPADA = 9;
     public const KARANA_NAGA = 10;
 
-    public static $arKarana = ['Bava', 'Balava', 'Kaulava', 'Taitila', 'Garija', 'Vanija', 'Vishti', 'Shakuni', 'Chatushpada', 'Naga', 'Kimstughna'];
+    private static $arKarana = [
+        'Bava', 'Balava', 'Kaulava', 'Taitila',
+        'Garija', 'Vanija', 'Vishti', 'Shakuni',
+        'Chatushpada', 'Naga', 'Kimstughna'
+    ];
 
     protected $id;
     protected $name;

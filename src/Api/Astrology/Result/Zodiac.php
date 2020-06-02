@@ -33,7 +33,20 @@ class Zodiac
     public const RASI_KUMBHA = 10;
     public const RASI_MEENA = 11;
 
-    public static $arZodiac = ['Mesha', 'Vrishabha', 'Mithuna', 'Karka', 'Simha', 'Kanya', 'Tula', 'Vrischika', 'Dhanu', 'Makara', 'Kumbha', 'Meena'];
+    private static $arZodiac = [
+        'Mesha',
+        'Vrishabha',
+        'Mithuna',
+        'Karka',
+        'Simha',
+        'Kanya',
+        'Tula',
+        'Vrischika',
+        'Dhanu',
+        'Makara',
+        'Kumbha',
+        'Meena',
+    ];
 
     protected $id;
     protected $name;

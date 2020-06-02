@@ -48,7 +48,16 @@ class Yoga
     public const YOGA_INDRA = 25;
     public const YOGA_VAIDHRUTHI = 26;
 
-    public static $arYoga = ['Vishkambha', 'Prithi', 'Ayushman', 'Saubhagya', 'Sobhana', 'Atiganda', 'Sukarman', 'Dhrithi', 'Soola', 'Ganda', 'Vridhi', 'Dhruva', 'Vyaghata', 'Harshana', 'Vajra', 'Siddhi', 'Vyatipata', 'Variyan', 'Parigha', 'Siva', 'Siddha', 'Sadhya', 'Subha', 'Sukla', 'Brahma', 'Indra', 'Vaidhruthi'];
+    private static $arYoga = [
+        'Vishkambha', 'Prithi', 'Ayushman',
+        'Saubhagya', 'Sobhana', 'Atiganda',
+        'Sukarman', 'Dhrithi', 'Soola',
+        'Ganda', 'Vridhi', 'Dhruva', 'Vyaghata',
+        'Harshana', 'Vajra', 'Siddhi', 'Vyatipata',
+        'Variyan', 'Parigha', 'Siva', 'Siddha',
+        'Sadhya', 'Subha', 'Sukla', 'Brahma',
+        'Indra', 'Vaidhruthi',
+    ];
 
     protected $id;
     protected $name;

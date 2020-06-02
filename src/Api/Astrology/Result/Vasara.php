@@ -28,7 +28,15 @@ class Vasara
     public const VASARA_SATURDAY = 5;
     public const VASARA_SUNDAY = 6;
 
-    public static $arVasara = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    private static $arVasara = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+    ];
 
     protected $id;
     protected $name;
