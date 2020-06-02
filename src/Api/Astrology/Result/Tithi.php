@@ -77,8 +77,9 @@ class Tithi
     protected $paksha;
 
     /**
-     * Init Tithi
+     * Create Tithi
      *
+     * @internal
      * @param object $data tithi details
      */
     public function __construct($data)
@@ -91,7 +92,7 @@ class Tithi
     }
 
     /**
-     * Function returns the name
+     * Get tithi name
      *
      * @return string
      */
@@ -101,7 +102,7 @@ class Tithi
     }
 
     /**
-     * Function returns the id
+     * Get tithi id
      *
      * @return int
      */
@@ -111,9 +112,9 @@ class Tithi
     }
 
     /**
-     * Function returns the starttime
+     * Get tithi start time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getStartTime()
     {
@@ -121,9 +122,9 @@ class Tithi
     }
 
     /**
-     * Function returns the endtime
+     * Get tithi end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getEndTime()
     {
@@ -131,7 +132,7 @@ class Tithi
     }
 
     /**
-     * Function returns the tithi list
+     * Get complete tithi list
      *
      * @return array
      */
@@ -141,7 +142,7 @@ class Tithi
     }
 
     /**
-     * Function returns the paksha
+     * Get tithi paksha
      *
      * @return string
      */

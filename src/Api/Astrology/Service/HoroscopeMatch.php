@@ -37,8 +37,6 @@ class HoroscopeMatch
     protected $input;
 
     /**
-     * Function returns HoroscopeMatch details
-     *
      * @param Client $client api client object
      */
     public function __construct(Client $client)
@@ -48,7 +46,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Function returns HoroscopeMatch details
+     * Fetch result from API
      *
      * @param Profile $bride_profile
      * @param Profile $groom_profile
@@ -98,7 +96,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Function returns panchang details
+     * Set Api Client
      *
      * @param object $client client class object
      */
@@ -108,10 +106,10 @@ class HoroscopeMatch
     }
 
     /**
-     * Function returns panchang details
+     * Set ayanamsa system
      *
      * @param object $client   client class object
-     * @param mixed  $ayanamsa
+     * @param int  $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -119,7 +117,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Function returns vasara details
+     * Get vaara result
      *
      * @return object
      */
@@ -129,7 +127,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Function returns input details
+     * Get API input
      *
      * @return object
      */

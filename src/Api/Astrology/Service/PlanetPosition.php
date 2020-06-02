@@ -35,8 +35,6 @@ class PlanetPosition
     protected $ayanamsa = 1;
 
     /**
-     * Function returns panchang details
-     *
      * @param object $client api client object
      */
     public function __construct(Client $client)
@@ -45,7 +43,7 @@ class PlanetPosition
     }
 
     /**
-     * Function returns panchang details
+     * Fetch result from API
      *
      * @param  object $location location details
      * @param  object $datetime date and time
@@ -76,7 +74,7 @@ class PlanetPosition
     }
 
     /**
-     * Function returns panchang details
+     * Set Api Client
      *
      * @param object $client client class object
      */
@@ -86,10 +84,10 @@ class PlanetPosition
     }
 
     /**
-     * Function returns panchang details
+     * Set ayanamsa system
      *
      * @param object $client   client class object
-     * @param mixed  $ayanamsa
+     * @param int  $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -97,7 +95,7 @@ class PlanetPosition
     }
 
     /**
-     * Function returns input details
+     * Get planet positions
      *
      * @return object
      */
@@ -107,7 +105,7 @@ class PlanetPosition
     }
 
     /**
-     * Function returns input details
+     * Get API input
      *
      * @return object
      */

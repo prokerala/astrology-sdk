@@ -38,8 +38,6 @@ class Panchang
     protected $input;
 
     /**
-     * Function returns panchang details
-     *
      * @param object $client api client object
      */
     public function __construct(Client $client)
@@ -48,7 +46,7 @@ class Panchang
     }
 
     /**
-     * Function returns panchang details
+     * Fetch result from API
      *
      * @param  object $location location details
      * @param  object $datetime date and time
@@ -84,7 +82,7 @@ class Panchang
     }
 
     /**
-     * Function returns panchang details
+     * Set Api Client
      *
      * @param object $client client class object
      */
@@ -94,10 +92,10 @@ class Panchang
     }
 
     /**
-     * Function returns panchang details
+     * Set ayanamsa system
      *
      * @param object $client   client class object
-     * @param mixed  $ayanamsa
+     * @param int  $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -165,7 +163,7 @@ class Panchang
     }
 
     /**
-     * Function returns input details
+     * Get API input
      *
      * @return object
      */

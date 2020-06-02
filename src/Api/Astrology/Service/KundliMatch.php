@@ -35,8 +35,6 @@ class KundliMatch
     protected $input;
 
     /**
-     * Function returns KundliMatch details
-     *
      * @param object $client api client object
      */
     public function __construct(Client $client)
@@ -46,7 +44,7 @@ class KundliMatch
     }
 
     /**
-     * Function returns KundliMatch details
+     * Fetch result from API
      *
      * @param  object $location location details
      * @param  object $datetime date and time
@@ -89,7 +87,7 @@ class KundliMatch
     }
 
     /**
-     * Function returns formated details
+     * Get formatted ouput
      *
      * @param object $client   client class object
      * @param mixed  $response
@@ -121,7 +119,7 @@ class KundliMatch
     }
 
     /**
-     * Function returns panchang details
+     * Set Api Client
      *
      * @param object $client client class object
      */
@@ -131,10 +129,10 @@ class KundliMatch
     }
 
     /**
-     * Function returns panchang details
+     * Set ayanamsa system
      *
      * @param object $client   client class object
-     * @param mixed  $ayanamsa
+     * @param int  $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -152,7 +150,7 @@ class KundliMatch
     }
 
     /**
-     * Function returns input details
+     * Get API input
      *
      * @return object
      */

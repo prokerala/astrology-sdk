@@ -56,7 +56,7 @@ class Zodiac
     protected $end;
 
     /**
-     * Init Zodiac
+     * Create Zodiac Sign
      *
      * @param object $data Zodiac details
      */
@@ -81,7 +81,7 @@ class Zodiac
     }
 
     /**
-     * Function returns the name
+     * Get sign name
      *
      * @return string
      */
@@ -91,7 +91,7 @@ class Zodiac
     }
 
     /**
-     * Function returns the id
+     * Get sign id
      *
      * @return int
      */
@@ -101,9 +101,9 @@ class Zodiac
     }
 
     /**
-     * Function returns the starttime
+     * Get longitude
      *
-     * @return string in ISO 8601 format
+     * @return float
      */
     public function getLongitude()
     {
@@ -111,9 +111,9 @@ class Zodiac
     }
 
     /**
-     * Function returns the endtime
+     * Get Rasi lord
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getLord()
     {
@@ -121,9 +121,9 @@ class Zodiac
     }
 
     /**
-     * Function returns the starttime
+     * Get zodiac sign start time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getStartTime()
     {
@@ -131,9 +131,9 @@ class Zodiac
     }
 
     /**
-     * Function returns the endtime
+     * Get zodiac sign end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getEndTime()
     {
@@ -141,7 +141,7 @@ class Zodiac
     }
 
     /**
-     * Function returns the list
+     * Get full zodiac sign list
      *
      * @return array
      */

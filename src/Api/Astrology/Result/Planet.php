@@ -54,8 +54,9 @@ class Planet
     protected $rasiLord;
 
     /**
-     * Init Planet
+     * Create Planet
      *
+     * @internal
      * @param object $data Planet details
      */
     public function __construct($data)
@@ -75,7 +76,7 @@ class Planet
     }
 
     /**
-     * Function returns the name
+     * Get planet name
      *
      * @return string
      */
@@ -85,7 +86,7 @@ class Planet
     }
 
     /**
-     * Function returns the id
+     * Get planet id
      *
      * @return int
      */
@@ -95,7 +96,7 @@ class Planet
     }
 
     /**
-     * Function returns the id
+     * Get planet longitude
      *
      * @return int
      */
@@ -105,7 +106,7 @@ class Planet
     }
 
     /**
-     * Function returns the Retrograde status
+     * Check whether the planet is in retrograde motion
      *
      * @return bool
      */
@@ -115,7 +116,7 @@ class Planet
     }
 
     /**
-     * Function returns the position
+     * Get planet position
      *
      * @return int
      */
@@ -125,7 +126,7 @@ class Planet
     }
 
     /**
-     * Function returns the degree
+     * Get longitude degree
      *
      * @return string
      */
@@ -135,7 +136,7 @@ class Planet
     }
 
     /**
-     * Function returns the rasi
+     * Get planet rasi
      *
      * @return string
      */
@@ -145,7 +146,7 @@ class Planet
     }
 
     /**
-     * Function returns the rasi lord
+     * Get rasi lord for the planet
      *
      * @return string
      */
@@ -155,9 +156,9 @@ class Planet
     }
 
     /**
-     * Function returns Planet list
+     * Get complete planet list
      *
-     * @return array
+     * @return string[]
      */
     public function getPlanetList()
     {

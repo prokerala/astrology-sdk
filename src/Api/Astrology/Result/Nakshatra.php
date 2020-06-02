@@ -67,7 +67,7 @@ class Nakshatra
     protected $pada;
 
     /**
-     * Init Nakshatra
+     * Create Nakshatra
      *
      * @param object $data nakshatra details
      */
@@ -93,7 +93,7 @@ class Nakshatra
     }
 
     /**
-     * Function returns the name
+     * Get nakshatra name
      *
      * @return string
      */
@@ -103,7 +103,7 @@ class Nakshatra
     }
 
     /**
-     * Function returns the id
+     * Get nakshatra id
      *
      * @return int
      */
@@ -113,9 +113,9 @@ class Nakshatra
     }
 
     /**
-     * Function returns the starttime
+     * Get nakshatra start time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getStartTime()
     {
@@ -123,9 +123,9 @@ class Nakshatra
     }
 
     /**
-     * Function returns the endtime
+     * Get nakshatra end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getEndTime()
     {
@@ -133,7 +133,7 @@ class Nakshatra
     }
 
     /**
-     * Function returns the longitude
+     * Get the longitude
      *
      * @return float
      */
@@ -143,7 +143,7 @@ class Nakshatra
     }
 
     /**
-     * Function returns the lord
+     * Get the nakshatra lord
      *
      * @return string
      */
@@ -153,7 +153,7 @@ class Nakshatra
     }
 
     /**
-     * Function returns the pada
+     * Get the nakshatra pada
      *
      * @return int
      */
@@ -163,9 +163,9 @@ class Nakshatra
     }
 
     /**
-     * Function returns the list
+     * Get complete nakshatra list
      *
-     * @return array
+     * @return string[]
      */
     public function getNakshatraList()
     {

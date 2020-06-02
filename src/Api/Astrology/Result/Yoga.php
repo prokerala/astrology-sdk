@@ -65,7 +65,7 @@ class Yoga
     protected $end;
 
     /**
-     * Init Yoga
+     * Create Yoga
      *
      * @param object $data Yoga details
      */
@@ -78,7 +78,7 @@ class Yoga
     }
 
     /**
-     * Function returns the name
+     * Get yoga name
      *
      * @return string
      */
@@ -88,7 +88,7 @@ class Yoga
     }
 
     /**
-     * Function returns the id
+     * Get yoga id
      *
      * @return int
      */
@@ -98,9 +98,9 @@ class Yoga
     }
 
     /**
-     * Function returns the starttime
+     * Get yoga end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getStartTime()
     {
@@ -108,9 +108,9 @@ class Yoga
     }
 
     /**
-     * Function returns the endtime
+     * Get yoga end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getEndTime()
     {
@@ -118,7 +118,7 @@ class Yoga
     }
 
     /**
-     * Function returns Yoga list
+     * Get complete yoga list
      *
      * @return array
      */

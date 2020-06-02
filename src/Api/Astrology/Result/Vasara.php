@@ -42,7 +42,7 @@ class Vasara
     protected $name;
 
     /**
-     * Init Vasara
+     * Create Vasara
      *
      * @param object $data Vasara details
      */
@@ -53,7 +53,7 @@ class Vasara
     }
 
     /**
-     * Function returns the name
+     * Get week day
      *
      * @return string
      */
@@ -63,7 +63,7 @@ class Vasara
     }
 
     /**
-     * Function returns the id
+     * Get week day id
      *
      * @return int
      */
@@ -73,7 +73,7 @@ class Vasara
     }
 
     /**
-     * Function returns Vasara list
+     * Get week day list
      *
      * @return array
      */

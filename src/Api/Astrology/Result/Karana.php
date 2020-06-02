@@ -39,35 +39,33 @@ class Karana extends Karna
     ];
 
     protected $id;
-    protected $name;
     protected $start;
     protected $end;
 
     /**
-     * Init Karana
+     * Create Karana
      *
      * @param object $data karna details
      */
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arKarana[$data->id];
         $this->start = $data->start;
         $this->end = $data->end;
     }
 
     /**
-     * Function returns the name
+     * Get karana name
      *
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arKarana[$data->id];
     }
 
     /**
-     * Function returns the id
+     * Get karana id
      *
      * @return int
      */
@@ -77,9 +75,9 @@ class Karana extends Karna
     }
 
     /**
-     * Function returns the starttime
+     * Get karana start time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getStartTime()
     {
@@ -87,9 +85,9 @@ class Karana extends Karna
     }
 
     /**
-     * Function returns the endtime
+     * Get karana end time in ISO 8601 format
      *
-     * @return string in ISO 8601 format
+     * @return string
      */
     public function getEndTime()
     {
@@ -97,7 +95,7 @@ class Karana extends Karna
     }
 
     /**
-     * Function returns Karana list
+     * Get a list of all Karanas
      *
      * @return array
      */

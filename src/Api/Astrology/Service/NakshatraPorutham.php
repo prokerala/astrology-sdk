@@ -37,8 +37,6 @@ class NakshatraPorutham
     protected $input;
 
     /**
-     * Function returns NakshatraPorutham details
-     *
      * @param Client $client api client object
      */
     public function __construct(Client $client)
@@ -48,7 +46,7 @@ class NakshatraPorutham
     }
 
     /**
-     * Function returns NakshatraPorutham details
+     * Fetch result from API
      *
      * @param $bride_star
      * @param $groom_star
@@ -83,7 +81,7 @@ class NakshatraPorutham
     }
 
     /**
-     * Function returns porutham details
+     * Set Api Client
      *
      * @param object $client client class object
      */
@@ -103,7 +101,7 @@ class NakshatraPorutham
     }
 
     /**
-     * Function returns input details
+     * Get API input
      *
      * @return object
      */
