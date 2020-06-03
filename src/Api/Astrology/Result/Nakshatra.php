@@ -59,7 +59,6 @@ class Nakshatra
     ];
 
     protected $id;
-    protected $name;
     protected $start;
     protected $end;
     protected $lord;
@@ -74,7 +73,6 @@ class Nakshatra
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arNakshatra[$data->id];
         if (property_exists($data, 'start')) {
             $this->start = $data->start;
         }
@@ -99,7 +97,7 @@ class Nakshatra
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arNakshatra[$this->id];
     }
 
     /**

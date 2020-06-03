@@ -45,7 +45,6 @@ class Planet
     ];
 
     protected $id;
-    protected $name;
     protected $longitude;
     protected $isReverse;
     protected $position;
@@ -62,7 +61,6 @@ class Planet
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arPlanet[$data->id];
         $this->longitude = $data->longitude;
         $this->isReverse = $data->is_reverse;
         $this->position = $data->position;
@@ -82,7 +80,7 @@ class Planet
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arPlanet[$this->id];
     }
 
     /**

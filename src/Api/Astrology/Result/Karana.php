@@ -61,7 +61,7 @@ class Karana extends Karna
      */
     public function getName()
     {
-        return self::$arKarana[$data->id];
+        return self::$arKarana[$this->id];
     }
 
     /**

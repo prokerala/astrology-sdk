@@ -71,7 +71,6 @@ class Tithi
     ];
 
     protected $id;
-    protected $name;
     protected $start;
     protected $end;
     protected $paksha;
@@ -85,7 +84,6 @@ class Tithi
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arTithi[$data->id]['tithi'];
         $this->start = $data->start;
         $this->end = $data->end;
         $this->paksha = $data->paksha;
@@ -98,7 +96,7 @@ class Tithi
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arTithi[$this->id]['tithi'];
     }
 
     /**

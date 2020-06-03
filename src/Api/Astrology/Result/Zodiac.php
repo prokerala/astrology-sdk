@@ -49,7 +49,6 @@ class Zodiac
     ];
 
     protected $id;
-    protected $name;
     protected $longitude;
     protected $lord;
     protected $start;
@@ -63,10 +62,11 @@ class Zodiac
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arZodiac[$data->id];
+
         if (property_exists($data, 'longitude')) {
             $this->longitude = $data->longitude;
         }
+
         if (property_exists($data, 'lord')) {
             $this->lord = $data->lord;
         }
@@ -87,7 +87,7 @@ class Zodiac
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arZodiac[$this->id];
     }
 
     /**

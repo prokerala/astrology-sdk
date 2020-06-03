@@ -39,7 +39,6 @@ class Vasara
     ];
 
     protected $id;
-    protected $name;
 
     /**
      * Create Vasara
@@ -49,7 +48,6 @@ class Vasara
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arVasara[$data->id];
     }
 
     /**
@@ -59,7 +57,7 @@ class Vasara
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arVasara[$this->id];
     }
 
     /**

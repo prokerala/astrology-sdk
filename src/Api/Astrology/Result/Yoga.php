@@ -60,7 +60,6 @@ class Yoga
     ];
 
     protected $id;
-    protected $name;
     protected $start;
     protected $end;
 
@@ -72,7 +71,6 @@ class Yoga
     public function __construct($data)
     {
         $this->id = $data->id;
-        $this->name = self::$arYoga[$data->id];
         $this->start = $data->start;
         $this->end = $data->end;
     }
@@ -84,7 +82,7 @@ class Yoga
      */
     public function getName()
     {
-        return $this->name;
+        return self::$arYoga[$this->id];
     }
 
     /**
