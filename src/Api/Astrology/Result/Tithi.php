@@ -10,7 +10,7 @@
  * @author   Ennexa <api@prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
  * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology
+ * @see     https://github.com/prokerala/astrology-sdk
  */
 
 namespace Prokerala\Api\Astrology\Result;
