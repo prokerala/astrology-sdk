@@ -68,7 +68,7 @@ try {
     print_r($result->getYoga());
 
     $tithi = $result->getTithi()[0];
-    print_r("\n\n" . $tithi->getStartTime());
+    print_r($tithi->getStartTime());
     print_r("\n\n" . $tithi->getName());
 
     foreach ($result->getNakshatra() as $key => $value) {
@@ -146,11 +146,11 @@ try {
 
     print_r($mangal_dosha_result);
 
-    print_r($mangal_dosha_result->result->nakshatra);
+    print_r($mangal_dosha_result->nakshatra);
 
-    print_r($mangal_dosha_result->result->nakshatra[0]->getName());
+    print_r($mangal_dosha_result->nakshatra->getName());
 
-    print_r($mangal_dosha_result->result->manglik_status);
+    print_r($mangal_dosha_result->manglik_status);
 } catch (\Exception $e) {
     handleException($e);
 }

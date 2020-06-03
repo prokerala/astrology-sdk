@@ -54,30 +54,13 @@ class Zodiac
     protected $start;
     protected $end;
 
-    /**
-     * Create Zodiac Sign
-     *
-     * @param object $data Zodiac details
-     */
-    public function __construct($data)
+    public function __construct($id, $longitude = null, $lord = null, ? \DateTimeImmutable $start = null, ? \DateTimeImmutable $end = null)
     {
-        $this->id = $data->id;
-
-        if (property_exists($data, 'longitude')) {
-            $this->longitude = $data->longitude;
-        }
-
-        if (property_exists($data, 'lord')) {
-            $this->lord = $data->lord;
-        }
-
-        if (property_exists($data, 'start')) {
-            $this->start = $data->start;
-        }
-
-        if (property_exists($data, 'end')) {
-            $this->end = $data->end;
-        }
+        $this->id = $id;
+        $this->longitude = $longitude;
+        $this->lord = $lord;
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
@@ -121,7 +104,7 @@ class Zodiac
     }
 
     /**
-     * Get zodiac sign start time in ISO 8601 format
+     * Get zodiac sign start time
      *
      * @return string
      */
@@ -131,7 +114,7 @@ class Zodiac
     }
 
     /**
-     * Get zodiac sign end time in ISO 8601 format
+     * Get zodiac sign end time
      *
      * @return string
      */

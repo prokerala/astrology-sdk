@@ -15,6 +15,8 @@
 
 namespace Prokerala\Api\Astrology;
 
+use RuntimeException;
+
 /**
  * Defines
  */
@@ -46,9 +48,76 @@ trait AstroTrait
         }
 
         if ($fullyQualified) {
-            return '\\Prokerala\\Api\\Astrology\\Result\\' . $this->arClassNameMap[$index];
+            return 'Prokerala\\Api\\Astrology\\Result\\' . $this->arClassNameMap[$index];
         }
 
         return $this->arClassNameMap[$index];
     }
+
+    private function make($class, $data, \DateTimeZone $timezone = null)
+    {
+        $reflector = new \ReflectionClass($class);
+        if (!$reflector->isInstantiable()) {
+            throw new \RuntimeException("{$class} is not instantiable");
+        }
+
+        $constructor = $reflector->getConstructor();
+        $params = null;
+        if ($constructor) {
+            $params = $constructor->getParameters();
+        }
+
+        if (!$params) {
+            // Constructor takes no argument
+            return $reflector->newInstance();
+        }
+
+        $args = [];
+        foreach ($params as $param) {
+            $args[] = $this->resolveParam($param, $data, $timezone);
+        }
+
+        return $reflector->newInstanceArgs($args);
+    }
+
+    /**
+     * Resolve dependecy parameter
+     *
+     * @param ReflectionParameter $param
+     */
+    private function resolveParam($param, $data, $timezone)
+    {
+        $name = $param->getName();
+        $param->isDefaultValueAvailable();
+
+        if (!property_exists($data, $name)) {
+            if (!$param->isDefaultValueAvailable()) {
+                throw new \RuntimeException("Failed to resolve parameter '{$name}'");
+            }
+
+            return $param->getDefaultValue();
+        }
+
+        $value = $data->$name;
+        $class = $param->getClass();
+
+        if (!$class) {
+            return $value;
+        }
+
+        if ($value instanceof \stdClass) {
+            // Resolve constructor arguments by name from the stdObject
+            return $this->make($class->getName(), $value, $timezone);
+        }
+
+        // Use the resolved value as first constructor argument
+        $val = $class->newInstance($value);
+
+        if ($timezone && $class->getName() === 'DateTimeImmutable') {
+            // Update timezone to match input
+            $val = $val->setTimezone($timezone);
+        }
+
+        return $val;
+     }
 }

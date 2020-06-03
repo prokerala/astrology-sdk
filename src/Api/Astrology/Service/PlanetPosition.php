@@ -58,11 +58,12 @@ class PlanetPosition
         ];
 
         $result = $this->apiClient->doGet($this->slug, $arParameter);
+        $tz = $location->getTimeZone();
 
         $this->input = $result->request;
         $planet_position = [];
         foreach ($result->response->planet_positions as $planetPosition) {
-            $planet = new Planet($planetPosition);
+            $planet = $this->make(Planet::class, $planetPosition, $tz);
             $planet_position[$planet->getId()] = $planet;
         }
 

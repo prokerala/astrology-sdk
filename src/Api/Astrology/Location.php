@@ -20,27 +20,36 @@ namespace Prokerala\Api\Astrology;
  */
 class Location
 {
-    protected $latitude;
-    protected $longitude;
-    protected $altitude;
-
     /**
-     * Init Location
-     *
-     * @param array $data      nakshatra details
-     * @param mixed $latitude
-     * @param mixed $longitude
-     * @param mixed $altitude
+     * @var float $latitude
      */
-    public function __construct($latitude, $longitude, $altitude = 0)
+    protected $latitude;
+    /**
+     * @var float $longitude
+     */
+    protected $longitude;
+    /**
+     * @var float $altitude
+     */
+    protected $altitude;
+    /**
+     * @var \DateTimeZone $timezone
+     */
+    protected $timezone;
+
+    public function __construct($latitude, $longitude, $altitude = 0, \DateTimeZone $timezone = null)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->altitude = $altitude;
+        if (!$timezone) {
+            $timezone = new \DateTimeZone(\date_default_timezone_get());
+        }
+        $this->timezone = $timezone;
     }
 
     /**
-     * Function returns the latitude
+     * Get the location latitude
      *
      * @return float
      */
@@ -50,7 +59,7 @@ class Location
     }
 
     /**
-     * Function returns the longitude
+     * Get the location longitude
      *
      * @return float
      */
@@ -60,7 +69,17 @@ class Location
     }
 
     /**
-     * Function returns the altitude
+     * Get the location timezone
+     *
+     * @return \DateTimeZone
+     */
+    public function getTimeZone()
+    {
+        return $this->timezone;
+    }
+
+    /**
+     * Get the location altitude
      *
      * @return float
      */
@@ -70,9 +89,9 @@ class Location
     }
 
     /**
-     * Function returns the cooridantes
+     * Get the location coordinates
      *
-     * @return array
+     * @return string
      */
     public function getCoordinates()
     {

@@ -82,7 +82,7 @@ try {
     print_r($result->getYoga());
 
     $tithi = $result->getTithi()[0];
-    print_r("\n\n".$tithi->getStartTime());
+    print_r($tithi->getStartTime());
     print_r("\n\n".$tithi->getName());
 
     foreach ($result->getNakshatra() as $key => $value) {

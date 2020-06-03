@@ -50,31 +50,36 @@ class KundliMatch
      * @param  object $datetime date and time
      * @return array
      */
-    public function process(Profile $bride_profile, Profile $groom_profile)
+    public function process(Profile $brideProfile, Profile $groomProfile)
     {
         $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
 
+        $brideLocation = $brideProfile->getLocation();
+        $groomLocation = $groomProfile->getLocation();
+
         $arParameter = [
-            'bride_dob' => $bride_profile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
-            'bride_coordinates' => $bride_profile->getLocation()->getCoordinates(),
-            'bridegroom_dob' => $groom_profile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
-            'bridegroom_coordinates' => $groom_profile->getLocation()->getCoordinates(),
+            'bride_dob' => $brideProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bride_coordinates' => $brideLocation->getCoordinates(),
+            'bridegroom_dob' => $groomProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bridegroom_coordinates' => $groomLocation->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
 
         $this->input = $result->request;
-        foreach (['bride_details' => $result->response->bride_details, 'bridegroom_details' => $result->response->bridegroom_details] as $res_key => $res_value) {
+        foreach (['bride_details', 'bridegroom_details'] as $res_key) {
+            $res_value = $result->response->$res_key;
+            $tz = $res_key === 'bride_details' ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
             foreach ($res_value as $res_key1 => $res_value1) {
                 $class = $this->getClassName($res_key1, true);
                 if ($class) {
                     if ('planet_positions' == $res_key1) {
                         foreach ($res_value1 as $planet_positions) {
-                            $planet = new $class($planet_positions);
+                            $planet = $this->make($class, $planet_positions, $tz);
                             $this->result->{$res_key}->{$res_key1}[$planet->getId()] = $planet;
                         }
                     } else {
-                        $this->result->{$res_key}->{$res_key1} = new $class($res_value1);
+                        $this->result->{$res_key}->{$res_key1} = $this->make($class, $res_value1, $tz);
                     }
                 } else {
                     $this->result->{$res_key}->{$res_key1} = $res_value1;
@@ -84,38 +89,6 @@ class KundliMatch
         $this->result->result = $result->response->result;
 
         return $this;
-    }
-
-    /**
-     * Get formatted ouput
-     *
-     * @param object $client   client class object
-     * @param mixed  $response
-     */
-    public function formatOutput($response)
-    {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
-
-        foreach ($response as $res_key => $res_value) {
-            if (count((array)$res_value) > 1) {
-                $this->formatOutput(((array)$res_value));
-            }
-            if (isset($this->arClassNameMap[$res_key])) {
-                if (is_array($res_value)) {
-                    foreach ($res_value as $rkey => $rvalue) {
-                        $class = $classNameSpace . $this->arClassNameMap[$res_key];
-                        $this->result->{$res_key}[] = new $class($rvalue);
-                    }
-                } else {
-                    $class = $classNameSpace . $this->arClassNameMap[$res_key];
-                    $this->result->{$res_key} = new $class($res_value);
-                }
-            } else {
-                $this->result->{$res_key} = $res_value;
-            }
-        }
-
-        return $this->result;
     }
 
     /**

@@ -29,11 +29,11 @@ class Client
 {
     public $response_code;
     public $base_uri;
-    private $_cHandle;
-    private $_baseUri = 'https://api.prokerala.com/v1/astrology/';
+    private $handle;
+    private $baseUri = 'https://api.prokerala.com/v1/astrology/';
 
-    private $_response;
-    private $_responseCode;
+    private $response;
+    private $responseCode;
 
     /**
      * Constructor
@@ -42,17 +42,17 @@ class Client
      */
     public function __construct($key)
     {
-        $version = json_decode(file_get_contents(__DIR__ . '/../../../composer.json'))->version;
+        $version = \json_decode(\file_get_contents(__DIR__ . '/../../../composer.json'))->version;
 
-        $this->_cHandle = curl_init();
-        curl_setopt($this->_cHandle, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($this->_cHandle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->_cHandle, CURLOPT_AUTOREFERER, true);
-        curl_setopt($this->_cHandle, CURLOPT_ENCODING, '');
-        curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($this->_cHandle, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($this->_cHandle, CURLOPT_USERAGENT, "PHP SDK Client v{$version}");
-        curl_setopt($this->_cHandle, CURLOPT_HTTPHEADER, ['Authorization: bearer ' . $key]);
+        $this->handle = curl_init();
+        \curl_setopt($this->handle, \CURLOPT_FOLLOWLOCATION, true);
+        \curl_setopt($this->handle, \CURLOPT_RETURNTRANSFER, true);
+        \curl_setopt($this->handle, \CURLOPT_AUTOREFERER, true);
+        \curl_setopt($this->handle, \CURLOPT_ENCODING, '');
+        \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYHOST, false);
+        \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYPEER, false);
+        \curl_setopt($this->handle, \CURLOPT_USERAGENT, "PHP SDK Client v{$version}");
+        \curl_setopt($this->handle, \CURLOPT_HTTPHEADER, ['Authorization: bearer ' . $key]);
     }
 
     /**
@@ -62,7 +62,7 @@ class Client
      */
     public function setBaseUri($base_uri)
     {
-        $this->_baseUri = $base_uri;
+        $this->baseUri = $base_uri;
     }
 
     /**
@@ -75,7 +75,7 @@ class Client
     public function doGet($slug, $params)
     {
         $get_parameters = http_build_query($params);
-        $url = $this->_baseUri . $slug;
+        $url = $this->baseUri . $slug;
         $parsed_url = parse_url($url);
 
         if (isset($parsed_url['query']) && !empty($parsed_url['query'])) {
@@ -83,38 +83,17 @@ class Client
         } else {
             $url .= "?{$get_parameters}";
         }
-        curl_setopt($this->_cHandle, CURLOPT_CUSTOMREQUEST, null);
-        curl_setopt($this->_cHandle, CURLOPT_HTTPGET, true);
-        curl_setopt($this->_cHandle, CURLOPT_URL, $url);
+        \curl_setopt($this->handle, \CURLOPT_CUSTOMREQUEST, null);
+        \curl_setopt($this->handle, \CURLOPT_HTTPGET, true);
+        \curl_setopt($this->handle, \CURLOPT_URL, $url);
 
-        $this->_response = curl_exec($this->_cHandle);
-        $this->response_code = curl_getinfo($this->_cHandle, CURLINFO_HTTP_CODE);
+        $this->response = curl_exec($this->handle);
+        $this->response_code = curl_getinfo($this->handle, \CURLINFO_HTTP_CODE);
 
-        //  // curl_close($this->_cHandle);
-        // $head = curl_getinfo($this->_cHandle);
-        // $ff = '';
-        // $head1 = curl_getinfo($this->_cHandle, CURLINFO_PRIVATE);
-        // $header_size = curl_getinfo($this->_cHandle, CURLINFO_HEADER_SIZE);
-        //  $header = substr($this->_response , 0, $header_size);
-        //  $body = substr($this->_response , $header_size);
-        //  // print_r($header_size);
-        //  // print_r($header);
-        //  // print_r($body);
-        //  // print_r($head);
-        //  // print_r($head1);
-        //  // print_r("head1");
-        //  // print_r($ff);
-        //  $ah = get_headers($url);
-        //  print_r($this->response_code);
-        //  // print_r($ah);
-        //  // print_r($this->_response);
-        // echo $this->response;
-        // exit;
-        $response = $this->jsonToArray($this->_response)->response;
-        // print_r($response);
-        // exit;
+        $response = $this->jsonToArray($this->response)->response;
+
         if (600 == $response->status_code) {
-            return $this->jsonToArray($this->_response);
+            return $this->jsonToArray($this->response);
         }
         if (601 == $response->status_code) {
             throw new InvalidArgumentException($response->status_message, $response->status_code);
@@ -150,15 +129,15 @@ class Client
     {
         $post_parameters = http_build_query($params);
 
-        curl_setopt($this->_cHandle, CURLOPT_URL, $this->base_uri . $slug);
-        curl_setopt($this->_cHandle, CURLOPT_POST, count($post_parameters));
-        curl_setopt($this->_cHandle, CURLOPT_POSTFIELDS, $post_parameters);
+        curl_setopt($this->handle, CURLOPT_URL, $this->base_uri . $slug);
+        curl_setopt($this->handle, CURLOPT_POST, count($post_parameters));
+        curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post_parameters);
 
-        $this->_response = curl_exec($this->_cHandle);
-        $this->response_code = curl_getinfo($this->_cHandle, CURLINFO_HTTP_CODE);
-        curl_close($this->_cHandle);
+        $this->response = curl_exec($this->handle);
+        $this->response_code = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+        curl_close($this->handle);
 
-        return $this->jsonToArray($this->_response);
+        return $this->jsonToArray($this->response);
     }
 
     /**

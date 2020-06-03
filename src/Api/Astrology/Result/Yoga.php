@@ -63,16 +63,11 @@ class Yoga
     protected $start;
     protected $end;
 
-    /**
-     * Create Yoga
-     *
-     * @param object $data Yoga details
-     */
-    public function __construct($data)
+    public function __construct($id, \DateTimeImmutable $start, \DateTimeImmutable $end)
     {
-        $this->id = $data->id;
-        $this->start = $data->start;
-        $this->end = $data->end;
+        $this->id = $id;
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
@@ -96,7 +91,7 @@ class Yoga
     }
 
     /**
-     * Get yoga end time in ISO 8601 format
+     * Get yoga end time
      *
      * @return string
      */
@@ -106,7 +101,7 @@ class Yoga
     }
 
     /**
-     * Get yoga end time in ISO 8601 format
+     * Get yoga end time
      *
      * @return string
      */

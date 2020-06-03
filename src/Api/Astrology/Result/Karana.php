@@ -38,20 +38,24 @@ class Karana extends Karna
         'Chatushpada', 'Naga', 'Kimstughna'
     ];
 
+    /**
+     * @var int $id
+     */
     protected $id;
+    /**
+     * @var \DateTimeImmutable $start
+     */
     protected $start;
+    /**
+     * @var \DateTimeImmutable $end
+     */
     protected $end;
 
-    /**
-     * Create Karana
-     *
-     * @param object $data karna details
-     */
-    public function __construct($data)
+    public function __construct($id, \DateTimeImmutable $start, \DateTimeImmutable $end)
     {
-        $this->id = $data->id;
-        $this->start = $data->start;
-        $this->end = $data->end;
+        $this->id = $id;
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
@@ -75,7 +79,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana start time in ISO 8601 format
+     * Get karana start time
      *
      * @return string
      */
@@ -85,7 +89,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana end time in ISO 8601 format
+     * Get karana end time
      *
      * @return string
      */

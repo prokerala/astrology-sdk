@@ -52,25 +52,15 @@ class Planet
     protected $rasi;
     protected $rasiLord;
 
-    /**
-     * Create Planet
-     *
-     * @internal
-     * @param object $data Planet details
-     */
-    public function __construct($data)
+    public function __construct($id, $longitude, $is_reverse, $position, $degree, $rasi = null, $rasi_lord = null)
     {
-        $this->id = $data->id;
-        $this->longitude = $data->longitude;
-        $this->isReverse = $data->is_reverse;
-        $this->position = $data->position;
-        $this->degree = $data->degree;
-        if (property_exists($data, 'rasi')) {
-            $this->rasi = $data->rasi;
-        }
-        if (property_exists($data, 'rasi_lord')) {
-            $this->rasiLord = $data->rasi_lord;
-        }
+        $this->id = $id;
+        $this->longitude = $longitude;
+        $this->isReverse = $is_reverse;
+        $this->position = $position;
+        $this->degree = $degree;
+        $this->rasi = $rasi;
+        $this->rasiLord = $rasi_lord;
     }
 
     /**

@@ -75,18 +75,12 @@ class Tithi
     protected $end;
     protected $paksha;
 
-    /**
-     * Create Tithi
-     *
-     * @internal
-     * @param object $data tithi details
-     */
-    public function __construct($data)
+    public function __construct($id, \DateTimeImmutable $start, \DateTimeImmutable $end, $paksha)
     {
-        $this->id = $data->id;
-        $this->start = $data->start;
-        $this->end = $data->end;
-        $this->paksha = $data->paksha;
+        $this->id = $id;
+        $this->start = $start;
+        $this->end = $end;
+        $this->paksha = $paksha;
     }
 
     /**
@@ -99,18 +93,13 @@ class Tithi
         return self::$arTithi[$this->id]['tithi'];
     }
 
-    /**
-     * Get tithi id
-     *
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Get tithi start time in ISO 8601 format
+     * Get tithi start time
      *
      * @return string
      */
@@ -120,7 +109,7 @@ class Tithi
     }
 
     /**
-     * Get tithi end time in ISO 8601 format
+     * Get tithi end time
      *
      * @return string
      */

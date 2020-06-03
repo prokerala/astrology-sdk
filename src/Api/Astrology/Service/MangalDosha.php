@@ -17,6 +17,8 @@ namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Result\Planet;
+use Prokerala\Api\Astrology\Result\Nakshatra;
 use Prokerala\Common\Api\Client;
 
 /**
@@ -57,20 +59,26 @@ class MangalDosha
             'ayanamsa' => $this->ayanamsa,
         ];
         $result = $this->apiClient->doGet($this->slug, $arParameter);
+        $tz = $location->getTimeZone();
+
         $this->input = $result->request;
+
         foreach ($result->response->result as $res_key => $res_value) {
             $class = $this->getClassName($res_key, true);
             if ($class) {
-                foreach ($res_value as $res_value1) {
-                    if ('planet_positions' == $res_value) {
-                        $planet = new $class($res_value1);
-                        $this->result->result->{$res_key}[$planet->getId()] = $planet;
-                    } else {
-                        $this->result->result->{$res_key}[] = new $class($res_value1);
+                if ($class === Nakshatra::class) {
+                    // TODO: Update API v2 to return only single nakshatra
+                    $this->result->nakshatra = $this->make($class, $res_value[0], $tz);
+                } elseif (is_array($res_value) || $class === Planet::class) {
+                    foreach ($res_value as $res_value1) {
+                        $planet = $this->make($class, $res_value1, $tz);
+                        $this->result->{$res_key}[$planet->getId()] = $planet;
                     }
+                } else {
+                    $this->result->{$res_key} = $this->make($class, $res_value, $tz);
                 }
             } else {
-                $this->result->result->{$res_key} = $res_value;
+                $this->result->{$res_key} = $res_value;
             }
         }
 

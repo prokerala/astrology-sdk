@@ -55,13 +55,16 @@ class HoroscopeMatch
      * @throws RateLimitExceededException
      * @return HoroscopeMatch
      */
-    public function process(Profile $bride_profile, Profile $groom_profile, $system)
+    public function process(Profile $brideProfile, Profile $groomProfile, $system)
     {
+        $brideLocation = $brideProfile->getLocation();
+        $groomLocation = $groomProfile->getLocation();
+
         $arParameter = [
-            'bride_dob' => $bride_profile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
-            'bride_coordinates' => $bride_profile->getLocation()->getCoordinates(),
-            'bridegroom_dob' => $groom_profile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
-            'bridegroom_coordinates' => $groom_profile->getLocation()->getCoordinates(),
+            'bride_dob' => $brideProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bride_coordinates' => $brideLocation->getCoordinates(),
+            'bridegroom_dob' => $groomProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bridegroom_coordinates' => $groomLocation->getCoordinates(),
             'system' => $system,
             'ayanamsa' => $this->ayanamsa,
         ];
@@ -71,17 +74,19 @@ class HoroscopeMatch
 
         foreach ($result->response as $res_key => $res_value) {
             $this->result->{$res_key} = new \stdClass();
-            if (in_array($res_key, [1 => 'bride_details', 'bridegroom_details'])) {
+            if (in_array($res_key, ['bride_details', 'bridegroom_details'])) {
+                $tz = $res_key === 'bride_details' ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
                 foreach ($res_value as $res_key1 => $res_value1) {
                     $class = $this->getClassName($res_key1, true);
+
                     if ($class) {
                         if ('planet_positions' == $res_key1) {
                             foreach ($res_value1 as $planet_positions) {
-                                $planet = new $class($planet_positions);
+                                $planet =$this->make($class, $planet_positions, $tz);
                                 $this->result->{$res_key}->{$res_key1}[$planet->getId()] = $planet;
                             }
                         } else {
-                            $this->result->{$res_key}->{$res_key1} = new $class($res_value1);
+                            $this->result->{$res_key}->{$res_key1} = $this->make($class, $res_value1, $tz);
                         }
                     } else {
                         $this->result->{$res_key}->{$res_key1} = $res_value1;

@@ -65,29 +65,14 @@ class Nakshatra
     protected $longitude;
     protected $pada;
 
-    /**
-     * Create Nakshatra
-     *
-     * @param object $data nakshatra details
-     */
-    public function __construct($data)
+    public function __construct($id, ?\DateTimeImmutable $start = null, ?\DateTimeImmutable $end = null, $longitude = null, $lord = null, $pada = null)
     {
-        $this->id = $data->id;
-        if (property_exists($data, 'start')) {
-            $this->start = $data->start;
-        }
-        if (property_exists($data, 'end')) {
-            $this->end = $data->end;
-        }
-        if (property_exists($data, 'longitude')) {
-            $this->longitude = $data->longitude;
-        }
-        if (property_exists($data, 'lord')) {
-            $this->lord = $data->lord;
-        }
-        if (property_exists($data, 'pada')) {
-            $this->pada = $data->pada;
-        }
+        $this->id = $id;
+        $this->start = $start;
+        $this->end = $end;
+        $this->longitude = $longitude;
+        $this->lord = $lord;
+        $this->pada = $pada;
     }
 
     /**
@@ -111,7 +96,7 @@ class Nakshatra
     }
 
     /**
-     * Get nakshatra start time in ISO 8601 format
+     * Get nakshatra start time
      *
      * @return string
      */
@@ -121,7 +106,7 @@ class Nakshatra
     }
 
     /**
-     * Get nakshatra end time in ISO 8601 format
+     * Get nakshatra end time
      *
      * @return string
      */

@@ -40,14 +40,9 @@ class Vasara
 
     protected $id;
 
-    /**
-     * Create Vasara
-     *
-     * @param object $data Vasara details
-     */
-    public function __construct($data)
+    public function __construct($id)
     {
-        $this->id = $data->id;
+        $this->id = $id;
     }
 
     /**

@@ -61,6 +61,7 @@ class Panchang
         ];
 
         $result = $this->apiClient->doGet($this->slug, $arParameter);
+        $tz = $location->getTimeZone();
 
         $this->input = $result->request;
         foreach ($result->response as $res_key => $res_value) {
@@ -68,10 +69,10 @@ class Panchang
             if ($class) {
                 if (is_array($res_value)) {
                     foreach ($res_value as $rkey => $rvalue) {
-                        $this->{$res_key}[] = new $class($rvalue);
+                        $this->{$res_key}[] = $this->make($class, $rvalue, $tz);
                     }
                 } else {
-                    $this->{$res_key} = new $class($res_value);
+                    $this->{$res_key} = $this->make($class, $res_value, $tz);
                 }
             } else {
                 $this->{$res_key} = $res_value;
