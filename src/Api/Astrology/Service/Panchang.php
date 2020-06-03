@@ -55,7 +55,7 @@ class Panchang
     public function process(Location $location, $datetime)
     {
         $arParameter = [
-            'datetime' => $datetime->format('Y-m-d\\TH:i:s\\Z'),
+            'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];

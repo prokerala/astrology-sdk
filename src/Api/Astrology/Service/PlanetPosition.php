@@ -52,7 +52,7 @@ class PlanetPosition
     public function process(Location $location, \DateTimeInterface $datetime)
     {
         $arParameter = [
-            'datetime' => $datetime->format('Y-m-d\\TH:i:s\\Z'),
+            'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];

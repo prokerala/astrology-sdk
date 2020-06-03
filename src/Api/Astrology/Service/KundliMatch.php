@@ -58,9 +58,9 @@ class KundliMatch
         $groomLocation = $groomProfile->getLocation();
 
         $arParameter = [
-            'bride_dob' => $brideProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bride_dob' => $brideProfile->getDateTime()->format('c'),
             'bride_coordinates' => $brideLocation->getCoordinates(),
-            'bridegroom_dob' => $groomProfile->getDateTime()->format('Y-m-d\\TH:i:s\\Z'),
+            'bridegroom_dob' => $groomProfile->getDateTime()->format('c'),
             'bridegroom_coordinates' => $groomLocation->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
