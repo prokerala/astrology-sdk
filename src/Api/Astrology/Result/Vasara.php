@@ -29,13 +29,13 @@ class Vasara
     public const VASARA_SUNDAY = 6;
 
     private static $arVasara = [
+        'Sunday',
         'Monday',
         'Tuesday',
         'Wednesday',
         'Thursday',
         'Friday',
         'Saturday',
-        'Sunday',
     ];
 
     protected $id;
