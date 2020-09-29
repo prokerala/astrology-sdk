@@ -4,12 +4,13 @@
     "type": "library",
     "version": "0.3.3",
     "require": {
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "ext-curl": "*"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": "ProKerala",
+            "name": "Prokerala",
             "email": "support@prokerala.com",
             "homepage": "https://www.prokerala.com"
         }
