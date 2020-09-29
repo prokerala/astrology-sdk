@@ -1,40 +1,27 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
- *
- * This source file is subject to the MIT license.
- *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
- */
-
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
+use Prokerala\Api\Astrology\NakshatraProfile;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham as Porutham;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use stdClass;
 
-/**
- * Defines the HoroscopeMatch
- *
- * @property \stdClass result
- */
 class NakshatraPorutham
 {
     use AstroTrait;
 
     protected $apiClient;
     protected $slug = 'nakshatra-porutham';
-    protected $lang = 'en';
 
     protected $result;
     protected $input;
+    /**
+     * @var stdClass
+     */
+    protected $apiResponse;
 
     /**
      * @param Client $client api client object
@@ -42,42 +29,30 @@ class NakshatraPorutham
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \stdClass();
+        $this->result = new stdClass();
     }
 
     /**
-     * Fetch result from API
-     *
-     * @param $bride_star
-     * @param $groom_star
-     * @param $system
+     * @param NakshatraProfile $girl_profile
+     * @param NakshatraProfile $boy_profile
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     * @return NakshatraPorutham
      */
-    public function process($bride_star, $groom_star)
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile)
     {
+        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
+
         $arParameter = [
-            'bride_star' => $bride_star,
-            'bridegroom_star' => $groom_star,
-            'lang' => $this->lang,
+            'girl_nakshatra' => $girl_profile->getNakshatra(),
+            'girl_nakshatra_pada' => $girl_profile->getNakshatraPada(),
+            'boy_nakshatra' => $boy_profile->getNakshatra(),
+            'boy_nakshatra_pada' => $boy_profile->getNakshatraPada(),
         ];
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
 
-        $this->input = $result->request;
+        $apiResponse = $this->apiClient->doGet($this->slug, $arParameter);
+        $this->apiResponse = $apiResponse;
 
-        foreach ($result->response as $res_key => $res_value) {
-            $this->result->{$res_key} = new \stdClass();
-            if (in_array($res_key, [1 => 'result', 'porutham_details', 'nakshatras_details'])) {
-                foreach ($res_value as $res_key1 => $res_value1) {
-                    $this->result->{$res_key}->{$res_key1} = $res_value1;
-                }
-            } else {
-                $this->result->{$res_key} = $res_value;
-            }
-        }
-
-        return $this;
+        $this->result = $this->make(Porutham::class, $apiResponse);
     }
 
     /**
@@ -101,11 +76,21 @@ class NakshatraPorutham
     }
 
     /**
-     * Get API input
+     * Get raw response returned by the API
      *
-     * @return object
+     * @return stdClass
      */
-    public function getInput()
+    public function getRawResponse()
+    {
+        return $this->apiResponse;
+    }
+
+    /**
+     * Get the input as parsed by the API server
+     *
+     * @return stdClass
+     */
+    public function getParsedInput()
     {
         return $this->input;
     }
