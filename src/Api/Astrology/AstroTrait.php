@@ -15,6 +15,12 @@
 
 namespace Prokerala\Api\Astrology;
 
+use Prokerala\Api\Astrology\Exception\Result\Transformer\Exception;
+use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterMismatchException;
+use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterTypeMissingException;
+use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterValueMissingException;
+use ReflectionClass;
+use ReflectionMethod;
 use RuntimeException;
 
 /**
@@ -22,46 +28,24 @@ use RuntimeException;
  */
 trait AstroTrait
 {
-    public $arClassNameMap = [
-        'week_day' => 'Vasara',
-        'nakshatra' => 'Nakshatra',
-        'nakshatra_details' => 'Nakshatra',
-        'tithi' => 'Tithi',
-        'yoga' => 'Yoga',
-        'karana' => 'Karana',
-        'planet_positions' => 'Planet',
-        'moon_rasi' => 'Zodiac',
-        'rasi_details' => 'Zodiac',
-    ];
 
     /**
-     * Function returns the name
-     *
-     * @param  string $index          index value from response
-     * @param  bool   $fullyQualified return fully qualified class name
-     * @return string
+     * @param class-string $className
+     * @param \stdClass $data
      */
-    public function getClassName($index, $fullyQualified = false)
+    private function make($className, $data)
     {
-        if (!isset($this->arClassNameMap[$index])) {
-            return null;
+
+        if (!$data instanceof \stdClass) {
+            throw new RuntimeException('Cannot make class from ' . gettype($data));
         }
 
-        if ($fullyQualified) {
-            return 'Prokerala\\Api\\Astrology\\Result\\' . $this->arClassNameMap[$index];
+        $class = new ReflectionClass($className);
+        if (!$class->isInstantiable()) {
+            throw new RuntimeException("{$className} is not instantiable");
         }
 
-        return $this->arClassNameMap[$index];
-    }
-
-    private function make($class, $data, \DateTimeZone $timezone = null)
-    {
-        $reflector = new \ReflectionClass($class);
-        if (!$reflector->isInstantiable()) {
-            throw new \RuntimeException("{$class} is not instantiable");
-        }
-
-        $constructor = $reflector->getConstructor();
+        $constructor = $class->getConstructor();
         $params = null;
         if ($constructor) {
             $params = $constructor->getParameters();
@@ -69,55 +53,134 @@ trait AstroTrait
 
         if (!$params) {
             // Constructor takes no argument
-            return $reflector->newInstance();
+            return $class->newInstance();
         }
 
-        $args = [];
+        $paramTypes = $this->parsePhpDoc($constructor, $class->getNamespaceName());
+
+        $arguments = [];
         foreach ($params as $param) {
-            $args[] = $this->resolveParam($param, $data, $timezone);
+            $paramName = $param->getName();
+            $dataKey = preg_replace_callback('/[A-Z]/', function ($match) {
+                return '_' . lcfirst($match[0]);
+            }, $paramName);
+
+
+            $paramValue = null;
+            if (isset($data->$dataKey)) {
+                $paramValue = $data->$dataKey;
+            } elseif ($param->isDefaultValueAvailable()) {
+                $paramValue = $param->getDefaultValue();
+            } else {
+                throw new ParameterValueMissingException("Parameter {$className}::{$paramName} is missing");
+            }
+
+            $dataType = $this->getType($paramValue);
+            $paramClass = $param->getClass();
+
+            if ($paramClass) {
+                $paramType = [$paramClass->getName()];
+            } elseif (isset($paramTypes[$paramName])) {
+                $paramType = $paramTypes[$paramName];
+            } else {
+                throw new ParameterTypeMissingException("Parameter type for {$className}::{$paramName} is not specified");
+            }
+
+            try {
+                $arguments[] = $this->parseParameter($dataType, $paramValue, $paramType);
+            } catch (ParameterMismatchException $e) {
+                throw new Exception("Failed to parse {$className}::{$paramName} - " . $e->getMessage());
+            }
         }
 
-        return $reflector->newInstanceArgs($args);
+        return $class->newInstanceArgs($arguments);
     }
 
     /**
-     * Resolve dependecy parameter
-     *
-     * @param ReflectionParameter $param
+     * @param ReflectionMethod $docComment
+     * @param string $namespace
+     * @return array
      */
-    private function resolveParam($param, $data, $timezone)
+    private function parsePhpDoc(ReflectionMethod $method, $namespace)
     {
-        $name = $param->getName();
-        $param->isDefaultValueAvailable();
+        $phpDoc = $method->getDocComment() ?: '';
+        preg_match_all('/^\s+\* @param ([a-zA-Z\\_|]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
 
-        if (!property_exists($data, $name)) {
-            if (!$param->isDefaultValueAvailable()) {
-                throw new \RuntimeException("Failed to resolve parameter '{$name}'");
+        $scalarTypes = [
+            'int' => 'integer',
+            'bool' => 'boolean',
+            'string' => 'string',
+            'float' => 'float',
+            'null' => 'NULL',
+        ];
+
+        $resolvedArgTypes = [];
+        foreach ($matches as $match) {
+            $resolvedTypes = [];
+            $types = explode('|', $match[1]);
+            foreach ($types as $type) {
+                $isArray = substr($type, -2) === '[]';
+                if ($isArray) {
+                    $type = substr($type, 0, -2);
+                }
+                if (isset($scalarTypes[$type])) {
+                    $resolvedTypes[] = $scalarTypes[$type] . ($isArray ? '[]' : '');
+                    continue;
+                }
+
+                if ($type[0] !== '\\') {
+                    $type = $namespace . '\\' . $type;
+                }
+                $resolvedTypes[] = $type . ($isArray ? '[]' : '');
             }
 
-            return $param->getDefaultValue();
+            $resolvedArgTypes[$match[2]] = $resolvedTypes;
         }
 
-        $value = $data->$name;
-        $class = $param->getClass();
+        return $resolvedArgTypes;
+    }
 
-        if (!$class) {
-            return $value;
+    /**
+     * @param string $dataType
+     * @param mixed $data
+     * @param string[] $types
+     * @return mixed
+     * @throws ParameterMismatchException
+     */
+    private function parseParameter($dataType, $data, $types)
+    {
+        if (is_null($data) || is_scalar($data) || (is_array($data) && is_scalar($data[0]))) {
+            if (!in_array($dataType, $types)) {
+                throw new ParameterMismatchException("Unexpected parameter type");
+            }
+
+            return $data;
         }
 
-        if ($value instanceof \stdClass) {
-            // Resolve constructor arguments by name from the stdObject
-            return $this->make($class->getName(), $value, $timezone);
+        if ($data instanceof \stdClass) {
+            return $this->make($types[0], $data);
         }
 
-        // Use the resolved value as first constructor argument
-        $val = $class->newInstance($value);
-
-        if ($timezone && $class->getName() === 'DateTimeImmutable') {
-            // Update timezone to match input
-            $val = $val->setTimezone($timezone);
+        $paramValue = [];
+        foreach ($data as $val) {
+            assert($val instanceof \stdClass);
+            $paramValue[] = $this->make(substr($types[0], 0, -2), $val);
         }
 
-        return $val;
-     }
+        return $paramValue;
+    }
+
+    private function getType($val)
+    {
+        if (is_null($val)) {
+            return null;
+        }
+
+        if (is_array($val)) {
+            return $this->getType($val[0]) . '[]';
+        }
+
+        return gettype($val);
+    }
+
 }
