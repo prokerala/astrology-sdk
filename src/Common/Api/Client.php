@@ -30,7 +30,7 @@ class Client
     public $response_code;
     public $base_uri;
     private $handle;
-    private $baseUri = 'https://api.prokerala.com/v1/astrology/';
+    private $baseUri = 'https://api.prokerala.com/v2/astrology/';
 
     private $response;
     private $responseCode;
@@ -52,7 +52,7 @@ class Client
         \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYHOST, false);
         \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYPEER, false);
         \curl_setopt($this->handle, \CURLOPT_USERAGENT, "PHP SDK Client v{$version}");
-        \curl_setopt($this->handle, \CURLOPT_HTTPHEADER, ['Authorization: bearer ' . $key]);
+        \curl_setopt($this->handle, \CURLOPT_HTTPHEADER, ['Access-Token: ' . $key]);
     }
 
     /**
@@ -89,6 +89,8 @@ class Client
 
         $this->response = curl_exec($this->handle);
         $this->response_code = curl_getinfo($this->handle, \CURLINFO_HTTP_CODE);
+
+        return json_decode($this->response);
 
         $response = $this->jsonToArray($this->response)->response;
 
@@ -137,7 +139,7 @@ class Client
         $this->response_code = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
         curl_close($this->handle);
 
-        return $this->jsonToArray($this->response);
+        return json_decode($this->response);
     }
 
     /**
