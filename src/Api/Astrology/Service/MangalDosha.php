@@ -17,8 +17,7 @@ namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Planet;
-use Prokerala\Api\Astrology\Result\Nakshatra;
+use Prokerala\Api\Astrology\Result\Horoscope\MangalDosha as MangalDoshaResult;
 use Prokerala\Common\Api\Client;
 
 /**
@@ -29,7 +28,7 @@ class MangalDosha
     use AstroTrait;
 
     protected $apiClient;
-    protected $slug = 'manglik';
+    protected $slug = 'mangal-dosha';
     protected $ayanamsa = 1;
 
     protected $result;
@@ -53,36 +52,16 @@ class MangalDosha
      */
     public function process(Location $location, $datetime)
     {
-        $arParameter = [
+        $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
-        $tz = $location->getTimeZone();
 
-        $this->input = $result->request;
+        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $this->apiResponse = $apiResponse;
 
-        foreach ($result->response->result as $res_key => $res_value) {
-            $class = $this->getClassName($res_key, true);
-            if ($class) {
-                if ($class === Nakshatra::class) {
-                    // TODO: Update API v2 to return only single nakshatra
-                    $this->result->nakshatra = $this->make($class, $res_value[0], $tz);
-                } elseif (is_array($res_value) || $class === Planet::class) {
-                    foreach ($res_value as $res_value1) {
-                        $planet = $this->make($class, $res_value1, $tz);
-                        $this->result->{$res_key}[$planet->getId()] = $planet;
-                    }
-                } else {
-                    $this->result->{$res_key} = $this->make($class, $res_value, $tz);
-                }
-            } else {
-                $this->result->{$res_key} = $res_value;
-            }
-        }
-
-        return $this;
+        $this->result = $this->make(MangalDoshaResult::class, $apiResponse);
     }
 
     /**
@@ -107,7 +86,7 @@ class MangalDosha
     }
 
     /**
-     * Function returns vasara details
+     * Function returns mangaldosha details
      *
      * @return object
      */
@@ -117,11 +96,21 @@ class MangalDosha
     }
 
     /**
-     * Get API input
+     * Get raw response returned by the API
      *
-     * @return object
+     * @return \stdClass
      */
-    public function getInput()
+    public function getRawResponse()
+    {
+        return $this->apiResponse;
+    }
+
+    /**
+     * Get the input as parsed by the API server
+     *
+     * @return \stdClass
+     */
+    public function getParsedInput()
     {
         return $this->input;
     }

@@ -104,7 +104,9 @@ trait AstroTrait
     private function parsePhpDoc(ReflectionMethod $method, $namespace)
     {
         $phpDoc = $method->getDocComment() ?: '';
-        preg_match_all('/^\s+\* @param ([a-zA-Z\\_|]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
+
+
+        preg_match_all('/^\s+\* @param ([a-zA-Z\\_|\[\]]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
 
         $scalarTypes = [
             'int' => 'integer',
