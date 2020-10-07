@@ -2,12 +2,10 @@
 namespace Prokerala\Api\Astrology\Result;
 
 /**
- * Defines Nakshatra
+ * Defines Rasi
  */
-class Nakshatra
+class Rasi
 {
-
-
     /**
      * @var int
      */
@@ -22,13 +20,14 @@ class Nakshatra
     private $longitude;
 
     /**
-     * Nakshatra constructor.
+     * Rasi constructor.
      * @param int $id
      * @param string $name
      * @param float $longitude
      */
     public function __construct($id, $name, $longitude)
     {
+
 
         $this->id = $id;
         $this->name = $name;
@@ -58,6 +57,4 @@ class Nakshatra
     {
         return $this->longitude;
     }
-
-
 }
