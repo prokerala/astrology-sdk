@@ -37,7 +37,7 @@ class InauspiciousPeriod
      * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat $varjyam
      */
 
-    public function __construct($rahuKaal, $yamagandaKaal, $gulikaKaal, $durMuhurat, $varjyam)
+    public function __construct(Muhurat $rahuKaal, Muhurat $yamagandaKaal, Muhurat $gulikaKaal, array $durMuhurat, Muhurat $varjyam)
     {
 
         $this->rahuKaal = $rahuKaal;
