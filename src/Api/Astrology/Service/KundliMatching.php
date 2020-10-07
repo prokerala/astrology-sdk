@@ -1,20 +1,18 @@
 <?php
-declare(strict_types=1);
-
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Profile;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaKoot;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\KundliMatching as KundliMatchingResult;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\ProfileInfo;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\KundliMatching as MatchResult;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedKundliMatching as AdvancedMatchResult;
+
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use stdClass;
 
 class KundliMatching
 {
-
     use AstroTrait;
 
     protected $apiClient;
@@ -24,64 +22,51 @@ class KundliMatching
     protected $result;
     protected $input;
     /**
-     * @var \stdClass
+     * @var stdClass
      */
     protected $apiResponse;
 
-    protected $arClassNameMap = [
-        'boy_info' => ProfileInfo::class,
-        'girl_info' => ProfileInfo::class,
-        'gunamilan' => [
-            GunaMilan::class, [
-                'varna_koot' => GunaKoot::class,
-                'vasya_koot' => GunaKoot::class,
-                'tara_koot' => GunaKoot::class,
-                'yoni_koot' => GunaKoot::class,
-                'graha_maitri_koot' => GunaKoot::class,
-                'bhakoot_koot' => GunaKoot::class,
-                'nadi_koot' => GunaKoot::class,
-                'gana_koot' => GunaKoot::class,
-            ],
-        ],
-        'message' => Message::class,
-    ];
-
     /**
-     * @param object $client api client object
+     * @param Client $client api client object
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new \stdClass();
+        $this->result = new stdClass();
     }
 
     /**
-     * Fetch result from API
-     *
-     * @param  object $location location details
-     * @param  object $datetime date and time
-     * @return array
+     * @param Profile $girl_profile
+     * @param Profile $boy_profile
+     * @param bool $detailed_report
+     * @throws QuotaExceededException
+     * @throws RateLimitExceededException
      */
-    public function process(Profile $girl_profile, Profile $boy_profile)
+    public function process(Profile $girl_profile, Profile $boy_profile, $detailed_report = false)
     {
         $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
+        $slug = $this->slug;
+        if ($detailed_report) {
+            $slug .= '/advanced';
+        }
 
         $girl_location = $girl_profile->getLocation();
         $boy_location = $boy_profile->getLocation();
 
-        $parameters = [
-            'bride_dob' => $girl_profile->getDateTime()->format('c'),
-            'bride_coordinates' => $girl_location->getCoordinates(),
-            'bridegroom_dob' => $boy_profile->getDateTime()->format('c'),
-            'bridegroom_coordinates' => $boy_location->getCoordinates(),
+        $arParameter = [
+            'girl_coordinates' => $girl_location->getCoordinates(),
+            'girl_dob' => $girl_profile->getDateTime()->format('c'),
+            'boy_coordinates' => $boy_location->getCoordinates(),
+            'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'ayanamsa' => $this->ayanamsa,
         ];
-
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
-        $this->apiResponse = $apiResponse;
-
-        $this->result = $this->make(KundliMatchingResult::class, $apiResponse);
-
+        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
+        $this->apiResponse = $apiResponse->data;
+        if ($detailed_report) {
+            $this->result = $this->make(AdvancedMatchResult::class, $apiResponse->data);
+        } else {
+            $this->result = $this->make(MatchResult::class, $apiResponse->data);
+        }
     }
 
     /**
@@ -95,18 +80,7 @@ class KundliMatching
     }
 
     /**
-     * Set ayanamsa system
-     *
-     * @param object $client   client class object
-     * @param int  $ayanamsa
-     */
-    public function setAyanamsa($ayanamsa)
-    {
-        $this->ayanamsa = $ayanamsa;
-    }
-
-    /**
-     * Function returns vasara details
+     * Function returns porutham details
      *
      * @return object
      */
@@ -118,7 +92,7 @@ class KundliMatching
     /**
      * Get raw response returned by the API
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function getRawResponse()
     {
@@ -128,7 +102,7 @@ class KundliMatching
     /**
      * Get the input as parsed by the API server
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function getParsedInput()
     {

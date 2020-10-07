@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaKoot
@@ -8,7 +6,7 @@ class GunaKoot
 
 
     /**
-     * @var float
+     * @var int
      */
     private $maximumPoint;
     /**
@@ -22,7 +20,7 @@ class GunaKoot
 
     /**
      * GunaKoot constructor.
-     * @param float $maximumPoint
+     * @param int $maximumPoint
      * @param float $obtainedPoint
      * @param string $message
      */
@@ -34,7 +32,7 @@ class GunaKoot
     }
 
     /**
-     * @return float
+     * @return int
      */
     public function getMaximumPoint()
     {
@@ -56,4 +54,6 @@ class GunaKoot
     {
         return $this->message;
     }
+
+
 }

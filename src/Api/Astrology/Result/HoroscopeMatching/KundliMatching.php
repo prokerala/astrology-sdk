@@ -7,49 +7,75 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
 
 class KundliMatching
 {
-    /**
-     * @var ProfileInfo
-     */
-    public $girlInfo;
 
     /**
      * @var ProfileInfo
      */
-    public $boyInfo;
-
+    private $girlInfo;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan
+     * @var ProfileInfo
      */
-    public $gunaMilan;
-
+    private $boyInfo;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan
+     * @var Message
      */
-    public $message;
+    private $message;
+    /**
+     * @var GunaMilan
+     */
+    private $gunaMilan;
 
     /**
      * KundliMatching constructor.
+     * @param ProfileInfo $girlInfo
+     * @param ProfileInfo $boyInfo
+     * @param Message $message
+     * @param GunaMilan $gunaMilan
      */
-    public function __construct(ProfileInfo $girlInfo, ProfileInfo $boyInfo, GunaMilan $gunaMilan, Message $message) {
+    public function __construct(
+        ProfileInfo $girlInfo,
+        ProfileInfo $boyInfo,
+        Message $message,
+        GunaMilan $gunaMilan
+
+    )
+    {
+
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
-        $this->gunaMilan = $gunaMilan;
         $this->message = $message;
+        $this->gunaMilan = $gunaMilan;
     }
 
-    public function getGirlInfo() {
+    /**
+     * @return ProfileInfo
+     */
+    public function getGirlInfo()
+    {
         return $this->girlInfo;
     }
 
-    public function getBoyInfo() {
+    /**
+     * @return ProfileInfo
+     */
+    public function getBoyInfo()
+    {
         return $this->boyInfo;
     }
 
-    public function getGunaMilan() {
-        return $this->gunaMilan;
+    /**
+     * @return Message
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
-    public function getMessage() {
-        return $this->message;
+    /**
+     * @return GunaMilan
+     */
+    public function getGunaMilan()
+    {
+        return $this->gunaMilan;
     }
 }
