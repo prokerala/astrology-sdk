@@ -21,7 +21,7 @@ class Choghadiya
      * @param \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[] $night
      */
 
-    public function __construct($day, $night)
+    public function __construct(array $day, array $night)
     {
 
         $this->day = $day;

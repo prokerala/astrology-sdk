@@ -65,9 +65,9 @@ class Choghadiya
         ];
 
         $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
-        $this->apiResponse = $apiResponse;
+        $this->apiResponse = $apiResponse->data;
 
-        $this->result = $this->make(ChoghadiyaResult::class, $apiResponse);
+        $this->result = $this->make(ChoghadiyaResult::class, $apiResponse->data);
     }
 
 
