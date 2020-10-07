@@ -4,6 +4,7 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\NakshatraProfile;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham as Porutham;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedThirumanaPorutham as AdvancedPorutham;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -38,9 +39,14 @@ class ThirumanaPorutham
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile)
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false)
     {
         $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
+
+        $slug = $this->slug;
+        if ($detailed_report) {
+            $slug .= '/advanced';
+        }
 
         $arParameter = [
             'girl_nakshatra' => $girl_profile->getNakshatra(),
@@ -49,10 +55,14 @@ class ThirumanaPorutham
             'boy_nakshatra_pada' => $boy_profile->getNakshatraPada(),
         ];
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $arParameter);
+        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
         $this->apiResponse = $apiResponse;
 
-        $this->result = $this->make(Porutham::class, $apiResponse);
+        if ($detailed_report) {
+            $this->result = $this->make(AdvancedPorutham::class, $apiResponse->data);
+        } else {
+            $this->result = $this->make(Porutham::class, $apiResponse->data);
+        }
     }
 
     /**
