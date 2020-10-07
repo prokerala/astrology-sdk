@@ -36,6 +36,7 @@ class ThirumanaPorutham
     /**
      * @param NakshatraProfile $girl_profile
      * @param NakshatraProfile $boy_profile
+     * @param bool $detailed_report
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
