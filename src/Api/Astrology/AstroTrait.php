@@ -105,7 +105,7 @@ trait AstroTrait
     {
         $phpDoc = $method->getDocComment() ?: '';
 
-        preg_match_all('/^\s+\* @param\s+([a-zA-Z\\|\[\]]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
+        preg_match_all('/^\s+\* @param\s+([a-zA-Z\\\[\]|]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
         $scalarTypes = [
             'int' => 'integer',
             'bool' => 'boolean',
