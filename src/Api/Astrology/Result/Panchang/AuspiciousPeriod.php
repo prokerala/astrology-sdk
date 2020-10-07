@@ -2,6 +2,8 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
+use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
+
 class AuspiciousPeriod
 {
 
@@ -26,7 +28,7 @@ class AuspiciousPeriod
      * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat $brahmaMuhurat
      */
 
-    public function __construct($abhijitMuhurat, $amritKaal, $brahmaMuhurat)
+    public function __construct(Muhurat $abhijitMuhurat, array $amritKaal, Muhurat $brahmaMuhurat)
     {
 
         $this->abhijitMuhurat = $abhijitMuhurat;

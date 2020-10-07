@@ -65,9 +65,9 @@ class AuspiciousPeriod
         ];
 
         $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
-        $this->apiResponse = $apiResponse;
+        $this->apiResponse = $apiResponse->data;
 
-        $this->result = $this->make(AuspiciousPeriodResult::class, $apiResponse);
+        $this->result = $this->make(AuspiciousPeriodResult::class, $apiResponse->data);
     }
 
 
