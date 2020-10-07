@@ -105,14 +105,12 @@ trait AstroTrait
     {
         $phpDoc = $method->getDocComment() ?: '';
 
-
-        preg_match_all('/^\s+\* @param ([a-zA-Z\\_|\[\]]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
-
+        preg_match_all('/^\s+\* @param\s+([a-zA-Z\\|\[\]]+)\s+\$([a-zA-Z]+)/m', $phpDoc, $matches, PREG_SET_ORDER);
         $scalarTypes = [
             'int' => 'integer',
             'bool' => 'boolean',
             'string' => 'string',
-            'float' => 'float',
+            'float' => 'double',
             'null' => 'NULL',
         ];
 
@@ -151,7 +149,10 @@ trait AstroTrait
      */
     private function parseParameter($dataType, $data, $types)
     {
-        if (is_null($data) || is_scalar($data) || (is_array($data) && is_scalar($data[0]))) {
+        $isEmptyArray = is_array($data) && empty($data);
+        $types = $isEmptyArray ? ['array'] : $types;
+
+        if (is_null($data) || is_scalar($data) || $isEmptyArray || (is_array($data) && is_scalar($data[0]))) {
             if (!in_array($dataType, $types)) {
                 throw new ParameterMismatchException("Unexpected parameter type");
             }
@@ -179,7 +180,7 @@ trait AstroTrait
         }
 
         if (is_array($val)) {
-            return $this->getType($val[0]) . '[]';
+            return empty($val) ? 'array' : $this->getType($val[0]) . '[]';
         }
 
         return gettype($val);
