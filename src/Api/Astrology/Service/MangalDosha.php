@@ -18,6 +18,9 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\MangalDosha as MangalDoshaResult;
+use Prokerala\Api\Astrology\Result\Horoscope\AdvancedMangalDosha as AdvancedMangalDoshaResult;
+
+
 use Prokerala\Common\Api\Client;
 
 /**
@@ -50,18 +53,26 @@ class MangalDosha
      * @param  object $datetime date and time
      * @return array
      */
-    public function process(Location $location, $datetime)
+    public function process(Location $location, $datetime, $detailed_report = false)
     {
+        $slug = $this->slug;
+        if ($detailed_report) {
+            $slug .= '/advanced';
+        }
+
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $apiResponse = $this->apiClient->doGet($slug, $parameters);
         $this->apiResponse = $apiResponse;
-
-        $this->result = $this->make(MangalDoshaResult::class, $apiResponse);
+        if ($detailed_report) {
+            $this->result = $this->make(AdvancedMangalDoshaResult::class, $apiResponse->data);
+        } else {
+            $this->result = $this->make(MangalDoshaResult::class, $apiResponse->data);
+        }
     }
 
     /**
