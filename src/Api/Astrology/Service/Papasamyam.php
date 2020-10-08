@@ -1,0 +1,98 @@
+<?php
+namespace Prokerala\Api\Astrology\Service;
+
+use Prokerala\Api\Astrology\AstroTrait;
+use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam as PapasamyamResult;
+use Prokerala\Common\Api\Client;
+use stdClass;
+
+/**
+ * Defines the Papasamyam
+ */
+class Papasamyam
+{
+    use AstroTrait;
+
+    protected $apiClient;
+    protected $slug = 'papasamyam';
+    protected $ayanamsa = 1;
+
+    protected $result;
+    protected $input;
+    /**
+     * @var stdClass
+     */
+    protected $apiResponse;
+
+    /**
+     * @param object $client api client object
+     */
+    public function __construct(Client $client)
+    {
+        $this->apiClient = $client;
+        $this->result = new stdClass();
+    }
+
+    /**
+     * Fetch result from API
+     *
+     * @param  object $location location details
+     * @param  object $datetime date and time
+     * @return array
+     */
+    public function process(Location $location, $datetime)
+    {
+        $parameters = [
+            'datetime' => $datetime->format('c'),
+            'coordinates' => $location->getCoordinates(),
+            'ayanamsa' => $this->ayanamsa,
+        ];
+
+        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $this->apiResponse = $apiResponse->data;
+
+        $this->result = $this->make(PapasamyamResult::class, $apiResponse->data);
+    }
+
+
+    /**
+     * Set Api Client
+     *
+     * @param object $client client class object
+     */
+    public function setApiClient(Client $client)
+    {
+        $this->apiClient = $client;
+    }
+
+    /**
+     * Function returns Papasamyam details
+     *
+     * @return object
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Get raw response returned by the API
+     *
+     * @return stdClass
+     */
+    public function getRawResponse()
+    {
+        return $this->apiResponse;
+    }
+
+    /**
+     * Get the input as parsed by the API server
+     *
+     * @return stdClass
+     */
+    public function getParsedInput()
+    {
+        return $this->input;
+    }
+}
