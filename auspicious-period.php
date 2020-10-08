@@ -1,5 +1,6 @@
 <?php
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Service\AuspiciousPeriod;
 use Prokerala\Common\Api\Client;
 
 include  'prepend.inc.php';
@@ -22,7 +23,7 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\AuspiciousPeriod($client);
+    $method = new AuspiciousPeriod($client);
     $method->process($location, $datetime);
     $result = $method->getResult();
 

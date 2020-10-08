@@ -34,7 +34,7 @@ $boy_profile = new NakshatraProfile($boy_nakshatra, $boy_nakshatra_pada);
 $nakshatra_porutham = new NakshatraPorutham($client);
 
 try {
-    $nakshatra_porutham->process($girl_profile, $boy_profile);
+    $nakshatra_porutham->process($girl_profile, $boy_profile, true);
     $result = $nakshatra_porutham->getResult();
 
     $fields = [
@@ -71,3 +71,20 @@ try {
 
 }
 
+try {
+    $nakshatra_porutham->process($girl_profile, $boy_profile);
+    $result = $nakshatra_porutham->getResult();
+
+
+    $compatibilityResult = [];
+
+    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
+    $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoint();
+
+
+    print_r($compatibilityResult);
+} catch (QuotaExceededException $e) {
+
+} catch (RateLimitExceededException $e) {
+
+}

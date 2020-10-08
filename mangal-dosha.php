@@ -29,8 +29,26 @@ try {
 
     $mangalDoshaResult = [];
 
-    $mangalDoshaResult['has_mangal_dosha'] = $result->hasMangalDosha();
-    $mangalDoshaResult['has_exception'] = $result->hasException();
+    $mangalDoshaResult['has_mangal_dosha'] = $result->getHasMangalDosha();
+    $mangalDoshaResult['description'] = $result->getDescription();
+
+    print_r($mangalDoshaResult);
+} catch (QuotaExceededException $e) {
+
+} catch (RateLimitExceededException $e) {
+
+}
+
+try {
+    $method = new \Prokerala\Api\Astrology\Service\MangalDosha($client);
+    $method->process($location, $datetime, true);
+    $result = $method->getResult();
+
+
+    $mangalDoshaResult = [];
+
+    $mangalDoshaResult['has_mangal_dosha'] = $result->getHasMangalDosha();
+    $mangalDoshaResult['has_exception'] = $result->getHasException();
     $mangalDoshaResult['mangal_dosha_type'] = $result->getMangalDoshaType();
     $mangalDoshaResult['description'] = $result->getDescription();
     $mangalDoshaResult['exceptions'] = $result->getexceptions();

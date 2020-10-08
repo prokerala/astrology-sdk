@@ -32,7 +32,6 @@ try {
     $kaalSarpDoshaResult['kaal_sarp_dosha_type'] = $result->getKaalSarpDoshaType();
     $kaalSarpDoshaResult['has_kaal_sarp_dosha'] = $result->hasKaalSarpDosha();
     $kaalSarpDoshaResult['description'] = $result->getDescription();
-    $kaalSarpDoshaResult['remedies'] = $result->getRemedies();
 
     print_r($kaalSarpDoshaResult);
 

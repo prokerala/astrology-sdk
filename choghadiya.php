@@ -1,7 +1,10 @@
 <?php
 
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Service\Choghadiya;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
@@ -23,7 +26,7 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\Choghadiya($client);
+    $method = new Choghadiya($client);
     $method->process($location, $datetime);
     $result = $method->getResult();
 
