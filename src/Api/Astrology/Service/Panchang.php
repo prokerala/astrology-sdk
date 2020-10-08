@@ -17,7 +17,12 @@ namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Result\Panchang\AdvancedPanchang as AdvancedPanchangResult;
+use Prokerala\Api\Astrology\Result\Panchang\Panchang as PanchangResult;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use stdClass;
 
 /**
  * Defines the Panchang
@@ -30,56 +35,53 @@ class Panchang
     protected $slug = 'panchang';
     protected $ayanamsa = 1;
 
-    protected $nakshatra;
-    protected $tithi;
-    protected $karana;
-    protected $yoga;
-    protected $week_day;
+    protected $result;
     protected $input;
+    /**
+     * @var stdClass
+     */
+    protected $apiResponse;
 
     /**
-     * @param object $client api client object
+     * @param Client $client api client object
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
+        $this->result = new stdClass();
     }
 
     /**
      * Fetch result from API
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
-     * @return array
+     * @param Location $location location details
+     * @param object $datetime date and time
+     * @param bool $detailed_report
+     * @return void
+     * @throws QuotaExceededException
+     * @throws RateLimitExceededException
      */
-    public function process(Location $location, $datetime)
+    public function process(Location $location, $datetime, $detailed_report = false)
     {
+        $slug = $this->slug;
+        if ($detailed_report) {
+            $slug .= '/advanced';
+        }
+
         $arParameter = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
-        $tz = $location->getTimeZone();
+        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
+        $this->apiResponse = $apiResponse;
 
-        $this->input = $result->request;
-        foreach ($result->response as $res_key => $res_value) {
-            $class = $this->getClassName($res_key, true);
-            if ($class) {
-                if (is_array($res_value)) {
-                    foreach ($res_value as $rkey => $rvalue) {
-                        $this->{$res_key}[] = $this->make($class, $rvalue, $tz);
-                    }
-                } else {
-                    $this->{$res_key} = $this->make($class, $res_value, $tz);
-                }
-            } else {
-                $this->{$res_key} = $res_value;
-            }
+        if ($detailed_report) {
+            $this->result = $this->make(AdvancedPanchangResult::class, $apiResponse->data);
+        } else {
+            $this->result = $this->make(PanchangResult::class, $apiResponse->data);
         }
-
-        return $this;
     }
 
     /**
@@ -93,82 +95,31 @@ class Panchang
     }
 
     /**
-     * Set ayanamsa system
-     *
-     * @param object $client   client class object
-     * @param int  $ayanamsa
-     */
-    public function setAyanamsa($ayanamsa)
-    {
-        $this->ayanamsa = $ayanamsa;
-    }
-
-    /**
-     * Function returns vasara details
+     * Function returns porutham details
      *
      * @return object
      */
-    public function getVasara()
+    public function getResult()
     {
-        return $this->week_day;
+        return $this->result;
     }
 
     /**
-     * Function returns nakshatra details
+     * Get raw response returned by the API
      *
-     * @return object
+     * @return stdClass
      */
-    public function getNakshatra()
+    public function getRawResponse()
     {
-        return $this->nakshatra;
+        return $this->apiResponse;
     }
 
     /**
-     * Function returns tithi details
+     * Get the input as parsed by the API server
      *
-     * @return object
+     * @return stdClass
      */
-    public function getTithi()
-    {
-        return $this->tithi;
-    }
-
-    /**
-     * Function returns karna details
-     * @deprecated Use self::getKarana
-     * @return object
-     */
-    public function getKarna()
-    {
-        return $this->getKarana();
-    }
-
-    /**
-     * Function returns karna details
-     *
-     * @return object
-     */
-    public function getKarana()
-    {
-        return $this->karana;
-    }
-
-    /**
-     * Function returns yoga details
-     *
-     * @return object
-     */
-    public function getYoga()
-    {
-        return $this->yoga;
-    }
-
-    /**
-     * Get API input
-     *
-     * @return object
-     */
-    public function getInput()
+    public function getParsedInput()
     {
         return $this->input;
     }
