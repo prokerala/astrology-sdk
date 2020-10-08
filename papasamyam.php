@@ -29,7 +29,6 @@ try {
     $result = $method->getResult();
 
     $papasamyamResult['total_point'] = $result->getTotalPoint();
-
     $papaSamyam = $result->getPapaSamyam();
     $papaPlanets = $papaSamyam->getPapaPlanet();
     foreach ($papaPlanets as $idx => $papaPlanet) {
@@ -45,57 +44,7 @@ try {
         }
 
     }
-    print_r($papasamyamResult); exit;
-    $panchangResult = [
-        'vaara' => $result->getVaara(),
-        'sunrise' => $result->getSunrise(),
-        'sunset' => $result->getSunset(),
-        'moonrise' => $result->getMoonrise(),
-        'moonset' => $result->getMoonset()
-    ];
-
-    $nakshatras = $result->getNakshatra();
-    $tithis = $result->getTithi();
-    $karanas = $result->getKarana();
-    $yogas = $result->getYoga();
-
-    foreach($nakshatras as $nakshatra) {
-        $panchangResult['nakshatra'][] = [
-            'id' => $nakshatra->getId(),
-            'name' => $nakshatra->getName(),
-            'start' => $nakshatra->getStart(),
-            'end' => $nakshatra->getEnd(),
-        ];
-    }
-    foreach($tithis as $tithi) {
-        $panchangResult['tithi'][] = [
-            'index' => $tithi->getIndex(),
-            'id' => $tithi->getId(),
-            'name' => $tithi->getName(),
-            'start' => $tithi->getStart(),
-            'end' => $tithi->getEnd(),
-        ];
-    }
-
-    foreach($karanas as $karana) {
-        $panchangResult['karana'][] = [
-            'index' => $karana->getIndex(),
-            'id' => $karana->getId(),
-            'name' => $karana->getName(),
-            'start' => $karana->getStart(),
-            'end' => $karana->getEnd(),
-        ];
-    }
-
-    foreach($yogas as $yoga) {
-        $panchangResult['yoga'][] = [
-            'id' => $yoga->getId(),
-            'name' => $yoga->getName(),
-            'start' => $yoga->getStart(),
-            'end' => $yoga->getEnd(),
-        ];
-    }
-    // print_r($panchangResult); exit;
+    print_r($papasamyamResult);
 } catch (QuotaExceededException $e) {
 
 } catch (RateLimitExceededException $e) {
