@@ -18,6 +18,7 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as SadeSatiResult;
+use Prokerala\Api\Astrology\Result\Horoscope\AdvancedSadeSati as AdvancedSadeSatiResult;
 use Prokerala\Common\Api\Client;
 use stdClass;
 
@@ -51,24 +52,32 @@ class SadeSati
     /**
      * Fetch result from API
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
-     * @return array
+     * @param Location $location location details
+     * @param object $datetime date and time
+     * @param bool $detailed_report
+     * @return void
+     * @throws \Prokerala\Common\Api\Exception\QuotaExceededException
+     * @throws \Prokerala\Common\Api\Exception\RateLimitExceededException
      */
-    public function process(Location $location, $datetime)
+    public function process(Location $location, $datetime, $detailed_report = false)
     {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
-
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
+        $slug = $this->slug;
+        if ($detailed_report) {
+            $slug .= '/advanced';
+        }
+        $apiResponse = $this->apiClient->doGet($slug, $parameters);
+        $this->apiResponse = $apiResponse->data;
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
-        $this->apiResponse = $apiResponse;
-
-        $this->result = $this->make(SadeSatiResult::class, $apiResponse);
+        if ($detailed_report) {
+            $this->result = $this->make(AdvancedSadeSatiResult::class, $apiResponse->data);
+        } else {
+            $this->result = $this->make(SadeSatiResult::class, $apiResponse->data);
+        }
     }
 
 
@@ -83,7 +92,7 @@ class SadeSati
     }
 
     /**
-     * Function returns porutham details
+     * Function returns sade sati details
      *
      * @return object
      */

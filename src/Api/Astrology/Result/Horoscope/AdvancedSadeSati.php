@@ -5,7 +5,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit;
 
-class SadeSati
+class AdvancedSadeSati
 {
 
     /**
@@ -22,16 +22,25 @@ class SadeSati
     private $description;
 
     /**
+     * @var \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[]
+     */
+    private $transits;
+
+    /**
      * SadeSati constructor.
      * @param bool $isInSadeSati
      * @param string $transitPhase
      * @param string $description
+     * @param \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[] $transits
      */
-    public function __construct($isInSadeSati, $transitPhase, $description)
+
+    public function __construct($isInSadeSati, $transitPhase, $description, array $transits)
     {
+
         $this->isInSadeSati = $isInSadeSati;
         $this->transitPhase = $transitPhase;
         $this->description = $description;
+        $this->transits = $transits;
     }
 
     /**
@@ -58,5 +67,12 @@ class SadeSati
         return $this->description;
     }
 
+    /**
+     * @return \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[]
+     */
+    public function getTransits()
+    {
+        return $this->transits;
+    }
 
 }

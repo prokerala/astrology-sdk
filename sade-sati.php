@@ -31,35 +31,35 @@ $sade_sati = new SadeSati($client);
 try {
     $sade_sati->process($location, $datetime);
     $result = $sade_sati->getResult();
-    print_r($result); exit;
-    $fields = [
-        'dinaPorutham',
-        'ganaPorutham',
-        'mahendraPorutham',
-        'rajjuPorutham',
-        'rasiPorutham',
-        'rasyadhipaPorutham',
-        'streeDhrirghamPorutham',
-        'vasyaPorutham',
-        'vedaPorutham',
-        'yoniPorutham',
+    $sadeSatiResult = [
+        'isInSadeSati' => $result->getIsInSadeSati(),
+        'transitPhase' => $result->getTransitPhase(),
+        'description' => $result->getDescription()
     ];
+    print_r($sadeSatiResult);
+} catch (QuotaExceededException $e) {
 
-    $compatibilityResult = [];
+} catch (RateLimitExceededException $e) {
 
-    $compatibilityResult['totalPoint'] = $result->getTotalPoint();
-    $compatibilityResult['compatibility'] = $result->getCompatibility();
+}
 
-
-    foreach ($fields as $field) {
-        $functionName = 'get'.ucwords($field);
-        $poruthamResult = $result->$functionName();
-        foreach (['result', 'point', 'comment'] as $value) {
-            $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $poruthamResult->$functionName();
-        }
+try {
+    $sade_sati->process($location, $datetime, true);
+    $result = $sade_sati->getResult();
+    $sadeSatiResult = [
+        'isInSadeSati' => $result->getIsInSadeSati(),
+        'transitPhase' => $result->getTransitPhase(),
+        'description' => $result->getDescription()
+    ];
+    $arTransit = $result->getTransits();
+    foreach ($arTransit as $transit) {
+        $sadeSatiResult['transits'][] = [
+            'phase' => $transit->getPhase(),
+            'start' => $transit->getStart(),
+            'end' => $transit->getEnd(),
+        ];
     }
-    print_r($compatibilityResult);
+    print_r($sadeSatiResult); 
 } catch (QuotaExceededException $e) {
 
 } catch (RateLimitExceededException $e) {
