@@ -1,4 +1,5 @@
 <?php
+
 /**
  * (c) Ennexa <api@prokerala.com>
  *
@@ -13,22 +14,13 @@
  * @see     https://github.com/prokerala/astrology-sdk
  */
 
-namespace Prokerala\Api\Astrology\Result;
+namespace Prokerala\Common\Api\Exception;
 
 /**
- * @deprecated
- * @see Karana
+ * QuotaExceededException
+ *
+ * PHP version 5
  */
-class Karna
+class IdentityProviderException extends \Exception
 {
-    /**
-     * Function returns Karna list
-     *
-     * @deprecated Use getKaranaList instead
-     * @return array
-     */
-    public function getKarnaList()
-    {
-        return $this->getKaranaList();
-    }
 }

@@ -27,130 +27,69 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
  */
 class Client
 {
-    public $response_code;
-    public $base_uri;
-    private $handle;
-    private $baseUri = 'https://api.prokerala.com/v2/astrology/';
+    const BASE_URI = "https://api.prokerala.loc:8443/";
 
-    private $response;
-    private $responseCode;
+    private $authClient;
+    private $httpClient;
+    private $httpRequestFactory;
 
     /**
-     * Constructor
-     *
-     * @param string $key API token value
+     * Client constructor.
+     * @param $authClient
+     * @param $httpClient
+     * @param $httpRequestFactory
      */
-    public function __construct($key)
+    public function __construct($authClient, $httpClient, $httpRequestFactory)
     {
-        $version = \json_decode(\file_get_contents(__DIR__ . '/../../../composer.json'))->version;
-
-        $this->handle = curl_init();
-        \curl_setopt($this->handle, \CURLOPT_FOLLOWLOCATION, true);
-        \curl_setopt($this->handle, \CURLOPT_RETURNTRANSFER, true);
-        \curl_setopt($this->handle, \CURLOPT_AUTOREFERER, true);
-        \curl_setopt($this->handle, \CURLOPT_ENCODING, '');
-        \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYHOST, false);
-        \curl_setopt($this->handle, \CURLOPT_SSL_VERIFYPEER, false);
-        \curl_setopt($this->handle, \CURLOPT_USERAGENT, "PHP SDK Client v{$version}");
-        \curl_setopt($this->handle, \CURLOPT_HTTPHEADER, ['Access-Token: ' . $key]);
-    }
-
-    /**
-     * Function used to set the base uri
-     *
-     * @param string $base_uri base URI
-     */
-    public function setBaseUri($base_uri)
-    {
-        $this->baseUri = $base_uri;
+        $this->authClient = $authClient;
+        $this->httpClient = $httpClient;
+        $this->httpRequestFactory = $httpRequestFactory;
     }
 
     /**
      * Function used to get response from API (GET Method)
-     *
-     * @param  string $slug   section URI
-     * @param  array  $params request parameters
+     * @internal
+     * @param  string $path   section path
+     * @param  array  $input request parameters
      * @return array
      */
-    public function doGet($slug, $params)
+    public function process($path, $input)
     {
-        $get_parameters = http_build_query($params);
-        $url = $this->baseUri . $slug;
-        $parsed_url = parse_url($url);
-
-        if (isset($parsed_url['query']) && !empty($parsed_url['query'])) {
-            $url .= "&{$get_parameters}";
-        } else {
-            $url .= "?{$get_parameters}";
-        }
-        \curl_setopt($this->handle, \CURLOPT_CUSTOMREQUEST, null);
-        \curl_setopt($this->handle, \CURLOPT_HTTPGET, true);
-        \curl_setopt($this->handle, \CURLOPT_URL, $url);
-
-        $this->response = curl_exec($this->handle);
-        $this->response_code = curl_getinfo($this->handle, \CURLINFO_HTTP_CODE);
-
-        return json_decode($this->response);
-
-        $response = $this->jsonToArray($this->response)->response;
-
-        if (600 == $response->status_code) {
-            return $this->jsonToArray($this->response);
-        }
-        if (601 == $response->status_code) {
-            throw new InvalidArgumentException($response->status_message, $response->status_code);
-        }
-        if (602 == $response->status_code) {
-            throw new QuotaExceededException($response->status_message, $response->status_code);
-        }
-        if (603 == $response->status_code) {
-            throw new RateLimitExceededException($response->status_message, $response->status_code);
+        $uri = self::BASE_URI . $path . '?' . http_build_query($input);
+        $request = $this->httpRequestFactory->createRequest('GET', $uri);
+        try {
+            $request = $this->authClient->process($request);
+            $response = $this->request($request);
+            if ($response->getStatusCode() === 401) {
+                $this->authClient->handleError($response->message, $response->code);
+            }
+        } catch (Exception\RetryableExceptionInterface $e) {
+            $request = $this->authClient->process($request);
+            $response = $this->request($request);
         }
 
-        throw new \Exception($response->status_message, $response->status_code);
+
+
+        // Throw exception
+        switch ($response->getStatus()) {
+            case 200:
+                return json_decode($response->getBody(), true);
+            case 401:
+                throw AuthException; // On authentication error
+                break;
+            case 400:
+                throw InvalidArgumentException; // On authentication error
+                break;
+            case 500:
+                throw ServerException; // On internal server error
+                break;
+            default:
+                throw Exception;
+        }
     }
 
-    /**
-     * Function used to get response code
-     *
-     * @return int
-     */
-    public function getResponseCode()
+    private function request(RequestInterface $request)
     {
-        return $this->response_code;
-    }
-
-    /**
-     * Function used to get response from API (POST Method)
-     *
-     * @param  string $slug   section URI
-     * @param  array  $params request parameters
-     * @return array
-     */
-    public function post($slug, $params)
-    {
-        $post_parameters = http_build_query($params);
-
-        curl_setopt($this->handle, CURLOPT_URL, $this->base_uri . $slug);
-        curl_setopt($this->handle, CURLOPT_POST, count($post_parameters));
-        curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post_parameters);
-
-        $this->response = curl_exec($this->handle);
-        $this->response_code = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
-        curl_close($this->handle);
-
-        return json_decode($this->response);
-    }
-
-    /**
-     * Function used convert json to array
-     *
-     * @param  array $data json response
-     * @param  mixed $flag
-     * @return array
-     */
-    public function jsonToArray($data, $flag = false)
-    {
-        return $flag ? json_decode($data, true) : json_decode($data);
+        return $this->httpClient->sendRequest($request);
     }
 }
