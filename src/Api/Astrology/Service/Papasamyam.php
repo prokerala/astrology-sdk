@@ -60,7 +60,7 @@ class Papasamyam
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $apiResponse = $this->apiClient->process($this->slug, $parameters);
         $this->apiResponse = $apiResponse->data;
 
         $this->result = $this->make(PapasamyamResult::class, $apiResponse->data);

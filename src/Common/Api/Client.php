@@ -49,7 +49,7 @@ class Client
      *
      * @return array
      */
-    public function doGet($path, $input)
+    public function process($path, $input)
     {
         $uri = self::BASE_URI.$path.'?'.http_build_query($input);
         $request = $this->httpRequestFactory->createRequest('GET', $uri);

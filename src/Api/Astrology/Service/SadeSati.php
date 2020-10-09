@@ -66,7 +66,7 @@ class SadeSati
         if ($detailed_report) {
             $slug .= '/advanced';
         }
-        $apiResponse = $this->apiClient->doGet($slug, $parameters);
+        $apiResponse = $this->apiClient->process($slug, $parameters);
         $this->apiResponse = $apiResponse->data;
 
         if ($detailed_report) {

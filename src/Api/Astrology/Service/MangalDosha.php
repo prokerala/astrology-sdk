@@ -62,7 +62,7 @@ class MangalDosha
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $apiResponse = $this->apiClient->doGet($slug, $parameters);
+        $apiResponse = $this->apiClient->process($slug, $parameters);
         $this->apiResponse = $apiResponse;
         if ($detailed_report) {
             $this->result = $this->make(AdvancedMangalDoshaResult::class, $apiResponse->data);

@@ -63,7 +63,7 @@ class NakshatraPorutham
             'boy_nakshatra_pada' => $boy_profile->getNakshatraPada(),
         ];
 
-        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
+        $apiResponse = $this->apiClient->process($slug, $arParameter);
         $this->apiResponse = $apiResponse;
 
         if ($detailed_report) {

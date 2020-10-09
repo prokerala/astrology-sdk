@@ -70,7 +70,7 @@ class Panchang
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
+        $apiResponse = $this->apiClient->process($slug, $arParameter);
         $this->apiResponse = $apiResponse;
 
         if ($detailed_report) {

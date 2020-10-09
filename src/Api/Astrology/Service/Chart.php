@@ -62,7 +62,7 @@ class Chart
             'chart_type' => $chart_type,
         ];
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $apiResponse = $this->apiClient->process($this->slug, $parameters);
         $this->apiResponse = $apiResponse->data;
         $this->result = $this->make(ChartResult::class, $apiResponse->data);
     }

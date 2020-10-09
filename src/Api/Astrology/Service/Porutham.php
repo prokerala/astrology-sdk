@@ -71,7 +71,7 @@ class Porutham
             'system' => $system,
             'ayanamsa' => $this->ayanamsa,
         ];
-        $apiResponse = $this->apiClient->doGet($slug, $arParameter);
+        $apiResponse = $this->apiClient->process($slug, $arParameter);
         $this->apiResponse = $apiResponse->data;
         if ($detailed_report) {
             $this->result = $this->make(AdvancedMatchResult::class, $apiResponse->data);

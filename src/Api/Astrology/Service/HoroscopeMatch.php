@@ -66,7 +66,7 @@ class HoroscopeMatch
             'system' => $system,
             'ayanamsa' => $this->ayanamsa,
         ];
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
+        $result = $this->apiClient->process($this->slug, $arParameter);
 
         $this->input = $result->request;
 

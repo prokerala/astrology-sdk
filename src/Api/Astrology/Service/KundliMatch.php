@@ -61,7 +61,7 @@ class KundliMatch
             'bridegroom_coordinates' => $groomLocation->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
+        $result = $this->apiClient->process($this->slug, $arParameter);
 
         $this->input = $result->request;
         foreach (['bride_details', 'bridegroom_details'] as $res_key) {

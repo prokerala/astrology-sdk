@@ -61,7 +61,7 @@ class PapaSamyamCheck
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'ayanamsa' => $this->ayanamsa,
         ];
-        $apiResponse = $this->apiClient->doGet($this->slug, $arParameter);
+        $apiResponse = $this->apiClient->process($this->slug, $arParameter);
         $this->apiResponse = $apiResponse->data;
         $this->result = $this->make(PapaSamyamResult::class, $apiResponse->data);
     }

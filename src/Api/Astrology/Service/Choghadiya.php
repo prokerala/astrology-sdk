@@ -60,7 +60,7 @@ class Choghadiya
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $apiResponse = $this->apiClient->process($this->slug, $parameters);
         $this->apiResponse = $apiResponse->data;
 
         $this->result = $this->make(ChoghadiyaResult::class, $apiResponse->data);
