@@ -2,6 +2,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Chart;
 
+use  Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet;
 
 class ChartRasi
 {
@@ -14,7 +15,7 @@ class ChartRasi
      */
     private $name;
     /**
-     * @var PlanetPosition[]
+     * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
      */
     private $planetPosition;
 
@@ -22,7 +23,7 @@ class ChartRasi
      * ChartRasi constructor.
      * @param int $id
      * @param string $name
-     * @param PlanetPosition[] $planetPosition
+     * @param \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[] $planetPosition
      */
     public function __construct($id, $name, array $planetPosition)
     {
@@ -49,7 +50,7 @@ class ChartRasi
     }
 
     /**
-     * @return PlanetPosition[]
+     * @return \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
      */
     public function getPlanetPosition()
     {
