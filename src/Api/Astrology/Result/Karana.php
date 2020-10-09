@@ -1,22 +1,18 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Result;
 
 /**
- * Defines Karana
+ * Defines Karana.
  */
 class Karana extends Karna
 {
@@ -32,24 +28,24 @@ class Karana extends Karna
     public const KARANA_CHATUSHPADA = 9;
     public const KARANA_NAGA = 10;
 
-    private static $arKarana = [
-        'Bava', 'Balava', 'Kaulava', 'Taitila',
-        'Garija', 'Vanija', 'Vishti', 'Shakuni',
-        'Chatushpada', 'Naga', 'Kimstughna'
-    ];
-
     /**
-     * @var int $id
+     * @var int
      */
     protected $id;
     /**
-     * @var \DateTimeImmutable $start
+     * @var \DateTimeImmutable
      */
     protected $start;
     /**
-     * @var \DateTimeImmutable $end
+     * @var \DateTimeImmutable
      */
     protected $end;
+
+    private static $arKarana = [
+        'Bava', 'Balava', 'Kaulava', 'Taitila',
+        'Garija', 'Vanija', 'Vishti', 'Shakuni',
+        'Chatushpada', 'Naga', 'Kimstughna',
+    ];
 
     public function __construct($id, \DateTimeImmutable $start, \DateTimeImmutable $end)
     {
@@ -59,7 +55,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana name
+     * Get karana name.
      *
      * @return string
      */
@@ -69,7 +65,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana id
+     * Get karana id.
      *
      * @return int
      */
@@ -79,7 +75,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana start time
+     * Get karana start time.
      *
      * @return string
      */
@@ -89,7 +85,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get karana end time
+     * Get karana end time.
      *
      * @return string
      */
@@ -99,7 +95,7 @@ class Karana extends Karna
     }
 
     /**
-     * Get a list of all Karanas
+     * Get a list of all Karanas.
      *
      * @return array
      */

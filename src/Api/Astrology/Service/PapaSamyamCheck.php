@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
@@ -34,9 +44,8 @@ class PapaSamyamCheck
     }
 
     /**
-     * @param Profile $girl_profile
-     * @param Profile $boy_profile
      * @param bool $detailed_report
+     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
@@ -58,7 +67,7 @@ class PapaSamyamCheck
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -68,7 +77,7 @@ class PapaSamyamCheck
     }
 
     /**
-     * Function returns Papa Samyam details
+     * Function returns Papa Samyam details.
      *
      * @return object
      */
@@ -78,7 +87,7 @@ class PapaSamyamCheck
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -88,7 +97,7 @@ class PapaSamyamCheck
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

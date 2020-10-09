@@ -1,22 +1,18 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Result;
 
 /**
- * Defines Zodiac
+ * Defines Zodiac.
  */
 class Zodiac
 {
@@ -33,6 +29,12 @@ class Zodiac
     public const RASI_KUMBHA = 10;
     public const RASI_MEENA = 11;
 
+    protected $id;
+    protected $longitude;
+    protected $lord;
+    protected $start;
+    protected $end;
+
     private static $arZodiac = [
         'Mesha',
         'Vrishabha',
@@ -48,13 +50,7 @@ class Zodiac
         'Meena',
     ];
 
-    protected $id;
-    protected $longitude;
-    protected $lord;
-    protected $start;
-    protected $end;
-
-    public function __construct($id, $longitude = null, $lord = null, ? \DateTimeImmutable $start = null, ? \DateTimeImmutable $end = null)
+    public function __construct($id, $longitude = null, $lord = null, ?\DateTimeImmutable $start = null, ?\DateTimeImmutable $end = null)
     {
         $this->id = $id;
         $this->longitude = $longitude;
@@ -64,7 +60,7 @@ class Zodiac
     }
 
     /**
-     * Get sign name
+     * Get sign name.
      *
      * @return string
      */
@@ -74,7 +70,7 @@ class Zodiac
     }
 
     /**
-     * Get sign id
+     * Get sign id.
      *
      * @return int
      */
@@ -84,7 +80,7 @@ class Zodiac
     }
 
     /**
-     * Get longitude
+     * Get longitude.
      *
      * @return float
      */
@@ -94,7 +90,7 @@ class Zodiac
     }
 
     /**
-     * Get Rasi lord
+     * Get Rasi lord.
      *
      * @return string
      */
@@ -104,7 +100,7 @@ class Zodiac
     }
 
     /**
-     * Get zodiac sign start time
+     * Get zodiac sign start time.
      *
      * @return string
      */
@@ -114,7 +110,7 @@ class Zodiac
     }
 
     /**
-     * Get zodiac sign end time
+     * Get zodiac sign end time.
      *
      * @return string
      */
@@ -124,7 +120,7 @@ class Zodiac
     }
 
     /**
-     * Get full zodiac sign list
+     * Get full zodiac sign list.
      *
      * @return array
      */

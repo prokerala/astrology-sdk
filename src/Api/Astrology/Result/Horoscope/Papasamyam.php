@@ -1,14 +1,23 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails;
 
 /**
- * Defines Papasamyam
+ * Defines Papasamyam.
  */
 class Papasamyam
 {
-
     /**
      * @var float
      */
@@ -20,15 +29,13 @@ class Papasamyam
 
     /**
      * Papasamyam constructor.
+     *
      * @param float $totalPoint
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails $papaSamyam
      */
     public function __construct(
         $totalPoint,
         PapaSamyamDetails $papaSamyam
-    )
-    {
-
+    ) {
         $this->totalPoint = $totalPoint;
         $this->papaSamyam = $papaSamyam;
     }
@@ -48,6 +55,4 @@ class Papasamyam
     {
         return $this->papaSamyam;
     }
-
-
 }

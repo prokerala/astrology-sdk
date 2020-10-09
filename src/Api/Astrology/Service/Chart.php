@@ -1,16 +1,12 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
@@ -22,7 +18,7 @@ use Prokerala\Common\Api\Client;
 use stdClass;
 
 /**
- * Defines the Chart
+ * Defines the Chart.
  */
 class Chart
 {
@@ -49,18 +45,16 @@ class Chart
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
      * @param Location $location location details
-     * @param object $datetime date and time
-     * @param string $chart_type
-     * @return void
+     * @param object   $datetime date and time
+     *
      * @throws \Prokerala\Common\Api\Exception\QuotaExceededException
      * @throws \Prokerala\Common\Api\Exception\RateLimitExceededException
      */
     public function process(Location $location, $datetime, string $chart_type)
     {
-
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
@@ -73,9 +67,8 @@ class Chart
         $this->result = $this->make(ChartResult::class, $apiResponse->data);
     }
 
-
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -85,7 +78,7 @@ class Chart
     }
 
     /**
-     * Function returns Chart details
+     * Function returns Chart details.
      *
      * @return object
      */
@@ -95,7 +88,7 @@ class Chart
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -105,7 +98,7 @@ class Chart
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

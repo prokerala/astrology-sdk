@@ -1,16 +1,12 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
@@ -21,7 +17,7 @@ use Prokerala\Api\Astrology\Profile;
 use Prokerala\Common\Api\Client;
 
 /**
- * Defines the KundliMatch
+ * Defines the KundliMatch.
  */
 class KundliMatch
 {
@@ -44,10 +40,11 @@ class KundliMatch
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
+     * @param object $location location details
+     * @param object $datetime date and time
+     *
      * @return array
      */
     public function process(Profile $brideProfile, Profile $groomProfile)
@@ -68,12 +65,12 @@ class KundliMatch
 
         $this->input = $result->request;
         foreach (['bride_details', 'bridegroom_details'] as $res_key) {
-            $res_value = $result->response->$res_key;
-            $tz = $res_key === 'bride_details' ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
+            $res_value = $result->response->{$res_key};
+            $tz = 'bride_details' === $res_key ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
             foreach ($res_value as $res_key1 => $res_value1) {
                 $class = $this->getClassName($res_key1, true);
                 if ($class) {
-                    if ('planet_positions' == $res_key1) {
+                    if ('planet_positions' === $res_key1) {
                         foreach ($res_value1 as $planet_positions) {
                             $planet = $this->make($class, $planet_positions, $tz);
                             $this->result->{$res_key}->{$res_key1}[$planet->getId()] = $planet;
@@ -92,7 +89,7 @@ class KundliMatch
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -102,10 +99,10 @@ class KundliMatch
     }
 
     /**
-     * Set ayanamsa system
+     * Set ayanamsa system.
      *
      * @param object $client   client class object
-     * @param int  $ayanamsa
+     * @param int    $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -113,7 +110,7 @@ class KundliMatch
     }
 
     /**
-     * Function returns vasara details
+     * Function returns vasara details.
      *
      * @return object
      */
@@ -123,7 +120,7 @@ class KundliMatch
     }
 
     /**
-     * Get API input
+     * Get API input.
      *
      * @return object
      */

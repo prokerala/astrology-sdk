@@ -1,27 +1,23 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology;
 
 /**
- * Defines Profile
+ * Defines Profile.
  */
 class Profile
 {
     /**
-     * Init Profile
+     * Init Profile.
      *
      * @param array $data nakshatra details
      */
@@ -35,7 +31,7 @@ class Profile
     }
 
     /**
-     * Function returns the datetime
+     * Function returns the datetime.
      *
      * @return object
      */
@@ -45,7 +41,7 @@ class Profile
     }
 
     /**
-     * Function returns the location
+     * Function returns the location.
      *
      * @return object
      */

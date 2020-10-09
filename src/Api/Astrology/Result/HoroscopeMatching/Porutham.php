@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile;
 
 class Porutham
 {
-
     /**
      * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
      */
@@ -30,20 +38,18 @@ class Porutham
 
     /**
      * Porutham constructor.
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile $girlInfo
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile $boyInfo
-     * @param int $maximumPoint
-     * @param float $totalPoint
+     *
+     * @param int    $maximumPoint
+     * @param float  $totalPoint
      * @param string $compatibility
      */
     public function __construct(
-         Profile $girlInfo,
-         Profile $boyInfo,
-         $maximumPoint,
-         $totalPoint,
-         $compatibility
-    )
-    {
+        Profile $girlInfo,
+        Profile $boyInfo,
+        $maximumPoint,
+        $totalPoint,
+        $compatibility
+    ) {
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->maximumPoint = $maximumPoint;
@@ -90,5 +96,4 @@ class Porutham
     {
         return $this->compatibility;
     }
-
 }

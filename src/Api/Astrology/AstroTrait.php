@@ -1,16 +1,12 @@
 <?php
-/**
- * (c) Vimal <api@api.prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Vimal <api@api.prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology;
@@ -24,20 +20,18 @@ use ReflectionMethod;
 use RuntimeException;
 
 /**
- * Defines
+ * Defines.
  */
 trait AstroTrait
 {
-
     /**
      * @param class-string $className
-     * @param \stdClass $data
+     * @param \stdClass    $data
      */
     private function make($className, $data)
     {
-
         if (!$data instanceof \stdClass) {
-            throw new RuntimeException('Cannot make class from ' . gettype($data));
+            throw new RuntimeException('Cannot make class from '.\gettype($data));
         }
 
         $class = new ReflectionClass($className);
@@ -62,13 +56,12 @@ trait AstroTrait
         foreach ($params as $param) {
             $paramName = $param->getName();
             $dataKey = preg_replace_callback('/[A-Z]/', function ($match) {
-                return '_' . lcfirst($match[0]);
+                return '_'.lcfirst($match[0]);
             }, $paramName);
 
-
             $paramValue = null;
-            if (isset($data->$dataKey)) {
-                $paramValue = $data->$dataKey;
+            if (isset($data->{$dataKey})) {
+                $paramValue = $data->{$dataKey};
             } elseif ($param->isDefaultValueAvailable()) {
                 $paramValue = $param->getDefaultValue();
             } else {
@@ -89,7 +82,7 @@ trait AstroTrait
             try {
                 $arguments[] = $this->parseParameter($dataType, $paramValue, $paramType);
             } catch (ParameterMismatchException $e) {
-                throw new Exception("Failed to parse {$className}::{$paramName} - " . $e->getMessage());
+                throw new Exception("Failed to parse {$className}::{$paramName} - ".$e->getMessage());
             }
         }
 
@@ -98,7 +91,8 @@ trait AstroTrait
 
     /**
      * @param ReflectionMethod $docComment
-     * @param string $namespace
+     * @param string           $namespace
+     *
      * @return array
      */
     private function parsePhpDoc(ReflectionMethod $method, $namespace)
@@ -119,19 +113,20 @@ trait AstroTrait
             $resolvedTypes = [];
             $types = explode('|', $match[1]);
             foreach ($types as $type) {
-                $isArray = substr($type, -2) === '[]';
+                $isArray = '[]' === substr($type, -2);
                 if ($isArray) {
                     $type = substr($type, 0, -2);
                 }
                 if (isset($scalarTypes[$type])) {
-                    $resolvedTypes[] = $scalarTypes[$type] . ($isArray ? '[]' : '');
+                    $resolvedTypes[] = $scalarTypes[$type].($isArray ? '[]' : '');
+
                     continue;
                 }
 
-                if ($type[0] !== '\\') {
-                    $type = $namespace . '\\' . $type;
+                if ('\\' !== $type[0]) {
+                    $type = $namespace.'\\'.$type;
                 }
-                $resolvedTypes[] = $type . ($isArray ? '[]' : '');
+                $resolvedTypes[] = $type.($isArray ? '[]' : '');
             }
 
             $resolvedArgTypes[$match[2]] = $resolvedTypes;
@@ -141,20 +136,22 @@ trait AstroTrait
     }
 
     /**
-     * @param string $dataType
-     * @param mixed $data
+     * @param string   $dataType
+     * @param mixed    $data
      * @param string[] $types
-     * @return mixed
+     *
      * @throws ParameterMismatchException
+     *
+     * @return mixed
      */
     private function parseParameter($dataType, $data, $types)
     {
-        $isEmptyArray = is_array($data) && empty($data);
+        $isEmptyArray = \is_array($data) && empty($data);
         $types = $isEmptyArray ? ['array'] : $types;
 
-        if (is_null($data) || is_scalar($data) || $isEmptyArray || (is_array($data) && is_scalar($data[0]))) {
-            if (!in_array($dataType, $types)) {
-                throw new ParameterMismatchException("Unexpected parameter type");
+        if (null === $data || is_scalar($data) || $isEmptyArray || (\is_array($data) && is_scalar($data[0]))) {
+            if (!\in_array($dataType, $types, true)) {
+                throw new ParameterMismatchException('Unexpected parameter type');
             }
 
             return $data;
@@ -166,7 +163,7 @@ trait AstroTrait
 
         $paramValue = [];
         foreach ($data as $val) {
-            assert($val instanceof \stdClass);
+            \assert($val instanceof \stdClass);
             $paramValue[] = $this->make(substr($types[0], 0, -2), $val);
         }
 
@@ -175,15 +172,14 @@ trait AstroTrait
 
     private function getType($val)
     {
-        if (is_null($val)) {
+        if (null === $val) {
             return null;
         }
 
-        if (is_array($val)) {
-            return empty($val) ? 'array' : $this->getType($val[0]) . '[]';
+        if (\is_array($val)) {
+            return empty($val) ? 'array' : $this->getType($val[0]).'[]';
         }
 
-        return gettype($val);
+        return \gettype($val);
     }
-
 }

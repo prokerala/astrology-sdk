@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 
 class PapaSamyamCheck
 {
-
     /**
      * @var Papasamyam
      */
@@ -26,8 +34,7 @@ class PapaSamyamCheck
 
     /**
      * PapaSamyamCheck constructor.
-     * @param Papasamyam $girlPapasamyam
-     * @param Papasamyam $boyPapasamyam
+     *
      * @param string $status
      * @param string $message
      */
@@ -37,8 +44,6 @@ class PapaSamyamCheck
         $status,
         $message
     ) {
-
-
         $this->girlPapasamyam = $girlPapasamyam;
         $this->boyPapasamyam = $boyPapasamyam;
         $this->status = $status;
@@ -76,6 +81,4 @@ class PapaSamyamCheck
     {
         return $this->message;
     }
-
-
 }

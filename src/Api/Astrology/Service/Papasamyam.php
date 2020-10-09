@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
@@ -8,7 +18,7 @@ use Prokerala\Common\Api\Client;
 use stdClass;
 
 /**
- * Defines the Papasamyam
+ * Defines the Papasamyam.
  */
 class Papasamyam
 {
@@ -35,10 +45,11 @@ class Papasamyam
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
+     * @param object $location location details
+     * @param object $datetime date and time
+     *
      * @return array
      */
     public function process(Location $location, $datetime)
@@ -55,9 +66,8 @@ class Papasamyam
         $this->result = $this->make(PapasamyamResult::class, $apiResponse->data);
     }
 
-
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -67,7 +77,7 @@ class Papasamyam
     }
 
     /**
-     * Function returns Papasamyam details
+     * Function returns Papasamyam details.
      *
      * @return object
      */
@@ -77,7 +87,7 @@ class Papasamyam
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -87,7 +97,7 @@ class Papasamyam
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

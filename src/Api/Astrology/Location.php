@@ -1,39 +1,35 @@
 <?php
-/**
- * (c) Ennexa Technologies <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  MIT License (https://api.prokerala.com/license.txt)
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology;
 
 /**
- * Defines
+ * Defines.
  */
 class Location
 {
     /**
-     * @var float $latitude
+     * @var float
      */
     protected $latitude;
     /**
-     * @var float $longitude
+     * @var float
      */
     protected $longitude;
     /**
-     * @var float $altitude
+     * @var float
      */
     protected $altitude;
     /**
-     * @var \DateTimeZone $timezone
+     * @var \DateTimeZone
      */
     protected $timezone;
 
@@ -43,13 +39,13 @@ class Location
         $this->longitude = $longitude;
         $this->altitude = $altitude;
         if (!$timezone) {
-            $timezone = new \DateTimeZone(\date_default_timezone_get());
+            $timezone = new \DateTimeZone(date_default_timezone_get());
         }
         $this->timezone = $timezone;
     }
 
     /**
-     * Get the location latitude
+     * Get the location latitude.
      *
      * @return float
      */
@@ -59,7 +55,7 @@ class Location
     }
 
     /**
-     * Get the location longitude
+     * Get the location longitude.
      *
      * @return float
      */
@@ -69,7 +65,7 @@ class Location
     }
 
     /**
-     * Get the location timezone
+     * Get the location timezone.
      *
      * @return \DateTimeZone
      */
@@ -79,7 +75,7 @@ class Location
     }
 
     /**
-     * Get the location altitude
+     * Get the location altitude.
      *
      * @return float
      */
@@ -89,7 +85,7 @@ class Location
     }
 
     /**
-     * Get the location coordinates
+     * Get the location coordinates.
      *
      * @return string
      */

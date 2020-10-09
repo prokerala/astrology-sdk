@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult;
@@ -7,7 +16,6 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile;
 
 class AdvancedPorutham
 {
-
     /**
      * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
      */
@@ -71,21 +79,10 @@ class AdvancedPorutham
 
     /**
      * AdvancedPorutham constructor.
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile $girlInfo
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile $boyInfo
-     * @param int $maximumPoint
-     * @param float $totalPoint
+     *
+     * @param int    $maximumPoint
+     * @param float  $totalPoint
      * @param string $compatibility
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $dinaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $ganaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $mahendraPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $rajjuPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $rasiPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $rasyadhipaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $streeDhrirghamPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $vasyaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $vedaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult $yoniPorutham
      */
     public function __construct(
         Profile $girlInfo,
@@ -103,9 +100,7 @@ class AdvancedPorutham
         PoruthamResult $vasyaPorutham,
         PoruthamResult $vedaPorutham,
         PoruthamResult $yoniPorutham
-
-    )
-    {
+    ) {
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->maximumPoint = $maximumPoint;

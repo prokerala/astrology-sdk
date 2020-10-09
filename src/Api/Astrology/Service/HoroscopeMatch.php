@@ -1,16 +1,12 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
@@ -22,7 +18,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 /**
- * Defines the HoroscopeMatch
+ * Defines the HoroscopeMatch.
  *
  * @property \stdClass result
  */
@@ -46,13 +42,15 @@ class HoroscopeMatch
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
      * @param Profile $bride_profile
      * @param Profile $groom_profile
      * @param $system
+     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
+     *
      * @return HoroscopeMatch
      */
     public function process(Profile $brideProfile, Profile $groomProfile, $system)
@@ -74,15 +72,15 @@ class HoroscopeMatch
 
         foreach ($result->response as $res_key => $res_value) {
             $this->result->{$res_key} = new \stdClass();
-            if (in_array($res_key, ['bride_details', 'bridegroom_details'])) {
-                $tz = $res_key === 'bride_details' ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
+            if (\in_array($res_key, ['bride_details', 'bridegroom_details'], true)) {
+                $tz = 'bride_details' === $res_key ? $brideLocation->getTimeZone() : $groomLocation->getTimeZone();
                 foreach ($res_value as $res_key1 => $res_value1) {
                     $class = $this->getClassName($res_key1, true);
 
                     if ($class) {
-                        if ('planet_positions' == $res_key1) {
+                        if ('planet_positions' === $res_key1) {
                             foreach ($res_value1 as $planet_positions) {
-                                $planet =$this->make($class, $planet_positions, $tz);
+                                $planet = $this->make($class, $planet_positions, $tz);
                                 $this->result->{$res_key}->{$res_key1}[$planet->getId()] = $planet;
                             }
                         } else {
@@ -101,7 +99,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -111,10 +109,10 @@ class HoroscopeMatch
     }
 
     /**
-     * Set ayanamsa system
+     * Set ayanamsa system.
      *
      * @param object $client   client class object
-     * @param int  $ayanamsa
+     * @param int    $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -122,7 +120,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Get vaara result
+     * Get vaara result.
      *
      * @return object
      */
@@ -132,7 +130,7 @@ class HoroscopeMatch
     }
 
     /**
-     * Get API input
+     * Get API input.
      *
      * @return object
      */

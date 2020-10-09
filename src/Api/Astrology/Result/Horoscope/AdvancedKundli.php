@@ -1,13 +1,20 @@
 <?php
 
-namespace Prokerala\Api\Astrology\Result\Horoscope;
-use Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaDetails;
-use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Prokerala\Api\Astrology\Result\Horoscope;
+
+use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
 
 class AdvancedKundli
 {
-
     /**
      * @var Nakshatra
      */
@@ -31,10 +38,8 @@ class AdvancedKundli
 
     /**
      * AdvancedKundli constructor.
-     * @param Nakshatra $nakshatraDetails
-     * @param AdvancedMangalDosha $mangalDosha
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails $yogas
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaList[] $yogaList
+     *
+     * @param \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaList[]      $yogaList
      * @param \Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaDetails[] $dashaPeriods
      */
     public function __construct(
@@ -43,9 +48,7 @@ class AdvancedKundli
         YogaDetails $yogas,
         array $yogaList,
         array $dashaPeriods
-    )
-    {
-
+    ) {
         $this->nakshatraDetails = $nakshatraDetails;
         $this->mangalDosha = $mangalDosha;
         $this->yogas = $yogas;
@@ -92,5 +95,4 @@ class AdvancedKundli
     {
         return $this->dashPeriods;
     }
-
 }

@@ -1,17 +1,26 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 $client = new Client($apiKey);
 
 /**
- * Kaal Sarp Dosha
+ * Kaal Sarp Dosha.
  */
-
 $input = [
     'datetime' => '2020-05-12T09:20:00+05:30',
     'latitude' => '22.6757521',
@@ -38,7 +47,7 @@ try {
 
     foreach (['chandraRasi', 'sooryaRasi', 'zodiac'] as $item) {
         $fn = 'get'.ucwords($item);
-        $itemResult = $nakshatraDetails->$fn();
+        $itemResult = $nakshatraDetails->{$fn}();
         $nakshatraResult[$item] = [
             'id' => $itemResult->getId(),
             'name' => $itemResult->getName(),
@@ -46,9 +55,9 @@ try {
         ];
     }
     $additionalInfo = $nakshatraDetails->getAdditionalInfo();
-    foreach (["diety", "ganam", "symbol", "animalSign", "nadi", "color", "bestDirection", "syllables", "birthStone", "gender", "planet", "enemyYoni"] as $info) {
+    foreach (['diety', 'ganam', 'symbol', 'animalSign', 'nadi', 'color', 'bestDirection', 'syllables', 'birthStone', 'gender', 'planet', 'enemyYoni'] as $info) {
         $fn = 'get'.ucwords($info);
-        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->$fn();
+        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->{$fn}();
     }
 
     $mangalDoshaResult = [];
@@ -58,22 +67,19 @@ try {
 
     $yogaDetails = $result->getYogas();
     $yogaResult = [];
-    foreach (["majorYogas", "chandrayogas", "sooryaYogas", "inauspiciousYogas"] as $yoga) {
+    foreach (['majorYogas', 'chandrayogas', 'sooryaYogas', 'inauspiciousYogas'] as $yoga) {
         $fn = 'get'.ucwords($yoga);
-        $yogaResult[$yoga] = $yogaDetails->$fn();
+        $yogaResult[$yoga] = $yogaDetails->{$fn}();
     }
 
     $kundliResult = [
         'nakshatraDetails' => $nakshatraResult,
         'mangalDosha' => $mangalDoshaResult,
-        'yogas' => $yogaResult
+        'yogas' => $yogaResult,
     ];
     print_r($kundliResult);
-
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
@@ -91,7 +97,7 @@ try {
 
     foreach (['chandraRasi', 'sooryaRasi', 'zodiac'] as $item) {
         $fn = 'get'.ucwords($item);
-        $itemResult = $nakshatraDetails->$fn();
+        $itemResult = $nakshatraDetails->{$fn}();
         $nakshatraResult[$item] = [
             'id' => $itemResult->getId(),
             'name' => $itemResult->getName(),
@@ -99,9 +105,9 @@ try {
         ];
     }
     $additionalInfo = $nakshatraDetails->getAdditionalInfo();
-    foreach (["diety", "ganam", "symbol", "animalSign", "nadi", "color", "bestDirection", "syllables", "birthStone", "gender", "planet", "enemyYoni"] as $info) {
+    foreach (['diety', 'ganam', 'symbol', 'animalSign', 'nadi', 'color', 'bestDirection', 'syllables', 'birthStone', 'gender', 'planet', 'enemyYoni'] as $info) {
         $fn = 'get'.ucwords($info);
-        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->$fn();
+        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->{$fn}();
     }
 
     $mangalDoshaResult = [];
@@ -116,9 +122,9 @@ try {
 
     $yogaDetails = $result->getYogas();
     $yogaResult = [];
-    foreach (["majorYogas", "chandrayogas", "sooryaYogas", "inauspiciousYogas"] as $yoga) {
+    foreach (['majorYogas', 'chandrayogas', 'sooryaYogas', 'inauspiciousYogas'] as $yoga) {
         $fn = 'get'.ucwords($yoga);
-        $yogaResult[$yoga] = $yogaDetails->$fn();
+        $yogaResult[$yoga] = $yogaDetails->{$fn}();
     }
 
     $dashaPeriods = $result->getDashaPeriods();
@@ -163,13 +169,10 @@ try {
         'nakshatraDetails' => $nakshatraResult,
         'mangalDosha' => $mangalDoshaResult,
         'yogas' => $yogaResult,
-        'dashaPeriods' => $dashaPeriodResult
+        'dashaPeriods' => $dashaPeriodResult,
     ];
 
     print_r($kundliResult);
-
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }

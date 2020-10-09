@@ -1,19 +1,26 @@
 <?php
-use Prokerala\Api\Astrology\Profile;
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\SadeSati;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\InvalidArgumentException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use Prokerala\Api\Astrology\Location;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 /**
- * Sade Sati
+ * Sade Sati.
  */
 $client = new Client($apiKey);
-
 
 $latitude = 10.214747;
 $longitude = 78.097626;
@@ -25,7 +32,6 @@ $client = new Client($apiKey);
 
 $location = new Location($latitude, $longitude, 0, new DateTimeZone('Asia/Kolkata'));
 
-
 $sade_sati = new SadeSati($client);
 
 try {
@@ -34,13 +40,11 @@ try {
     $sadeSatiResult = [
         'isInSadeSati' => $result->getIsInSadeSati(),
         'transitPhase' => $result->getTransitPhase(),
-        'description' => $result->getDescription()
+        'description' => $result->getDescription(),
     ];
     print_r($sadeSatiResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
@@ -49,7 +53,7 @@ try {
     $sadeSatiResult = [
         'isInSadeSati' => $result->getIsInSadeSati(),
         'transitPhase' => $result->getTransitPhase(),
-        'description' => $result->getDescription()
+        'description' => $result->getDescription(),
     ];
     $arTransit = $result->getTransits();
     foreach ($arTransit as $transit) {
@@ -59,10 +63,7 @@ try {
             'end' => $transit->getEnd(),
         ];
     }
-    print_r($sadeSatiResult); 
+    print_r($sadeSatiResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
-

@@ -1,15 +1,24 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 $client = new Client($apiKey);
 
 /**
- * InauspiciousPeriod
+ * InauspiciousPeriod.
  */
-
 $input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
     'latitude' => '19.0821978',
@@ -26,24 +35,24 @@ try {
     $method->process($location, $datetime);
     $result = $method->getResult();
 
-
     $inauspiciousPeriod = [];
 
     $fields = ['rahu_kaal', 'yamaganda_kaal', 'gulika_kaal', 'dur_muhurat', 'varjyam'];
 
     foreach ($fields as $field) {
-        $fieldname = str_replace('_',' ',$field);
-        $functionName = str_replace(' ','','get'.ucwords($fieldname));
-        $muhurat = $result->$functionName();
+        $fieldname = str_replace('_', ' ', $field);
+        $functionName = str_replace(' ', '', 'get'.ucwords($fieldname));
+        $muhurat = $result->{$functionName}();
 
-        if(is_array($muhurat)){
-            foreach ($muhurat as $data){
+        if (is_array($muhurat)) {
+            foreach ($muhurat as $data) {
                 $inauspiciousPeriod[$field][] =
                     [
                         'start' => $data->getStart(),
                         'end' => $data->getEnd(),
                     ];
             }
+
             continue;
         }
 
@@ -54,10 +63,6 @@ try {
     }
 
     print_r($inauspiciousPeriod);
-
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
-

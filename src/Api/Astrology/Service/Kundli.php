@@ -1,11 +1,21 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Common\Api\Client;
-use Prokerala\Api\Astrology\Result\Horoscope\Kundli as KundliResult;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedKundli as AdvancedKundliResult;
+use Prokerala\Api\Astrology\Result\Horoscope\Kundli as KundliResult;
+use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use stdClass;
@@ -35,12 +45,12 @@ class Kundli
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param Location $location location details
-     * @param object $datetime date and time
-     * @param bool $detailed_report
-     * @return void
+     * @param Location $location        location details
+     * @param object   $datetime        date and time
+     * @param bool     $detailed_report
+     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
@@ -68,7 +78,7 @@ class Kundli
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -78,7 +88,7 @@ class Kundli
     }
 
     /**
-     * Function returns porutham details
+     * Function returns porutham details.
      *
      * @return object
      */
@@ -88,7 +98,7 @@ class Kundli
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -98,7 +108,7 @@ class Kundli
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

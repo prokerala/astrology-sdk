@@ -1,19 +1,27 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Service\KundliMatching;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\InvalidArgumentException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use Prokerala\Api\Astrology\Location;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 /**
- * Nakshatra Porutham
+ * Nakshatra Porutham.
  */
 $client = new Client($apiKey);
-
 
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
@@ -59,7 +67,7 @@ try {
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
             'longitude' => $girl_rasi->getLongitude(),
-        ]
+        ],
     ];
 
     $compatibilityResult['boyInfo'] = [
@@ -72,19 +80,19 @@ try {
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
             'longitude' => $boy_rasi->getLongitude(),
-        ]
+        ],
     ];
 
     $profileInfo = [
-        "varna", "vasya", "tara", "yoni", "grahaMaitri", "gana", "bhakoot", "nadi"
+        'varna', 'vasya', 'tara', 'yoni', 'grahaMaitri', 'gana', 'bhakoot', 'nadi',
     ];
 
     foreach (['girlInfo', 'boyInfo'] as $profile) {
         $fn = 'get'.ucwords($profile);
-        $profileData = $result->$fn();
+        $profileData = $result->{$fn}();
         foreach ($profileInfo as $info) {
             $fn1 = 'get'.ucwords($info);
-            $compatibilityResult[$profile][$info] = $profileData->$fn1();
+            $compatibilityResult[$profile][$info] = $profileData->{$fn1}();
         }
     }
     $message = $result->getMessage();
@@ -96,31 +104,28 @@ try {
     $compatibilityResult['gunaMilan']['totalPoint'] = $gunaMilan->getTotalPoint();
     $compatibilityResult['gunaMilan']['maximumPoint'] = $gunaMilan->getMaximumPoint();
 
-    $arKoot = ["varnaKoot", "vasyaKoot", "taraKoot", "yoniKoot", "grahaMaitriKoot", "ganaKoot", "bhakootKoot", "nadiKoot"];
-
+    $arKoot = ['varnaKoot', 'vasyaKoot', 'taraKoot', 'yoniKoot', 'grahaMaitriKoot', 'ganaKoot', 'bhakootKoot', 'nadiKoot'];
 
     foreach ($arKoot as $koot) {
         $functionName = 'get'.ucwords($koot);
-        $poruthamResult = $gunaMilan->$functionName();
+        $poruthamResult = $gunaMilan->{$functionName}();
         foreach (['maximumPoint', 'obtainedPoint', 'message'] as $value) {
             $functionName = 'get'.ucwords($value);
-            $compatibilityResult['gunaMilan'][$koot][$value] = $poruthamResult->$functionName();
+            $compatibilityResult['gunaMilan'][$koot][$value] = $poruthamResult->{$functionName}();
         }
     }
 
     foreach (['girlMangalDoshaDetails', 'boyMangalDoshaDetails'] as $field) {
         $functionName = 'get'.ucwords($field);
-        $mangalDoshaResult = $result->$functionName();
-        foreach (["hasMangalDosha", "hasException", "mangalDoshaType", "description"] as $value) {
+        $mangalDoshaResult = $result->{$functionName}();
+        foreach (['hasMangalDosha', 'hasException', 'mangalDoshaType', 'description'] as $value) {
             $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $mangalDoshaResult->$functionName();
+            $compatibilityResult[$field][$value] = $mangalDoshaResult->{$functionName}();
         }
     }
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
@@ -146,7 +151,7 @@ try {
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
             'longitude' => $girl_rasi->getLongitude(),
-        ]
+        ],
     ];
 
     $compatibilityResult['boyInfo'] = [
@@ -159,19 +164,19 @@ try {
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
             'longitude' => $boy_rasi->getLongitude(),
-        ]
+        ],
     ];
 
     $profileInfo = [
-        "varna", "vasya", "tara", "yoni", "grahaMaitri", "gana", "bhakoot", "nadi"
+        'varna', 'vasya', 'tara', 'yoni', 'grahaMaitri', 'gana', 'bhakoot', 'nadi',
     ];
 
     foreach (['girlInfo', 'boyInfo'] as $profile) {
         $fn = 'get'.ucwords($profile);
-        $profileData = $result->$fn();
+        $profileData = $result->{$fn}();
         foreach ($profileInfo as $info) {
             $fn1 = 'get'.ucwords($info);
-            $compatibilityResult[$profile][$info] = $profileData->$fn1();
+            $compatibilityResult[$profile][$info] = $profileData->{$fn1}();
         }
     }
     $message = $result->getMessage();
@@ -185,8 +190,5 @@ try {
 
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
-

@@ -1,12 +1,18 @@
 <?php
 
-namespace Prokerala\Api\Astrology\Result\Horoscope;
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 class KaalSarpDosha
 {
-
-
     /**
      * @var string
      */
@@ -24,18 +30,16 @@ class KaalSarpDosha
      */
     private $description;
 
-
     /**
      * KaalSarpDosha constructor.
+     *
      * @param string $kaalSarpType
      * @param string $kaalSarpDoshaType
-     * @param bool $hasKaalSarpDosha
+     * @param bool   $hasKaalSarpDosha
      * @param string $description
      */
-
     public function __construct($kaalSarpType, $kaalSarpDoshaType, $hasKaalSarpDosha, $description)
     {
-
         $this->kaalSarpType = $kaalSarpType;
         $this->kaalSarpDoshaType = $kaalSarpDoshaType;
         $this->hasKaalSarpDosha = $hasKaalSarpDosha;
@@ -73,6 +77,4 @@ class KaalSarpDosha
     {
         return $this->description;
     }
-
-
 }

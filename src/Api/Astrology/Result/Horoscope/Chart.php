@@ -1,9 +1,15 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope;
-
-
-use Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi;
 
 class Chart
 {
@@ -26,13 +32,14 @@ class Chart
 
     /**
      * Chart constructor.
-     * @param string $chartType
-     * @param string $chartName
-     * @param string $chartShortName
+     *
+     * @param string                                                      $chartType
+     * @param string                                                      $chartName
+     * @param string                                                      $chartShortName
      * @param \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[] $chartRasi
      */
-    public function __construct($chartType, $chartName, $chartShortName, array $chartRasi) {
-
+    public function __construct($chartType, $chartName, $chartShortName, array $chartRasi)
+    {
         $this->chartType = $chartType;
         $this->chartName = $chartName;
         $this->chartShortName = $chartShortName;

@@ -1,29 +1,28 @@
 <?php
-/**
- * (c) Vimal <api@api.prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Vimal <api@api.prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api;
 
 /**
- * Defines the Tithi contains Id, Name, Start, End
+ * Defines the Tithi contains Id, Name, Start, End.
  *
  * PHP version 5
  *
  * @category API_SDK
+ *
  * @author   Vimal <api@api.prokerala.com>
  * @license  https://api.prokerala.com/license.txt MIT License
+ *
  * @version  GIT: 1.0
+ *
  * @see     https://github.com/prokerala/astrology-sdk
  */
 class Token
@@ -31,7 +30,7 @@ class Token
     public $key;
 
     /**
-     * Init Token
+     * Init Token.
      *
      * @param string $key
      */

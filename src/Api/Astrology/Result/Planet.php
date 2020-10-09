@@ -1,22 +1,18 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Result;
 
 /**
- * Defines Planet
+ * Defines Planet.
  */
 class Planet
 {
@@ -31,6 +27,14 @@ class Planet
     public const PLANET_KETU = 102;
     public const PLANET_ASCENDANT = 100;
 
+    protected $id;
+    protected $longitude;
+    protected $isReverse;
+    protected $position;
+    protected $degree;
+    protected $rasi;
+    protected $rasiLord;
+
     private static $arPlanet = [
         0 => 'Sun',
         1 => 'Moon',
@@ -44,14 +48,6 @@ class Planet
         100 => 'Ascendant',
     ];
 
-    protected $id;
-    protected $longitude;
-    protected $isReverse;
-    protected $position;
-    protected $degree;
-    protected $rasi;
-    protected $rasiLord;
-
     public function __construct($id, $longitude, $is_reverse, $position, $degree, $rasi = null, $rasi_lord = null)
     {
         $this->id = $id;
@@ -64,7 +60,7 @@ class Planet
     }
 
     /**
-     * Get planet name
+     * Get planet name.
      *
      * @return string
      */
@@ -74,7 +70,7 @@ class Planet
     }
 
     /**
-     * Get planet id
+     * Get planet id.
      *
      * @return int
      */
@@ -84,7 +80,7 @@ class Planet
     }
 
     /**
-     * Get planet longitude
+     * Get planet longitude.
      *
      * @return int
      */
@@ -94,7 +90,7 @@ class Planet
     }
 
     /**
-     * Check whether the planet is in retrograde motion
+     * Check whether the planet is in retrograde motion.
      *
      * @return bool
      */
@@ -104,7 +100,7 @@ class Planet
     }
 
     /**
-     * Get planet position
+     * Get planet position.
      *
      * @return int
      */
@@ -114,7 +110,7 @@ class Planet
     }
 
     /**
-     * Get longitude degree
+     * Get longitude degree.
      *
      * @return string
      */
@@ -124,7 +120,7 @@ class Planet
     }
 
     /**
-     * Get planet rasi
+     * Get planet rasi.
      *
      * @return string
      */
@@ -134,7 +130,7 @@ class Planet
     }
 
     /**
-     * Get rasi lord for the planet
+     * Get rasi lord for the planet.
      *
      * @return string
      */
@@ -144,7 +140,7 @@ class Planet
     }
 
     /**
-     * Get complete planet list
+     * Get complete planet list.
      *
      * @return string[]
      */

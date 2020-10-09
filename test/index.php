@@ -1,6 +1,15 @@
 <?php
 
-include __DIR__ . '/../vendor/autoload.php';
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+include __DIR__.'/../vendor/autoload.php';
 
 use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Location;
@@ -14,9 +23,7 @@ use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Api\Astrology\Service\Panchang;
 use Prokerala\Api\Astrology\Service\PlanetPosition;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\InvalidArgumentException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
-use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 const API_KEY = 'YOUR_API_KEY_HERE';
 
@@ -30,18 +37,19 @@ const API_KEY = 'YOUR_API_KEY_HERE';
 
 $apiKey = API_KEY === 'YOUR_API_KEY_HERE' ? getenv('API_KEY') : API_KEY;
 
-function handleException($e) {
+function handleException($e)
+{
     echo PHP_EOL;
 
     if ($e instanceof QuotaExceededException) {
-        echo "ERROR: You have exceeded your quota allocation for the day", PHP_EOL;
+        echo 'ERROR: You have exceeded your quota allocation for the day', PHP_EOL;
         exit(1);
-    } else if ($e instanceof RateLimitedException) {
-        echo "ERROR: Rate limit exceeded. Throttle your requests.", PHP_EOL;
-        exit(2);
-    } else {
-        echo "API Request Failed with error {$e->getMessage()}", PHP_EOL, PHP_EOL;
     }
+    if ($e instanceof RateLimitedException) {
+        echo 'ERROR: Rate limit exceeded. Throttle your requests.', PHP_EOL;
+        exit(2);
+    }
+    echo "API Request Failed with error {$e->getMessage()}", PHP_EOL, PHP_EOL;
 }
 
 try {
@@ -69,7 +77,7 @@ try {
 
     $tithi = $result->getTithi()[0];
     print_r($tithi->getStartTime());
-    print_r("\n\n" . $tithi->getName());
+    print_r("\n\n".$tithi->getName());
 
     foreach ($result->getNakshatra() as $key => $value) {
         $arNakshatra[$key] = [
@@ -81,9 +89,9 @@ try {
     }
     print_r($arNakshatra);
 
-    print_r("\n\n" . Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
+    print_r("\n\n".Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
 
-    print_r("\n\n" . $result->getInput()->datetime);
+    print_r("\n\n".$result->getInput()->datetime);
 } catch (\Exception $e) {
     handleException($e);
 }
@@ -157,7 +165,7 @@ try {
 
 /**
  * Kundali Matching/Gun Milan/Ashta Koot details
- * (It is the north indian match making method)
+ * (It is the north indian match making method).
  *
  * Ayanamsa can be lahiri, raman, kp. (Default ayanamsa is lahiri)
  * dob/datetime should be in ISO 8601 format
@@ -249,13 +257,13 @@ try {
 
     print_r($horoscope_match_result->bridegroom_details->nakshatra_details->getName());
 
-    print_r("\n\n" . $horoscope_match_result->papa_samaya_result->papa_status);
+    print_r("\n\n".$horoscope_match_result->papa_samaya_result->papa_status);
 
-    print_r("\n\n" . $horoscope_match_result->average_porutham);
+    print_r("\n\n".$horoscope_match_result->average_porutham);
 
-    print_r("\n\n" . $horoscope_match_result->compatibility);
+    print_r("\n\n".$horoscope_match_result->compatibility);
 
-    print_r((array)$horoscope_match_result->detailed_information);
+    print_r((array) $horoscope_match_result->detailed_information);
 } catch (\Exception $e) {
     handleException($e);
 }

@@ -1,11 +1,18 @@
 <?php
 
-namespace Prokerala\Api\Astrology\Result\Panchang;
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Prokerala\Api\Astrology\Result\Panchang;
 
 class AdvancedPanchang
 {
-
     /**
      * @var string
      */
@@ -53,17 +60,16 @@ class AdvancedPanchang
 
     /**
      * AdvancedPanchang constructor.
-     * @param string $vaara
+     *
+     * @param string                                            $vaara
      * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[] $tithi
-     * @param \Prokerala\Api\Astrology\Result\Event\Karana[] $karana
-     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[] $yoga
-     * @param string $sunrise
-     * @param string $sunset
-     * @param string $moonrise
-     * @param string $moonset
-     * @param AuspiciousPeriod $auspiciousPeriod
-     * @param InauspiciousPeriod $inauspiciousPeriod
+     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\Event\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[]      $yoga
+     * @param string                                            $sunrise
+     * @param string                                            $sunset
+     * @param string                                            $moonrise
+     * @param string                                            $moonset
      */
     public function __construct(
         $vaara,
@@ -77,10 +83,7 @@ class AdvancedPanchang
         $moonset,
         AuspiciousPeriod $auspiciousPeriod,
         InauspiciousPeriod $inauspiciousPeriod
-    )
-    {
-
-
+    ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
         $this->tithi = $tithi;
@@ -181,6 +184,4 @@ class AdvancedPanchang
     {
         return $this->inauspiciousPeriod;
     }
-
-
 }

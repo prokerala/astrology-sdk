@@ -1,13 +1,20 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
 use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
 
 class AuspiciousPeriod
 {
-
-
     /**
      * @var \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat
      */
@@ -23,14 +30,11 @@ class AuspiciousPeriod
 
     /**
      * AuspiciousPeriod constructor.
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat $abhijitMuhurat
+     *
      * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[] $amritKaal
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat $brahmaMuhurat
      */
-
     public function __construct(Muhurat $abhijitMuhurat, array $amritKaal, Muhurat $brahmaMuhurat)
     {
-
         $this->abhijitMuhurat = $abhijitMuhurat;
         $this->amritKaal = $amritKaal;
         $this->brahmaMuhurat = $brahmaMuhurat;
@@ -59,6 +63,4 @@ class AuspiciousPeriod
     {
         return $this->brahmaMuhurat;
     }
-
-
 }

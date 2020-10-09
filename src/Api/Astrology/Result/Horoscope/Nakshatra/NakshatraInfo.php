@@ -1,10 +1,18 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope\Nakshatra;
 
-use Prokerala\Api\Astrology\Result\Rasi;
-
 /**
- * Defines Nakshatra
+ * Defines Nakshatra.
  */
 class NakshatraInfo
 {
@@ -59,6 +67,7 @@ class NakshatraInfo
 
     /**
      * NakshatraInfo constructor.
+     *
      * @param string $diety
      * @param string $ganam
      * @param string $symbol
@@ -85,9 +94,7 @@ class NakshatraInfo
         $gender,
         $planet,
         $enemyYoni
-    )
-    {
-
+    ) {
         $this->diety = $diety;
         $this->ganam = $ganam;
         $this->symbol = $symbol;
@@ -197,5 +204,4 @@ class NakshatraInfo
     {
         return $this->enemyYoni;
     }
-
 }

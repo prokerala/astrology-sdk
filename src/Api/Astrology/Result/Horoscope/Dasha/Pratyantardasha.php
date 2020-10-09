@@ -1,9 +1,18 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
-
 /**
- * Defines Pratyantardasha
+ * Defines Pratyantardasha.
  */
 class Pratyantardasha
 {
@@ -18,14 +27,14 @@ class Pratyantardasha
 
     /**
      * Pratyantardasha constructor.
-     * @param string $name
+     *
+     * @param string        $name
      * @param DashaPeriod[] $period
      */
     public function __construct(
         $name,
         array $period
-    ){
-
+    ) {
         $this->name = $name;
         $this->period = $period;
     }

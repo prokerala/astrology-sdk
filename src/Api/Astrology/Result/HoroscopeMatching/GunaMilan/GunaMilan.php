@@ -1,11 +1,18 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaMilan
 {
-
-
     /**
      * @var float
      */
@@ -17,14 +24,14 @@ class GunaMilan
 
     /**
      * GunaMilan constructor.
+     *
      * @param float $totalPoint
-     * @param int $maximumPoint
+     * @param int   $maximumPoint
      */
     public function __construct(
         $totalPoint,
         $maximumPoint
     ) {
-
         $this->totalPoint = $totalPoint;
         $this->maximumPoint = $maximumPoint;
     }
@@ -44,6 +51,4 @@ class GunaMilan
     {
         return $this->maximumPoint;
     }
-
-
 }

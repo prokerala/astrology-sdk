@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan;
@@ -7,7 +16,6 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
 
 class KundliMatching
 {
-
     /**
      * @var ProfileInfo
      */
@@ -27,20 +35,13 @@ class KundliMatching
 
     /**
      * KundliMatching constructor.
-     * @param ProfileInfo $girlInfo
-     * @param ProfileInfo $boyInfo
-     * @param Message $message
-     * @param GunaMilan $gunaMilan
      */
     public function __construct(
         ProfileInfo $girlInfo,
         ProfileInfo $boyInfo,
         Message $message,
         GunaMilan $gunaMilan
-
-    )
-    {
-
+    ) {
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->message = $message;

@@ -1,22 +1,18 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology;
 
 /**
- * Defines Ayanamsa
+ * Defines Ayanamsa.
  */
 class Ayanamsa
 {
@@ -25,7 +21,7 @@ class Ayanamsa
     public const KP = 5;
 
     /**
-     * Function returns the latitude
+     * Function returns the latitude.
      *
      * @return float
      */

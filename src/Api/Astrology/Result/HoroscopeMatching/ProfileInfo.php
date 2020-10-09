@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\Nakshatra;
@@ -49,6 +59,7 @@ class ProfileInfo
 
     /**
      * ProfileInfo constructor.
+     *
      * @param string $varna
      * @param string $vasya
      * @param string $tara
@@ -57,8 +68,6 @@ class ProfileInfo
      * @param string $gana
      * @param string $bhakoot
      * @param string $nadi
-     * @param \Prokerala\Api\Astrology\Result\Nakshatra $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Rasi $rasi
      */
     public function __construct(
         $varna,
@@ -72,7 +81,6 @@ class ProfileInfo
         Nakshatra $nakshatra,
         Rasi $rasi
     ) {
-
         $this->varna = $varna;
         $this->vasya = $vasya;
         $this->tara = $tara;
@@ -164,5 +172,4 @@ class ProfileInfo
     {
         return $this->rasi;
     }
-
 }

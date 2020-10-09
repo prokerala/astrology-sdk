@@ -1,17 +1,26 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 $client = new Client($apiKey);
 
 /**
- * Kaal Sarp Dosha
+ * Kaal Sarp Dosha.
  */
-
 $input = [
     'datetime' => '2020-05-12T09:20:00+05:30',
     'latitude' => '22.6757521',
@@ -36,18 +45,14 @@ try {
         $planetDoshas = $papaPlanet->getPlanetDosha();
         foreach ($planetDoshas as $planetDosha) {
             $papasamyamResult['papaPlanet'][$idx]['planetDosha'][] = [
-              'id' => $planetDosha->getId(),
-              'name' => $planetDosha->getName(),
-              'position' => $planetDosha->getPosition(),
-              'hasDosha' => $planetDosha->getHasDosha(),
+                'id' => $planetDosha->getId(),
+                'name' => $planetDosha->getName(),
+                'position' => $planetDosha->getPosition(),
+                'hasDosha' => $planetDosha->getHasDosha(),
             ];
         }
-
     }
     print_r($papasamyamResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
-

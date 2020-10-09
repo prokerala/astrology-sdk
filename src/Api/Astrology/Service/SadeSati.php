@@ -1,29 +1,25 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as SadeSatiResult;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedSadeSati as AdvancedSadeSatiResult;
+use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as SadeSatiResult;
 use Prokerala\Common\Api\Client;
 use stdClass;
 
 /**
- * Defines the SadeSati
+ * Defines the SadeSati.
  */
 class SadeSati
 {
@@ -50,12 +46,12 @@ class SadeSati
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param Location $location location details
-     * @param object $datetime date and time
-     * @param bool $detailed_report
-     * @return void
+     * @param Location $location        location details
+     * @param object   $datetime        date and time
+     * @param bool     $detailed_report
+     *
      * @throws \Prokerala\Common\Api\Exception\QuotaExceededException
      * @throws \Prokerala\Common\Api\Exception\RateLimitExceededException
      */
@@ -80,9 +76,8 @@ class SadeSati
         }
     }
 
-
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -92,7 +87,7 @@ class SadeSati
     }
 
     /**
-     * Function returns sade sati details
+     * Function returns sade sati details.
      *
      * @return object
      */
@@ -102,7 +97,7 @@ class SadeSati
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -112,7 +107,7 @@ class SadeSati
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

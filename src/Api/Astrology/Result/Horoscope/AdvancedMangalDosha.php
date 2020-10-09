@@ -1,12 +1,18 @@
 <?php
 
-namespace Prokerala\Api\Astrology\Result\Horoscope;
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 class AdvancedMangalDosha
 {
-
-
     /**
      * @var bool
      */
@@ -34,10 +40,11 @@ class AdvancedMangalDosha
 
     /**
      * AdvancedMangalDosha constructor.
-     * @param bool $hasMangalDosha
-     * @param string $description
-     * @param bool $hasException
-     * @param string $mangalDoshaType
+     *
+     * @param bool     $hasMangalDosha
+     * @param string   $description
+     * @param bool     $hasException
+     * @param string   $mangalDoshaType
      * @param string[] $exceptions
      * @param string[] $remedies
      */
@@ -48,9 +55,7 @@ class AdvancedMangalDosha
         $mangalDoshaType,
         array $exceptions,
         array $remedies
-    )
-    {
-
+    ) {
         $this->hasMangalDosha = $hasMangalDosha;
         $this->description = $description;
         $this->hasException = $hasException;
@@ -106,7 +111,4 @@ class AdvancedMangalDosha
     {
         return $this->remedies;
     }
-
-
-
 }

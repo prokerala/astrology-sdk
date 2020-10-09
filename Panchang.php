@@ -1,17 +1,26 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 $client = new Client($apiKey);
 
 /**
- * Kaal Sarp Dosha
+ * Kaal Sarp Dosha.
  */
-
 $input = [
     'datetime' => '2020-05-12T09:20:00+05:30',
     'latitude' => '22.6757521',
@@ -33,7 +42,7 @@ try {
         'sunrise' => $result->getSunrise(),
         'sunset' => $result->getSunset(),
         'moonrise' => $result->getMoonrise(),
-        'moonset' => $result->getMoonset()
+        'moonset' => $result->getMoonset(),
     ];
 
     $nakshatras = $result->getNakshatra();
@@ -41,7 +50,7 @@ try {
     $karanas = $result->getKarana();
     $yogas = $result->getYoga();
 
-    foreach($nakshatras as $nakshatra) {
+    foreach ($nakshatras as $nakshatra) {
         $panchangResult['nakshatra'][] = [
             'id' => $nakshatra->getId(),
             'name' => $nakshatra->getName(),
@@ -49,7 +58,7 @@ try {
             'end' => $nakshatra->getEnd(),
         ];
     }
-    foreach($tithis as $tithi) {
+    foreach ($tithis as $tithi) {
         $panchangResult['tithi'][] = [
             'index' => $tithi->getIndex(),
             'id' => $tithi->getId(),
@@ -59,7 +68,7 @@ try {
         ];
     }
 
-    foreach($karanas as $karana) {
+    foreach ($karanas as $karana) {
         $panchangResult['karana'][] = [
             'index' => $karana->getIndex(),
             'id' => $karana->getId(),
@@ -69,7 +78,7 @@ try {
         ];
     }
 
-    foreach($yogas as $yoga) {
+    foreach ($yogas as $yoga) {
         $panchangResult['yoga'][] = [
             'id' => $yoga->getId(),
             'name' => $yoga->getName(),
@@ -77,11 +86,9 @@ try {
             'end' => $yoga->getEnd(),
         ];
     }
-   // print_r($panchangResult); exit;
+    // print_r($panchangResult); exit;
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
@@ -94,7 +101,7 @@ try {
         'sunrise' => $result->getSunrise(),
         'sunset' => $result->getSunset(),
         'moonrise' => $result->getMoonrise(),
-        'moonset' => $result->getMoonset()
+        'moonset' => $result->getMoonset(),
     ];
 
     $nakshatras = $result->getNakshatra();
@@ -102,7 +109,7 @@ try {
     $karanas = $result->getKarana();
     $yogas = $result->getYoga();
 
-    foreach($nakshatras as $nakshatra) {
+    foreach ($nakshatras as $nakshatra) {
         $panchangResult['nakshatra'][] = [
             'id' => $nakshatra->getId(),
             'name' => $nakshatra->getName(),
@@ -110,7 +117,7 @@ try {
             'end' => $nakshatra->getEnd(),
         ];
     }
-    foreach($tithis as $tithi) {
+    foreach ($tithis as $tithi) {
         $panchangResult['tithi'][] = [
             'index' => $tithi->getIndex(),
             'id' => $tithi->getId(),
@@ -120,7 +127,7 @@ try {
         ];
     }
 
-    foreach($karanas as $karana) {
+    foreach ($karanas as $karana) {
         $panchangResult['karana'][] = [
             'index' => $karana->getIndex(),
             'id' => $karana->getId(),
@@ -130,7 +137,7 @@ try {
         ];
     }
 
-    foreach($yogas as $yoga) {
+    foreach ($yogas as $yoga) {
         $panchangResult['yoga'][] = [
             'id' => $yoga->getId(),
             'name' => $yoga->getName(),
@@ -146,24 +153,24 @@ try {
     $fields = ['abhijit_muhurat', 'amrit_kaal', 'brahma_muhurat'];
 
     foreach ($fields as $field) {
-        $fieldname = str_replace('_',' ',$field);
-        $functionName = str_replace(' ','','get'.ucwords($fieldname));
+        $fieldname = str_replace('_', ' ', $field);
+        $functionName = str_replace(' ', '', 'get'.ucwords($fieldname));
 
-        $muhurat = $auspiciousPeriodResult->$functionName();
+        $muhurat = $auspiciousPeriodResult->{$functionName}();
 
-        if(is_array($muhurat)){
-            foreach ($muhurat as $data){
+        if (is_array($muhurat)) {
+            foreach ($muhurat as $data) {
                 $auspiciousPeriod[$field][] =
                     [
                         'start' => $data->getStart(),
                         'end' => $data->getEnd(),
                     ];
             }
+
             continue;
         }
 
-
-        $auspiciousPeriod[$field]  = [
+        $auspiciousPeriod[$field] = [
             'start' => $muhurat->getStart(),
             'end' => $muhurat->getEnd(),
         ];
@@ -176,18 +183,19 @@ try {
     $fields = ['rahu_kaal', 'yamaganda_kaal', 'gulika_kaal', 'dur_muhurat', 'varjyam'];
 
     foreach ($fields as $field) {
-        $fieldname = str_replace('_',' ',$field);
-        $functionName = str_replace(' ','','get'.ucwords($fieldname));
-        $muhurat = $inauspiciousPeriodResult->$functionName();
+        $fieldname = str_replace('_', ' ', $field);
+        $functionName = str_replace(' ', '', 'get'.ucwords($fieldname));
+        $muhurat = $inauspiciousPeriodResult->{$functionName}();
 
-        if(is_array($muhurat)){
-            foreach ($muhurat as $data){
+        if (is_array($muhurat)) {
+            foreach ($muhurat as $data) {
                 $inauspiciousPeriod[$field][] =
                     [
                         'start' => $data->getStart(),
                         'end' => $data->getEnd(),
                     ];
             }
+
             continue;
         }
 
@@ -198,7 +206,8 @@ try {
     }
     $panchangResult['inauspiciousPeriod'] = $inauspiciousPeriod;
 
-    print_r($panchangResult); exit;
+    print_r($panchangResult);
+    exit;
     $nakshatraDetails = $result->getNakshatraDetails();
     $nakshatraResult = [
         'nakshatraName' => $nakshatraDetails->getNakshatraName(),
@@ -210,7 +219,7 @@ try {
 
     foreach (['chandraRasi', 'sooryaRasi', 'zodiac'] as $item) {
         $fn = 'get'.ucwords($item);
-        $itemResult = $nakshatraDetails->$fn();
+        $itemResult = $nakshatraDetails->{$fn}();
         $nakshatraResult[$item] = [
             'id' => $itemResult->getId(),
             'name' => $itemResult->getName(),
@@ -218,9 +227,9 @@ try {
         ];
     }
     $additionalInfo = $nakshatraDetails->getAdditionalInfo();
-    foreach (["diety", "ganam", "symbol", "animalSign", "nadi", "color", "bestDirection", "syllables", "birthStone", "gender", "planet", "enemyYoni"] as $info) {
+    foreach (['diety', 'ganam', 'symbol', 'animalSign', 'nadi', 'color', 'bestDirection', 'syllables', 'birthStone', 'gender', 'planet', 'enemyYoni'] as $info) {
         $fn = 'get'.ucwords($info);
-        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->$fn();
+        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->{$fn}();
     }
 
     $mangalDoshaResult = [];
@@ -235,20 +244,17 @@ try {
 
     $yogaDetails = $result->getYogas();
     $yogaResult = [];
-    foreach (["majorYogas", "chandrayogas", "sooryaYogas", "inauspiciousYogas"] as $yoga) {
+    foreach (['majorYogas', 'chandrayogas', 'sooryaYogas', 'inauspiciousYogas'] as $yoga) {
         $fn = 'get'.ucwords($yoga);
-        $yogaResult[$yoga] = $yogaDetails->$fn();
+        $yogaResult[$yoga] = $yogaDetails->{$fn}();
     }
 
     $kundliResult = [
         'nakshatraDetails' => $nakshatraResult,
         'mangalDosha' => $mangalDoshaResult,
-        'yogas' => $yogaResult
+        'yogas' => $yogaResult,
     ];
     print_r($kundliResult);
-
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }

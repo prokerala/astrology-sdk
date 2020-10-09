@@ -1,30 +1,24 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\MangalDosha as MangalDoshaResult;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedMangalDosha as AdvancedMangalDoshaResult;
-
-
+use Prokerala\Api\Astrology\Result\Horoscope\MangalDosha as MangalDoshaResult;
 use Prokerala\Common\Api\Client;
 
 /**
- * Defines the MangalDosha
+ * Defines the MangalDosha.
  */
 class MangalDosha
 {
@@ -47,10 +41,12 @@ class MangalDosha
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
+     * @param object $location        location details
+     * @param object $datetime        date and time
+     * @param mixed  $detailed_report
+     *
      * @return array
      */
     public function process(Location $location, $datetime, $detailed_report = false)
@@ -76,7 +72,7 @@ class MangalDosha
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -86,10 +82,10 @@ class MangalDosha
     }
 
     /**
-     * Set ayanamsa system
+     * Set ayanamsa system.
      *
      * @param object $client   client class object
-     * @param int  $ayanamsa
+     * @param int    $ayanamsa
      */
     public function setAyanamsa($ayanamsa)
     {
@@ -97,7 +93,7 @@ class MangalDosha
     }
 
     /**
-     * Function returns mangaldosha details
+     * Function returns mangaldosha details.
      *
      * @return object
      */
@@ -107,7 +103,7 @@ class MangalDosha
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return \stdClass
      */
@@ -117,7 +113,7 @@ class MangalDosha
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return \stdClass
      */

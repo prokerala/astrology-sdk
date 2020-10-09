@@ -1,18 +1,27 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Service\PapaSamyamCheck;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use Prokerala\Api\Astrology\Location;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 /**
- * Nakshatra Porutham
+ * Nakshatra Porutham.
  */
 $client = new Client($apiKey);
-
 
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
@@ -77,11 +86,8 @@ try {
                 'hasDosha' => $planetDosha->getHasDosha(),
             ];
         }
-
     }
     print_r($papaSamyamCheckResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }

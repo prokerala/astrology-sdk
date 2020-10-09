@@ -1,28 +1,24 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Panchang\InauspiciousPeriod AS InauspiciousPeriodResult;
+use Prokerala\Api\Astrology\Result\Panchang\InauspiciousPeriod as InauspiciousPeriodResult;
 use Prokerala\Common\Api\Client;
 use stdClass;
 
 /**
- * Defines the InauspiciousPeriod
+ * Defines the InauspiciousPeriod.
  */
 class InauspiciousPeriod
 {
@@ -49,15 +45,15 @@ class InauspiciousPeriod
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param  object $location location details
-     * @param  object $datetime date and time
+     * @param object $location location details
+     * @param object $datetime date and time
+     *
      * @return array
      */
     public function process(Location $location, $datetime)
     {
-
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
@@ -70,9 +66,8 @@ class InauspiciousPeriod
         $this->result = $this->make(InauspiciousPeriodResult::class, $apiResponse->data);
     }
 
-
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -82,7 +77,7 @@ class InauspiciousPeriod
     }
 
     /**
-     * Function returns InauspiciousPeriod details
+     * Function returns InauspiciousPeriod details.
      *
      * @return object
      */
@@ -92,7 +87,7 @@ class InauspiciousPeriod
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -102,7 +97,7 @@ class InauspiciousPeriod
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

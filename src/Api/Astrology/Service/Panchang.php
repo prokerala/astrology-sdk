@@ -1,16 +1,12 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Service;
@@ -25,7 +21,7 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use stdClass;
 
 /**
- * Defines the Panchang
+ * Defines the Panchang.
  */
 class Panchang
 {
@@ -52,12 +48,12 @@ class Panchang
     }
 
     /**
-     * Fetch result from API
+     * Fetch result from API.
      *
-     * @param Location $location location details
-     * @param object $datetime date and time
-     * @param bool $detailed_report
-     * @return void
+     * @param Location $location        location details
+     * @param object   $datetime        date and time
+     * @param bool     $detailed_report
+     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
@@ -85,7 +81,7 @@ class Panchang
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -95,7 +91,7 @@ class Panchang
     }
 
     /**
-     * Function returns porutham details
+     * Function returns porutham details.
      *
      * @return object
      */
@@ -105,7 +101,7 @@ class Panchang
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -115,7 +111,7 @@ class Panchang
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

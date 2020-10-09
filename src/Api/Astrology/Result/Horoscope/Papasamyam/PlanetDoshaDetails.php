@@ -1,9 +1,18 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 
-
 /**
- * Defines PlanetDoshaDetails
+ * Defines PlanetDoshaDetails.
  */
 class PlanetDoshaDetails
 {
@@ -26,10 +35,11 @@ class PlanetDoshaDetails
 
     /**
      * PlanetDoshaDetails constructor.
-     * @param int $id
+     *
+     * @param int    $id
      * @param string $name
-     * @param int $position
-     * @param bool $hasDosha
+     * @param int    $position
+     * @param bool   $hasDosha
      */
     public function __construct(
         $id,
@@ -37,7 +47,6 @@ class PlanetDoshaDetails
         $position,
         $hasDosha
     ) {
-
         $this->id = $id;
         $this->name = $name;
         $this->position = $position;
@@ -76,4 +85,3 @@ class PlanetDoshaDetails
         return $this->hasDosha;
     }
 }
-

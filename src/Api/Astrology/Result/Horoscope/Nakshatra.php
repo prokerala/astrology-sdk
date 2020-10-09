@@ -1,11 +1,21 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo;
 use Prokerala\Api\Astrology\Result\Rasi;
 
 /**
- * Defines Nakshatra
+ * Defines Nakshatra.
  */
 class Nakshatra
 {
@@ -48,15 +58,12 @@ class Nakshatra
 
     /**
      * Nakshatra constructor.
+     *
      * @param string $nakshatraName
-     * @param float $nakshatraLongitude
+     * @param float  $nakshatraLongitude
      * @param string $nakshatraStart
      * @param string $nakshatraEnd
-     * @param float $nakshatraPada
-     * @param \Prokerala\Api\Astrology\Result\Rasi $chandraRasi
-     * @param \Prokerala\Api\Astrology\Result\Rasi $sooryaRasi
-     * @param \Prokerala\Api\Astrology\Result\Rasi $zodiac
-     * @param NakshatraInfo $additionalInfo
+     * @param float  $nakshatraPada
      */
     public function __construct(
         $nakshatraName,
@@ -68,9 +75,7 @@ class Nakshatra
         Rasi $sooryaRasi,
         Rasi $zodiac,
         NakshatraInfo $additionalInfo
-    )
-    {
-
+    ) {
         $this->nakshatraName = $nakshatraName;
         $this->nakshatraLongitude = $nakshatraLongitude;
         $this->nakshatraStart = $nakshatraStart;
@@ -153,5 +158,4 @@ class Nakshatra
     {
         return $this->additionalInfo;
     }
-
 }

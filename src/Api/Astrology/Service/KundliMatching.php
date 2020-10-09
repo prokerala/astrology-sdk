@@ -1,11 +1,20 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Profile;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\KundliMatching as MatchResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedKundliMatching as AdvancedMatchResult;
-
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\KundliMatching as MatchResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -36,9 +45,8 @@ class KundliMatching
     }
 
     /**
-     * @param Profile $girl_profile
-     * @param Profile $boy_profile
      * @param bool $detailed_report
+     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
@@ -70,7 +78,7 @@ class KundliMatching
     }
 
     /**
-     * Set Api Client
+     * Set Api Client.
      *
      * @param object $client client class object
      */
@@ -80,7 +88,7 @@ class KundliMatching
     }
 
     /**
-     * Function returns porutham details
+     * Function returns porutham details.
      *
      * @return object
      */
@@ -90,7 +98,7 @@ class KundliMatching
     }
 
     /**
-     * Get raw response returned by the API
+     * Get raw response returned by the API.
      *
      * @return stdClass
      */
@@ -100,7 +108,7 @@ class KundliMatching
     }
 
     /**
-     * Get the input as parsed by the API server
+     * Get the input as parsed by the API server.
      *
      * @return stdClass
      */

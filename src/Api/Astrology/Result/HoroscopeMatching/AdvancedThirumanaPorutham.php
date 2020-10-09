@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham;
 
 class AdvancedThirumanaPorutham
 {
-
     /**
      * @var int
      */
@@ -66,20 +74,9 @@ class AdvancedThirumanaPorutham
 
     /**
      * ThirumanaPorutham constructor.
+     *
      * @param int $maximumPoint
      * @param int $obtainedPoint
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $dinaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $ganaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $mahendraPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $streeDhrirghamPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $yoniPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $rasiPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $rasiLordPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $rajjuPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $vedaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $vashyaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $nadiPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham\Porutham $varnaPorutham
      */
     public function __construct(
         $maximumPoint,
@@ -96,9 +93,7 @@ class AdvancedThirumanaPorutham
         Porutham $vashyaPorutham,
         Porutham $nadiPorutham,
         Porutham $varnaPorutham
-    )
-    {
-
+    ) {
         $this->maximumPoint = $maximumPoint;
         $this->obtainedPoint = $obtainedPoint;
         $this->dinaPorutham = $dinaPorutham;
@@ -226,6 +221,4 @@ class AdvancedThirumanaPorutham
     {
         return $this->varnaPorutham;
     }
-
-
 }

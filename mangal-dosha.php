@@ -1,15 +1,24 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 $client = new Client($apiKey);
 
 /**
- * Mangal Dosha
+ * Mangal Dosha.
  */
-
 $input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
     'latitude' => '19.0821978',
@@ -26,7 +35,6 @@ try {
     $method->process($location, $datetime);
     $result = $method->getResult();
 
-
     $mangalDoshaResult = [];
 
     $mangalDoshaResult['has_mangal_dosha'] = $result->getHasMangalDosha();
@@ -34,16 +42,13 @@ try {
 
     print_r($mangalDoshaResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\MangalDosha($client);
     $method->process($location, $datetime, true);
     $result = $method->getResult();
-
 
     $mangalDoshaResult = [];
 
@@ -56,8 +61,5 @@ try {
 
     print_r($mangalDoshaResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
-

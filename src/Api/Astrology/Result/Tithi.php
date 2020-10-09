@@ -1,22 +1,18 @@
 <?php
-/**
- * (c) Ennexa <api@prokerala.com>
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
  *
- * This source file is subject to the MIT license.
+ * © Ennexa Technologies <info@ennexa.com>
  *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Prokerala\Api\Astrology\Result;
 
 /**
- * Defines Tithi
+ * Defines Tithi.
  */
 class Tithi
 {
@@ -36,6 +32,11 @@ class Tithi
     public const TITHI_CHATURDASHI = 14;
     public const TITHI_PURNIMA = 15;
     public const TITHI_AMAVASYA = 16;
+
+    protected $id;
+    protected $start;
+    protected $end;
+    protected $paksha;
 
     private static $arTithi = [
         ['paksha' => 'Shukla', 'tithi' => 'Pratipada'],
@@ -70,11 +71,6 @@ class Tithi
         ['paksha' => 'Krishna', 'tithi' => 'Amavasya'],
     ];
 
-    protected $id;
-    protected $start;
-    protected $end;
-    protected $paksha;
-
     public function __construct($id, \DateTimeImmutable $start, \DateTimeImmutable $end, $paksha)
     {
         $this->id = $id;
@@ -84,7 +80,7 @@ class Tithi
     }
 
     /**
-     * Get tithi name
+     * Get tithi name.
      *
      * @return string
      */
@@ -99,7 +95,7 @@ class Tithi
     }
 
     /**
-     * Get tithi start time
+     * Get tithi start time.
      *
      * @return string
      */
@@ -109,7 +105,7 @@ class Tithi
     }
 
     /**
-     * Get tithi end time
+     * Get tithi end time.
      *
      * @return string
      */
@@ -119,7 +115,7 @@ class Tithi
     }
 
     /**
-     * Get complete tithi list
+     * Get complete tithi list.
      *
      * @return array
      */
@@ -129,7 +125,7 @@ class Tithi
     }
 
     /**
-     * Get tithi paksha
+     * Get tithi paksha.
      *
      * @return string
      */

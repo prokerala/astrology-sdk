@@ -1,15 +1,24 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Prokerala\Api\Astrology\NakshatraProfile;
 use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\InvalidArgumentException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-include  'prepend.inc.php';
+include 'prepend.inc.php';
 
 /**
- * Nakshatra Porutham
+ * Nakshatra Porutham.
  */
 $client = new Client($apiKey);
 
@@ -47,7 +56,7 @@ try {
         'rasiLordPorutham',
         'rajjuPorutham',
         'vedaPorutham',
-        'vashyaPorutham'
+        'vashyaPorutham',
     ];
 
     $compatibilityResult = [];
@@ -55,36 +64,29 @@ try {
     $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
     $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoint();
 
-
     foreach ($fields as $field) {
         $functionName = 'get'.ucwords($field);
-        $poruthamResult = $result->$functionName();
+        $poruthamResult = $result->{$functionName}();
         foreach (['hasPorutham', 'poruthamStatus', 'point', 'description'] as $value) {
             $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $poruthamResult->$functionName();
+            $compatibilityResult[$field][$value] = $poruthamResult->{$functionName}();
         }
     }
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }
 
 try {
     $nakshatra_porutham->process($girl_profile, $boy_profile);
     $result = $nakshatra_porutham->getResult();
 
-
     $compatibilityResult = [];
 
     $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
     $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoint();
 
-
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
-
 } catch (RateLimitExceededException $e) {
-
 }

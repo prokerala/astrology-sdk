@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham;
 
 class AdvancedNakshatraPorutham
 {
-
     /**
      * @var int
      */
@@ -58,18 +66,9 @@ class AdvancedNakshatraPorutham
 
     /**
      * NakshatraPorutham constructor.
+     *
      * @param int $maximumPoint
      * @param int $obtainedPoint
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $dinaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $ganaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $mahendraPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $streeDhrirghamPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $yoniPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $rasiPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $rasiLordPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $rajjuPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $vedaPorutham
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham $vashyaPorutham
      */
     public function __construct(
         $maximumPoint,
@@ -84,8 +83,7 @@ class AdvancedNakshatraPorutham
         Porutham $rajjuPorutham,
         Porutham $vedaPorutham,
         Porutham $vashyaPorutham
-    )
-    {
+    ) {
         $this->maximumPoint = $maximumPoint;
         $this->obtainedPoint = $obtainedPoint;
         $this->dinaPorutham = $dinaPorutham;
@@ -195,6 +193,4 @@ class AdvancedNakshatraPorutham
     {
         return $this->vashyaPorutham;
     }
-
-
 }

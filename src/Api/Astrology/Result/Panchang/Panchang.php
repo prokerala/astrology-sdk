@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
 class Panchang
@@ -43,15 +52,16 @@ class Panchang
 
     /**
      * Panchang constructor.
-     * @param string $vaara
+     *
+     * @param string                                            $vaara
      * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[] $tithi
-     * @param \Prokerala\Api\Astrology\Result\Event\Karana[] $karana
-     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[] $yoga
-     * @param string $sunrise
-     * @param string $sunset
-     * @param string $moonrise
-     * @param string $moonset
+     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\Event\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[]      $yoga
+     * @param string                                            $sunrise
+     * @param string                                            $sunset
+     * @param string                                            $moonrise
+     * @param string                                            $moonset
      */
     public function __construct(
         $vaara,
@@ -63,9 +73,7 @@ class Panchang
         $sunset,
         $moonrise,
         $moonset
-    )
-    {
-
+    ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
         $this->tithi = $tithi;
