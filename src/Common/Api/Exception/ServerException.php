@@ -2,6 +2,6 @@
 
 namespace Prokerala\Common\Api\Exception;
 
-interface RetryableExceptionInterface
+class ServerException extends Exception
 {
 }

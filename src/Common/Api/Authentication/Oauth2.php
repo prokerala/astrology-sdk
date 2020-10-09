@@ -7,45 +7,40 @@ use Prokerala\Common\Api\Exception\AuthenticationException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Psr\SimpleCache\CacheInterface;
+use Psr\SimpleCache\InvalidArgumentException;
 
-/**
- * Token
- *
- * PHP version 5
- */
-class Oauth2 extends BasicAuth implements AuthenticationInterface
+class Oauth2 implements AuthenticationTypeInterface
 {
+    use BasicAuthTrait;
+
     const CACHE_KEY = 'prokerala_api_client.oauth_access_token';
-    private $accessToken = null;
+    const TOKEN_ENDPOINT = 'https://api.prokerala.com/token';
+
+    /** @var string */
+    private $accessToken;
+    /** @var string */
     private $clientId;
+    /** @var string */
     private $clientSecret;
-    /**
-     * @var ClientInterface
-     */
+    /** @var ClientInterface */
     private $httpClient;
-    /**
-     * @var CacheInterface|null
-     */
+    /** @var null|CacheInterface */
     private $cache;
-    /**
-     * @var RequestFactoryInterface
-     */
+    /** @var RequestFactoryInterface */
     private $httpRequestFactory;
-    /**
-     * @var int|mixed
-     */
-    private $tokenExpiresAt;
+    /** @var int */
+    private $tokenExpiresAt = 0;
+    /** @var StreamFactoryInterface */
+    private $streamFactory;
 
     /**
-     * OauthClient constructor.
-     * @param $clientId
-     * @param $clientSecret
-     * @param $httpClient
-     * @param RequestFactoryInterface $httpRequestFactory
-     * @param null $cache
+     * @param string              $clientId
+     * @param string              $clientSecret
+     * @param null|CacheInterface $cache
      */
-    public function __construct($clientId, $clientSecret, $httpClient, $httpRequestFactory, $cache = null)
+    public function __construct($clientId, $clientSecret, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory, StreamFactoryInterface $streamFactory, $cache = null)
     {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
@@ -62,49 +57,84 @@ class Oauth2 extends BasicAuth implements AuthenticationInterface
             $this->accessToken = $cache->get(self::CACHE_KEY);
         }
         $this->httpRequestFactory = $httpRequestFactory;
+        $this->streamFactory = $streamFactory;
     }
 
+    /**
+     * @throws AuthenticationException
+     *
+     * @return string
+     */
     public function getToken()
     {
         if (!$this->accessToken || time() > $this->tokenExpiresAt) {
-            $this->generateAccessToken();
+            $this->requestAccessToken();
         }
 
         return $this->accessToken;
     }
 
-    private function generateAccessToken()
-    {
-        // Generate access token
-        if ($this->cache) {
-            $this->cache->set(self::CACHE_KEY, $this->accessToken);
-        }
-
-        $request = $this->httpRequestFactory->createRequest('Post',
-            'https://api.prokerala.loc:8443/token?'.http_build_query([
-                'grant_type' => 'client_credentials',
-                'client_id' => $this->clientId,
-                'client_secret' => $this->clientSecret,
-            ])
-        );
-        $request = $request->withHeader('Accept', 'application/json');
-        $response = $this->httpClient->sendRequest($request);
-        $responseData = json_decode($response->getBody());
-        if ($response->getStatusCode() !== 200) {
-            // TODO: handle other errors
-            throw new AuthenticationException($responseData->errors[0]['detail']);
-        }
-        $this->accessToken = $responseData['access_token'];
-        $this->tokenExpiresAt = time() + $responseData['expires_in'];
-    }
-
+    /**
+     * @param string $message
+     * @param int    $code
+     *
+     * @return void
+     */
     public function handleError($message, $code)
     {
         // TODO: Implement handleError() method.
+        if ($this->cache) {
+            $this->cache->delete(self::CACHE_KEY);
+        }
+    }
+
+    /**
+     * @throws AuthenticationException
+     *
+     * @return void
+     */
+    private function requestAccessToken()
+    {
+        $data = [
+            'grant_type' => 'client_credentials',
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+        ];
+        $queryString = http_build_query($data);
+        $url = self::TOKEN_ENDPOINT."?{$queryString}";
+
+        $stream = $this->streamFactory->createStream(http_build_query($data));
+        $request = $this->httpRequestFactory->createRequest('POST', $url)
+            ->withHeader('Accept', 'application/json')
+            ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+            ->withBody($stream)
+        ;
+
+        try {
+            $response = $this->httpClient->sendRequest($request);
+        } catch (ClientExceptionInterface $e) {
+            throw new AuthenticationException('Failed to fetch access token', 0, $e);
+        }
+
+        $responseData = json_decode($response->getBody(), false, 512);
+        if (!$responseData) {
+            throw new AuthenticationException('Failed to parse token');
+        }
+
+        if (200 !== $response->getStatusCode()) {
+            // TODO: handle other errors
+            throw new AuthenticationException($responseData->errors[0]->detail);
+        }
+
+        if ($this->cache) {
+            try {
+                $this->cache->set(self::CACHE_KEY, $this->accessToken);
+            } catch (InvalidArgumentException $e) {
+                throw new AuthenticationException('Failed to cache access token', 0, $e);
+            }
+        }
+
+        $this->accessToken = $responseData->access_token;
+        $this->tokenExpiresAt = time() + $responseData->expires_in;
     }
 }
-
-
-
-
-

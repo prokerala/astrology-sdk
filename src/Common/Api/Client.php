@@ -1,40 +1,24 @@
 <?php
 
-/**
- * (c) Ennexa <api@prokerala.com>
- *
- * This source file is subject to the MIT license.
- *
- * PHP version 5
- *
- * @category API_SDK
- * @author   Ennexa <api@prokerala.com>
- * @license  https://api.prokerala.com/license.txt MIT License
- * @version  GIT: 1.0
- * @see     https://github.com/prokerala/astrology-sdk
- */
-
 namespace Prokerala\Common\Api;
 
-use Prokerala\Common\Api\Exception\InvalidArgumentException;
-use Prokerala\Common\Api\Exception\QuotaExceededException;
-use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use Prokerala\Common\Api\Exception\AuthenticationException;
+use Prokerala\Common\Api\Exception\Exception;
+use Prokerala\Common\Api\Exception\RetryableExceptionInterface;
+use Prokerala\Common\Api\Exception\ServerException;
+use Prokerala\Common\Api\Exception\ValidationException;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
-/**
- * Client
- *
- * PHP version 5
- */
 class Client
 {
-    const BASE_URI = "https://api.prokerala.loc:8443/";
+    const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
 
     private $authClient;
     private $httpClient;
     private $httpRequestFactory;
 
     /**
-     * Client constructor.
      * @param $authClient
      * @param $httpClient
      * @param $httpRequestFactory
@@ -47,47 +31,51 @@ class Client
     }
 
     /**
-     * Function used to get response from API (GET Method)
+     * Query the API server.
+     *
      * @internal
-     * @param  string $path   section path
-     * @param  array  $input request parameters
+     *
+     * @param string $path  section path
+     * @param array  $input request parameters
+     *
      * @return array
      */
-    public function process($path, $input)
+    public function doGet($path, $input)
     {
-        $uri = self::BASE_URI . $path . '?' . http_build_query($input);
+        $uri = self::BASE_URI.$path.'?'.http_build_query($input);
         $request = $this->httpRequestFactory->createRequest('GET', $uri);
+
         try {
             $request = $this->authClient->process($request);
             $response = $this->request($request);
-            if ($response->getStatusCode() === 401) {
+            if (401 === $response->getStatusCode()) {
                 $this->authClient->handleError($response->message, $response->code);
             }
-        } catch (Exception\RetryableExceptionInterface $e) {
+        } catch (RetryableExceptionInterface $e) {
             $request = $this->authClient->process($request);
             $response = $this->request($request);
         }
 
+        $responseBody = (string) $response->getBody();
+        $responseData = json_decode($responseBody);
 
-
-        // Throw exception
-        switch ($response->getStatus()) {
+        switch ($response->getStatusCode()) {
             case 200:
-                return json_decode($response->getBody(), true);
+                return $responseData;
             case 401:
-                throw AuthException; // On authentication error
-                break;
+                throw new AuthenticationException($responseData->errors[0]->detail);
             case 400:
-                throw InvalidArgumentException; // On authentication error
-                break;
+                throw new ValidationException($responseData->errors);
             case 500:
-                throw ServerException; // On internal server error
-                break;
+                throw new ServerException($responseData->errors[0]->detail);
             default:
-                throw Exception;
+                throw new Exception($responseData->errors[0]->detail);
         }
     }
 
+    /**
+     * @return ResponseInterface
+     */
     private function request(RequestInterface $request)
     {
         return $this->httpClient->sendRequest($request);
