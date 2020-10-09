@@ -17,22 +17,27 @@ namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Planet;
+use Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition as PlanetPositionResult;
 use Prokerala\Common\Api\Client;
+use stdClass;
 
 /**
- * Defines the Panchang
+ * Defines the Planet Position
  */
 class PlanetPosition
 {
     use AstroTrait;
 
-    protected $input;
-    protected $planet_positions;
-
     protected $apiClient;
     protected $slug = 'planet-position';
     protected $ayanamsa = 1;
+
+    protected $result;
+    protected $input;
+    /**
+     * @var stdClass
+     */
+    protected $apiResponse;
 
     /**
      * @param object $client api client object
@@ -40,6 +45,7 @@ class PlanetPosition
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
+        $this->result = new stdClass();
     }
 
     /**
@@ -49,30 +55,21 @@ class PlanetPosition
      * @param  object $datetime date and time
      * @return array
      */
-    public function process(Location $location, \DateTimeInterface $datetime)
+    public function process(Location $location, $datetime)
     {
-        $arParameter = [
+
+        $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->ayanamsa,
         ];
 
-        $result = $this->apiClient->doGet($this->slug, $arParameter);
-        $tz = $location->getTimeZone();
+        $apiResponse = $this->apiClient->doGet($this->slug, $parameters);
+        $this->apiResponse = $apiResponse->data;
 
-        $this->input = $result->request;
-        $planet_position = [];
-        foreach ($result->response->planet_positions as $planetPosition) {
-            $planet = $this->make(Planet::class, $planetPosition, $tz);
-            $planet_position[$planet->getId()] = $planet;
-        }
-
-        $this->planet_positions = $planet_position;
-        $this->chart_positions = $result->response->chart_positions;
-        $this->first_house = $result->response->first_house;
-
-        return $this;
+        $this->result = $this->make(PlanetPositionResult::class, $apiResponse->data);
     }
+
 
     /**
      * Set Api Client
@@ -85,32 +82,31 @@ class PlanetPosition
     }
 
     /**
-     * Set ayanamsa system
-     *
-     * @param object $client   client class object
-     * @param int  $ayanamsa
-     */
-    public function setAyanamsa($ayanamsa)
-    {
-        $this->ayanamsa = $ayanamsa;
-    }
-
-    /**
-     * Get planet positions
+     * Function returns Planet Position details
      *
      * @return object
      */
-    public function getPlanets()
+    public function getResult()
     {
-        return $this->planet_positions;
+        return $this->result;
     }
 
     /**
-     * Get API input
+     * Get raw response returned by the API
      *
-     * @return object
+     * @return stdClass
      */
-    public function getInput()
+    public function getRawResponse()
+    {
+        return $this->apiResponse;
+    }
+
+    /**
+     * Get the input as parsed by the API server
+     *
+     * @return stdClass
+     */
+    public function getParsedInput()
     {
         return $this->input;
     }
