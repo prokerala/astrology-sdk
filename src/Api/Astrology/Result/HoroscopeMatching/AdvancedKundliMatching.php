@@ -16,6 +16,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
 
 class AdvancedKundliMatching
 {
+
     /**
      * @var ProfileInfo
      */
@@ -41,13 +42,18 @@ class AdvancedKundliMatching
      */
     private $boyMangalDoshaDetails;
     /**
-     * @var string[]
+     * @var array
      */
     private $exceptions;
 
     /**
-     * KundliMatching constructor.
-     *
+     * AdvancedKundliMatching constructor.
+     * @param ProfileInfo $girlInfo
+     * @param ProfileInfo $boyInfo
+     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message $message
+     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan $gunaMilan
+     * @param MangalDosha $girlMangalDoshaDetails
+     * @param MangalDosha $boyMangalDoshaDetails
      * @param string[] $exceptions
      */
     public function __construct(
@@ -59,6 +65,7 @@ class AdvancedKundliMatching
         MangalDosha $boyMangalDoshaDetails,
         array $exceptions
     ) {
+
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->message = $message;
@@ -123,4 +130,5 @@ class AdvancedKundliMatching
     {
         return $this->exceptions;
     }
+
 }

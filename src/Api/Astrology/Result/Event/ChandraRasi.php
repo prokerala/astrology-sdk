@@ -1,21 +1,12 @@
 <?php
-
-/*
- * This file is part of Prokerala Astrology API PHP SDK
- *
- * © Ennexa Technologies <info@ennexa.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
+declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\Event;
 
-/**
- * Defines Nakshatra.
- */
-class Nakshatra
+class ChandraRasi
 {
+
+
     /**
      * @var int
      */
@@ -29,28 +20,29 @@ class Nakshatra
      */
     private $lord;
     /**
-     * @var int
+     * @var string
      */
-    private $pada;
+    private $lordEn;
 
     /**
-     * Nakshatra constructor.
+     * ChandraRasi constructor.
      * @param int $id
      * @param string $name
      * @param string $lord
-     * @param int $pada
+     * @param string $lordEn
      */
     public function __construct(
         $id,
         $name,
         $lord,
-        $pada
+        $lordEn
     ) {
+
 
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
-        $this->pada = $pada;
+        $this->lordEn = $lordEn;
     }
 
     /**
@@ -78,11 +70,11 @@ class Nakshatra
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getPada()
+    public function getLordEn()
     {
-        return $this->pada;
+        return $this->lordEn;
     }
 
 

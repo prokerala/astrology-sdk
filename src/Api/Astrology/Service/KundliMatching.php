@@ -45,14 +45,13 @@ class KundliMatching
     }
 
     /**
+     * @param Profile $girl_profile
+     * @param Profile $boy_profile
      * @param bool $detailed_report
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
      */
     public function process(Profile $girl_profile, Profile $boy_profile, $detailed_report = false)
     {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
         $slug = $this->slug;
         if ($detailed_report) {
             $slug .= '/advanced';
@@ -69,7 +68,7 @@ class KundliMatching
             'ayanamsa' => $this->ayanamsa,
         ];
         $apiResponse = $this->apiClient->process($slug, $arParameter);
-        $this->apiResponse = $apiResponse->data;
+        $this->apiResponse = $apiResponse;
         if ($detailed_report) {
             $this->result = $this->make(AdvancedMatchResult::class, $apiResponse->data);
         } else {

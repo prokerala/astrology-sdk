@@ -11,154 +11,53 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-use Prokerala\Api\Astrology\Result\Nakshatra;
-use Prokerala\Api\Astrology\Result\Rasi;
+use Prokerala\Api\Astrology\Result\Event\Nakshatra;
+use Prokerala\Api\Astrology\Result\Event\ChandraRasi;
+use Prokerala\Api\Astrology\Result\Horoscope\Guna;
 
 class ProfileInfo
 {
+
     /**
-     * @var string
+     * @var \Prokerala\Api\Astrology\Result\Horoscope\Guna
      */
-    private $varna;
+    private $guna;
     /**
-     * @var string
-     */
-    private $vasya;
-    /**
-     * @var string
-     */
-    private $tara;
-    /**
-     * @var string
-     */
-    private $yoni;
-    /**
-     * @var string
-     */
-    private $grahaMaitri;
-    /**
-     * @var string
-     */
-    private $gana;
-    /**
-     * @var string
-     */
-    private $bhakoot;
-    /**
-     * @var string
-     */
-    private $nadi;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Nakshatra
+     * @var \Prokerala\Api\Astrology\Result\Event\Nakshatra
      */
     private $nakshatra;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Rasi
+     * @var \Prokerala\Api\Astrology\Result\Event\ChandraRasi
      */
     private $rasi;
 
     /**
      * ProfileInfo constructor.
-     *
-     * @param string $varna
-     * @param string $vasya
-     * @param string $tara
-     * @param string $yoni
-     * @param string $grahaMaitri
-     * @param string $gana
-     * @param string $bhakoot
-     * @param string $nadi
+     * @param \Prokerala\Api\Astrology\Result\Horoscope\Guna $guna
+     * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra $nakshatra
+     * @param \Prokerala\Api\Astrology\Result\Event\ChandraRasi $rasi
      */
     public function __construct(
-        $varna,
-        $vasya,
-        $tara,
-        $yoni,
-        $grahaMaitri,
-        $gana,
-        $bhakoot,
-        $nadi,
+        Guna $guna,
         Nakshatra $nakshatra,
-        Rasi $rasi
+        ChandraRasi $rasi
     ) {
-        $this->varna = $varna;
-        $this->vasya = $vasya;
-        $this->tara = $tara;
-        $this->yoni = $yoni;
-        $this->grahaMaitri = $grahaMaitri;
-        $this->gana = $gana;
-        $this->bhakoot = $bhakoot;
-        $this->nadi = $nadi;
+
+        $this->guna = $guna;
         $this->nakshatra = $nakshatra;
         $this->rasi = $rasi;
     }
 
     /**
-     * @return string
+     * @return \Prokerala\Api\Astrology\Result\Horoscope\Guna
      */
-    public function getVarna()
+    public function getGuna()
     {
-        return $this->varna;
+        return $this->guna;
     }
 
     /**
-     * @return string
-     */
-    public function getVasya()
-    {
-        return $this->vasya;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTara()
-    {
-        return $this->tara;
-    }
-
-    /**
-     * @return string
-     */
-    public function getYoni()
-    {
-        return $this->yoni;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGrahaMaitri()
-    {
-        return $this->grahaMaitri;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGana()
-    {
-        return $this->gana;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBhakoot()
-    {
-        return $this->bhakoot;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNadi()
-    {
-        return $this->nadi;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Nakshatra
+     * @return \Prokerala\Api\Astrology\Result\Event\Nakshatra
      */
     public function getNakshatra()
     {
@@ -166,10 +65,11 @@ class ProfileInfo
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Rasi
+     * @return \Prokerala\Api\Astrology\Result\Event\ChandraRasi
      */
     public function getRasi()
     {
         return $this->rasi;
     }
+
 }

@@ -13,42 +13,47 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaMilan
 {
+
     /**
      * @var float
      */
-    private $totalPoint;
+    private $totalPoints;
     /**
-     * @var int
+     * @var float
      */
-    private $maximumPoint;
+    private $maximumPoints;
 
     /**
      * GunaMilan constructor.
-     *
-     * @param float $totalPoint
-     * @param int   $maximumPoint
+     * @param float $totalPoints
+     * @param float $maximumPoints
      */
     public function __construct(
-        $totalPoint,
-        $maximumPoint
+        $totalPoints,
+        $maximumPoints
     ) {
-        $this->totalPoint = $totalPoint;
-        $this->maximumPoint = $maximumPoint;
+
+
+        $this->totalPoints = $totalPoints;
+        $this->maximumPoints = $maximumPoints;
     }
 
     /**
      * @return float
      */
-    public function getTotalPoint()
+    public function getTotalPoints()
     {
-        return $this->totalPoint;
+        return $this->totalPoints;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getMaximumPoint()
+    public function getMaximumPoints()
     {
-        return $this->maximumPoint;
+        return $this->maximumPoints;
     }
+
+
+
 }

@@ -13,35 +13,43 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class Message
 {
-    public $messageType;
 
-    public $message;
+    /**
+     * @var string
+     */
+    private $type;
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
      * Message constructor.
-     *
-     * @param string $messageType
-     * @param string $message
+     * @param string $type
+     * @param string $description
      */
-    public function __construct($messageType, $message)
+    public function __construct($type, $description)
     {
-        $this->messageType = $messageType;
-        $this->message = $message;
+
+        $this->type = $type;
+        $this->description = $description;
     }
 
     /**
      * @return string
      */
-    public function getMessageType()
+    public function getType()
     {
-        return $this->messageType;
+        return $this->type;
     }
 
     /**
      * @return string
      */
-    public function getMessage()
+    public function getDescription()
     {
-        return $this->message;
+        return $this->description;
     }
+
+
 }

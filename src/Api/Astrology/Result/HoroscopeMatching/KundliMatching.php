@@ -25,16 +25,20 @@ class KundliMatching
      */
     private $boyInfo;
     /**
-     * @var Message
+     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message
      */
     private $message;
     /**
-     * @var GunaMilan
+     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan
      */
     private $gunaMilan;
 
     /**
      * KundliMatching constructor.
+     * @param ProfileInfo $girlInfo
+     * @param ProfileInfo $boyInfo
+     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message $message
+     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan $gunaMilan
      */
     public function __construct(
         ProfileInfo $girlInfo,
@@ -65,7 +69,7 @@ class KundliMatching
     }
 
     /**
-     * @return Message
+     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message
      */
     public function getMessage()
     {
@@ -73,7 +77,7 @@ class KundliMatching
     }
 
     /**
-     * @return GunaMilan
+     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan
      */
     public function getGunaMilan()
     {

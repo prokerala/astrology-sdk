@@ -13,54 +13,85 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaKoot
 {
+
     /**
      * @var int
      */
-    private $maximumPoint;
-    /**
-     * @var float
-     */
-    private $obtainedPoint;
+    private $id;
     /**
      * @var string
      */
-    private $message;
+    private $name;
+    /**
+     * @var float
+     */
+    private $maximumPoints;
+    /**
+     * @var float
+     */
+    private $obtainedPoints;
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
      * GunaKoot constructor.
-     *
-     * @param int    $maximumPoint
-     * @param float  $obtainedPoint
-     * @param string $message
+     * @param int $id
+     * @param string $name
+     * @param float $maximumPoints
+     * @param float $obtainedPoints
+     * @param string $description
      */
-    public function __construct($maximumPoint, $obtainedPoint, $message)
+    public function __construct($id, $name, $maximumPoints, $obtainedPoints, $description)
     {
-        $this->maximumPoint = $maximumPoint;
-        $this->obtainedPoint = $obtainedPoint;
-        $this->message = $message;
+
+        $this->id = $id;
+        $this->name = $name;
+        $this->maximumPoints = $maximumPoints;
+        $this->obtainedPoints = $obtainedPoints;
+        $this->description = $description;
     }
 
     /**
      * @return int
      */
-    public function getMaximumPoint()
+    public function getId()
     {
-        return $this->maximumPoint;
-    }
-
-    /**
-     * @return float
-     */
-    public function getObtainedPoint()
-    {
-        return $this->obtainedPoint;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getMessage()
+    public function getName()
     {
-        return $this->message;
+        return $this->name;
     }
+
+    /**
+     * @return float
+     */
+    public function getMaximumPoints()
+    {
+        return $this->maximumPoints;
+    }
+
+    /**
+     * @return float
+     */
+    public function getObtainedPoints()
+    {
+        return $this->obtainedPoints;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
 }
