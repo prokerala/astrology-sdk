@@ -60,7 +60,7 @@ trait AstroTrait
             }, $paramName);
 
             $paramValue = null;
-            if (isset($data->{$dataKey})) {
+            if (property_exists($data, $dataKey)) {
                 $paramValue = $data->{$dataKey};
             } elseif ($param->isDefaultValueAvailable()) {
                 $paramValue = $param->getDefaultValue();
@@ -173,7 +173,7 @@ trait AstroTrait
     private function getType($val)
     {
         if (null === $val) {
-            return null;
+            return 'NULL';
         }
 
         if (\is_array($val)) {
