@@ -1,52 +1,28 @@
 <?php
-
-/*
- * This file is part of Prokerala Astrology API PHP SDK
- *
- * © Ennexa Technologies <info@ennexa.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
 class Choghadiya
 {
     /**
-     * @var \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[]
+     * @var \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Period[]
      */
-    private $day;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[]
-     */
-    private $night;
+    private $data;
 
     /**
-     * AuspiciousPeriod constructor.
-     *
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[] $day
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[] $night
+     * Choghadiya constructor.
+     * @param \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Period[] $data
      */
-    public function __construct(array $day, array $night)
+    public function __construct(array $data)
     {
-        $this->day = $day;
-        $this->night = $night;
+
+        $this->data = $data;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[]
+     * @return \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Period[]
      */
-    public function getDay()
+    public function getData()
     {
-        return $this->day;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Choghadiya[]
-     */
-    public function getNight()
-    {
-        return $this->night;
+        return $this->data;
     }
 }

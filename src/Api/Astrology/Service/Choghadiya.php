@@ -61,9 +61,8 @@ class Choghadiya
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
-
-        $this->result = $this->make(ChoghadiyaResult::class, $apiResponse->data);
+        $this->apiResponse = $apiResponse;
+        $this->result = $this->make(ChoghadiyaResult::class, $apiResponse);
     }
 
     /**
@@ -104,5 +103,15 @@ class Choghadiya
     public function getParsedInput()
     {
         return $this->input;
+    }
+
+    /**
+     * Set ayanamsa system.
+     *
+     * @param int $ayanamsa
+     */
+    public function setAyanamsa($ayanamsa)
+    {
+        $this->ayanamsa = $ayanamsa;
     }
 }
