@@ -28,11 +28,11 @@ class Nakshatra
      */
     private $nakshatraLongitude;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $nakshatraStart;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $nakshatraEnd;
     /**
@@ -52,7 +52,7 @@ class Nakshatra
      */
     private $zodiac;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
+     * @var Nakshatra\NakshatraInfo
      */
     private $additionalInfo;
 
@@ -61,15 +61,13 @@ class Nakshatra
      *
      * @param string $nakshatraName
      * @param float  $nakshatraLongitude
-     * @param string $nakshatraStart
-     * @param string $nakshatraEnd
      * @param float  $nakshatraPada
      */
     public function __construct(
         $nakshatraName,
         $nakshatraLongitude,
-        $nakshatraStart,
-        $nakshatraEnd,
+        \DateTimeInterface $nakshatraStart,
+        \DateTimeInterface $nakshatraEnd,
         $nakshatraPada,
         Rasi $chandraRasi,
         Rasi $sooryaRasi,
@@ -104,7 +102,7 @@ class Nakshatra
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getNakshatraStart()
     {
@@ -112,7 +110,7 @@ class Nakshatra
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getNakshatraEnd()
     {

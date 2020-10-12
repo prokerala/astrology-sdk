@@ -11,109 +11,73 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedKundli as AdvancedKundliResult;
 use Prokerala\Api\Astrology\Result\Horoscope\Kundli as KundliResult;
+use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use stdClass;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
 class Kundli
 {
-    use AstroTrait;
+    use AyanamsaAwareTrait;
+    use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
-    protected $apiClient;
     protected $slug = 'kundli';
-    protected $ayanamsa = 1;
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
+    /** @var Transformer<KundliResult> */
+    private $basicResponseTansformer;
+
+    /** @var Transformer<AdvancedKundliResult> */
+    private $advancedResponseTransformer;
 
     /**
-     * @param Client $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->basicResponseTansformer = new Transformer(KundliResult::class);
+        $this->addDateTimeTransformer($this->basicResponseTansformer);
+        $this->advancedResponseTransformer = new Transformer(AdvancedKundliResult::class);
+        $this->addDateTimeTransformer($this->advancedResponseTransformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param Location $location        location details
-     * @param object   $datetime        date and time
-     * @param bool     $detailed_report
+     * @param Location           $location        Location details
+     * @param \DateTimeInterface $datetime        Date and time
+     * @param bool               $detailed_report Return detailed result
      *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
+     *
+     * @return AdvancedKundliResult|KundliResult
      */
-    public function process(Location $location, $datetime, $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {
             $slug .= '/advanced';
         }
 
-        $arParameter = [
+        $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
-            'ayanamsa' => $this->ayanamsa,
+            'ayanamsa' => $this->getAyanamsa(),
         ];
 
-        $apiResponse = $this->apiClient->process($slug, $arParameter);
-        $this->apiResponse = $apiResponse;
-
+        $apiResponse = $this->apiClient->process($this->slug, $parameters);
         if ($detailed_report) {
-            $this->result = $this->make(AdvancedKundliResult::class, $apiResponse->data);
-        } else {
-            $this->result = $this->make(KundliResult::class, $apiResponse->data);
+            return $this->advancedResponseTransformer->transform($apiResponse->data);
         }
-    }
 
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns porutham details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->basicResponseTansformer->transform($apiResponse->data);
     }
 }

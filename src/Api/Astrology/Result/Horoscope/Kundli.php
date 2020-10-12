@@ -12,9 +12,13 @@
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Kundli
+class Kundli implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var Nakshatra
      */
@@ -24,7 +28,7 @@ class Kundli
      */
     private $mangalDosha;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails
+     * @var Yoga\YogaDetails
      */
     private $yogas;
 
@@ -55,7 +59,7 @@ class Kundli
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails
+     * @return Yoga\YogaDetails
      */
     public function getYogas()
     {

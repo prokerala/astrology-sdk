@@ -1,37 +1,82 @@
 <?php
 
-/*
- * This file is part of Prokerala Astrology API PHP SDK
- *
- * © Ennexa Technologies <info@ennexa.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Prokerala\Api\Astrology;
 
 use Prokerala\Api\Astrology\Exception\Result\Transformer\Exception;
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterMismatchException;
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterTypeMissingException;
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterValueMissingException;
+use Prokerala\Api\Astrology\Result\ResultInterface;
 use ReflectionClass;
 use ReflectionMethod;
 use RuntimeException;
 
 /**
- * Defines.
+ * @template T of ResultInterface
  */
-trait AstroTrait
+class Transformer
 {
     /**
-     * @param class-string $className
-     * @param \stdClass    $data
+     * @var callable[]
+     * @psalm-var array<"string"|"int",array<class-string,callable>>
      */
-    private function make($className, $data)
+    private $paramConverters = [];
+
+    /**
+     * @var class-string $class
+     * @psalm-var class-string $class
+     */
+    private $class;
+
+    /**
+     * @param class-string $class
+     * @psalm-param class-string of T
+     */
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
+    /**
+     * @param "string"|"int" $from
+     * @param class-string $to
+     * @param callable $converter
+     * @return void
+     */
+    public function setParamConverter($from, $to, $converter)
+    {
+        if (null === $converter) {
+            unset($this->paramConverters[$from][$to]);
+            return;
+        }
+
+        $this->paramConverters[$from][$to] = $converter;
+    }
+
+    /**
+     * @return object
+     * @psalm-return T
+     */
+    public function transform(\stdClass $data)
+    {
+        /** @var ResultInterface $result */
+        $result = $this->create($this->class, $data);
+        $result->setRawResponse($data);
+
+        return $result;
+    }
+
+    /**
+     * @param string    $class
+     * @param \stdClass $data
+     * @return object
+     * @pslam-param class-string of C $class
+     * @psalm-return C
+     */
+    private function create($className, $data)
     {
         if (!$data instanceof \stdClass) {
-            throw new RuntimeException('Cannot make class from '.\gettype($data));
+            throw new RuntimeException('Cannot create object from '.\gettype($data));
         }
 
         $class = new ReflectionClass($className);
@@ -80,7 +125,7 @@ trait AstroTrait
             }
 
             try {
-                $arguments[] = $this->parseParameter($dataType, $paramValue, $paramType);
+                $arguments[] = $this->parseParameter($paramValue, $dataType, $paramType);
             } catch (ParameterMismatchException $e) {
                 throw new Exception("Failed to parse {$className}::{$paramName} - ".$e->getMessage());
             }
@@ -125,6 +170,8 @@ trait AstroTrait
 
                 if ('\\' !== $type[0]) {
                     $type = $namespace.'\\'.$type;
+                } else {
+                    $type = substr($type, 1);
                 }
                 $resolvedTypes[] = $type.($isArray ? '[]' : '');
             }
@@ -136,21 +183,32 @@ trait AstroTrait
     }
 
     /**
-     * @param string   $dataType
-     * @param mixed    $data
-     * @param string[] $types
-     *
-     * @throws ParameterMismatchException
+     * @param mixed $data Data
+     * @param string $dataType Data type
+     * @param string[] $paramTypes Parameter type
      *
      * @return mixed
+     * @throws ParameterMismatchException
      */
-    private function parseParameter($dataType, $data, $types)
+    private function parseParameter($data, $dataType, $paramTypes)
     {
         $isEmptyArray = \is_array($data) && empty($data);
-        $types = $isEmptyArray ? ['array'] : $types;
+        // Hack for empty arrays, since we cannot determine the type of the array
+        // without checking the member type
+        $paramTypes = $isEmptyArray ? ['array'] : $paramTypes;
+
+        // Detect the SDK parameter type from the response data type
+        foreach ($paramTypes as $targetType) {
+            if (isset($this->paramConverters[$dataType][$targetType])) {
+                // Convert using configured transformer
+                $transformer = $this->paramConverters[$dataType][$targetType];
+                return $transformer($data);
+            }
+        }
+
 
         if (null === $data || is_scalar($data) || $isEmptyArray || (\is_array($data) && is_scalar($data[0]))) {
-            if (!\in_array($dataType, $types, true)) {
+            if (null === $dataType) {
                 throw new ParameterMismatchException('Unexpected parameter type');
             }
 
@@ -158,13 +216,13 @@ trait AstroTrait
         }
 
         if ($data instanceof \stdClass) {
-            return $this->make($types[0], $data);
+            return $this->create($paramTypes[0], $data);
         }
 
         $paramValue = [];
         foreach ($data as $val) {
             \assert($val instanceof \stdClass);
-            $paramValue[] = $this->make(substr($types[0], 0, -2), $val);
+            $paramValue[] = $this->create(substr($paramTypes[0], 0, -2), $val);
         }
 
         return $paramValue;

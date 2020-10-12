@@ -11,31 +11,29 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-class AuspiciousPeriod
-{
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Astrology\Result\ResultInterface;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[]
-     */
+class AuspiciousPeriod implements ResultInterface
+{
+    use RawResponseTrait;
+
+    /** @var Muhurat\Muhurat[] */
     private $data;
 
     /**
-     * AuspiciousPeriod constructor.
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[] $data
+     * @param Muhurat\Muhurat[] $data
      */
     public function __construct(array $data)
     {
-
         $this->data = $data;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[]
+     * @return Muhurat\Muhurat[]
      */
     public function getData()
     {
         return $this->data;
     }
-
-
 }

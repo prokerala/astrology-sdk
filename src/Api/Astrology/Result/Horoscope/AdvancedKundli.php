@@ -12,9 +12,13 @@
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedKundli
+class AdvancedKundli implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var Nakshatra
      */
@@ -24,23 +28,23 @@ class AdvancedKundli
      */
     private $mangalDosha;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails
+     * @var Yoga\YogaDetails
      */
     private $yogas;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaList[]
+     * @var Yoga\YogaList[]
      */
     private $yogaList;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaDetails[]
+     * @var Dasha\DashaDetails[]
      */
     private $dashPeriods;
 
     /**
      * AdvancedKundli constructor.
      *
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaList[]      $yogaList
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaDetails[] $dashaPeriods
+     * @param Yoga\YogaList[]      $yogaList
+     * @param Dasha\DashaDetails[] $dashaPeriods
      */
     public function __construct(
         Nakshatra $nakshatraDetails,
@@ -73,7 +77,7 @@ class AdvancedKundli
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails
+     * @return Yoga\YogaDetails
      */
     public function getYogas()
     {
@@ -81,7 +85,7 @@ class AdvancedKundli
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaList[]
+     * @return Yoga\YogaList[]
      */
     public function getYogaList()
     {
@@ -89,7 +93,7 @@ class AdvancedKundli
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaDetails[]
+     * @return Dasha\DashaDetails[]
      */
     public function getDashaPeriods()
     {
