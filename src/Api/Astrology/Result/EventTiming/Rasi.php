@@ -9,38 +9,27 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Result;
+namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-/**
- * Defines Rasi.
- */
 class Rasi
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var float
-     */
-    private $longitude;
+    /** @var string */
+    private $lord;
 
     /**
-     * Rasi constructor.
-     *
      * @param int    $id
      * @param string $name
-     * @param float  $longitude
+     * @param string $lord
      */
-    public function __construct($id, $name, $longitude)
+    public function __construct($id, $name, $lord)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->longitude = $longitude;
+        $this->lord = $lord;
     }
 
     /**
@@ -60,10 +49,10 @@ class Rasi
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLongitude()
+    public function getLord()
     {
-        return $this->longitude;
+        return $this->lord;
     }
 }

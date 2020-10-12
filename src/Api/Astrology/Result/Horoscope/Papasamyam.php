@@ -12,40 +12,37 @@
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-/**
- * Defines Papasamyam.
- */
-class Papasamyam
+class Papasamyam implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var float
      */
-    private $totalPoint;
+    private $totalPoints;
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails
      */
     private $papaSamyam;
 
     /**
-     * Papasamyam constructor.
-     *
-     * @param float $totalPoint
+     * @param float $totalPoints
      */
-    public function __construct(
-        $totalPoint,
-        PapaSamyamDetails $papaSamyam
-    ) {
-        $this->totalPoint = $totalPoint;
+    public function __construct($totalPoints, PapaSamyamDetails $papaSamyam)
+    {
+        $this->totalPoints = $totalPoints;
         $this->papaSamyam = $papaSamyam;
     }
 
     /**
      * @return float
      */
-    public function getTotalPoint()
+    public function getTotalPoints()
     {
-        return $this->totalPoint;
+        return $this->totalPoints;
     }
 
     /**

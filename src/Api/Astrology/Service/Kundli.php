@@ -31,7 +31,7 @@ class Kundli
     protected $slug = 'kundli';
 
     /** @var Transformer<KundliResult> */
-    private $basicResponseTansformer;
+    private $basicResponseTransformers;
 
     /** @var Transformer<AdvancedKundliResult> */
     private $advancedResponseTransformer;
@@ -42,8 +42,8 @@ class Kundli
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->basicResponseTansformer = new Transformer(KundliResult::class);
-        $this->addDateTimeTransformer($this->basicResponseTansformer);
+        $this->basicResponseTransformers = new Transformer(KundliResult::class);
+        $this->addDateTimeTransformer($this->basicResponseTransformers);
         $this->advancedResponseTransformer = new Transformer(AdvancedKundliResult::class);
         $this->addDateTimeTransformer($this->advancedResponseTransformer);
     }
@@ -73,11 +73,11 @@ class Kundli
             'ayanamsa' => $this->getAyanamsa(),
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
+        $apiResponse = $this->apiClient->process($slug, $parameters);
         if ($detailed_report) {
             return $this->advancedResponseTransformer->transform($apiResponse->data);
         }
 
-        return $this->basicResponseTansformer->transform($apiResponse->data);
+        return $this->basicResponseTransformers->transform($apiResponse->data);
     }
 }

@@ -9,48 +9,41 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Result\Event;
+namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-/**
- * Defines Yoga.
- */
-class Yoga
+class Tithi
 {
-    /**
-     * @var int
-     */
+    /** @var int */
+    private $index;
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var string
-     */
+    /** @var \DateTimeInterface */
     private $start;
-    /**
-     * @var string
-     */
+    /** @var \DateTimeInterface */
     private $end;
 
     /**
-     * Nakshatra constructor.
-     *
+     * @param int    $index
      * @param int    $id
      * @param string $name
-     * @param string $start
-     * @param string $end
      */
-    public function __construct(
-        $id,
-        $name,
-        $start,
-        $end
-    ) {
+    public function __construct($index, $id, $name, \DateTimeInterface $start, \DateTimeInterface $end)
+    {
+        $this->index = $index;
         $this->id = $id;
         $this->name = $name;
         $this->start = $start;
         $this->end = $end;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIndex()
+    {
+        return $this->index;
     }
 
     /**
@@ -70,7 +63,7 @@ class Yoga
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getStart()
     {
@@ -78,7 +71,7 @@ class Yoga
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getEnd()
     {

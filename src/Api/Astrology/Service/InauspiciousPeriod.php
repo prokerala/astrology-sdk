@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Panchang\InauspiciousPeriod as InauspiciousPeriodResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
@@ -19,11 +18,7 @@ use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
-use stdClass;
 
-/**
- * Defines the InauspiciousPeriod.
- */
 class InauspiciousPeriod
 {
     use AyanamsaAwareTrait;

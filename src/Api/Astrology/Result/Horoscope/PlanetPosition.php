@@ -11,11 +11,13 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-/**
- * Defines Planet Position.
- */
-class PlanetPosition
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class PlanetPosition implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
      */

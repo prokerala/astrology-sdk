@@ -9,63 +9,29 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Result\Event;
+namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-/**
- * Defines Tithi.
- */
-class Tithi
+class Nakshatra
 {
-    /**
-     * @var int
-     */
-    private $index;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var string
-     */
+    /** @var \DateTimeInterface */
     private $start;
-    /**
-     * @var string
-     */
+    /** @var \DateTimeInterface */
     private $end;
 
     /**
-     * Karana constructor.
-     *
-     * @param int    $index
      * @param int    $id
      * @param string $name
-     * @param string $start
-     * @param string $end
      */
-    public function __construct(
-        $index,
-        $id,
-        $name,
-        $start,
-        $end
-    ) {
-        $this->index = $index;
+    public function __construct($id, $name, \DateTimeInterface $start, \DateTimeInterface $end)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->start = $start;
         $this->end = $end;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIndex()
-    {
-        return $this->index;
     }
 
     /**
@@ -85,7 +51,7 @@ class Tithi
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getStart()
     {
@@ -93,7 +59,7 @@ class Tithi
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getEnd()
     {

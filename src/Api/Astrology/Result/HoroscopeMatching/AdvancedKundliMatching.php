@@ -13,47 +13,31 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedKundliMatching
+class AdvancedKundliMatching implements ResultInterface
 {
+    use RawResponseTrait;
 
-    /**
-     * @var ProfileInfo
-     */
+    /** @var ProfileInfo */
     private $girlInfo;
-    /**
-     * @var ProfileInfo
-     */
+    /** @var ProfileInfo */
     private $boyInfo;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message
-     */
+    /** @var Message */
     private $message;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan
-     */
+    /** @var AdvancedGunaMilan */
     private $gunaMilan;
-    /**
-     * @var MangalDosha
-     */
+    /** @var MangalDosha */
     private $girlMangalDoshaDetails;
-    /**
-     * @var MangalDosha
-     */
+    /** @var MangalDosha */
     private $boyMangalDoshaDetails;
-    /**
-     * @var array
-     */
+    /** @var string[] */
     private $exceptions;
 
     /**
      * AdvancedKundliMatching constructor.
-     * @param ProfileInfo $girlInfo
-     * @param ProfileInfo $boyInfo
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message $message
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan $gunaMilan
-     * @param MangalDosha $girlMangalDoshaDetails
-     * @param MangalDosha $boyMangalDoshaDetails
+     *
      * @param string[] $exceptions
      */
     public function __construct(
@@ -65,7 +49,6 @@ class AdvancedKundliMatching
         MangalDosha $boyMangalDoshaDetails,
         array $exceptions
     ) {
-
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->message = $message;
@@ -92,7 +75,7 @@ class AdvancedKundliMatching
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message
+     * @return Message
      */
     public function getMessage()
     {
@@ -100,7 +83,7 @@ class AdvancedKundliMatching
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan
+     * @return AdvancedGunaMilan
      */
     public function getGunaMilan()
     {
@@ -130,5 +113,4 @@ class AdvancedKundliMatching
     {
         return $this->exceptions;
     }
-
 }

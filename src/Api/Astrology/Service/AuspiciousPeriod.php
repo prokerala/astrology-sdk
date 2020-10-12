@@ -21,9 +21,6 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-/**
- * Defines the AuspiciousPeriod.
- */
 class AuspiciousPeriod
 {
     use AyanamsaAwareTrait;

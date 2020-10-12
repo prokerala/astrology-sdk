@@ -11,98 +11,59 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra as NakshatraResult;
+use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use stdClass;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-/**
- * Defines the Nakshatra.
- */
 class Nakshatra
 {
-    use AstroTrait;
+    use AyanamsaAwareTrait;
+    use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
-    protected $apiClient;
+    /** @var string */
     protected $slug = 'nakshatra';
-    protected $ayanamsa = 1;
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
+    /** @var Transformer<NakshatraResult> */
+    private $transformer;
 
     /**
-     * @param object $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->transformer = new Transformer(NakshatraResult::class);
+        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param object $location location details
-     * @param object $datetime date and time
+     * @param Location           $location Location details
+     * @param \DateTimeInterface $datetime Date and time
      *
-     * @return array
+     * @throws QuotaExceededException
+     * @throws RateLimitExceededException
+     **
+     * @return NakshatraResult
      */
-    public function process(Location $location, $datetime)
+    public function process(Location $location, \DateTimeInterface $datetime)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
-            'ayanamsa' => $this->ayanamsa,
+            'ayanamsa' => $this->getAyanamsa(),
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
 
-        $this->result = $this->make(NakshatraResult::class, $apiResponse->data);
-    }
-
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns Nakshatra details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->transformer->transform($apiResponse->data);
     }
 }

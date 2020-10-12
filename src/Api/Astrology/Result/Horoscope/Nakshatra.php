@@ -12,53 +12,37 @@
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo;
-use Prokerala\Api\Astrology\Result\Rasi;
+use Prokerala\Api\Astrology\Result\Element\Rasi;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
 /**
  * Defines Nakshatra.
  */
-class Nakshatra
+class Nakshatra implements ResultInterface
 {
-    /**
-     * @var string
-     */
+    use RawResponseTrait;
+
+    /** @var string */
     private $nakshatraName;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $nakshatraLongitude;
-    /**
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     private $nakshatraStart;
-    /**
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     private $nakshatraEnd;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $nakshatraPada;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Rasi
-     */
+    /** @var Rasi */
     private $chandraRasi;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Rasi
-     */
+    /** @var Rasi */
     private $sooryaRasi;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Rasi
-     */
+    /** @var Rasi */
     private $zodiac;
-    /**
-     * @var Nakshatra\NakshatraInfo
-     */
+    /** @var Nakshatra\NakshatraInfo */
     private $additionalInfo;
 
     /**
-     * Nakshatra constructor.
-     *
      * @param string $nakshatraName
      * @param float  $nakshatraLongitude
      * @param float  $nakshatraPada
@@ -126,7 +110,7 @@ class Nakshatra
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Rasi
+     * @return Rasi
      */
     public function getChandraRasi()
     {
@@ -134,7 +118,7 @@ class Nakshatra
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Rasi
+     * @return Rasi
      */
     public function getSooryaRasi()
     {
@@ -142,7 +126,7 @@ class Nakshatra
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Rasi
+     * @return Rasi
      */
     public function getZodiac()
     {
@@ -150,7 +134,7 @@ class Nakshatra
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
+     * @return NakshatraInfo
      */
     public function getAdditionalInfo()
     {

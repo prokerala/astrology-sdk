@@ -11,20 +11,19 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class MangalDosha
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class MangalDosha implements ResultInterface
 {
-    /**
-     * @var bool
-     */
+    use RawResponseTrait;
+
+    /** @var bool */
     private $hasMangalDosha;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
     /**
-     * MangalDosha constructor.
-     *
      * @param bool   $hasMangalDosha
      * @param string $description
      */
@@ -37,7 +36,7 @@ class MangalDosha
     /**
      * @return bool
      */
-    public function getHasMangalDosha()
+    public function hasMangalDosha()
     {
         return $this->hasMangalDosha;
     }

@@ -11,17 +11,17 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham;
 
-use Prokerala\Api\Astrology\Result\Nakshatra;
-use Prokerala\Api\Astrology\Result\Rasi;
+use Prokerala\Api\Astrology\Result\Element\Nakshatra;
+use Prokerala\Api\Astrology\Result\Element\Rasi;
 
 class Profile
 {
     /**
-     * @var \Prokerala\Api\Astrology\Result\Nakshatra
+     * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
      */
     private $nakshatra;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Rasi
+     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
      */
     private $rasi;
 
@@ -35,7 +35,7 @@ class Profile
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Nakshatra
+     * @return \Prokerala\Api\Astrology\Result\Element\Nakshatra
      */
     public function getNakshatra()
     {
@@ -43,7 +43,7 @@ class Profile
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Rasi
+     * @return \Prokerala\Api\Astrology\Result\Element\Rasi
      */
     public function getRasi()
     {

@@ -11,13 +11,18 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Result\Horoscope\AdvancedKundli as AdvancedKundliResult;
+use Prokerala\Api\Astrology\Result\Horoscope\Kundli as KundliResult;
 use Prokerala\Api\Astrology\Result\Panchang\AdvancedPanchang as AdvancedPanchangResult;
 use Prokerala\Api\Astrology\Result\Panchang\Panchang as PanchangResult;
+use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 use stdClass;
 
 /**
@@ -25,98 +30,61 @@ use stdClass;
  */
 class Panchang
 {
-    use AstroTrait;
+    use AyanamsaAwareTrait;
+    use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
-    protected $apiClient;
+    /** @var string */
     protected $slug = 'panchang';
-    protected $ayanamsa = 1;
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
+    /** @var Transformer<PanchangResult> */
+    private $basicResponseTransformer;
+
+    /** @var Transformer<AdvancedPanchangResult */
+    private $advancedResponseTransformer;
 
     /**
-     * @param Client $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->basicResponseTransformer = new Transformer(PanchangResult::class);
+        $this->addDateTimeTransformer($this->basicResponseTransformer);
+        $this->advancedResponseTransformer = new Transformer(AdvancedPanchangResult::class);
+        $this->addDateTimeTransformer($this->advancedResponseTransformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param Location $location        location details
-     * @param object   $datetime        date and time
-     * @param bool     $detailed_report
+     * @param Location           $location        Location details
+     * @param \DateTimeInterface $datetime        Date and time
+     * @param bool               $detailed_report Return detailed result
      *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
+     *
+     * @return AdvancedPanchangResult|PanchangResult
      */
-    public function process(Location $location, $datetime, $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {
             $slug .= '/advanced';
         }
 
-        $arParameter = [
+        $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
-            'ayanamsa' => $this->ayanamsa,
+            'ayanamsa' => $this->getAyanamsa(),
         ];
 
-        $apiResponse = $this->apiClient->process($slug, $arParameter);
-        $this->apiResponse = $apiResponse;
-
+        $apiResponse = $this->apiClient->process($slug, $parameters);
         if ($detailed_report) {
-            $this->result = $this->make(AdvancedPanchangResult::class, $apiResponse->data);
-        } else {
-            $this->result = $this->make(PanchangResult::class, $apiResponse->data);
+            return $this->advancedResponseTransformer->transform($apiResponse->data);
         }
-    }
 
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns porutham details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->basicResponseTransformer->transform($apiResponse->data);
     }
 }

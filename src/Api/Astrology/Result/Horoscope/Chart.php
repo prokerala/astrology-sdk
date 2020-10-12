@@ -11,19 +11,18 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class Chart
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class Chart implements ResultInterface
 {
-    /**
-     * @var string
-     */
+    use RawResponseTrait;
+
+    /** @var string */
     private $chartType;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $chartName;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $chartShortName;
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[]

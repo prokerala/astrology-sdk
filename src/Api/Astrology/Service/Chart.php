@@ -11,99 +11,58 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Chart as ChartResult;
+use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use stdClass;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-/**
- * Defines the Chart.
- */
 class Chart
 {
-    use AstroTrait;
+    use AyanamsaAwareTrait;
+    use ClientAwareTrait;
 
-    protected $apiClient;
+    /** @var string */
     protected $slug = 'chart';
-    protected $ayanamsa = 1;
+    /** @var Transformer<ChartResult> */
+    private $transformer;
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
 
     /**
-     * @param object $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->transformer = new Transformer(ChartResult::class);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param Location $location location details
-     * @param object   $datetime date and time
+     * @param Location           $location   Location details
+     * @param \DateTimeInterface $datetime   Date and time
+     * @param string             $chart_type Chart type
      *
-     * @throws \Prokerala\Common\Api\Exception\QuotaExceededException
-     * @throws \Prokerala\Common\Api\Exception\RateLimitExceededException
+     * @throws QuotaExceededException
+     * @throws RateLimitExceededException
+     **
+     * @return ChartResult
      */
-    public function process(Location $location, $datetime, string $chart_type)
+    public function process(Location $location, $datetime, $chart_type)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
-            'ayanamsa' => $this->ayanamsa,
+            'ayanamsa' => $this->getAyanamsa(),
             'chart_type' => $chart_type,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
-        $this->result = $this->make(ChartResult::class, $apiResponse->data);
-    }
 
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns Chart details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->transformer->transform($apiResponse->data);
     }
 }

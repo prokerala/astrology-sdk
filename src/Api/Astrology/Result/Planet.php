@@ -11,46 +11,45 @@
 
 namespace Prokerala\Api\Astrology\Result;
 
-/**
- * Defines Planet.
- */
 class Planet
 {
-    public const PLANET_SUN = 0;
-    public const PLANET_MOON = 1;
-    public const PLANET_MERCURY = 2;
-    public const PLANET_VENUS = 3;
-    public const PLANET_MARS = 4;
-    public const PLANET_JUPITER = 5;
-    public const PLANET_SATURN = 6;
-    public const PLANET_RAHU = 101;
-    public const PLANET_KETU = 102;
-    public const PLANET_ASCENDANT = 100;
+    const SUN = 0;
+    const MOON = 1;
+    const MERCURY = 2;
+    const VENUS = 3;
+    const MARS = 4;
+    const JUPITER = 5;
+    const SATURN = 6;
+    const RAHU = 101;
+    const KETU = 102;
+    const ASCENDANT = 100;
 
-    protected $id;
-    protected $longitude;
-    protected $isReverse;
-    protected $position;
-    protected $degree;
-    protected $rasi;
-    protected $rasiLord;
-
-    private static $arPlanet = [
-        0 => 'Sun',
-        1 => 'Moon',
-        2 => 'Mercury',
-        3 => 'Venus',
-        4 => 'Mars',
-        5 => 'Jupiter',
-        6 => 'Saturn',
-        101 => 'Rahu',
-        102 => 'Ketu',
-        100 => 'Ascendant',
+    const PLANET_LIST = [
+        0 => 'Sun', 1 => 'Moon', 2 => 'Mercury', 3 => 'Venus', 4 => 'Mars',
+        5 => 'Jupiter', 6 => 'Saturn', 101 => 'Rahu', 102 => 'Ketu', 100 => 'Ascendant',
     ];
 
-    public function __construct($id, $longitude, $is_reverse, $position, $degree, $rasi = null, $rasi_lord = null)
+    /** @var int */
+    private $id;
+    /** @var string */
+    private $name;
+    /** @var float */
+    private $longitude;
+    /** @var bool */
+    private $isReverse;
+    /** @var int */
+    private $position;
+    /** @var string */
+    private $degree;
+    /** @var int */
+    private $rasi;
+    /** @var string */
+    private $rasiLord;
+
+    public function __construct($id, $name, $longitude, $is_reverse, $position, $degree, $rasi, $rasi_lord)
     {
         $this->id = $id;
+        $this->name = $name;
         $this->longitude = $longitude;
         $this->isReverse = $is_reverse;
         $this->position = $position;
@@ -66,7 +65,7 @@ class Planet
      */
     public function getName()
     {
-        return self::$arPlanet[$this->id];
+        return $this->name;
     }
 
     /**
@@ -82,7 +81,7 @@ class Planet
     /**
      * Get planet longitude.
      *
-     * @return int
+     * @return float
      */
     public function getLongitude()
     {
@@ -130,22 +129,12 @@ class Planet
     }
 
     /**
-     * Get rasi lord for the planet.
-     *
-     * @return string
-     */
-    public function getRasiLord()
-    {
-        return $this->rasiLord;
-    }
-
-    /**
      * Get complete planet list.
      *
      * @return string[]
      */
     public function getPlanetList()
     {
-        return self::$arPlanet;
+        return self::PLANET_LIST;
     }
 }

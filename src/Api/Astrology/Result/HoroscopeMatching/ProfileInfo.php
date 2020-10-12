@@ -11,45 +11,34 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-use Prokerala\Api\Astrology\Result\Event\Nakshatra;
-use Prokerala\Api\Astrology\Result\Event\ChandraRasi;
+use Prokerala\Api\Astrology\Result\Element\Nakshatra;
+use Prokerala\Api\Astrology\Result\Element\Rasi;
 use Prokerala\Api\Astrology\Result\Horoscope\Guna;
 
 class ProfileInfo
 {
-
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Guna
+     * @var Guna
      */
     private $guna;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Nakshatra
+     * @var Nakshatra
      */
     private $nakshatra;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\ChandraRasi
+     * @var Rasi
      */
     private $rasi;
 
-    /**
-     * ProfileInfo constructor.
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\Guna $guna
-     * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Event\ChandraRasi $rasi
-     */
-    public function __construct(
-        Guna $guna,
-        Nakshatra $nakshatra,
-        ChandraRasi $rasi
-    ) {
-
+    public function __construct(Guna $guna, Nakshatra $nakshatra, Rasi $rasi)
+    {
         $this->guna = $guna;
         $this->nakshatra = $nakshatra;
         $this->rasi = $rasi;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\Guna
+     * @return Guna
      */
     public function getGuna()
     {
@@ -57,7 +46,7 @@ class ProfileInfo
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Nakshatra
+     * @return Nakshatra
      */
     public function getNakshatra()
     {
@@ -65,11 +54,10 @@ class ProfileInfo
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\ChandraRasi
+     * @return Rasi
      */
     public function getRasi()
     {
         return $this->rasi;
     }
-
 }

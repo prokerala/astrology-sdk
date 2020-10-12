@@ -9,29 +9,18 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Result;
+namespace Prokerala\Api\Astrology\Result\Element;
 
-/**
- * Defines Nakshatra.
- */
-class Nakshatra
+class Rasi
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $longitude;
 
     /**
-     * Nakshatra constructor.
-     *
      * @param int    $id
      * @param string $name
      * @param float  $longitude

@@ -12,29 +12,23 @@
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class PapaSamyamCheck
+class PapaSamyamCheck implements ResultInterface
 {
-    /**
-     * @var Papasamyam
-     */
+    use RawResponseTrait;
+
+    /** @var Papasamyam */
     private $girlPapasamyam;
-    /**
-     * @var Papasamyam
-     */
+    /** @var Papasamyam */
     private $boyPapasamyam;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $status;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $message;
 
     /**
-     * PapaSamyamCheck constructor.
-     *
      * @param string $status
      * @param string $message
      */

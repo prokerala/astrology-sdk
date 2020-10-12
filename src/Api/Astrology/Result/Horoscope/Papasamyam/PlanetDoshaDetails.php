@@ -80,7 +80,7 @@ class PlanetDoshaDetails
     /**
      * @return bool
      */
-    public function getHasDosha()
+    public function hasDosha()
     {
         return $this->hasDosha;
     }

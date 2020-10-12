@@ -11,31 +11,24 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class AdvancedMangalDosha
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class AdvancedMangalDosha implements ResultInterface
 {
-    /**
-     * @var bool
-     */
+    use RawResponseTrait;
+
+    /** @var bool */
     private $hasMangalDosha;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $hasException;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $mangalDoshaType;
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $exceptions;
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $remedies;
 
     /**
@@ -67,7 +60,7 @@ class AdvancedMangalDosha
     /**
      * @return bool
      */
-    public function getHasMangalDosha()
+    public function hasMangalDosha()
     {
         return $this->hasMangalDosha;
     }
@@ -83,7 +76,7 @@ class AdvancedMangalDosha
     /**
      * @return bool
      */
-    public function getHasException()
+    public function hasException()
     {
         return $this->hasException;
     }

@@ -11,36 +11,30 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class KaalSarpDosha
-{
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-    /**
-     * @var string|null
-     */
+class KaalSarpDosha implements ResultInterface
+{
+    use RawResponseTrait;
+
+    /** @var null|string */
     private $kaalSarpType;
-    /**
-     * @var string|null
-     */
+    /** @var null|string */
     private $kaalSarpDoshaType;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $hasKaalSarpDosha;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
     /**
-     * KaalSarpDosha constructor.
-     * @param string|null $kaalSarpType
-     * @param string|null $kaalSarpDoshaType
-     * @param bool $hasKaalSarpDosha
-     * @param string $description
+     * @param null|string $kaalSarpType
+     * @param null|string $kaalSarpDoshaType
+     * @param bool        $hasKaalSarpDosha
+     * @param string      $description
      */
     public function __construct($kaalSarpType, $kaalSarpDoshaType, $hasKaalSarpDosha, $description)
     {
-
         $this->kaalSarpType = $kaalSarpType;
         $this->kaalSarpDoshaType = $kaalSarpDoshaType;
         $this->hasKaalSarpDosha = $hasKaalSarpDosha;
@@ -48,7 +42,7 @@ class KaalSarpDosha
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getKaalSarpType()
     {
@@ -56,7 +50,7 @@ class KaalSarpDosha
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getKaalSarpDoshaType()
     {
@@ -66,7 +60,7 @@ class KaalSarpDosha
     /**
      * @return bool
      */
-    public function getHasKaalSarpDosha()
+    public function hasKaalSarpDosha()
     {
         return $this->hasKaalSarpDosha;
     }
@@ -78,6 +72,4 @@ class KaalSarpDosha
     {
         return $this->description;
     }
-
-
 }

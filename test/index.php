@@ -14,7 +14,7 @@ include __DIR__.'/../vendor/autoload.php';
 use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
-use Prokerala\Api\Astrology\Result\Nakshatra;
+use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\HoroscopeMatch;
 use Prokerala\Api\Astrology\Service\KundliMatch;

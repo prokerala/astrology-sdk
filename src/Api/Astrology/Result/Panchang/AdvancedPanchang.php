@@ -11,26 +11,31 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-class AdvancedPanchang
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class AdvancedPanchang implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var string
      */
     private $vaara;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Nakshatra[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
     private $nakshatra;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Tithi[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
     private $tithi;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Karana[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
     private $karana;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Yoga[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
     private $yoga;
     /**
@@ -50,26 +55,28 @@ class AdvancedPanchang
      */
     private $moonset;
     /**
-     * @var AuspiciousPeriod
+     * @var Muhurat\Muhurat[]
      */
     private $auspiciousPeriod;
     /**
-     * @var InauspiciousPeriod
+     * @var Muhurat\Muhurat[]
      */
     private $inauspiciousPeriod;
 
     /**
      * AdvancedPanchang constructor.
      *
-     * @param string                                            $vaara
-     * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[]     $tithi
-     * @param \Prokerala\Api\Astrology\Result\Event\Karana[]    $karana
-     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[]      $yoga
-     * @param string                                            $sunrise
-     * @param string                                            $sunset
-     * @param string                                            $moonrise
-     * @param string                                            $moonset
+     * @param string                                                  $vaara
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[] $nakshatra
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]      $yoga
+     * @param string                                                  $sunrise
+     * @param string                                                  $sunset
+     * @param string                                                  $moonrise
+     * @param string                                                  $moonset
+     * @param Muhurat\Muhurat[]                                      $auspiciousPeriod
+     * @param Muhurat\Muhurat[]                                    $inauspiciousPeriod
      */
     public function __construct(
         $vaara,
@@ -81,8 +88,8 @@ class AdvancedPanchang
         $sunset,
         $moonrise,
         $moonset,
-        AuspiciousPeriod $auspiciousPeriod,
-        InauspiciousPeriod $inauspiciousPeriod
+        $auspiciousPeriod,
+        $inauspiciousPeriod
     ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
@@ -106,7 +113,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Nakshatra[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
     public function getNakshatra()
     {
@@ -114,7 +121,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Tithi[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
     public function getTithi()
     {
@@ -122,7 +129,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Karana[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
     public function getKarana()
     {
@@ -130,7 +137,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Yoga[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
     public function getYoga()
     {
@@ -170,7 +177,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return AuspiciousPeriod
+     * @return Muhurat\Muhurat[]
      */
     public function getAuspiciousPeriod()
     {
@@ -178,7 +185,7 @@ class AdvancedPanchang
     }
 
     /**
-     * @return InauspiciousPeriod
+     * @return Muhurat\Muhurat[]
      */
     public function getInauspiciousPeriod()
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -13,14 +15,9 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class Message
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $type;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
     /**
@@ -30,7 +27,6 @@ class Message
      */
     public function __construct($type, $description)
     {
-
         $this->type = $type;
         $this->description = $description;
     }
@@ -50,6 +46,4 @@ class Message
     {
         return $this->description;
     }
-
-
 }

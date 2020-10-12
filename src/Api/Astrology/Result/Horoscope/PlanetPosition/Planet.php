@@ -11,51 +11,28 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition;
 
-/**
- * Defines Planet.
- */
 class Planet
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $longitude;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isReverse;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $position;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $degree;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $rasi;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $rasiLord;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $rasiLordEn;
 
     /**
-     * Planet constructor.
-     *
      * @param int    $id
      * @param string $name
      * @param float  $longitude

@@ -11,15 +11,16 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Chart;
 
-class ChartRasi
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class ChartRasi implements ResultInterface
 {
-    /**
-     * @var int
-     */
+    use RawResponseTrait;
+
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
@@ -27,8 +28,6 @@ class ChartRasi
     private $planetPosition;
 
     /**
-     * ChartRasi constructor.
-     *
      * @param int                                                               $id
      * @param string                                                            $name
      * @param \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[] $planetPosition

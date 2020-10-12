@@ -1,12 +1,18 @@
 <?php
-declare(strict_types=1);
 
-namespace Prokerala\Api\Astrology\Result\Event;
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 class ChandraRasi
 {
-
-
     /**
      * @var int
      */
@@ -25,20 +31,13 @@ class ChandraRasi
     private $lordEn;
 
     /**
-     * ChandraRasi constructor.
-     * @param int $id
+     * @param int    $id
      * @param string $name
      * @param string $lord
      * @param string $lordEn
      */
-    public function __construct(
-        $id,
-        $name,
-        $lord,
-        $lordEn
-    ) {
-
-
+    public function __construct($id, $name, $lord, $lordEn)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
@@ -76,6 +75,4 @@ class ChandraRasi
     {
         return $this->lordEn;
     }
-
-
 }

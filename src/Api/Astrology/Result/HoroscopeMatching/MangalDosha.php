@@ -22,7 +22,7 @@ class MangalDosha
      */
     private $hasException;
     /**
-     * @var string|null
+     * @var null|string
      */
     private $mangalDoshaType;
     /**
@@ -31,12 +31,10 @@ class MangalDosha
     private $description;
 
     /**
-     * MangalDosha constructor.
-     *
-     * @param bool   $hasMangalDosha
-     * @param bool   $hasException
-     * @param string|null $mangalDoshaType
-     * @param string $description
+     * @param bool        $hasMangalDosha
+     * @param bool        $hasException
+     * @param null|string $mangalDoshaType
+     * @param string      $description
      */
     public function __construct($hasMangalDosha, $hasException, $mangalDoshaType, $description)
     {
@@ -49,7 +47,7 @@ class MangalDosha
     /**
      * @return bool
      */
-    public function getHasMangalDosha()
+    public function hasMangalDosha()
     {
         return $this->hasMangalDosha;
     }
@@ -57,13 +55,13 @@ class MangalDosha
     /**
      * @return bool
      */
-    public function getHasException()
+    public function hasException()
     {
         return $this->hasException;
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getMangalDoshaType()
     {

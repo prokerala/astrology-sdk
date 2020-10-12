@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -13,39 +15,26 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaKoot
 {
-
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $maximumPoints;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $obtainedPoints;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
     /**
-     * GunaKoot constructor.
-     * @param int $id
+     * @param int    $id
      * @param string $name
-     * @param float $maximumPoints
-     * @param float $obtainedPoints
+     * @param float  $maximumPoints
+     * @param float  $obtainedPoints
      * @param string $description
      */
     public function __construct($id, $name, $maximumPoints, $obtainedPoints, $description)
     {
-
         $this->id = $id;
         $this->name = $name;
         $this->maximumPoints = $maximumPoints;
@@ -92,6 +81,4 @@ class GunaKoot
     {
         return $this->description;
     }
-
-
 }

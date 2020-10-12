@@ -74,7 +74,7 @@ class Porutham
     /**
      * @return bool
      */
-    public function getHasPorutham()
+    public function hasPorutham()
     {
         return $this->hasPorutham;
     }

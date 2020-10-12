@@ -9,48 +9,31 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Result\Event;
+namespace Prokerala\Api\Astrology\Result\Element;
 
-/**
- * Defines Nakshatra.
- */
 class Nakshatra
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var string
-     */
-    private $lord;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $pada;
+    /** @var string */
+    private $lord;
 
     /**
-     * Nakshatra constructor.
-     * @param int $id
+     * @param int    $id
      * @param string $name
+     * @param int    $pada
      * @param string $lord
-     * @param int $pada
      */
-    public function __construct(
-        $id,
-        $name,
-        $lord,
-        $pada
-    ) {
-
+    public function __construct($id, $name, $pada, $lord)
+    {
         $this->id = $id;
         $this->name = $name;
-        $this->lord = $lord;
         $this->pada = $pada;
+        $this->lord = $lord;
     }
 
     /**
@@ -70,14 +53,6 @@ class Nakshatra
     }
 
     /**
-     * @return string
-     */
-    public function getLord()
-    {
-        return $this->lord;
-    }
-
-    /**
      * @return int
      */
     public function getPada()
@@ -85,5 +60,11 @@ class Nakshatra
         return $this->pada;
     }
 
-
+    /**
+     * @return string
+     */
+    public function getLord()
+    {
+        return $this->lord;
+    }
 }

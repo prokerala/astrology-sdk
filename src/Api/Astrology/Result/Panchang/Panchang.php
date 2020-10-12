@@ -11,57 +11,58 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-class Panchang
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class Panchang implements ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var string
      */
     private $vaara;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Nakshatra[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
     private $nakshatra;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Tithi[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
     private $tithi;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Karana[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
     private $karana;
     /**
-     * @var \Prokerala\Api\Astrology\Result\Event\Yoga[]
+     * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
     private $yoga;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $sunrise;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $sunset;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $moonrise;
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
     private $moonset;
 
     /**
      * Panchang constructor.
      *
-     * @param string                                            $vaara
-     * @param \Prokerala\Api\Astrology\Result\Event\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Event\Tithi[]     $tithi
-     * @param \Prokerala\Api\Astrology\Result\Event\Karana[]    $karana
-     * @param \Prokerala\Api\Astrology\Result\Event\Yoga[]      $yoga
-     * @param string                                            $sunrise
-     * @param string                                            $sunset
-     * @param string                                            $moonrise
-     * @param string                                            $moonset
+     * @param string                                                  $vaara
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[] $nakshatra
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]      $yoga
      */
     public function __construct(
         $vaara,
@@ -69,10 +70,10 @@ class Panchang
         array $tithi,
         array $karana,
         array $yoga,
-        $sunrise,
-        $sunset,
-        $moonrise,
-        $moonset
+        \DateTimeInterface $sunrise,
+        \DateTimeInterface $sunset,
+        \DateTimeInterface $moonrise,
+        \DateTimeInterface $moonset
     ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
@@ -94,7 +95,7 @@ class Panchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Nakshatra[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
     public function getNakshatra()
     {
@@ -102,7 +103,7 @@ class Panchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Tithi[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
     public function getTithi()
     {
@@ -110,7 +111,7 @@ class Panchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Karana[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
     public function getKarana()
     {
@@ -118,7 +119,7 @@ class Panchang
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Event\Yoga[]
+     * @return \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
     public function getYoga()
     {
@@ -126,7 +127,7 @@ class Panchang
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getSunrise()
     {
@@ -134,7 +135,7 @@ class Panchang
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getSunset()
     {
@@ -142,7 +143,7 @@ class Panchang
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getMoonrise()
     {
@@ -150,7 +151,7 @@ class Panchang
     }
 
     /**
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getMoonset()
     {

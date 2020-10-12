@@ -11,64 +11,35 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Nakshatra;
 
-/**
- * Defines Nakshatra.
- */
 class NakshatraInfo
 {
-    /**
-     * @var string
-     */
-    private $diety;
-    /**
-     * @var string
-     */
+    /** @var string */
+    private $deity;
+    /** @var string */
     private $ganam;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $symbol;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $animalSign;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $nadi;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $color;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $bestDirection;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $syllables;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $birthStone;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $gender;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $planet;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $enemyYoni;
 
     /**
-     * NakshatraInfo constructor.
-     *
-     * @param string $diety
+     * @param string $deity
      * @param string $ganam
      * @param string $symbol
      * @param string $animalSign
@@ -82,7 +53,7 @@ class NakshatraInfo
      * @param string $enemyYoni
      */
     public function __construct(
-        $diety,
+        $deity,
         $ganam,
         $symbol,
         $animalSign,
@@ -95,7 +66,7 @@ class NakshatraInfo
         $planet,
         $enemyYoni
     ) {
-        $this->diety = $diety;
+        $this->deity = $deity;
         $this->ganam = $ganam;
         $this->symbol = $symbol;
         $this->animalSign = $animalSign;
@@ -112,9 +83,9 @@ class NakshatraInfo
     /**
      * @return string
      */
-    public function getDiety()
+    public function getDeity()
     {
-        return $this->diety;
+        return $this->deity;
     }
 
     /**
