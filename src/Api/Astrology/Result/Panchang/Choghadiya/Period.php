@@ -100,7 +100,7 @@ class Period
     /**
      * @return bool
      */
-    public function isDay()
+    public function getIsDay()
     {
         return $this->isDay;
     }
