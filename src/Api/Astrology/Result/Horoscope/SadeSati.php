@@ -22,7 +22,7 @@ class SadeSati
      */
     private $transitPhase;
     /**
-     * @var string
+     * @var string|null
      */
     private $description;
 
@@ -30,7 +30,7 @@ class SadeSati
      * SadeSati constructor.
      *
      * @param bool   $isInSadeSati
-     * @param string $transitPhase
+     * @param string|null $transitPhase
      * @param string $description
      */
     public function __construct($isInSadeSati, $transitPhase, $description)
@@ -49,7 +49,7 @@ class SadeSati
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTransitPhase()
     {

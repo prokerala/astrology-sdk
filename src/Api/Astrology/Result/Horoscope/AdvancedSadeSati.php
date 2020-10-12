@@ -22,7 +22,7 @@ class AdvancedSadeSati
      */
     private $transitPhase;
     /**
-     * @var string
+     * @var string|null
      */
     private $description;
 
@@ -35,7 +35,7 @@ class AdvancedSadeSati
      * SadeSati constructor.
      *
      * @param bool                                                               $isInSadeSati
-     * @param string                                                             $transitPhase
+     * @param string|null                                                             $transitPhase
      * @param string                                                             $description
      * @param \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[] $transits
      */
@@ -56,7 +56,7 @@ class AdvancedSadeSati
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTransitPhase()
     {
