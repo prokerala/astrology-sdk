@@ -11,56 +11,31 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
-
 class AuspiciousPeriod
 {
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat
-     */
-    private $abhijitMuhurat;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[]
      */
-    private $amritKaal;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat
-     */
-    private $brahmaMuhurat;
+    private $data;
 
     /**
      * AuspiciousPeriod constructor.
-     *
-     * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[] $amritKaal
+     * @param \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[] $data
      */
-    public function __construct(Muhurat $abhijitMuhurat, array $amritKaal, Muhurat $brahmaMuhurat)
+    public function __construct(array $data)
     {
-        $this->abhijitMuhurat = $abhijitMuhurat;
-        $this->amritKaal = $amritKaal;
-        $this->brahmaMuhurat = $brahmaMuhurat;
-    }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat
-     */
-    public function getAbhijitMuhurat()
-    {
-        return $this->abhijitMuhurat;
+        $this->data = $data;
     }
 
     /**
      * @return \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat[]
      */
-    public function getAmritKaal()
+    public function getData()
     {
-        return $this->amritKaal;
+        return $this->data;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat
-     */
-    public function getBrahmaMuhurat()
-    {
-        return $this->brahmaMuhurat;
-    }
+
 }

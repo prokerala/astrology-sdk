@@ -61,9 +61,8 @@ class AuspiciousPeriod
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
-
-        $this->result = $this->make(AuspiciousPeriodResult::class, $apiResponse->data);
+        $this->apiResponse = $apiResponse;
+        $this->result = $this->make(AuspiciousPeriodResult::class, $apiResponse);
     }
 
     /**
@@ -105,4 +104,15 @@ class AuspiciousPeriod
     {
         return $this->input;
     }
+
+    /**
+     * Set ayanamsa system.
+     *
+     * @param int $ayanamsa
+     */
+    public function setAyanamsa($ayanamsa)
+    {
+        $this->ayanamsa = $ayanamsa;
+    }
+
 }
