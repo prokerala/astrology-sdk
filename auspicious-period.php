@@ -12,10 +12,10 @@
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\AuspiciousPeriod;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
-
-$client = new Client($apiKey);
 
 /**
  * AuspiciousPeriod.
@@ -36,35 +36,25 @@ try {
     $method->process($location, $datetime);
     $result = $method->getResult();
 
-    $auspiciousPeriod = [];
-
-    $fields = ['abhijit_muhurat', 'amrit_kaal', 'brahma_muhurat'];
-
-    foreach ($fields as $field) {
-        $fieldname = str_replace('_', ' ', $field);
-        $functionName = str_replace(' ', '', 'get'.ucwords($fieldname));
-
-        $muhurat = $result->{$functionName}();
-
-        if (is_array($muhurat)) {
-            foreach ($muhurat as $data) {
-                $auspiciousPeriod[$field][] =
-                    [
-                        'start' => $data->getStart(),
-                        'end' => $data->getEnd(),
-                    ];
-            }
-
-            continue;
-        }
-
-        $auspiciousPeriod[$field] = [
-            'start' => $muhurat->getStart(),
-            'end' => $muhurat->getEnd(),
+    $arData = $result->getData();
+    $auspiciousPeriodResult = [];
+    foreach ($arData as $idx => $data) {
+        $auspiciousPeriodResult[$idx] = [
+            'id' => $data->getId(),
+            'name' => $data->getName(),
+            'type' => $data->getType(),
         ];
+        $arPeriod = $data->getPeriod();
+        foreach ($arPeriod as $period) {
+            $auspiciousPeriodResult[$idx]['period'][] = [
+                'start' => $period->getStart(),
+                'end' => $period->getEnd(),
+            ];
+        }
     }
+    print_r($auspiciousPeriodResult);
 
-    print_r($auspiciousPeriod);
+
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
