@@ -61,9 +61,9 @@ class InauspiciousPeriod
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
+        $this->apiResponse = $apiResponse;
 
-        $this->result = $this->make(InauspiciousPeriodResult::class, $apiResponse->data);
+        $this->result = $this->make(InauspiciousPeriodResult::class, $apiResponse);
     }
 
     /**
@@ -104,5 +104,15 @@ class InauspiciousPeriod
     public function getParsedInput()
     {
         return $this->input;
+    }
+
+    /**
+     * Set ayanamsa system.
+     *
+     * @param int $ayanamsa
+     */
+    public function setAyanamsa($ayanamsa)
+    {
+        $this->ayanamsa = $ayanamsa;
     }
 }

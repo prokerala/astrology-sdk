@@ -10,11 +10,10 @@
  */
 
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Service\InauspiciousPeriod;
 use Prokerala\Common\Api\Client;
 
 include 'prepend.inc.php';
-
-$client = new Client($apiKey);
 
 /**
  * InauspiciousPeriod.
@@ -31,37 +30,28 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\InauspiciousPeriod($client);
+    $method = new InauspiciousPeriod($client);
     $method->process($location, $datetime);
     $result = $method->getResult();
 
     $inauspiciousPeriod = [];
 
-    $fields = ['rahu_kaal', 'yamaganda_kaal', 'gulika_kaal', 'dur_muhurat', 'varjyam'];
+    $arData = $result->getData();
 
-    foreach ($fields as $field) {
-        $fieldname = str_replace('_', ' ', $field);
-        $functionName = str_replace(' ', '', 'get'.ucwords($fieldname));
-        $muhurat = $result->{$functionName}();
-
-        if (is_array($muhurat)) {
-            foreach ($muhurat as $data) {
-                $inauspiciousPeriod[$field][] =
-                    [
-                        'start' => $data->getStart(),
-                        'end' => $data->getEnd(),
-                    ];
-            }
-
-            continue;
-        }
-
-        $inauspiciousPeriod[$field] = [
-            'start' => $muhurat->getStart(),
-            'end' => $muhurat->getEnd(),
+    foreach ($arData as $idx => $data) {
+        $inauspiciousPeriod[$idx] = [
+            'id' => $data->getId(),
+            'name' => $data->getName(),
+            'type' => $data->getType(),
         ];
+        $arPeriod = $data->getPeriod();
+        foreach ($arPeriod as $period) {
+            $inauspiciousPeriod[$idx]['period'][] = [
+                'start' => $period->getStart(),
+                'end' => $period->getEnd(),
+            ];
+        }
     }
-
     print_r($inauspiciousPeriod);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
