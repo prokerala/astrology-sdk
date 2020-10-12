@@ -13,12 +13,13 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 class KaalSarpDosha
 {
+
     /**
-     * @var string
+     * @var string|null
      */
     private $kaalSarpType;
     /**
-     * @var string
+     * @var string|null
      */
     private $kaalSarpDoshaType;
     /**
@@ -32,14 +33,14 @@ class KaalSarpDosha
 
     /**
      * KaalSarpDosha constructor.
-     *
-     * @param string $kaalSarpType
-     * @param string $kaalSarpDoshaType
-     * @param bool   $hasKaalSarpDosha
+     * @param string|null $kaalSarpType
+     * @param string|null $kaalSarpDoshaType
+     * @param bool $hasKaalSarpDosha
      * @param string $description
      */
     public function __construct($kaalSarpType, $kaalSarpDoshaType, $hasKaalSarpDosha, $description)
     {
+
         $this->kaalSarpType = $kaalSarpType;
         $this->kaalSarpDoshaType = $kaalSarpDoshaType;
         $this->hasKaalSarpDosha = $hasKaalSarpDosha;
@@ -47,7 +48,7 @@ class KaalSarpDosha
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getKaalSarpType()
     {
@@ -55,7 +56,7 @@ class KaalSarpDosha
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getKaalSarpDoshaType()
     {
@@ -65,7 +66,7 @@ class KaalSarpDosha
     /**
      * @return bool
      */
-    public function hasKaalSarpDosha()
+    public function getHasKaalSarpDosha()
     {
         return $this->hasKaalSarpDosha;
     }
@@ -77,4 +78,6 @@ class KaalSarpDosha
     {
         return $this->description;
     }
+
+
 }

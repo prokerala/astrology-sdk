@@ -61,7 +61,7 @@ class KaalSarpDosha
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        $this->apiResponse = $apiResponse->data;
+        $this->apiResponse = $apiResponse;
 
         $this->result = $this->make(KaalSarpDoshaResult::class, $apiResponse->data);
     }
