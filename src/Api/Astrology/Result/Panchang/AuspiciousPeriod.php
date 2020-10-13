@@ -19,21 +19,21 @@ class AuspiciousPeriod implements ResultInterface
     use RawResponseTrait;
 
     /** @var Muhurat\Muhurat[] */
-    private $data;
+    private $muhurat;
 
     /**
-     * @param Muhurat\Muhurat[] $data
+     * @param Muhurat\Muhurat[] $muhurat
      */
-    public function __construct(array $data)
+    public function __construct(array $muhurat)
     {
-        $this->data = $data;
+        $this->muhurat = $muhurat;
     }
 
     /**
      * @return Muhurat\Muhurat[]
      */
-    public function getData()
+    public function getMuhurat()
     {
-        return $this->data;
+        return $this->muhurat;
     }
 }

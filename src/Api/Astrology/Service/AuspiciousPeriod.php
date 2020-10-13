@@ -63,6 +63,6 @@ class AuspiciousPeriod
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        return $this->transformer->transform($apiResponse);
+        return $this->transformer->transform($apiResponse->data);
     }
 }

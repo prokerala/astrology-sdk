@@ -21,23 +21,23 @@ class Choghadiya implements ResultInterface
     /**
      * @var Choghadiya\Period[]
      */
-    private $data;
+    private $muhurat;
 
     /**
      * Choghadiya constructor.
      *
-     * @param Choghadiya\Period[] $data
+     * @param Choghadiya\Period[] $muhurat
      */
-    public function __construct(array $data)
+    public function __construct(array $muhurat)
     {
-        $this->data = $data;
+        $this->muhurat = $muhurat;
     }
 
     /**
      * @return Choghadiya\Period[]
      */
-    public function getData()
+    public function getmuhurat()
     {
-        return $this->data;
+        return $this->muhurat;
     }
 }
