@@ -11,186 +11,65 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedNakshatraPorutham
+class AdvancedNakshatraPorutham implements ResultInterface
 {
+    use RawResponseTrait;
     /**
-     * @var int
+     * @var float
      */
-    private $maximumPoint;
+    private $maximumPoints;
     /**
-     * @var int
+     * @var float
      */
-    private $obtainedPoint;
+    private $obtainedPoints;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
+     * @var Porutham\AdvancedMatch[]
      */
-    private $dinaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $ganaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $mahendraPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $streeDhrirghamPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $yoniPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $rasiPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $rasiLordPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $rajjuPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $vedaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    private $vashyaPorutham;
+    private $matches;
 
     /**
-     * NakshatraPorutham constructor.
-     *
-     * @param int $maximumPoint
-     * @param int $obtainedPoint
+     * AdvancedNakshatraPorutham constructor.
+     * @param float $maximumPoints
+     * @param float $obtainedPoints
+     * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
-        $maximumPoint,
-        $obtainedPoint,
-        Porutham $dinaPorutham,
-        Porutham $ganaPorutham,
-        Porutham $mahendraPorutham,
-        Porutham $streeDhrirghamPorutham,
-        Porutham $yoniPorutham,
-        Porutham $rasiPorutham,
-        Porutham $rasiLordPorutham,
-        Porutham $rajjuPorutham,
-        Porutham $vedaPorutham,
-        Porutham $vashyaPorutham
+        $maximumPoints,
+        $obtainedPoints,
+        array $matches
     ) {
-        $this->maximumPoint = $maximumPoint;
-        $this->obtainedPoint = $obtainedPoint;
-        $this->dinaPorutham = $dinaPorutham;
-        $this->ganaPorutham = $ganaPorutham;
-        $this->mahendraPorutham = $mahendraPorutham;
-        $this->streeDhrirghamPorutham = $streeDhrirghamPorutham;
-        $this->yoniPorutham = $yoniPorutham;
-        $this->rasiPorutham = $rasiPorutham;
-        $this->rasiLordPorutham = $rasiLordPorutham;
-        $this->rajjuPorutham = $rajjuPorutham;
-        $this->vedaPorutham = $vedaPorutham;
-        $this->vashyaPorutham = $vashyaPorutham;
+
+        $this->maximumPoints = $maximumPoints;
+        $this->obtainedPoints = $obtainedPoints;
+        $this->matches = $matches;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getMaximumPoint()
+    public function getMaximumPoints()
     {
-        return $this->maximumPoint;
+        return $this->maximumPoints;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getObtainedPoint()
+    public function getObtainedPoints()
     {
-        return $this->obtainedPoint;
+        return $this->obtainedPoints;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
+     * @return Porutham\AdvancedMatch[]
      */
-    public function getDinaPorutham()
+    public function getMatches()
     {
-        return $this->dinaPorutham;
+        return $this->matches;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getGanaPorutham()
-    {
-        return $this->ganaPorutham;
-    }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getMahendraPorutham()
-    {
-        return $this->mahendraPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getStreeDhrirghamPorutham()
-    {
-        return $this->streeDhrirghamPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getYoniPorutham()
-    {
-        return $this->yoniPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getRasiPorutham()
-    {
-        return $this->rasiPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getRasiLordPorutham()
-    {
-        return $this->rasiLordPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getRajjuPorutham()
-    {
-        return $this->rajjuPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getVedaPorutham()
-    {
-        return $this->vedaPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham\Porutham
-     */
-    public function getVashyaPorutham()
-    {
-        return $this->vashyaPorutham;
-    }
 }

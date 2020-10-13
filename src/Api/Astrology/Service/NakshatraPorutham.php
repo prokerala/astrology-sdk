@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -11,105 +10,63 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\NakshatraProfile;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedNakshatraPorutham as AdvancedPorutham;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham as Porutham;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\QuotaExceededException;
-use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use stdClass;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
 class NakshatraPorutham
 {
-    use AstroTrait;
+    use ClientAwareTrait;
 
-    protected $apiClient;
     protected $slug = 'nakshatra-porutham';
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
+    /** @var Transformer<Porutham> */
+    private $basicResponseTransformer;
+
+    /** @var Transformer<AdvancedPorutham> */
+    private $advancedResponseTransformer;
 
     /**
-     * @param Client $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->basicResponseTransformer = new Transformer(Porutham::class);
+        $this->advancedResponseTransformer = new Transformer(AdvancedPorutham::class);
     }
 
+
     /**
+     * @param NakshatraProfile $girl_profile
+     * @param NakshatraProfile $boy_profile
      * @param bool $detailed_report
-     *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return ResultInterface
      */
     public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false)
     {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
         $slug = $this->slug;
         if ($detailed_report) {
             $slug .= '/advanced';
         }
-        $arParameter = [
+        $parameters = [
             'girl_nakshatra' => $girl_profile->getNakshatra(),
             'girl_nakshatra_pada' => $girl_profile->getNakshatraPada(),
             'boy_nakshatra' => $boy_profile->getNakshatra(),
             'boy_nakshatra_pada' => $boy_profile->getNakshatraPada(),
         ];
 
-        $apiResponse = $this->apiClient->process($slug, $arParameter);
-        $this->apiResponse = $apiResponse;
+        $apiResponse = $this->apiClient->process($slug, $parameters);
 
         if ($detailed_report) {
-            $this->result = $this->make(AdvancedPorutham::class, $apiResponse->data);
-        } else {
-            $this->result = $this->make(Porutham::class, $apiResponse->data);
+            return $this->advancedResponseTransformer->transform($apiResponse->data);
         }
-    }
 
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns porutham details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->basicResponseTransformer->transform($apiResponse->data);
     }
 }
+
