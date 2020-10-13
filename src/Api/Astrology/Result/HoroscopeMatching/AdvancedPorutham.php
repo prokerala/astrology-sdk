@@ -11,115 +11,73 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedPorutham
+class AdvancedPorutham implements ResultInterface
 {
+    use RawResponseTrait;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @var Porutham\Profile
      */
     private $girlInfo;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @var Porutham\Profile
      */
     private $boyInfo;
     /**
-     * @var int
+     * @var float
      */
-    private $maximumPoint;
+    private $maximumPoints;
     /**
      * @var float
      */
-    private $totalPoint;
+    private $totalPoints;
     /**
      * @var string
      */
-    private $compatibility;
+    private $status;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
+     * @var string
      */
-    private $dinaPorutham;
+    private $description;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
+     * @var Porutham\AdvancedMatch[]
      */
-    private $ganaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $mahendraPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $rajjuPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $rasiPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $rasyadhipaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $streeDhrirghamPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $vasyaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $vedaPorutham;
-    /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    private $yoniPorutham;
+    private $matches;
 
     /**
      * AdvancedPorutham constructor.
-     *
-     * @param int    $maximumPoint
-     * @param float  $totalPoint
-     * @param string $compatibility
+     * @param Porutham\Profile $girlInfo
+     * @param Porutham\Profile $boyInfo
+     * @param float $maximumPoints
+     * @param float $totalPoints
+     * @param string $status
+     * @param string $description
+     * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
         Profile $girlInfo,
         Profile $boyInfo,
-        $maximumPoint,
-        $totalPoint,
-        $compatibility,
-        PoruthamResult $dinaPorutham,
-        PoruthamResult $ganaPorutham,
-        PoruthamResult $mahendraPorutham,
-        PoruthamResult $rajjuPorutham,
-        PoruthamResult $rasiPorutham,
-        PoruthamResult $rasyadhipaPorutham,
-        PoruthamResult $streeDhrirghamPorutham,
-        PoruthamResult $vasyaPorutham,
-        PoruthamResult $vedaPorutham,
-        PoruthamResult $yoniPorutham
+        $maximumPoints,
+        $totalPoints,
+        $status,
+        $description,
+        array $matches
     ) {
+
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
-        $this->maximumPoint = $maximumPoint;
-        $this->totalPoint = $totalPoint;
-        $this->compatibility = $compatibility;
-        $this->dinaPorutham = $dinaPorutham;
-        $this->ganaPorutham = $ganaPorutham;
-        $this->mahendraPorutham = $mahendraPorutham;
-        $this->rajjuPorutham = $rajjuPorutham;
-        $this->rasiPorutham = $rasiPorutham;
-        $this->rasyadhipaPorutham = $rasyadhipaPorutham;
-        $this->streeDhrirghamPorutham = $streeDhrirghamPorutham;
-        $this->vasyaPorutham = $vasyaPorutham;
-        $this->vedaPorutham = $vedaPorutham;
-        $this->yoniPorutham = $yoniPorutham;
+        $this->maximumPoints = $maximumPoints;
+        $this->totalPoints = $totalPoints;
+        $this->status = $status;
+        $this->description = $description;
+        $this->matches = $matches;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @return Porutham\Profile
      */
     public function getGirlInfo()
     {
@@ -127,7 +85,7 @@ class AdvancedPorutham
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @return Porutham\Profile
      */
     public function getBoyInfo()
     {
@@ -135,106 +93,44 @@ class AdvancedPorutham
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getMaximumPoint()
+    public function getMaximumPoints()
     {
-        return $this->maximumPoint;
+        return $this->maximumPoints;
     }
 
     /**
      * @return float
      */
-    public function getTotalPoint()
+    public function getTotalPoints()
     {
-        return $this->totalPoint;
+        return $this->totalPoints;
     }
 
     /**
      * @return string
      */
-    public function getCompatibility()
+    public function getStatus()
     {
-        return $this->compatibility;
+        return $this->status;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
+     * @return string
      */
-    public function getDinaPorutham()
+    public function getDescription()
     {
-        return $this->dinaPorutham;
+        return $this->description;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
+     * @return Porutham\AdvancedMatch
      */
-    public function getGanaPorutham()
+    public function getMatches()
     {
-        return $this->ganaPorutham;
+        return $this->matches;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getMahendraPorutham()
-    {
-        return $this->mahendraPorutham;
-    }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getRajjuPorutham()
-    {
-        return $this->rajjuPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getRasiPorutham()
-    {
-        return $this->rasiPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getRasyadhipaPorutham()
-    {
-        return $this->rasyadhipaPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getStreeDhrirghamPorutham()
-    {
-        return $this->streeDhrirghamPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getVasyaPorutham()
-    {
-        return $this->vasyaPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getVedaPorutham()
-    {
-        return $this->vedaPorutham;
-    }
-
-    /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\PoruthamResult
-     */
-    public function getYoniPorutham()
-    {
-        return $this->yoniPorutham;
-    }
 }

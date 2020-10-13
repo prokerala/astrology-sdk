@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -11,50 +10,48 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use Prokerala\Api\Astrology\AstroTrait;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedPorutham as AdvancedMatchResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham as MatchResult;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\QuotaExceededException;
-use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use stdClass;
+use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
 class Porutham
 {
-    use AstroTrait;
+    use AyanamsaAwareTrait;
+    use ClientAwareTrait;
 
-    protected $apiClient;
     protected $slug = 'porutham';
-    protected $ayanamsa = 1;
 
-    protected $result;
-    protected $input;
-    /**
-     * @var stdClass
-     */
-    protected $apiResponse;
+    /** @var Transformer<MatchResult> */
+    private $basicResponseTransformer;
+
+    /** @var Transformer<AdvancedMatchResult> */
+    private $advancedResponseTransformer;
 
     /**
-     * @param Client $client api client object
+     * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->result = new stdClass();
+        $this->basicResponseTransformer = new Transformer(MatchResult::class);
+        $this->advancedResponseTransformer = new Transformer(AdvancedMatchResult::class);
     }
 
     /**
-     * @param string $system
-     * @param bool   $detailed_report
+     * Fetch result from API.
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @param $system
+     * @param bool $detailed_report
+     *
+     * @return ResultInterface
      */
     public function process(Profile $girl_profile, Profile $boy_profile, $system, $detailed_report = false)
     {
-        $classNameSpace = '\\Prokerala\\Api\\Astrology\\Result\\';
-
         $slug = $this->slug;
         if ($detailed_report) {
             $slug .= '/advanced';
@@ -63,60 +60,20 @@ class Porutham
         $girl_location = $girl_profile->getLocation();
         $boy_location = $boy_profile->getLocation();
 
-        $arParameter = [
+        $parameters = [
             'girl_coordinates' => $girl_location->getCoordinates(),
             'girl_dob' => $girl_profile->getDateTime()->format('c'),
             'boy_coordinates' => $boy_location->getCoordinates(),
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'system' => $system,
-            'ayanamsa' => $this->ayanamsa,
+            'ayanamsa' => $this->getAyanamsa(),
         ];
-        $apiResponse = $this->apiClient->process($slug, $arParameter);
-        $this->apiResponse = $apiResponse->data;
+
+        $apiResponse = $this->apiClient->process($slug, $parameters);
         if ($detailed_report) {
-            $this->result = $this->make(AdvancedMatchResult::class, $apiResponse->data);
-        } else {
-            $this->result = $this->make(MatchResult::class, $apiResponse->data);
+            return $this->advancedResponseTransformer->transform($apiResponse->data);
         }
-    }
 
-    /**
-     * Set Api Client.
-     *
-     * @param object $client client class object
-     */
-    public function setApiClient(Client $client)
-    {
-        $this->apiClient = $client;
-    }
-
-    /**
-     * Function returns porutham details.
-     *
-     * @return object
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get raw response returned by the API.
-     *
-     * @return stdClass
-     */
-    public function getRawResponse()
-    {
-        return $this->apiResponse;
-    }
-
-    /**
-     * Get the input as parsed by the API server.
-     *
-     * @return stdClass
-     */
-    public function getParsedInput()
-    {
-        return $this->input;
+        return $this->basicResponseTransformer->transform($apiResponse->data);
     }
 }

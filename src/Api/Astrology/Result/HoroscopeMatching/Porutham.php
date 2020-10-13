@@ -12,53 +12,72 @@
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Porutham
+class Porutham implements ResultInterface
 {
+    use RawResponseTrait;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @var Profile
      */
     private $girlInfo;
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @var Profile
      */
     private $boyInfo;
     /**
-     * @var int
+     * @var float
      */
-    private $maximumPoint;
+    private $maximumPoints;
     /**
      * @var float
      */
-    private $totalPoint;
+    private $totalPoints;
     /**
      * @var string
      */
-    private $compatibility;
+    private $status;
+    /**
+     * @var string
+     */
+    private $description;
+    /**
+     * @var Porutham\Match[]
+     */
+    private $matches;
 
     /**
      * Porutham constructor.
-     *
-     * @param int    $maximumPoint
-     * @param float  $totalPoint
-     * @param string $compatibility
+     * @param Profile $girlInfo
+     * @param Profile $boyInfo
+     * @param float $maximumPoints
+     * @param float $totalPoints
+     * @param string $status
+     * @param string $description
+     * @param Porutham\Match[] $matches
      */
     public function __construct(
         Profile $girlInfo,
         Profile $boyInfo,
-        $maximumPoint,
-        $totalPoint,
-        $compatibility
+        $maximumPoints,
+        $totalPoints,
+        $status,
+        $description,
+        array $matches
     ) {
+
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
-        $this->maximumPoint = $maximumPoint;
-        $this->totalPoint = $totalPoint;
-        $this->compatibility = $compatibility;
+        $this->maximumPoints = $maximumPoints;
+        $this->totalPoints = $totalPoints;
+        $this->status = $status;
+        $this->description = $description;
+        $this->matches = $matches;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @return Profile
      */
     public function getGirlInfo()
     {
@@ -66,7 +85,7 @@ class Porutham
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile
+     * @return Profile
      */
     public function getBoyInfo()
     {
@@ -74,26 +93,44 @@ class Porutham
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getMaximumPoint()
+    public function getMaximumPoints()
     {
-        return $this->maximumPoint;
+        return $this->maximumPoints;
     }
 
     /**
      * @return float
      */
-    public function getTotalPoint()
+    public function getTotalPoints()
     {
-        return $this->totalPoint;
+        return $this->totalPoints;
     }
 
     /**
      * @return string
      */
-    public function getCompatibility()
+    public function getStatus()
     {
-        return $this->compatibility;
+        return $this->status;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return Porutham\Match[]
+     */
+    public function getMatches()
+    {
+        return $this->matches;
+    }
+
+
 }
