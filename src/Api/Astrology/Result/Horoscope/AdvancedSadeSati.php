@@ -11,8 +11,12 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class AdvancedSadeSati
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class AdvancedSadeSati implements ResultInterface
 {
+    use RawResponseTrait;
     /**
      * @var bool
      */
@@ -27,7 +31,7 @@ class AdvancedSadeSati
     private $description;
 
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[]
+     * @var SadeSati\SaturnTransit[]
      */
     private $transits;
 
@@ -37,7 +41,7 @@ class AdvancedSadeSati
      * @param bool                                                               $isInSadeSati
      * @param string|null                                                             $transitPhase
      * @param string                                                             $description
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[] $transits
+     * @param SadeSati\SaturnTransit[] $transits
      */
     public function __construct($isInSadeSati, $transitPhase, $description, array $transits)
     {
@@ -50,7 +54,7 @@ class AdvancedSadeSati
     /**
      * @return bool
      */
-    public function getIsInSadeSati()
+    public function isInSadeSati()
     {
         return $this->isInSadeSati;
     }
@@ -72,7 +76,7 @@ class AdvancedSadeSati
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\SadeSati\SaturnTransit[]
+     * @return SadeSati\SaturnTransit[]
      */
     public function getTransits()
     {

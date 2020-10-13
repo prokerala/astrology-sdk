@@ -11,8 +11,12 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class SadeSati
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class SadeSati implements ResultInterface
 {
+    use RawResponseTrait;
     /**
      * @var bool
      */
@@ -43,7 +47,7 @@ class SadeSati
     /**
      * @return bool
      */
-    public function getIsInSadeSati()
+    public function isInSadeSati()
     {
         return $this->isInSadeSati;
     }
