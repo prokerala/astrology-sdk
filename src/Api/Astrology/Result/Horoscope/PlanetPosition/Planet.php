@@ -11,37 +11,49 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition;
 
+use Prokerala\Api\Astrology\Result\Element\Rasi;
+
 class Planet
 {
-    /** @var int */
-    private $id;
-    /** @var string */
-    private $name;
-    /** @var float */
-    private $longitude;
-    /** @var bool */
-    private $isReverse;
-    /** @var int */
-    private $position;
-    /** @var float */
-    private $degree;
-    /** @var string */
-    private $rasi;
-    /** @var string */
-    private $rasiLord;
-    /** @var string */
-    private $rasiLordEn;
 
     /**
-     * @param int    $id
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var float
+     */
+    private $longitude;
+    /**
+     * @var bool
+     */
+    private $isReverse;
+    /**
+     * @var int
+     */
+    private $position;
+    /**
+     * @var float
+     */
+    private $degree;
+    /**
+     * @var Rasi
+     */
+    private $rasi;
+
+    /**
+     * Planet constructor.
+     * @param int $id
      * @param string $name
-     * @param float  $longitude
-     * @param bool   $isReverse
-     * @param int    $position
-     * @param float  $degree
-     * @param string $rasi
-     * @param string $rasiLord
-     * @param string $rasiLordEn
+     * @param float $longitude
+     * @param bool $isReverse
+     * @param int $position
+     * @param float $degree
+     * @param Rasi $rasi
      */
     public function __construct(
         $id,
@@ -50,10 +62,9 @@ class Planet
         $isReverse,
         $position,
         $degree,
-        $rasi,
-        $rasiLord,
-        $rasiLordEn
+        Rasi $rasi
     ) {
+
         $this->id = $id;
         $this->name = $name;
         $this->longitude = $longitude;
@@ -61,8 +72,6 @@ class Planet
         $this->position = $position;
         $this->degree = $degree;
         $this->rasi = $rasi;
-        $this->rasiLord = $rasiLord;
-        $this->rasiLordEn = $rasiLordEn;
     }
 
     /**
@@ -92,7 +101,7 @@ class Planet
     /**
      * @return bool
      */
-    public function getIsReverse()
+    public function isReverse()
     {
         return $this->isReverse;
     }
@@ -114,26 +123,12 @@ class Planet
     }
 
     /**
-     * @return string
+     * @return Rasi
      */
     public function getRasi()
     {
         return $this->rasi;
     }
 
-    /**
-     * @return string
-     */
-    public function getRasiLord()
-    {
-        return $this->rasiLord;
-    }
 
-    /**
-     * @return string
-     */
-    public function getRasiLordEn()
-    {
-        return $this->rasiLordEn;
-    }
 }
