@@ -11,25 +11,44 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
+use Prokerala\Api\Astrology\Traits\StringableTrait;
+
 class Rasi
 {
-    /** @var int */
-    private $id;
-    /** @var string */
-    private $name;
-    /** @var float */
-    private $longitude;
+    use StringableTrait;
+
 
     /**
-     * @param int    $id
-     * @param string $name
-     * @param float  $longitude
+     * @var int
      */
-    public function __construct($id, $name, $longitude)
+    private $id;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $rashyadhipan;
+    /**
+     * @var string
+     */
+    private $lord;
+
+    /**
+     * Rasi constructor.
+     * @param int $id
+     * @param string $name
+     * @param string $rashyadhipan
+     * @param string $lord
+     */
+    public function __construct($id, $name, $rashyadhipan, $lord)
     {
+
         $this->id = $id;
         $this->name = $name;
-        $this->longitude = $longitude;
+        $this->rashyadhipan = $rashyadhipan;
+        $this->lord = $lord;
     }
 
     /**
@@ -49,10 +68,21 @@ class Rasi
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLongitude()
+    public function getRashyadhipan()
     {
-        return $this->longitude;
+        return $this->rashyadhipan;
     }
+
+    /**
+     * @return string
+     */
+    public function getLord()
+    {
+        return $this->lord;
+    }
+
+
+
 }
