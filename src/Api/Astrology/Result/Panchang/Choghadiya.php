@@ -36,7 +36,7 @@ class Choghadiya implements ResultInterface
     /**
      * @return Choghadiya\Period[]
      */
-    public function getmuhurat()
+    public function getMuhurat()
     {
         return $this->muhurat;
     }
