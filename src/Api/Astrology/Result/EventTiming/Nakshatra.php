@@ -13,23 +13,42 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 class Nakshatra
 {
-    /** @var int */
+
+    /**
+     * @var int
+     */
     private $id;
-    /** @var string */
+    /**
+     * @var string
+     */
     private $name;
-    /** @var \DateTimeInterface */
+    /**
+     * @var string
+     */
+    private $lord;
+    /**
+     * @var \DateTimeInterface
+     */
     private $start;
-    /** @var \DateTimeInterface */
+    /**
+     * @var \DateTimeInterface
+     */
     private $end;
 
     /**
-     * @param int    $id
+     * Nakshatra constructor.
+     * @param int $id
      * @param string $name
+     * @param string $lord
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $end
      */
-    public function __construct($id, $name, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct($id, $name, $lord, \DateTimeInterface $start, \DateTimeInterface $end)
     {
+
         $this->id = $id;
         $this->name = $name;
+        $this->lord = $lord;
         $this->start = $start;
         $this->end = $end;
     }
@@ -51,6 +70,14 @@ class Nakshatra
     }
 
     /**
+     * @return string
+     */
+    public function getLord()
+    {
+        return $this->lord;
+    }
+
+    /**
      * @return \DateTimeInterface
      */
     public function getStart()
@@ -65,4 +92,6 @@ class Nakshatra
     {
         return $this->end;
     }
+
+
 }
