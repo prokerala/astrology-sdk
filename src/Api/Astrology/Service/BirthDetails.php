@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra as NakshatraResult;
+use Prokerala\Api\Astrology\Result\Horoscope\BirthDetails as NakshatraResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -21,14 +21,14 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class Nakshatra
+class BirthDetails
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'nakshatra';
+    protected $slug = 'birth-details';
 
     /** @var Transformer<NakshatraResult> */
     private $transformer;
@@ -63,7 +63,6 @@ class Nakshatra
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-
         return $this->transformer->transform($apiResponse->data);
     }
 }

@@ -20,7 +20,7 @@ class AdvancedKundli implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Nakshatra
+     * @var BirthDetails
      */
     private $nakshatraDetails;
     /**
@@ -47,7 +47,7 @@ class AdvancedKundli implements ResultInterface
      * @param Dasha\DashaDetails[] $dashaPeriods
      */
     public function __construct(
-        Nakshatra $nakshatraDetails,
+        BirthDetails $nakshatraDetails,
         AdvancedMangalDosha $mangalDosha,
         YogaDetails $yogas,
         array $yogaList,
@@ -61,7 +61,7 @@ class AdvancedKundli implements ResultInterface
     }
 
     /**
-     * @return Nakshatra
+     * @return BirthDetails
      */
     public function getNakshatraDetails()
     {

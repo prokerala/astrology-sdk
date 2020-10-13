@@ -20,7 +20,7 @@ class Kundli implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Nakshatra
+     * @var BirthDetails
      */
     private $nakshatraDetails;
     /**
@@ -35,7 +35,7 @@ class Kundli implements ResultInterface
     /**
      * Kundli constructor.
      */
-    public function __construct(Nakshatra $nakshatraDetails, MangalDosha $mangalDosha, YogaDetails $yogas)
+    public function __construct(BirthDetails $nakshatraDetails, MangalDosha $mangalDosha, YogaDetails $yogas)
     {
         $this->nakshatraDetails = $nakshatraDetails;
         $this->mangalDosha = $mangalDosha;
@@ -43,7 +43,7 @@ class Kundli implements ResultInterface
     }
 
     /**
-     * @return Nakshatra
+     * @return BirthDetails
      */
     public function getNakshatraDetails()
     {
