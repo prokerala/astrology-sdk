@@ -55,7 +55,7 @@ class Yoga
     /**
      * @return bool
      */
-    public function isHasYoga()
+    public function hasYoga()
     {
         return $this->hasYoga;
     }
