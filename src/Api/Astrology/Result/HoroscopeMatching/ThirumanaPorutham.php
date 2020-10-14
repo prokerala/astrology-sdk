@@ -11,44 +11,64 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-class ThirumanaPorutham
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class ThirumanaPorutham implements ResultInterface
 {
+    use RawResponseTrait;
     /**
-     * @var int
+     * @var float
      */
-    private $maximumPoint;
+    private $maximumPoints;
     /**
-     * @var int
+     * @var float
      */
-    private $obtainedPoint;
+    private $obtainedPoints;
+    /**
+     * @var Porutham\Match[]
+     */
+    private $matches;
 
     /**
-     * ThirumanaPorutham constructor.
-     *
-     * @param int $maximumPoint
-     * @param int $obtainedPoint
+     * NakshatraPorutham constructor.
+     * @param float $maximumPoints
+     * @param float $obtainedPoints
+     * @param Porutham\Match[] $matches
      */
     public function __construct(
-        $maximumPoint,
-        $obtainedPoint
+        $maximumPoints,
+        $obtainedPoints,
+        $matches
     ) {
-        $this->maximumPoint = $maximumPoint;
-        $this->obtainedPoint = $obtainedPoint;
+
+        $this->maximumPoints = $maximumPoints;
+        $this->obtainedPoints = $obtainedPoints;
+        $this->matches = $matches;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getMaximumPoint()
+    public function getMaximumPoints()
     {
-        return $this->maximumPoint;
+        return $this->maximumPoints;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getObtainedPoint()
+    public function getObtainedPoints()
     {
-        return $this->obtainedPoint;
+        return $this->obtainedPoints;
     }
+
+    /**
+     * @return Porutham\Match[]
+     */
+    public function getMatches()
+    {
+        return $this->matches;
+    }
+
 }
