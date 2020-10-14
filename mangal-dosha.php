@@ -11,10 +11,10 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
-
-$client = new Client($apiKey);
 
 /**
  * Mangal Dosha.
@@ -32,12 +32,11 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\MangalDosha($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime);
 
     $mangalDoshaResult = [];
 
-    $mangalDoshaResult['has_mangal_dosha'] = $result->getHasMangalDosha();
+    $mangalDoshaResult['has_mangal_dosha'] = $result->hasMangalDosha();
     $mangalDoshaResult['description'] = $result->getDescription();
 
     print_r($mangalDoshaResult);
@@ -47,13 +46,12 @@ try {
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\MangalDosha($client);
-    $method->process($location, $datetime, true);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime, true);
 
     $mangalDoshaResult = [];
 
-    $mangalDoshaResult['has_mangal_dosha'] = $result->getHasMangalDosha();
-    $mangalDoshaResult['has_exception'] = $result->getHasException();
+    $mangalDoshaResult['has_mangal_dosha'] = $result->hasMangalDosha();
+    $mangalDoshaResult['has_exception'] = $result->hasException();
     $mangalDoshaResult['mangal_dosha_type'] = $result->getMangalDoshaType();
     $mangalDoshaResult['description'] = $result->getDescription();
     $mangalDoshaResult['exceptions'] = $result->getexceptions();

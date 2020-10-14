@@ -20,8 +20,6 @@ include 'prepend.inc.php';
 /**
  * Nakshatra Porutham.
  */
-$client = new Client($apiKey);
-
 $girl_input = [
     'nakshatra' => 0,
     'nakshatra_pada' => 2,
@@ -43,49 +41,45 @@ $boy_profile = new NakshatraProfile($boy_nakshatra, $boy_nakshatra_pada);
 $nakshatra_porutham = new NakshatraPorutham($client);
 
 try {
-    $nakshatra_porutham->process($girl_profile, $boy_profile, true);
-    $result = $nakshatra_porutham->getResult();
-
-    $fields = [
-        'dinaPorutham',
-        'ganaPorutham',
-        'mahendraPorutham',
-        'streeDhrirghamPorutham',
-        'yoniPorutham',
-        'rasiPorutham',
-        'rasiLordPorutham',
-        'rajjuPorutham',
-        'vedaPorutham',
-        'vashyaPorutham',
-    ];
-
+    $result = $nakshatra_porutham->process($girl_profile, $boy_profile);
     $compatibilityResult = [];
+    $compatibilityResult['maximumPoint'] = $result->getMaximumPoints();
+    $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoints();
 
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoint();
+    $matches = $result->getMatches();
 
-    foreach ($fields as $field) {
-        $functionName = 'get'.ucwords($field);
-        $poruthamResult = $result->{$functionName}();
-        foreach (['hasPorutham', 'poruthamStatus', 'point', 'description'] as $value) {
-            $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $poruthamResult->{$functionName}();
-        }
+    foreach ($matches as $match) {
+        $compatibilityResult['matches'][] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+        ];
     }
+
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
+
 try {
-    $nakshatra_porutham->process($girl_profile, $boy_profile);
-    $result = $nakshatra_porutham->getResult();
+    $result = $nakshatra_porutham->process($girl_profile, $boy_profile, true);
 
     $compatibilityResult = [];
+    $compatibilityResult['maximumPoint'] = $result->getMaximumPoints();
+    $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoints();
 
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoint();
-
+    $matches = $result->getMatches();
+    foreach ($matches as $match) {
+        $compatibilityResult['matches'][] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+            'poruthamStatus' => $match->getPoruthamStatus(),
+            'points' => $match->getPoints(),
+            'description' => $match->getDescription(),
+        ];
+    }
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {

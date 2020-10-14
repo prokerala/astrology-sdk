@@ -20,25 +20,20 @@ include 'prepend.inc.php';
 /**
  * Sade Sati.
  */
-$client = new Client($apiKey);
-
 $latitude = 10.214747;
 $longitude = 78.097626;
 
 $datetime_string = '2004-02-01T15:19:21+05:30'; //input time in user timezone
 $datetime = new DateTime($datetime_string);
 
-$client = new Client($apiKey);
-
 $location = new Location($latitude, $longitude, 0, new DateTimeZone('Asia/Kolkata'));
 
 $sade_sati = new SadeSati($client);
 
 try {
-    $sade_sati->process($location, $datetime);
-    $result = $sade_sati->getResult();
+    $result = $sade_sati->process($location, $datetime);
     $sadeSatiResult = [
-        'isInSadeSati' => $result->getIsInSadeSati(),
+        'isInSadeSati' => $result->isInSadeSati(),
         'transitPhase' => $result->getTransitPhase(),
         'description' => $result->getDescription(),
     ];
@@ -48,10 +43,9 @@ try {
 }
 
 try {
-    $sade_sati->process($location, $datetime, true);
-    $result = $sade_sati->getResult();
+    $result = $sade_sati->process($location, $datetime, true);
     $sadeSatiResult = [
-        'isInSadeSati' => $result->getIsInSadeSati(),
+        'isInSadeSati' => $result->isInSadeSati(),
         'transitPhase' => $result->getTransitPhase(),
         'description' => $result->getDescription(),
     ];

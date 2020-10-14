@@ -21,8 +21,6 @@ include 'prepend.inc.php';
 /**
  * Nakshatra Porutham.
  */
-$client = new Client($apiKey);
-
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
     'latitude' => '19.0821978',
@@ -45,22 +43,9 @@ $boy_profile = new Profile($boy_location, $boy_dob);
 
 $porutham = new Porutham($client);
 
-try {
-    $porutham->process($girl_profile, $boy_profile, 'tamil', true);
-    $result = $porutham->getResult();
-    $fields = [
-        'dinaPorutham',
-        'ganaPorutham',
-        'mahendraPorutham',
-        'rajjuPorutham',
-        'rasiPorutham',
-        'rasyadhipaPorutham',
-        'streeDhrirghamPorutham',
-        'vasyaPorutham',
-        'vedaPorutham',
-        'yoniPorutham',
-    ];
 
+try {
+    $result =$porutham->process($girl_profile, $boy_profile, 'kerala', true);
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -70,16 +55,31 @@ try {
     $boy_nakshatra = $boy_info->getNakshatra();
     $boy_rasi = $boy_info->getRasi();
 
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
+
     $compatibilityResult['girlInfo'] = [
         'nakshatra' => [
             'id' => $girl_nakshatra->getId(),
             'name' => $girl_nakshatra->getName(),
-            'longitude' => $girl_nakshatra->getLongitude(),
+            'pada' => $girl_nakshatra->getPada(),
+            'lord' => [
+                'id' => $girl_nakshatra_lord->getId(),
+                'name' => $girl_nakshatra_lord->getName(),
+                'vedicName' => $girl_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
-            'longitude' => $girl_rasi->getLongitude(),
+            'lord' => [
+                'id' => $girl_rasi_lord->getId(),
+                'name' => $girl_rasi_lord->getName(),
+                'vedicName' => $girl_rasi_lord->getVedicName()
+            ],
         ],
     ];
 
@@ -87,47 +87,50 @@ try {
         'nakshatra' => [
             'id' => $boy_nakshatra->getId(),
             'name' => $boy_nakshatra->getName(),
-            'longitude' => $boy_nakshatra->getLongitude(),
+            'pada' => $boy_nakshatra->getPada(),
+            'lord' => [
+                'id' => $boy_nakshatra_lord->getId(),
+                'name' => $boy_nakshatra_lord->getName(),
+                'vedicName' => $boy_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
-            'longitude' => $boy_rasi->getLongitude(),
+            'lord' => [
+                'id' => $boy_rasi_lord->getId(),
+                'name' => $boy_rasi_lord->getName(),
+                'vedicName' => $boy_rasi_lord->getVedicName()
+            ],
         ],
     ];
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['totalPoint'] = $result->getTotalPoint();
-    $compatibilityResult['compatibility'] = $result->getCompatibility();
+    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
+    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
+    $compatibilityResult['status'] = $result->getStatus();
+    $compatibilityResult['description'] = $result->getDescription();
 
-    foreach ($fields as $field) {
-        $functionName = 'get'.ucwords($field);
-        $poruthamResult = $result->{$functionName}();
-        foreach (['result', 'point', 'comment'] as $value) {
-            $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $poruthamResult->{$functionName}();
-        }
+    $match_result = $result->getMatches();
+    $matches = [];
+    foreach ($match_result as $match) {
+        $matches[] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+            'poruthamStatus' => $match->getPoruthamStatus(),
+            'points' => $match->getPoints(),
+            'description' => $match->getDescription(),
+        ];
     }
+
+    $compatibilityResult['matches'] = $matches;
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
-try {
-    $porutham->process($girl_profile, $boy_profile, 'kerala', true);
-    $result = $porutham->getResult();
-    $fields = [
-        'dinaPorutham',
-        'ganaPorutham',
-        'mahendraPorutham',
-        'rajjuPorutham',
-        'rasiPorutham',
-        'rasyadhipaPorutham',
-        'streeDhrirghamPorutham',
-        'vasyaPorutham',
-        'vedaPorutham',
-        'yoniPorutham',
-    ];
 
+try {
+    $result = $porutham->process($girl_profile, $boy_profile, 'tamil');
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -137,16 +140,31 @@ try {
     $boy_nakshatra = $boy_info->getNakshatra();
     $boy_rasi = $boy_info->getRasi();
 
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
+
     $compatibilityResult['girlInfo'] = [
         'nakshatra' => [
             'id' => $girl_nakshatra->getId(),
             'name' => $girl_nakshatra->getName(),
-            'longitude' => $girl_nakshatra->getLongitude(),
+            'pada' => $girl_nakshatra->getPada(),
+            'lord' => [
+                'id' => $girl_nakshatra_lord->getId(),
+                'name' => $girl_nakshatra_lord->getName(),
+                'vedicName' => $girl_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
-            'longitude' => $girl_rasi->getLongitude(),
+            'lord' => [
+                'id' => $girl_rasi_lord->getId(),
+                'name' => $girl_rasi_lord->getName(),
+                'vedicName' => $girl_rasi_lord->getVedicName()
+            ],
         ],
     ];
 
@@ -154,35 +172,48 @@ try {
         'nakshatra' => [
             'id' => $boy_nakshatra->getId(),
             'name' => $boy_nakshatra->getName(),
-            'longitude' => $boy_nakshatra->getLongitude(),
+            'pada' => $boy_nakshatra->getPada(),
+            'lord' => [
+                'id' => $boy_nakshatra_lord->getId(),
+                'name' => $boy_nakshatra_lord->getName(),
+                'vedicName' => $boy_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
-            'longitude' => $boy_rasi->getLongitude(),
+            'lord' => [
+                'id' => $boy_rasi_lord->getId(),
+                'name' => $boy_rasi_lord->getName(),
+                'vedicName' => $boy_rasi_lord->getVedicName()
+            ],
         ],
     ];
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['totalPoint'] = $result->getTotalPoint();
-    $compatibilityResult['compatibility'] = $result->getCompatibility();
 
-    foreach ($fields as $field) {
-        $functionName = 'get'.ucwords($field);
-        $poruthamResult = $result->{$functionName}();
-        foreach (['result', 'point', 'comment'] as $value) {
-            $functionName = 'get'.ucwords($value);
-            $compatibilityResult[$field][$value] = $poruthamResult->{$functionName}();
-        }
+    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
+    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
+    $compatibilityResult['status'] = $result->getStatus();
+    $compatibilityResult['description'] = $result->getDescription();
+
+    $match_result = $result->getMatches();
+    $matches = [];
+    foreach ($match_result as $match) {
+        $matches[] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+        ];
     }
+
+    $compatibilityResult['matches'] = $matches;
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
-try {
-    $porutham->process($girl_profile, $boy_profile, 'kerala');
-    $result = $porutham->getResult();
 
+try {
+    $result = $porutham->process($girl_profile, $boy_profile, 'kerala');
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -192,16 +223,31 @@ try {
     $boy_nakshatra = $boy_info->getNakshatra();
     $boy_rasi = $boy_info->getRasi();
 
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
+
     $compatibilityResult['girlInfo'] = [
         'nakshatra' => [
             'id' => $girl_nakshatra->getId(),
             'name' => $girl_nakshatra->getName(),
-            'longitude' => $girl_nakshatra->getLongitude(),
+            'pada' => $girl_nakshatra->getPada(),
+            'lord' => [
+                'id' => $girl_nakshatra_lord->getId(),
+                'name' => $girl_nakshatra_lord->getName(),
+                'vedicName' => $girl_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
-            'longitude' => $girl_rasi->getLongitude(),
+            'lord' => [
+                'id' => $girl_rasi_lord->getId(),
+                'name' => $girl_rasi_lord->getName(),
+                'vedicName' => $girl_rasi_lord->getVedicName()
+            ],
         ],
     ];
 
@@ -209,27 +255,48 @@ try {
         'nakshatra' => [
             'id' => $boy_nakshatra->getId(),
             'name' => $boy_nakshatra->getName(),
-            'longitude' => $boy_nakshatra->getLongitude(),
+            'pada' => $boy_nakshatra->getPada(),
+            'lord' => [
+                'id' => $boy_nakshatra_lord->getId(),
+                'name' => $boy_nakshatra_lord->getName(),
+                'vedicName' => $boy_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
-            'longitude' => $boy_rasi->getLongitude(),
+            'lord' => [
+                'id' => $boy_rasi_lord->getId(),
+                'name' => $boy_rasi_lord->getName(),
+                'vedicName' => $boy_rasi_lord->getVedicName()
+            ],
         ],
     ];
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['totalPoint'] = $result->getTotalPoint();
-    $compatibilityResult['compatibility'] = $result->getCompatibility();
 
+    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
+    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
+    $compatibilityResult['status'] = $result->getStatus();
+    $compatibilityResult['description'] = $result->getDescription();
+
+    $match_result = $result->getMatches();
+    $matches = [];
+    foreach ($match_result as $match) {
+        $matches[] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+        ];
+    }
+
+    $compatibilityResult['matches'] = $matches;
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
-try {
-    $porutham->process($girl_profile, $boy_profile, 'tamil');
-    $result = $porutham->getResult();
 
+try {
+    $result =  $porutham->process($girl_profile, $boy_profile, 'tamil', true);
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -239,16 +306,31 @@ try {
     $boy_nakshatra = $boy_info->getNakshatra();
     $boy_rasi = $boy_info->getRasi();
 
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
+
     $compatibilityResult['girlInfo'] = [
         'nakshatra' => [
             'id' => $girl_nakshatra->getId(),
             'name' => $girl_nakshatra->getName(),
-            'longitude' => $girl_nakshatra->getLongitude(),
+            'pada' => $girl_nakshatra->getPada(),
+            'lord' => [
+                'id' => $girl_nakshatra_lord->getId(),
+                'name' => $girl_nakshatra_lord->getName(),
+                'vedicName' => $girl_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $girl_rasi->getId(),
             'name' => $girl_rasi->getName(),
-            'longitude' => $girl_rasi->getLongitude(),
+            'lord' => [
+                'id' => $girl_rasi_lord->getId(),
+                'name' => $girl_rasi_lord->getName(),
+                'vedicName' => $girl_rasi_lord->getVedicName()
+            ],
         ],
     ];
 
@@ -256,19 +338,45 @@ try {
         'nakshatra' => [
             'id' => $boy_nakshatra->getId(),
             'name' => $boy_nakshatra->getName(),
-            'longitude' => $boy_nakshatra->getLongitude(),
+            'pada' => $boy_nakshatra->getPada(),
+            'lord' => [
+                'id' => $boy_nakshatra_lord->getId(),
+                'name' => $boy_nakshatra_lord->getName(),
+                'vedicName' => $boy_nakshatra_lord->getVedicName()
+            ],
         ],
         'rasi' => [
             'id' => $boy_rasi->getId(),
             'name' => $boy_rasi->getName(),
-            'longitude' => $boy_rasi->getLongitude(),
+            'lord' => [
+                'id' => $boy_rasi_lord->getId(),
+                'name' => $boy_rasi_lord->getName(),
+                'vedicName' => $boy_rasi_lord->getVedicName()
+            ],
         ],
     ];
-    $compatibilityResult['maximumPoint'] = $result->getMaximumPoint();
-    $compatibilityResult['totalPoint'] = $result->getTotalPoint();
-    $compatibilityResult['compatibility'] = $result->getCompatibility();
 
+    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
+    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
+    $compatibilityResult['status'] = $result->getStatus();
+    $compatibilityResult['description'] = $result->getDescription();
+
+    $match_result = $result->getMatches();
+    $matches = [];
+    foreach ($match_result as $match) {
+        $matches[] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+            'poruthamStatus' => $match->getPoruthamStatus(),
+            'points' => $match->getPoints(),
+            'description' => $match->getDescription(),
+        ];
+    }
+
+    $compatibilityResult['matches'] = $matches;
     print_r($compatibilityResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
+

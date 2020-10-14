@@ -10,13 +10,13 @@
  */
 
 use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Service\Kundli;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
-$client = new Client($apiKey);
 
 /**
  * Kaal Sarp Dosha.
@@ -33,146 +33,235 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\Kundli($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $kundliResult = [];
+    $method = new Kundli($client);
+    $result = $method->process($location, $datetime);
+
     $nakshatraDetails = $result->getNakshatraDetails();
-    $nakshatraResult = [
-        'nakshatraName' => $nakshatraDetails->getNakshatraName(),
-        'nakshatraLongitude' => $nakshatraDetails->getNakshatraLongitude(),
-        'nakshatraStart' => $nakshatraDetails->getNakshatraStart(),
-        'nakshatraEnd' => $nakshatraDetails->getNakshatraEnd(),
-        'nakshatraPada' => $nakshatraDetails->getNakshatraPada(),
-    ];
+    $nakshatra = $nakshatraDetails->getNakshatra();
+    $nakshatraLord = $nakshatra->getLord();
 
-    foreach (['chandraRasi', 'sooryaRasi', 'zodiac'] as $item) {
-        $fn = 'get'.ucwords($item);
-        $itemResult = $nakshatraDetails->{$fn}();
-        $nakshatraResult[$item] = [
-            'id' => $itemResult->getId(),
-            'name' => $itemResult->getName(),
-            'longitude' => $itemResult->getLongitude(),
-        ];
-    }
+    $chandraRasi = $nakshatraDetails->getChandraRasi();
+    $chandraRasiLord = $chandraRasi->getLord();
+
+    $sooryaRasi = $nakshatraDetails->getSooryaRasi();
+    $sooryaRasiLord = $sooryaRasi->getLord();
+
+    $zodiac = $nakshatraDetails->getZodiac();
+
     $additionalInfo = $nakshatraDetails->getAdditionalInfo();
-    foreach (['diety', 'ganam', 'symbol', 'animalSign', 'nadi', 'color', 'bestDirection', 'syllables', 'birthStone', 'gender', 'planet', 'enemyYoni'] as $info) {
-        $fn = 'get'.ucwords($info);
-        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->{$fn}();
-    }
 
-    $mangalDoshaResult = [];
-    $mangalDoshaDetails = $result->getMangalDosha();
-    $mangalDoshaResult['has_mangal_dosha'] = $mangalDoshaDetails->getHasMangalDosha();
-    $mangalDoshaResult['description'] = $mangalDoshaDetails->getDescription();
+    $mangalDosha = $result->getMangalDosha();
 
-    $yogaDetails = $result->getYogas();
-    $yogaResult = [];
-    foreach (['majorYogas', 'chandrayogas', 'sooryaYogas', 'inauspiciousYogas'] as $yoga) {
-        $fn = 'get'.ucwords($yoga);
-        $yogaResult[$yoga] = $yogaDetails->{$fn}();
-    }
+    $yogaDetails = $result->getYogaDetails();
 
     $kundliResult = [
-        'nakshatraDetails' => $nakshatraResult,
-        'mangalDosha' => $mangalDoshaResult,
-        'yogas' => $yogaResult,
+        'nakshatraDetails' => [
+
+            'nakshatra' => [
+                'id' => $nakshatra->getId(),
+                'name' => $nakshatra->getName(),
+                'lord' => [
+                    'id' => $nakshatraLord->getId(),
+                    'name' => $nakshatraLord->getName(),
+                    'vedicName' => $nakshatraLord->getVedicName(),
+                ],
+                'pada' => $nakshatra->getPada(),
+            ],
+            'chandraRasi' => [
+                'id' => $chandraRasi->getId(),
+                'name' => $chandraRasi->getName(),
+                'lord' => [
+                    'id' => $chandraRasiLord->getId(),
+                    'name' => $chandraRasiLord->getName(),
+                    'vedicName' => $chandraRasiLord->getVedicName(),
+                ],
+            ],
+            'sooryaRasi' =>  [
+                'id' => $sooryaRasi->getId(),
+                'name' => $sooryaRasi->getName(),
+                'lord' => [
+                    'id' => $sooryaRasiLord->getId(),
+                    'name' => $sooryaRasiLord->getName(),
+                    'vedicName' => $sooryaRasiLord->getVedicName(),
+                ],
+            ],
+            'zodiac' =>  [
+                'id' => $zodiac->getId(),
+                'name' => $zodiac->getName(),
+            ],
+            'additionalInfo' => [
+                'deity' => $additionalInfo->getDeity(),
+                'ganam' => $additionalInfo->getGanam(),
+                'symbol' => $additionalInfo->getSymbol(),
+                'animalSign' => $additionalInfo->getAnimalsign(),
+                'nadi' => $additionalInfo->getNadi(),
+                'color' => $additionalInfo->getColor(),
+                'bestDirection' => $additionalInfo->getBestdirection(),
+                'syllables' => $additionalInfo->getSyllables(),
+                'birthStone' => $additionalInfo->getBirthstone(),
+                'gender' => $additionalInfo->getGender(),
+                'planet' => $additionalInfo->getPlanet(),
+                'enemyYoni' => $additionalInfo->getEnemyYoni(),
+            ],
+        ],
+        'mangalDosha' => [
+            'hasMangalDosha' => $mangalDosha->hasMangalDosha(),
+            'description' => $mangalDosha->getDescription(),
+        ],
     ];
+
+    $yogaDetailResult = [];
+
+    foreach ($yogaDetails as $details) {
+        $yogaDetailResult[] = [
+            'name' => $details->getName(),
+            'description' => $details->getDescription(),
+        ];
+    }
+
+    $kundliResult['yogaDetails'] = $yogaDetailResult;
     print_r($kundliResult);
+
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\Kundli($client);
-    $method->process($location, $datetime, true);
-    $result = $method->getResult();
+    $kundliResult = [];
+    $method = new Kundli($client);
+    $result = $method->process($location, $datetime, true);
     $nakshatraDetails = $result->getNakshatraDetails();
-    $nakshatraResult = [
-        'nakshatraName' => $nakshatraDetails->getNakshatraName(),
-        'nakshatraLongitude' => $nakshatraDetails->getNakshatraLongitude(),
-        'nakshatraStart' => $nakshatraDetails->getNakshatraStart(),
-        'nakshatraEnd' => $nakshatraDetails->getNakshatraEnd(),
-        'nakshatraPada' => $nakshatraDetails->getNakshatraPada(),
-    ];
+    $nakshatra = $nakshatraDetails->getNakshatra();
+    $nakshatraLord = $nakshatra->getLord();
 
-    foreach (['chandraRasi', 'sooryaRasi', 'zodiac'] as $item) {
-        $fn = 'get'.ucwords($item);
-        $itemResult = $nakshatraDetails->{$fn}();
-        $nakshatraResult[$item] = [
-            'id' => $itemResult->getId(),
-            'name' => $itemResult->getName(),
-            'longitude' => $itemResult->getLongitude(),
-        ];
-    }
+    $chandraRasi = $nakshatraDetails->getChandraRasi();
+    $chandraRasiLord = $chandraRasi->getLord();
+
+    $sooryaRasi = $nakshatraDetails->getSooryaRasi();
+    $sooryaRasiLord = $sooryaRasi->getLord();
+
+    $zodiac = $nakshatraDetails->getZodiac();
+
     $additionalInfo = $nakshatraDetails->getAdditionalInfo();
-    foreach (['diety', 'ganam', 'symbol', 'animalSign', 'nadi', 'color', 'bestDirection', 'syllables', 'birthStone', 'gender', 'planet', 'enemyYoni'] as $info) {
-        $fn = 'get'.ucwords($info);
-        $nakshatraResult['additionalInfo'][$info] = $additionalInfo->{$fn}();
-    }
 
-    $mangalDoshaResult = [];
-    $mangalDoshaDetails = $result->getMangalDosha();
+    $mangalDosha = $result->getMangalDosha();
 
-    $mangalDoshaResult['has_mangal_dosha'] = $mangalDoshaDetails->getHasMangalDosha();
-    $mangalDoshaResult['has_exception'] = $mangalDoshaDetails->getHasException();
-    $mangalDoshaResult['mangal_dosha_type'] = $mangalDoshaDetails->getMangalDoshaType();
-    $mangalDoshaResult['description'] = $mangalDoshaDetails->getDescription();
-    $mangalDoshaResult['exceptions'] = $mangalDoshaDetails->getexceptions();
-    $mangalDoshaResult['remedies'] = $mangalDoshaDetails->getRemedies();
-
-    $yogaDetails = $result->getYogas();
-    $yogaResult = [];
-    foreach (['majorYogas', 'chandrayogas', 'sooryaYogas', 'inauspiciousYogas'] as $yoga) {
-        $fn = 'get'.ucwords($yoga);
-        $yogaResult[$yoga] = $yogaDetails->{$fn}();
-    }
+    $yogaDetails = $result->getYogaDetails();
 
     $dashaPeriods = $result->getDashaPeriods();
-    $dashaPeriodResult = [];
-    foreach ($dashaPeriods as $idx => $period) {
-        $dashaPeriodResult[$idx]['dashaName'] = $period->getDashaName();
-        $dasha_period = $period->getDashaPeriod();
-        $mahadasha = $dasha_period->getMahadasha();
-        $anthardasha = $dasha_period->getAnthardasha();
-        $pratyantardasha = $dasha_period->getPratyantardasha();
-        $dashaPeriodResult[$idx]['dashaPeriod']['mahadasha'] = [
-            'name' => $mahadasha->getName(),
-            'start' => $mahadasha->getStart(),
-            'end' => $mahadasha->getEnd(),
-        ];
-
-        foreach ($anthardasha as $dasha) {
-            $dashaPeriodResult[$idx]['dashaPeriod']['anthardasha'][] = [
-                'name' => $dasha->getName(),
-                'start' => $dasha->getStart(),
-                'end' => $dasha->getEnd(),
-            ];
-        }
-        $pDashaResult = $pFinal = [];
-        foreach ($pratyantardasha as $key => $dashaResult) {
-            $pDashaResult[$key]['name'] = $dashaResult->getName();
-            $pratyantardashaPeriod = $dashaResult->getPeriod();
-            $pPeriods = [];
-            foreach ($pratyantardashaPeriod as $dashaPeriod) {
-                $pPeriods[] = [
-                    'name' => $dashaPeriod->getName(),
-                    'start' => $dashaPeriod->getStart(),
-                    'end' => $dashaPeriod->getEnd(),
-                ];
-            }
-            $pDashaResult[$key]['period'] = $pPeriods;
-            $dashaPeriodResult[$idx]['dashaPeriod']['pratyantardasha'][] = $pPeriods;
-        }
-    }
 
     $kundliResult = [
-        'nakshatraDetails' => $nakshatraResult,
-        'mangalDosha' => $mangalDoshaResult,
-        'yogas' => $yogaResult,
-        'dashaPeriods' => $dashaPeriodResult,
+        'nakshatraDetails' => [
+
+            'nakshatra' => [
+                'id' => $nakshatra->getId(),
+                'name' => $nakshatra->getName(),
+                'lord' => [
+                    'id' => $nakshatraLord->getId(),
+                    'name' => $nakshatraLord->getName(),
+                    'vedicName' => $nakshatraLord->getVedicName(),
+                ],
+                'pada' => $nakshatra->getPada(),
+            ],
+            'chandraRasi' => [
+                'id' => $chandraRasi->getId(),
+                'name' => $chandraRasi->getName(),
+                'lord' => [
+                    'id' => $chandraRasiLord->getId(),
+                    'name' => $chandraRasiLord->getName(),
+                    'vedicName' => $chandraRasiLord->getVedicName(),
+                ],
+            ],
+            'sooryaRasi' =>  [
+                'id' => $sooryaRasi->getId(),
+                'name' => $sooryaRasi->getName(),
+                'lord' => [
+                    'id' => $sooryaRasiLord->getId(),
+                    'name' => $sooryaRasiLord->getName(),
+                    'vedicName' => $sooryaRasiLord->getVedicName(),
+                ],
+            ],
+            'zodiac' =>  [
+                'id' => $zodiac->getId(),
+                'name' => $zodiac->getName(),
+            ],
+            'additionalInfo' => [
+                'deity' => $additionalInfo->getDeity(),
+                'ganam' => $additionalInfo->getGanam(),
+                'symbol' => $additionalInfo->getSymbol(),
+                'animalSign' => $additionalInfo->getAnimalsign(),
+                'nadi' => $additionalInfo->getNadi(),
+                'color' => $additionalInfo->getColor(),
+                'bestDirection' => $additionalInfo->getBestdirection(),
+                'syllables' => $additionalInfo->getSyllables(),
+                'birthStone' => $additionalInfo->getBirthstone(),
+                'gender' => $additionalInfo->getGender(),
+                'planet' => $additionalInfo->getPlanet(),
+                'enemyYoni' => $additionalInfo->getEnemyYoni(),
+            ],
+        ],
+        'mangalDosha' => [
+            'hasMangalDosha' => $mangalDosha->hasMangalDosha(),
+            'description' => $mangalDosha->getDescription(),
+        ],
     ];
 
+    $yogaDetailResult = [];
+
+    foreach ($yogaDetails as $details) {
+        $yogaList = $details->getYogaList();
+        $yogas = [];
+        foreach ($yogaList as $yoga) {
+            $yogas = [
+                'name' => $yoga->getName(),
+                'hasYoga' => $yoga->hasYoga(),
+                'description' => $yoga->getDescription(),
+            ];
+        }
+        $yogaDetailResult[] = [
+            'name' => $details->getName(),
+            'description' => $details->getDescription(),
+            'yogaList' => $yogas,
+        ];
+    }
+
+    $kundliResult['yogaDetails'] = $yogaDetailResult;
+
+    $dashaPeriodResult = [];
+    foreach ($dashaPeriods as $dashaPeriod) {
+        $antardashas = $dashaPeriod->getAntardasha();
+        $antardashaResult = [];
+        foreach ($antardashas as $antardasha) {
+            $pratyantardashas = $antardasha->getPratyantardasha();
+            $pratyantardashaResult = [];
+            foreach ($pratyantardashas as $pratyantardasha) {
+                $pratyantardashaResult[] = [
+                    'id' => $pratyantardasha->getId(),
+                    'name' => $pratyantardasha->getName(),
+                    'start' => $pratyantardasha->getStart(),
+                    'end' => $pratyantardasha->getEnd(),
+                ];
+            }
+            $antardashaResult[]  = [
+                'id' => $antardasha->getId(),
+                'name' => $antardasha->getName(),
+                'start' => $antardasha->getStart(),
+                'end' => $antardasha->getEnd(),
+                'pratyantardasha' => $pratyantardashaResult
+            ];
+        }
+        $dashaPeriodResult[] = [
+            'id' => $dashaPeriod->getId(),
+            'name' => $dashaPeriod->getName(),
+            'start' => $dashaPeriod->getStart(),
+            'end' => $dashaPeriod->getEnd(),
+            'antardasha' => $antardashaResult
+        ];
+    }
+    $kundliResult['dashaPeriods'] = $dashaPeriodResult;
     print_r($kundliResult);
+
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

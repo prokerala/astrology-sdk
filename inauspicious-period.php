@@ -11,7 +11,8 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\InauspiciousPeriod;
-use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
@@ -31,12 +32,11 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new InauspiciousPeriod($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime);
 
     $inauspiciousPeriod = [];
 
-    $arData = $result->getData();
+    $arData = $result->getMuhurat();
 
     foreach ($arData as $idx => $data) {
         $inauspiciousPeriod[$idx] = [

@@ -16,8 +16,6 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
-$client = new Client($apiKey);
-
 /**
  * Kaal Sarp Dosha.
  */
@@ -34,21 +32,28 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\PlanetPosition($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime);
     $planetPositions = $result->getPlanetPosition();
     $planetPositionResult = [];
     foreach ($planetPositions as $position) {
+        $rasi = $position->getRasi();
+        $rasiLord = $rasi->getLord();
         $planetPositionResult[] = [
             'id' => $position->getId(),
             'name' => $position->getName(),
             'longitude' => $position->getLongitude(),
-            'isReverse' => $position->getIsreverse(),
+            'isReverse' => $position->isreverse(),
             'position' => $position->getPosition(),
             'degree' => $position->getDegree(),
-            'rasi' => $position->getRasi(),
-            'rasiLord' => $position->getRasilord(),
-            'rasiLordEn' => $position->getRasilorden(),
+            'rasi' => [
+                'id' => $rasi->getId(),
+                'name' => $rasi->getName(),
+                'lord' => [
+                    'id' => $rasiLord->getId(),
+                    'name' => $rasiLord->getName(),
+                    'vedicName' => $rasiLord->getVedicName(),
+                ],
+            ],
         ];
     }
     print_r($planetPositionResult);

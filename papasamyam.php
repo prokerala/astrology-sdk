@@ -16,8 +16,6 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
-$client = new Client($apiKey);
-
 /**
  * Kaal Sarp Dosha.
  */
@@ -34,10 +32,9 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\Papasamyam($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime);
 
-    $papasamyamResult['total_point'] = $result->getTotalPoint();
+    $papasamyamResult['total_point'] = $result->getTotalPoints();
     $papaSamyam = $result->getPapaSamyam();
     $papaPlanets = $papaSamyam->getPapaPlanet();
     foreach ($papaPlanets as $idx => $papaPlanet) {
@@ -48,7 +45,7 @@ try {
                 'id' => $planetDosha->getId(),
                 'name' => $planetDosha->getName(),
                 'position' => $planetDosha->getPosition(),
-                'hasDosha' => $planetDosha->getHasDosha(),
+                'hasDosha' => $planetDosha->hasDosha(),
             ];
         }
     }

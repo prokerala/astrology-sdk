@@ -45,47 +45,67 @@ $boy_profile = new Profile($boy_location, $boy_dob);
 $kundli_matching = new KundliMatching($client);
 
 try {
-    $kundli_matching->process($girl_profile, $boy_profile, true);
-    $result = $kundli_matching->getResult();
-
+    $matchResult = [];
+    $result = $kundli_matching->process($girl_profile, $boy_profile, true);
     $girl_info = $result->getGirlInfo();
     $boy_info = $result->getBoyInfo();
     $boy_guna = $boy_info->getGuna();
     $girl_guna = $girl_info->getGuna();
+
     $girl_nakshatra = $girl_info->getNakshatra();
     $boy_nakshatra = $girl_info->getNakshatra();
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
     $girl_rasi = $girl_info->getRasi();
     $boy_rasi = $boy_info->getRasi();
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
 
     $matchResult['boy_info']['guna'] = $boy_guna->getGuna();
     $matchResult['girl_info']['guna'] = $girl_guna->getGuna();
 
+
     $matchResult['girl_info']['nakshatra'] = [
         'id' => $girl_nakshatra->getId(),
         'name' => $girl_nakshatra->getName(),
-        'lord' => $girl_nakshatra->getLord(),
         'pada' => $girl_nakshatra->getPada(),
+        'lord' => [
+            'id' => $girl_nakshatra_lord->getId(),
+            'name' => $girl_nakshatra_lord->getName(),
+            'vedicName' => $girl_nakshatra_lord->getVedicName()
+        ],
     ];
 
     $matchResult['boy_info']['nakshatra'] = [
         'id' => $boy_nakshatra->getId(),
         'name' => $boy_nakshatra->getName(),
-        'lord' => $boy_nakshatra->getLord(),
         'pada' => $boy_nakshatra->getPada(),
+        'lord' => [
+            'id' => $boy_nakshatra_lord->getId(),
+            'name' => $boy_nakshatra_lord->getName(),
+            'vedicName' => $boy_nakshatra_lord->getVedicName()
+        ],
     ];
 
     $matchResult['girl_info']['rasi'] = [
         'id' => $girl_rasi->getId(),
         'name' => $girl_rasi->getName(),
-        'lord' => $girl_rasi->getLord(),
-        'lord_en' => $girl_rasi->getLordEn(),
+        'lord' => [
+            'id' => $girl_rasi_lord->getId(),
+            'name' => $girl_rasi_lord->getName(),
+            'vedicName' => $girl_rasi_lord->getVedicName()
+        ],
     ];
 
     $matchResult['boy_info']['rasi'] = [
         'id' => $boy_rasi->getId(),
         'name' => $boy_rasi->getName(),
-        'lord' => $boy_rasi->getLord(),
-        'lord_en' => $boy_rasi->getLordEn(),
+        'lord' => [
+            'id' => $boy_rasi_lord->getId(),
+            'name' => $boy_rasi_lord->getName(),
+            'vedicName' => $boy_rasi_lord->getVedicName()
+        ],
     ];
 
     $message = $result->getMessage();
@@ -117,66 +137,85 @@ try {
     $boy_mangal_dosha_details = $result->getBoyMangalDoshaDetails();
 
     $matchResult['girlMangalDoshaDetails'] = [
-        'hasMangalDosha' => $girl_mangal_dosha_details->getHasMangalDosha(),
-        'hasException' => $girl_mangal_dosha_details->getHasException(),
+        'hasMangalDosha' => $girl_mangal_dosha_details->hasMangalDosha(),
+        'hasException' => $girl_mangal_dosha_details->hasException(),
         'mangalDoshaType' => $girl_mangal_dosha_details->getMangalDoshaType(),
         'description' => $girl_mangal_dosha_details->getDescription(),
     ];
 
     $matchResult['boyMangalDoshaDetails'] = [
-        'hasMangalDosha' => $boy_mangal_dosha_details->getHasMangalDosha(),
-        'hasException' => $boy_mangal_dosha_details->getHasException(),
+        'hasMangalDosha' => $boy_mangal_dosha_details->hasMangalDosha(),
+        'hasException' => $boy_mangal_dosha_details->hasException(),
         'mangalDoshaType' => $boy_mangal_dosha_details->getMangalDoshaType(),
         'description' => $boy_mangal_dosha_details->getDescription(),
     ];
-    print_r($matchResult); exit;
+    //print_r($matchResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
 
 try {
-    $compatibilityResult = [];
-    $kundli_matching->process($girl_profile, $boy_profile);
-    $result = $kundli_matching->getResult();
-
+    $matchResult = [];
+    $result = $kundli_matching->process($girl_profile, $boy_profile);
     $girl_info = $result->getGirlInfo();
     $boy_info = $result->getBoyInfo();
     $boy_guna = $boy_info->getGuna();
     $girl_guna = $girl_info->getGuna();
+
     $girl_nakshatra = $girl_info->getNakshatra();
     $boy_nakshatra = $girl_info->getNakshatra();
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
     $girl_rasi = $girl_info->getRasi();
     $boy_rasi = $boy_info->getRasi();
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
 
     $matchResult['boy_info']['guna'] = $boy_guna->getGuna();
     $matchResult['girl_info']['guna'] = $girl_guna->getGuna();
 
+
     $matchResult['girl_info']['nakshatra'] = [
         'id' => $girl_nakshatra->getId(),
         'name' => $girl_nakshatra->getName(),
-        'lord' => $girl_nakshatra->getLord(),
         'pada' => $girl_nakshatra->getPada(),
+        'lord' => [
+            'id' => $girl_nakshatra_lord->getId(),
+            'name' => $girl_nakshatra_lord->getName(),
+            'vedicName' => $girl_nakshatra_lord->getVedicName()
+        ],
     ];
 
     $matchResult['boy_info']['nakshatra'] = [
         'id' => $boy_nakshatra->getId(),
         'name' => $boy_nakshatra->getName(),
-        'lord' => $boy_nakshatra->getLord(),
         'pada' => $boy_nakshatra->getPada(),
+        'lord' => [
+            'id' => $boy_nakshatra_lord->getId(),
+            'name' => $boy_nakshatra_lord->getName(),
+            'vedicName' => $boy_nakshatra_lord->getVedicName()
+        ],
     ];
 
     $matchResult['girl_info']['rasi'] = [
         'id' => $girl_rasi->getId(),
         'name' => $girl_rasi->getName(),
-        'lord' => $girl_rasi->getLord(),
-        'lord_en' => $girl_rasi->getLordEn(),
+        'lord' => [
+            'id' => $girl_rasi_lord->getId(),
+            'name' => $girl_rasi_lord->getName(),
+            'vedicName' => $girl_rasi_lord->getVedicName()
+        ],
     ];
 
     $matchResult['boy_info']['rasi'] = [
         'id' => $boy_rasi->getId(),
         'name' => $boy_rasi->getName(),
-        'lord' => $boy_rasi->getLord(),
-        'lord_en' => $boy_rasi->getLordEn(),
+        'lord' => [
+            'id' => $boy_rasi_lord->getId(),
+            'name' => $boy_rasi_lord->getName(),
+            'vedicName' => $boy_rasi_lord->getVedicName()
+        ],
     ];
 
     $message = $result->getMessage();

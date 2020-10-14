@@ -11,10 +11,10 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
-
-$client = new Client($apiKey);
 
 /**
  * Kaal Sarp Dosha.
@@ -32,8 +32,7 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\KaalSarpDosha($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result =  $method->process($location, $datetime);
 
     $kaalSarpDoshaResult = [];
 

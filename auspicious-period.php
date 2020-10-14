@@ -33,10 +33,8 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new AuspiciousPeriod($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
-
-    $arData = $result->getData();
+    $result = $method->process($location, $datetime);
+    $arData = $result->getMuhurat();
     $auspiciousPeriodResult = [];
     foreach ($arData as $idx => $data) {
         $auspiciousPeriodResult[$idx] = [

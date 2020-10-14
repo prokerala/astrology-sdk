@@ -11,10 +11,11 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
-$client = new Client($apiKey);
 
 /**
  * InauspiciousPeriod.
@@ -32,40 +33,8 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\Chart($client);
-    $method->process($location, $datetime, 'rasi');
-    $result = $method->getResult();
-    //print_r($result); exit;
-    $chartResult = [];
-    $chartResult['chartType'] = $result->getChartType();
-    $chartResult['chartName'] = $result->getChartName();
-    $chartResult['chartShortName'] = $result->getChartShortName();
-    $chartRasi = $result->getChartRasi();
-    $chartPosition = [];
-    foreach ($chartRasi as $idx => $rasi) {
-        $chartPosition[$idx] = [
-            'id' => $rasi->getId(),
-            'name' => $rasi->getName(),
-        ];
-        $planetPosition = $rasi->getPlanetPosition();
-        $chartPosition[$idx]['planetPosition'] = [];
-        if ($planetPosition) {
-            foreach ($planetPosition as $id => $position) {
-                $chartPosition[$idx]['planetPosition'][] = [
-                    'id' => $position->getId(),
-                    'name' => $position->getName(),
-                    'longitude' => $position->getLongitude(),
-                    'isReverse' => $position->getIsReverse(),
-                    'position' => $position->getPosition(),
-                    'degree' => $position->getPosition(),
-                    'rasi' => $position->getRasi(),
-                    'rasiLord' => $position->getRasiLord(),
-                    'rasiLordEn' => $position->getRasiLordEn(),
-                ];
-            }
-        }
-    }
-    $chartResult['chartRasi'] = $chartPosition;
-    print_r($chartResult);
+    $result = $method->process($location, $datetime, 'rasi', 'south_indian');
+    echo $result;
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

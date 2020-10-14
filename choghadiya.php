@@ -33,10 +33,9 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new Choghadiya($client);
-    $method->process($location, $datetime);
-    $result = $method->getResult();
+    $result = $method->process($location, $datetime);
 
-    $arData = $result->getData();
+    $arData = $result->getMuhurat();
 
     $choghadiyaResult = [];
 

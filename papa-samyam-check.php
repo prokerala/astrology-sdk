@@ -21,7 +21,6 @@ include 'prepend.inc.php';
 /**
  * Nakshatra Porutham.
  */
-$client = new Client($apiKey);
 
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
@@ -46,8 +45,7 @@ $boy_profile = new Profile($boy_location, $boy_dob);
 $porutham = new PapaSamyamCheck($client);
 
 try {
-    $porutham->process($girl_profile, $boy_profile);
-    $result = $porutham->getResult();
+    $result = $porutham->process($girl_profile, $boy_profile);
     $papaSamyamCheckResult = [
         'status' => $result->getStatus(),
         'message' => $result->getMessage(),
@@ -56,7 +54,7 @@ try {
     $girlPapasamyam = $result->getGirlPapasamyam();
     $boyPapasamyam = $result->getBoyPapasamyam();
 
-    $papaSamyamCheckResult['girlPapasamyam']['total_point'] = $girlPapasamyam->getTotalPoint();
+    $papaSamyamCheckResult['girlPapasamyam']['total_point'] = $girlPapasamyam->getTotalPoints();
     $papaSamyam = $girlPapasamyam->getPapaSamyam();
     $papaPlanets = $papaSamyam->getPapaPlanet();
     foreach ($papaPlanets as $idx => $papaPlanet) {
@@ -67,12 +65,12 @@ try {
                 'id' => $planetDosha->getId(),
                 'name' => $planetDosha->getName(),
                 'position' => $planetDosha->getPosition(),
-                'hasDosha' => $planetDosha->getHasDosha(),
+                'hasDosha' => $planetDosha->hasDosha(),
             ];
         }
     }
 
-    $papaSamyamCheckResult['boyPapasamyam']['total_point'] = $boyPapasamyam->getTotalPoint();
+    $papaSamyamCheckResult['boyPapasamyam']['total_point'] = $boyPapasamyam->getTotalPoints();
     $papaSamyam = $boyPapasamyam->getPapaSamyam();
     $papaPlanets = $papaSamyam->getPapaPlanet();
     foreach ($papaPlanets as $idx => $papaPlanet) {
@@ -83,7 +81,7 @@ try {
                 'id' => $planetDosha->getId(),
                 'name' => $planetDosha->getName(),
                 'position' => $planetDosha->getPosition(),
-                'hasDosha' => $planetDosha->getHasDosha(),
+                'hasDosha' => $planetDosha->hasDosha(),
             ];
         }
     }
