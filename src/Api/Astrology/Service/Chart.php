@@ -27,9 +27,6 @@ class Chart
 
     /** @var string */
     protected $slug = 'chart';
-    /** @var Transformer<ChartResult> */
-    private $transformer;
-
 
     /**
      * @param Client $client Api client
@@ -37,7 +34,6 @@ class Chart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(ChartResult::class);
     }
 
     /**
@@ -46,7 +42,6 @@ class Chart
      * @param Location $location Location details
      * @param \DateTimeInterface $datetime Date and time
      * @param string $chart_type Chart type
-     *
      * @param string $chart_style
      * @return ChartResult
      */
@@ -61,7 +56,6 @@ class Chart
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-
-        return $this->transformer->transform($apiResponse->data);
+        return $apiResponse;
     }
 }
