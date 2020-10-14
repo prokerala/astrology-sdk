@@ -11,13 +11,14 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
+use Prokerala\Api\Astrology\Result\Horoscope\Dasha\DashaPeriod;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
 class AdvancedKundli implements ResultInterface
 {
     use RawResponseTrait;
+
 
     /**
      * @var BirthDetails
@@ -28,36 +29,32 @@ class AdvancedKundli implements ResultInterface
      */
     private $mangalDosha;
     /**
-     * @var Yoga\YogaDetails
+     * @var Yoga\AdvancedYogaDetails[]
      */
-    private $yogas;
+    private $yogaDetails;
     /**
-     * @var Yoga\YogaList[]
+     * @var Dasha\DashaPeriod[]
      */
-    private $yogaList;
-    /**
-     * @var Dasha\DashaDetails[]
-     */
-    private $dashPeriods;
+    private $dashaPeriods;
 
     /**
      * AdvancedKundli constructor.
-     *
-     * @param Yoga\YogaList[]      $yogaList
-     * @param Dasha\DashaDetails[] $dashaPeriods
+     * @param BirthDetails $nakshatraDetails
+     * @param AdvancedMangalDosha $mangalDosha
+     * @param Yoga\AdvancedYogaDetails[] $yogaDetails
+     * @param Dasha\DashaPeriod[] $dashaPeriods
      */
     public function __construct(
         BirthDetails $nakshatraDetails,
         AdvancedMangalDosha $mangalDosha,
-        YogaDetails $yogas,
-        array $yogaList,
+        array $yogaDetails,
         array $dashaPeriods
     ) {
+
         $this->nakshatraDetails = $nakshatraDetails;
         $this->mangalDosha = $mangalDosha;
-        $this->yogas = $yogas;
-        $this->yogaList = $yogaList;
-        $this->dashPeriods = $dashaPeriods;
+        $this->yogaDetails = $yogaDetails;
+        $this->dashaPeriods = $dashaPeriods;
     }
 
     /**
@@ -77,26 +74,18 @@ class AdvancedKundli implements ResultInterface
     }
 
     /**
-     * @return Yoga\YogaDetails
+     * @return Yoga\AdvancedYogaDetails[]
      */
-    public function getYogas()
+    public function getYogaDetails()
     {
-        return $this->yogas;
+        return $this->yogaDetails;
     }
 
     /**
-     * @return Yoga\YogaList[]
-     */
-    public function getYogaList()
-    {
-        return $this->yogaList;
-    }
-
-    /**
-     * @return Dasha\DashaDetails[]
+     * @return Dasha\DashaPeriod[]
      */
     public function getDashaPeriods()
     {
-        return $this->dashPeriods;
+        return $this->dashaPeriods;
     }
 }

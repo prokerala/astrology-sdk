@@ -28,18 +28,21 @@ class Kundli implements ResultInterface
      */
     private $mangalDosha;
     /**
-     * @var Yoga\YogaDetails
+     * @var Yoga\YogaDetails[]
      */
-    private $yogas;
+    private $yogaDetails;
 
     /**
      * Kundli constructor.
+     * @param BirthDetails $nakshatraDetails
+     * @param MangalDosha $mangalDosha
+     * @param Yoga\YogaDetails[] $yogaDetails
      */
-    public function __construct(BirthDetails $nakshatraDetails, MangalDosha $mangalDosha, YogaDetails $yogas)
+    public function __construct(BirthDetails $nakshatraDetails, MangalDosha $mangalDosha, array $yogaDetails)
     {
         $this->nakshatraDetails = $nakshatraDetails;
         $this->mangalDosha = $mangalDosha;
-        $this->yogas = $yogas;
+        $this->yogaDetails = $yogaDetails;
     }
 
     /**
@@ -59,10 +62,10 @@ class Kundli implements ResultInterface
     }
 
     /**
-     * @return Yoga\YogaDetails
+     * @return Yoga\YogaDetails[]
      */
-    public function getYogas()
+    public function getYogaDetails()
     {
-        return $this->yogas;
+        return $this->yogaDetails;
     }
 }
