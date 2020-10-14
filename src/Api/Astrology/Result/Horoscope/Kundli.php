@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
