@@ -43,22 +43,21 @@ class Chart
     /**
      * Fetch result from API.
      *
-     * @param Location           $location   Location details
-     * @param \DateTimeInterface $datetime   Date and time
-     * @param string             $chart_type Chart type
+     * @param Location $location Location details
+     * @param \DateTimeInterface $datetime Date and time
+     * @param string $chart_type Chart type
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
-     **
+     * @param string $chart_style
      * @return ChartResult
      */
-    public function process(Location $location, $datetime, $chart_type)
+    public function process(Location $location, $datetime, $chart_type, $chart_style)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
             'chart_type' => $chart_type,
+            'chart_style' => $chart_style,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
