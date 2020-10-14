@@ -4,7 +4,7 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 use Prokerala\Api\Astrology\Traits\StringableTrait;
 
-class Lord
+class Planet
 {
     use StringableTrait;
 

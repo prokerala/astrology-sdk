@@ -23,7 +23,7 @@ class Nakshatra
      */
     private $name;
     /**
-     * @var Lord
+     * @var Planet
      */
     private $lord;
     /**
@@ -35,10 +35,10 @@ class Nakshatra
      * Nakshatra constructor.
      * @param int $id
      * @param string $name
-     * @param Lord $lord
+     * @param Planet $lord
      * @param int $pada
      */
-    public function __construct($id, $name, Lord $lord, $pada)
+    public function __construct($id, $name, Planet $lord, $pada)
     {
 
         $this->id = $id;
@@ -64,7 +64,7 @@ class Nakshatra
     }
 
     /**
-     * @return Lord
+     * @return Planet
      */
     public function getLord()
     {

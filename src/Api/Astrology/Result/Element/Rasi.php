@@ -27,7 +27,7 @@ class Rasi
      */
     private $name;
     /**
-     * @var Lord
+     * @var Planet
      */
     private $lord;
 
@@ -35,9 +35,9 @@ class Rasi
      * Rasi constructor.
      * @param int $id
      * @param string $name
-     * @param Lord $lord
+     * @param Planet $lord
      */
-    public function __construct($id, $name, Lord $lord)
+    public function __construct($id, $name, Planet $lord)
     {
 
 
@@ -63,7 +63,7 @@ class Rasi
     }
 
     /**
-     * @return Lord
+     * @return Planet
      */
     public function getLord()
     {
