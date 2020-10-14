@@ -1,22 +1,12 @@
 <?php
 
-/*
- * This file is part of Prokerala Astrology API PHP SDK
- *
- * © Ennexa Technologies <info@ennexa.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Prokerala\Api\Astrology\Result\Element;
 
 use Prokerala\Api\Astrology\Traits\StringableTrait;
 
-class Rasi
+class Lord
 {
     use StringableTrait;
-
 
     /**
      * @var int
@@ -27,23 +17,22 @@ class Rasi
      */
     private $name;
     /**
-     * @var Lord
+     * @var string
      */
-    private $lord;
+    private $vedicName;
 
     /**
-     * Rasi constructor.
+     * Lord constructor.
      * @param int $id
      * @param string $name
-     * @param Lord $lord
+     * @param string $vedicName
      */
-    public function __construct($id, $name, Lord $lord)
+    public function __construct($id, $name, $vedicName)
     {
-
 
         $this->id = $id;
         $this->name = $name;
-        $this->lord = $lord;
+        $this->vedicName = $vedicName;
     }
 
     /**
@@ -63,14 +52,11 @@ class Rasi
     }
 
     /**
-     * @return Lord
+     * @return string
      */
-    public function getLord()
+    public function getVedicName()
     {
-        return $this->lord;
+        return $this->vedicName;
     }
-
-
-
 
 }
