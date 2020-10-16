@@ -61,6 +61,7 @@ try {
             'index' => $tithi->getIndex(),
             'id' => $tithi->getId(),
             'name' => $tithi->getName(),
+            'paksha' => $tithi->getPaksha(),
             'start' => $tithi->getStart(),
             'end' => $tithi->getEnd(),
         ];
@@ -119,6 +120,7 @@ try {
             'index' => $tithi->getIndex(),
             'id' => $tithi->getId(),
             'name' => $tithi->getName(),
+            'paksha' => $tithi->getPaksha(),
             'start' => $tithi->getStart(),
             'end' => $tithi->getEnd(),
         ];

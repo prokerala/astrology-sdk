@@ -106,7 +106,7 @@ try {
             ],
         ],
         'mangalDosha' => [
-            'hasMangalDosha' => $mangalDosha->hasMangalDosha(),
+            'hasDosha' => $mangalDosha->hasDosha(),
             'description' => $mangalDosha->getDescription(),
         ],
     ];
@@ -202,8 +202,11 @@ try {
             ],
         ],
         'mangalDosha' => [
-            'hasMangalDosha' => $mangalDosha->hasMangalDosha(),
+            'hasDosha' => $mangalDosha->hasDosha(),
             'description' => $mangalDosha->getDescription(),
+            'hasException' => $mangalDosha->hasException(),
+            'type' => $mangalDosha->getType(),
+            'exceptions' => $mangalDosha->getExceptions(),
         ],
     ];
 

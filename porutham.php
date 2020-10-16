@@ -19,7 +19,7 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 include 'prepend.inc.php';
 
 /**
- * Nakshatra Porutham.
+ * Porutham.
  */
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
@@ -42,92 +42,6 @@ $boy_dob = new DateTime($boy_input['datetime']);
 $boy_profile = new Profile($boy_location, $boy_dob);
 
 $porutham = new Porutham($client);
-
-
-try {
-    $result =$porutham->process($girl_profile, $boy_profile, 'kerala', true);
-    $compatibilityResult = [];
-    $girl_info = $result->getGirlInfo();
-    $girl_nakshatra = $girl_info->getNakshatra();
-    $girl_rasi = $girl_info->getRasi();
-
-    $boy_info = $result->getBoyInfo();
-    $boy_nakshatra = $boy_info->getNakshatra();
-    $boy_rasi = $boy_info->getRasi();
-
-    $girl_nakshatra_lord = $girl_nakshatra->getLord();
-    $boy_nakshatra_lord = $boy_nakshatra->getLord();
-
-    $girl_rasi_lord = $girl_rasi->getLord();
-    $boy_rasi_lord = $boy_rasi->getLord();
-
-    $compatibilityResult['girlInfo'] = [
-        'nakshatra' => [
-            'id' => $girl_nakshatra->getId(),
-            'name' => $girl_nakshatra->getName(),
-            'pada' => $girl_nakshatra->getPada(),
-            'lord' => [
-                'id' => $girl_nakshatra_lord->getId(),
-                'name' => $girl_nakshatra_lord->getName(),
-                'vedicName' => $girl_nakshatra_lord->getVedicName()
-            ],
-        ],
-        'rasi' => [
-            'id' => $girl_rasi->getId(),
-            'name' => $girl_rasi->getName(),
-            'lord' => [
-                'id' => $girl_rasi_lord->getId(),
-                'name' => $girl_rasi_lord->getName(),
-                'vedicName' => $girl_rasi_lord->getVedicName()
-            ],
-        ],
-    ];
-
-    $compatibilityResult['boyInfo'] = [
-        'nakshatra' => [
-            'id' => $boy_nakshatra->getId(),
-            'name' => $boy_nakshatra->getName(),
-            'pada' => $boy_nakshatra->getPada(),
-            'lord' => [
-                'id' => $boy_nakshatra_lord->getId(),
-                'name' => $boy_nakshatra_lord->getName(),
-                'vedicName' => $boy_nakshatra_lord->getVedicName()
-            ],
-        ],
-        'rasi' => [
-            'id' => $boy_rasi->getId(),
-            'name' => $boy_rasi->getName(),
-            'lord' => [
-                'id' => $boy_rasi_lord->getId(),
-                'name' => $boy_rasi_lord->getName(),
-                'vedicName' => $boy_rasi_lord->getVedicName()
-            ],
-        ],
-    ];
-    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
-    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
-    $compatibilityResult['status'] = $result->getStatus();
-    $compatibilityResult['description'] = $result->getDescription();
-
-    $match_result = $result->getMatches();
-    $matches = [];
-    foreach ($match_result as $match) {
-        $matches[] = [
-            'id' => $match->getId(),
-            'name' => $match->getName(),
-            'hasPorutham' => $match->hasPorutham(),
-            'poruthamStatus' => $match->getPoruthamStatus(),
-            'points' => $match->getPoints(),
-            'description' => $match->getDescription(),
-        ];
-    }
-
-    $compatibilityResult['matches'] = $matches;
-    print_r($compatibilityResult);
-} catch (QuotaExceededException $e) {
-} catch (RateLimitExceededException $e) {
-}
-
 
 try {
     $result = $porutham->process($girl_profile, $boy_profile, 'tamil');
@@ -192,8 +106,11 @@ try {
 
     $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
     $compatibilityResult['totalPoints'] = $result->getTotalPoints();
-    $compatibilityResult['status'] = $result->getStatus();
-    $compatibilityResult['description'] = $result->getDescription();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
 
     $match_result = $result->getMatches();
     $matches = [];
@@ -211,6 +128,92 @@ try {
 } catch (RateLimitExceededException $e) {
 }
 
+try {
+    $result =$porutham->process($girl_profile, $boy_profile, 'kerala', true);
+    $compatibilityResult = [];
+    $girl_info = $result->getGirlInfo();
+    $girl_nakshatra = $girl_info->getNakshatra();
+    $girl_rasi = $girl_info->getRasi();
+
+    $boy_info = $result->getBoyInfo();
+    $boy_nakshatra = $boy_info->getNakshatra();
+    $boy_rasi = $boy_info->getRasi();
+
+    $girl_nakshatra_lord = $girl_nakshatra->getLord();
+    $boy_nakshatra_lord = $boy_nakshatra->getLord();
+
+    $girl_rasi_lord = $girl_rasi->getLord();
+    $boy_rasi_lord = $boy_rasi->getLord();
+
+    $compatibilityResult['girlInfo'] = [
+        'nakshatra' => [
+            'id' => $girl_nakshatra->getId(),
+            'name' => $girl_nakshatra->getName(),
+            'pada' => $girl_nakshatra->getPada(),
+            'lord' => [
+                'id' => $girl_nakshatra_lord->getId(),
+                'name' => $girl_nakshatra_lord->getName(),
+                'vedicName' => $girl_nakshatra_lord->getVedicName()
+            ],
+        ],
+        'rasi' => [
+            'id' => $girl_rasi->getId(),
+            'name' => $girl_rasi->getName(),
+            'lord' => [
+                'id' => $girl_rasi_lord->getId(),
+                'name' => $girl_rasi_lord->getName(),
+                'vedicName' => $girl_rasi_lord->getVedicName()
+            ],
+        ],
+    ];
+
+    $compatibilityResult['boyInfo'] = [
+        'nakshatra' => [
+            'id' => $boy_nakshatra->getId(),
+            'name' => $boy_nakshatra->getName(),
+            'pada' => $boy_nakshatra->getPada(),
+            'lord' => [
+                'id' => $boy_nakshatra_lord->getId(),
+                'name' => $boy_nakshatra_lord->getName(),
+                'vedicName' => $boy_nakshatra_lord->getVedicName()
+            ],
+        ],
+        'rasi' => [
+            'id' => $boy_rasi->getId(),
+            'name' => $boy_rasi->getName(),
+            'lord' => [
+                'id' => $boy_rasi_lord->getId(),
+                'name' => $boy_rasi_lord->getName(),
+                'vedicName' => $boy_rasi_lord->getVedicName()
+            ],
+        ],
+    ];
+    $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
+    $compatibilityResult['totalPoints'] = $result->getTotalPoints();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
+
+    $match_result = $result->getMatches();
+    $matches = [];
+    foreach ($match_result as $match) {
+        $matches[] = [
+            'id' => $match->getId(),
+            'name' => $match->getName(),
+            'hasPorutham' => $match->hasPorutham(),
+            'poruthamStatus' => $match->getPoruthamStatus(),
+            'points' => $match->getPoints(),
+            'description' => $match->getDescription(),
+        ];
+    }
+
+    $compatibilityResult['matches'] = $matches;
+    print_r($compatibilityResult);
+} catch (QuotaExceededException $e) {
+} catch (RateLimitExceededException $e) {
+}
 
 try {
     $result = $porutham->process($girl_profile, $boy_profile, 'kerala');
@@ -275,8 +278,11 @@ try {
 
     $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
     $compatibilityResult['totalPoints'] = $result->getTotalPoints();
-    $compatibilityResult['status'] = $result->getStatus();
-    $compatibilityResult['description'] = $result->getDescription();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
 
     $match_result = $result->getMatches();
     $matches = [];
@@ -358,8 +364,11 @@ try {
 
     $compatibilityResult['maximumPoints'] = $result->getMaximumPoints();
     $compatibilityResult['totalPoints'] = $result->getTotalPoints();
-    $compatibilityResult['status'] = $result->getStatus();
-    $compatibilityResult['description'] = $result->getDescription();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
 
     $match_result = $result->getMatches();
     $matches = [];

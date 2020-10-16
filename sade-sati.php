@@ -31,18 +31,6 @@ $location = new Location($latitude, $longitude, 0, new DateTimeZone('Asia/Kolkat
 $sade_sati = new SadeSati($client);
 
 try {
-    $result = $sade_sati->process($location, $datetime);
-    $sadeSatiResult = [
-        'isInSadeSati' => $result->isInSadeSati(),
-        'transitPhase' => $result->getTransitPhase(),
-        'description' => $result->getDescription(),
-    ];
-    print_r($sadeSatiResult);
-} catch (QuotaExceededException $e) {
-} catch (RateLimitExceededException $e) {
-}
-
-try {
     $result = $sade_sati->process($location, $datetime, true);
     $sadeSatiResult = [
         'isInSadeSati' => $result->isInSadeSati(),
@@ -52,11 +40,26 @@ try {
     $arTransit = $result->getTransits();
     foreach ($arTransit as $transit) {
         $sadeSatiResult['transits'][] = [
+            'saturnSign' => $transit->getSaturnSign(),
             'phase' => $transit->getPhase(),
             'start' => $transit->getStart(),
             'end' => $transit->getEnd(),
+            'isRetrograde' => $transit->isRetrograde(),
+            'description' => $transit->getDescription(),
         ];
     }
+    print_r($sadeSatiResult);
+} catch (QuotaExceededException $e) {
+} catch (RateLimitExceededException $e) {
+}
+
+try {
+    $result = $sade_sati->process($location, $datetime);
+    $sadeSatiResult = [
+        'isInSadeSati' => $result->isInSadeSati(),
+        'transitPhase' => $result->getTransitPhase(),
+        'description' => $result->getDescription(),
+    ];
     print_r($sadeSatiResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {

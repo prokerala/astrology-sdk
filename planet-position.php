@@ -42,7 +42,7 @@ try {
             'id' => $position->getId(),
             'name' => $position->getName(),
             'longitude' => $position->getLongitude(),
-            'isReverse' => $position->isreverse(),
+            'isRetrograde' => $position->isRetrograde(),
             'position' => $position->getPosition(),
             'degree' => $position->getDegree(),
             'rasi' => [

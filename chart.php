@@ -33,7 +33,7 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\Chart($client);
-    $result = $method->process($location, $datetime, 'rasi', 'south_indian');
+    $result = $method->process($location, $datetime, 'rasi', 'south-indian');
     echo $result;
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {

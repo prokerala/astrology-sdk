@@ -36,7 +36,7 @@ try {
 
     $mangalDoshaResult = [];
 
-    $mangalDoshaResult['has_mangal_dosha'] = $result->hasMangalDosha();
+    $mangalDoshaResult['has_mangal_dosha'] = $result->hasDosha();
     $mangalDoshaResult['description'] = $result->getDescription();
 
     print_r($mangalDoshaResult);
@@ -50,9 +50,9 @@ try {
 
     $mangalDoshaResult = [];
 
-    $mangalDoshaResult['has_mangal_dosha'] = $result->hasMangalDosha();
+    $mangalDoshaResult['has_mangal_dosha'] = $result->hasDosha();
     $mangalDoshaResult['has_exception'] = $result->hasException();
-    $mangalDoshaResult['mangal_dosha_type'] = $result->getMangalDoshaType();
+    $mangalDoshaResult['mangal_dosha_type'] = $result->getType();
     $mangalDoshaResult['description'] = $result->getDescription();
     $mangalDoshaResult['exceptions'] = $result->getexceptions();
     $mangalDoshaResult['remedies'] = $result->getRemedies();

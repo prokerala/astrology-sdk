@@ -49,8 +49,8 @@ try {
     $result = $kundli_matching->process($girl_profile, $boy_profile, true);
     $girl_info = $result->getGirlInfo();
     $boy_info = $result->getBoyInfo();
-    $boy_guna = $boy_info->getGuna();
-    $girl_guna = $girl_info->getGuna();
+    $boy_koot = $boy_info->getKoot();
+    $girl_koot = $girl_info->getKoot();
 
     $girl_nakshatra = $girl_info->getNakshatra();
     $boy_nakshatra = $girl_info->getNakshatra();
@@ -62,8 +62,8 @@ try {
     $girl_rasi_lord = $girl_rasi->getLord();
     $boy_rasi_lord = $boy_rasi->getLord();
 
-    $matchResult['boy_info']['guna'] = $boy_guna->getGuna();
-    $matchResult['girl_info']['guna'] = $girl_guna->getGuna();
+    $matchResult['boy_info']['koot'] = $boy_koot->getKoot();
+    $matchResult['girl_info']['koot'] = $girl_koot->getKoot();
 
 
     $matchResult['girl_info']['nakshatra'] = [
@@ -120,15 +120,15 @@ try {
         'maximumPoints' => $gunaMilan->getMaximumPoints(),
     ];
 
-    $arKoot = $gunaMilan->getKoot();
+    $arGuna = $gunaMilan->getGuna();
 
-    foreach ($arKoot as $koot) {
+    foreach ($arGuna as $guna) {
         $matchResult[] = [
-            'id' => $koot->getId(),
-            'name' => $koot->getName(),
-            'maximumPoints' => $koot->getMaximumPoints(),
-            'obtainedPoints' => $koot->getObtainedPoints(),
-            'description' => $koot->getDescription(),
+            'id' => $guna->getId(),
+            'name' => $guna->getName(),
+            'maximumPoints' => $guna->getMaximumPoints(),
+            'obtainedPoints' => $guna->getObtainedPoints(),
+            'description' => $guna->getDescription(),
         ];
     }
     $matchResult['exceptions'] = $result->getExceptions();
@@ -137,19 +137,19 @@ try {
     $boy_mangal_dosha_details = $result->getBoyMangalDoshaDetails();
 
     $matchResult['girlMangalDoshaDetails'] = [
-        'hasMangalDosha' => $girl_mangal_dosha_details->hasMangalDosha(),
+        'hasMangalDosha' => $girl_mangal_dosha_details->hasDosha(),
         'hasException' => $girl_mangal_dosha_details->hasException(),
-        'mangalDoshaType' => $girl_mangal_dosha_details->getMangalDoshaType(),
+        'mangalDoshaType' => $girl_mangal_dosha_details->getDoshaType(),
         'description' => $girl_mangal_dosha_details->getDescription(),
     ];
 
     $matchResult['boyMangalDoshaDetails'] = [
-        'hasMangalDosha' => $boy_mangal_dosha_details->hasMangalDosha(),
+        'hasMangalDosha' => $boy_mangal_dosha_details->hasDosha(),
         'hasException' => $boy_mangal_dosha_details->hasException(),
-        'mangalDoshaType' => $boy_mangal_dosha_details->getMangalDoshaType(),
+        'mangalDoshaType' => $boy_mangal_dosha_details->getDoshaType(),
         'description' => $boy_mangal_dosha_details->getDescription(),
     ];
-    //print_r($matchResult);
+    print_r($matchResult);
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
@@ -159,8 +159,8 @@ try {
     $result = $kundli_matching->process($girl_profile, $boy_profile);
     $girl_info = $result->getGirlInfo();
     $boy_info = $result->getBoyInfo();
-    $boy_guna = $boy_info->getGuna();
-    $girl_guna = $girl_info->getGuna();
+    $boy_koot = $boy_info->getKoot();
+    $girl_koot = $girl_info->getKoot();
 
     $girl_nakshatra = $girl_info->getNakshatra();
     $boy_nakshatra = $girl_info->getNakshatra();
@@ -172,8 +172,8 @@ try {
     $girl_rasi_lord = $girl_rasi->getLord();
     $boy_rasi_lord = $boy_rasi->getLord();
 
-    $matchResult['boy_info']['guna'] = $boy_guna->getGuna();
-    $matchResult['girl_info']['guna'] = $girl_guna->getGuna();
+    $matchResult['boy_info']['koot'] = $boy_koot->getKoot();
+    $matchResult['girl_info']['koot'] = $girl_koot->getKoot();
 
 
     $matchResult['girl_info']['nakshatra'] = [

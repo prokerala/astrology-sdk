@@ -45,6 +45,11 @@ try {
     $compatibilityResult = [];
     $compatibilityResult['maximumPoint'] = $result->getMaximumPoints();
     $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoints();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
 
     $matches = $result->getMatches();
 
@@ -68,6 +73,11 @@ try {
     $compatibilityResult = [];
     $compatibilityResult['maximumPoint'] = $result->getMaximumPoints();
     $compatibilityResult['ObtainedPoint'] = $result->getObtainedPoints();
+    $message = $result->getMessage();
+    $compatibilityResult['message'] = [
+        'type' => $message->getType(),
+        'description' => $message->getDescription(),
+    ];
 
     $matches = $result->getMatches();
     foreach ($matches as $match) {
