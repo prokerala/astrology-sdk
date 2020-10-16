@@ -11,33 +11,62 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\SadeSati;
 
+use DateTimeInterface;
+
 class SaturnTransit
 {
+
+    /**
+     * @var string
+     */
+    private $saturnSign;
     /**
      * @var string
      */
     private $phase;
     /**
-     * @var string
+     * @var DateTimeInterface
      */
     private $start;
     /**
-     * @var string
+     * @var DateTimeInterface
      */
     private $end;
+    /**
+     * @var string
+     */
+    private $description;
+    /**
+     * @var null
+     */
+    private $isRetrograde;
 
     /**
      * SaturnTransit constructor.
-     *
+     * @param string $saturnSign
      * @param string $phase
-     * @param string $start
-     * @param string $end
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
+     * @param string $description
+     * @param null $isRetrograde
      */
-    public function __construct($phase, $start, $end)
+    public function __construct($saturnSign, $phase, DateTimeInterface $start, DateTimeInterface $end, $description, $isRetrograde = null)
     {
+
+        $this->saturnSign = $saturnSign;
         $this->phase = $phase;
         $this->start = $start;
         $this->end = $end;
+        $this->description = $description;
+        $this->isRetrograde = $isRetrograde;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSaturnSign()
+    {
+        return $this->saturnSign;
     }
 
     /**
@@ -49,7 +78,7 @@ class SaturnTransit
     }
 
     /**
-     * @return string
+     * @return DateTimeInterface
      */
     public function getStart()
     {
@@ -57,10 +86,28 @@ class SaturnTransit
     }
 
     /**
-     * @return string
+     * @return DateTimeInterface
      */
     public function getEnd()
     {
         return $this->end;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return null
+     */
+    public function isRetrograde()
+    {
+        return $this->isRetrograde;
+    }
+
+
 }

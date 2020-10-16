@@ -16,6 +16,7 @@ use Prokerala\Api\Astrology\Result\Element\Rasi;
 class Planet
 {
 
+
     /**
      * @var int
      */
@@ -31,7 +32,7 @@ class Planet
     /**
      * @var bool
      */
-    private $isReverse;
+    private $isRetrograde;
     /**
      * @var int
      */
@@ -50,7 +51,7 @@ class Planet
      * @param int $id
      * @param string $name
      * @param float $longitude
-     * @param bool $isReverse
+     * @param bool $isRetrograde
      * @param int $position
      * @param float $degree
      * @param Rasi $rasi
@@ -59,16 +60,17 @@ class Planet
         $id,
         $name,
         $longitude,
-        $isReverse,
+        $isRetrograde,
         $position,
         $degree,
         Rasi $rasi
     ) {
 
+
         $this->id = $id;
         $this->name = $name;
         $this->longitude = $longitude;
-        $this->isReverse = $isReverse;
+        $this->isRetrograde = $isRetrograde;
         $this->position = $position;
         $this->degree = $degree;
         $this->rasi = $rasi;
@@ -101,9 +103,9 @@ class Planet
     /**
      * @return bool
      */
-    public function isReverse()
+    public function isRetrograde()
     {
-        return $this->isReverse;
+        return $this->isRetrograde;
     }
 
     /**
@@ -129,6 +131,7 @@ class Planet
     {
         return $this->rasi;
     }
+
 
 
 }

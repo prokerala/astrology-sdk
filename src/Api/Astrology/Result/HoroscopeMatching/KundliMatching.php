@@ -12,7 +12,6 @@
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 

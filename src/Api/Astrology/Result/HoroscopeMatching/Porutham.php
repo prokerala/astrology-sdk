@@ -18,6 +18,7 @@ use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 class Porutham implements ResultInterface
 {
     use RawResponseTrait;
+
     /**
      * @var Profile
      */
@@ -35,13 +36,9 @@ class Porutham implements ResultInterface
      */
     private $totalPoints;
     /**
-     * @var string
+     * @var Message
      */
-    private $status;
-    /**
-     * @var string
-     */
-    private $description;
+    private $message;
     /**
      * @var Porutham\Match[]
      */
@@ -53,8 +50,7 @@ class Porutham implements ResultInterface
      * @param Profile $boyInfo
      * @param float $maximumPoints
      * @param float $totalPoints
-     * @param string $status
-     * @param string $description
+     * @param Message $message
      * @param Porutham\Match[] $matches
      */
     public function __construct(
@@ -62,17 +58,16 @@ class Porutham implements ResultInterface
         Profile $boyInfo,
         $maximumPoints,
         $totalPoints,
-        $status,
-        $description,
+        Message $message,
         array $matches
     ) {
+
 
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->maximumPoints = $maximumPoints;
         $this->totalPoints = $totalPoints;
-        $this->status = $status;
-        $this->description = $description;
+        $this->message = $message;
         $this->matches = $matches;
     }
 
@@ -109,19 +104,11 @@ class Porutham implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return Message
      */
-    public function getStatus()
+    public function getMessage()
     {
-        return $this->status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
+        return $this->message;
     }
 
     /**

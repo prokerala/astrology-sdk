@@ -13,14 +13,16 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
-use Prokerala\Api\Astrology\Result\Horoscope\Guna;
+use Prokerala\Api\Astrology\Result\Horoscope\Koot;
 
 class ProfileInfo
 {
+
+
     /**
-     * @var Guna
+     * @var Koot
      */
-    private $guna;
+    private $koot;
     /**
      * @var Nakshatra
      */
@@ -30,19 +32,26 @@ class ProfileInfo
      */
     private $rasi;
 
-    public function __construct(Guna $guna, Nakshatra $nakshatra, Rasi $rasi)
+    /**
+     * ProfileInfo constructor.
+     * @param Koot $koot
+     * @param Nakshatra $nakshatra
+     * @param Rasi $rasi
+     */
+    public function __construct(Koot $koot, Nakshatra $nakshatra, Rasi $rasi)
     {
-        $this->guna = $guna;
+
+        $this->koot = $koot;
         $this->nakshatra = $nakshatra;
         $this->rasi = $rasi;
     }
 
     /**
-     * @return Guna
+     * @return Koot
      */
-    public function getGuna()
+    public function getKoot()
     {
-        return $this->guna;
+        return $this->koot;
     }
 
     /**
@@ -60,4 +69,6 @@ class ProfileInfo
     {
         return $this->rasi;
     }
+
+
 }

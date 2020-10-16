@@ -15,28 +15,62 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaKoot
 {
-    /** @var int */
+
+
+    /**
+     * @var int
+     */
     private $id;
-    /** @var string */
+    /**
+     * @var string
+     */
     private $name;
-    /** @var float */
+    /**
+     * @var string
+     */
+    private $girlKoot;
+    /**
+     * @var string
+     */
+    private $boyKoot;
+    /**
+     * @var float
+     */
     private $maximumPoints;
-    /** @var float */
+    /**
+     * @var float
+     */
     private $obtainedPoints;
-    /** @var string */
+    /**
+     * @var string
+     */
     private $description;
 
     /**
-     * @param int    $id
+     * GunaKoot constructor.
+     * @param int $id
      * @param string $name
-     * @param float  $maximumPoints
-     * @param float  $obtainedPoints
+     * @param string $girlKoot
+     * @param string $boyKoot
+     * @param float $maximumPoints
+     * @param float $obtainedPoints
      * @param string $description
      */
-    public function __construct($id, $name, $maximumPoints, $obtainedPoints, $description)
+    public function __construct(
+        $id,
+        $name,
+        $girlKoot,
+        $boyKoot,
+        $maximumPoints,
+        $obtainedPoints,
+        $description
+    )
     {
+
         $this->id = $id;
         $this->name = $name;
+        $this->girlKoot = $girlKoot;
+        $this->boyKoot = $boyKoot;
         $this->maximumPoints = $maximumPoints;
         $this->obtainedPoints = $obtainedPoints;
         $this->description = $description;
@@ -56,6 +90,22 @@ class GunaKoot
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGirlKoot()
+    {
+        return $this->girlKoot;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoyKoot()
+    {
+        return $this->boyKoot;
     }
 
     /**
@@ -81,4 +131,5 @@ class GunaKoot
     {
         return $this->description;
     }
+
 }

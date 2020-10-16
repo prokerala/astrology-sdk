@@ -17,6 +17,7 @@ use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 class ThirumanaPorutham implements ResultInterface
 {
     use RawResponseTrait;
+
     /**
      * @var float
      */
@@ -29,22 +30,37 @@ class ThirumanaPorutham implements ResultInterface
      * @var Porutham\Match[]
      */
     private $matches;
+    /**
+     * @var Message
+     */
+    private $message;
 
     /**
-     * NakshatraPorutham constructor.
+     * ThirumanaPorutham constructor.
      * @param float $maximumPoints
      * @param float $obtainedPoints
+     * @param Message $message
      * @param Porutham\Match[] $matches
      */
     public function __construct(
         $maximumPoints,
         $obtainedPoints,
-        $matches
+        Message $message,
+        array $matches
     ) {
 
         $this->maximumPoints = $maximumPoints;
         $this->obtainedPoints = $obtainedPoints;
         $this->matches = $matches;
+        $this->message = $message;
+    }
+
+    /**
+     * @return Message
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
     /**
@@ -70,5 +86,7 @@ class ThirumanaPorutham implements ResultInterface
     {
         return $this->matches;
     }
+
+
 
 }

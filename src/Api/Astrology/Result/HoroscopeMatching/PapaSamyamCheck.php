@@ -19,28 +19,34 @@ class PapaSamyamCheck implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var Papasamyam */
+
+    /**
+     * @var Papasamyam
+     */
     private $girlPapasamyam;
-    /** @var Papasamyam */
+    /**
+     * @var Papasamyam
+     */
     private $boyPapasamyam;
-    /** @var string */
-    private $status;
-    /** @var string */
+    /**
+     * @var Message
+     */
     private $message;
 
     /**
-     * @param string $status
-     * @param string $message
+     * PapaSamyamCheck constructor.
+     * @param Papasamyam $girlPapasamyam
+     * @param Papasamyam $boyPapasamyam
+     * @param Message $message
      */
     public function __construct(
         Papasamyam $girlPapasamyam,
         Papasamyam $boyPapasamyam,
-        $status,
-        $message
+        Message $message
     ) {
+
         $this->girlPapasamyam = $girlPapasamyam;
         $this->boyPapasamyam = $boyPapasamyam;
-        $this->status = $status;
         $this->message = $message;
     }
 
@@ -61,15 +67,7 @@ class PapaSamyamCheck implements ResultInterface
     }
 
     /**
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @return string
+     * @return Message
      */
     public function getMessage()
     {

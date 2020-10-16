@@ -18,27 +18,34 @@ class MangalDosha implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var bool */
-    private $hasMangalDosha;
-    /** @var string */
+
+    /**
+     * @var bool
+     */
+    private $hasDosha;
+    /**
+     * @var string
+     */
     private $description;
 
     /**
-     * @param bool   $hasMangalDosha
+     * MangalDosha constructor.
+     * @param bool $hasDosha
      * @param string $description
      */
-    public function __construct($hasMangalDosha, $description)
+    public function __construct($hasDosha, $description)
     {
-        $this->hasMangalDosha = $hasMangalDosha;
+
+        $this->hasDosha = $hasDosha;
         $this->description = $description;
     }
 
     /**
      * @return bool
      */
-    public function hasMangalDosha()
+    public function hasDosha()
     {
-        return $this->hasMangalDosha;
+        return $this->hasDosha;
     }
 
     /**
@@ -48,4 +55,14 @@ class MangalDosha implements ResultInterface
     {
         return $this->description;
     }
+
+    /**
+     * @return \stdClass|null
+     */
+    public function getApiResponse()
+    {
+        return $this->apiResponse;
+    }
+
+
 }

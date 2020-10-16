@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class Guna
+class Koot
 {
     /** @var string */
     private $varna;
@@ -121,7 +121,7 @@ class Guna
     /**
      * @return array
      */
-    public function getGuna()
+    public function getKoot()
     {
         return [
             'varna' => $this->varna,

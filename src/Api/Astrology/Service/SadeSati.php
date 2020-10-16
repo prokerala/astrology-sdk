@@ -10,29 +10,30 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use DateTimeInterface;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedSadeSati as AdvancedSadeSatiResult;
 use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as SadeSatiResult;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
-
 
 class SadeSati
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
+    /** @var string */
     protected $slug = 'sade-sati';
-
-    /** @var Transformer<SadeSatiResult> */
-    private $basicResponseTransformer;
 
     /** @var Transformer<AdvancedSadeSatiResult> */
     private $advancedResponseTransformer;
+
+    /** @var Transformer<SadeSatiResult> */
+    private $basicResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -42,18 +43,19 @@ class SadeSati
         $this->apiClient = $client;
         $this->basicResponseTransformer = new Transformer(SadeSatiResult::class);
         $this->advancedResponseTransformer = new Transformer(AdvancedSadeSatiResult::class);
+        $this->addDateTimeTransformer($this->advancedResponseTransformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param Location $location
-     * @param DateTimeInterface $datetime
-     * @param bool $detailed_report
+     * @param Location $location Location details
+     * @param \DateTimeInterface $datetime Date and time
      *
+     * @param bool $detailed_report
      * @return ResultInterface
      */
-    public function process(Location $location, DateTimeInterface $datetime, $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {

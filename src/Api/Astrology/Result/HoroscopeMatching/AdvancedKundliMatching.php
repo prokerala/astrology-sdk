@@ -12,7 +12,6 @@
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\AdvancedGunaMilan;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\Message;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
@@ -38,6 +37,12 @@ class AdvancedKundliMatching implements ResultInterface
     /**
      * AdvancedKundliMatching constructor.
      *
+     * @param ProfileInfo $girlInfo
+     * @param ProfileInfo $boyInfo
+     * @param Message $message
+     * @param AdvancedGunaMilan $gunaMilan
+     * @param MangalDosha $girlMangalDoshaDetails
+     * @param MangalDosha $boyMangalDoshaDetails
      * @param string[] $exceptions
      */
     public function __construct(

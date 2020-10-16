@@ -18,6 +18,7 @@ use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 class AdvancedPorutham implements ResultInterface
 {
     use RawResponseTrait;
+
     /**
      * @var Porutham\Profile
      */
@@ -35,13 +36,9 @@ class AdvancedPorutham implements ResultInterface
      */
     private $totalPoints;
     /**
-     * @var string
+     * @var Message
      */
-    private $status;
-    /**
-     * @var string
-     */
-    private $description;
+    private $message;
     /**
      * @var Porutham\AdvancedMatch[]
      */
@@ -53,8 +50,7 @@ class AdvancedPorutham implements ResultInterface
      * @param Porutham\Profile $boyInfo
      * @param float $maximumPoints
      * @param float $totalPoints
-     * @param string $status
-     * @param string $description
+     * @param Message $message
      * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
@@ -62,22 +58,21 @@ class AdvancedPorutham implements ResultInterface
         Profile $boyInfo,
         $maximumPoints,
         $totalPoints,
-        $status,
-        $description,
+        Message $message,
         array $matches
     ) {
+
 
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->maximumPoints = $maximumPoints;
         $this->totalPoints = $totalPoints;
-        $this->status = $status;
-        $this->description = $description;
+        $this->message = $message;
         $this->matches = $matches;
     }
 
     /**
-     * @return Porutham\Profile
+     * @return Profile
      */
     public function getGirlInfo()
     {
@@ -85,7 +80,7 @@ class AdvancedPorutham implements ResultInterface
     }
 
     /**
-     * @return Porutham\Profile
+     * @return Profile
      */
     public function getBoyInfo()
     {
@@ -109,28 +104,18 @@ class AdvancedPorutham implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return Message
      */
-    public function getStatus()
+    public function getMessage()
     {
-        return $this->status;
+        return $this->message;
     }
 
     /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @return Porutham\AdvancedMatch
+     * @return Porutham\AdvancedMatch[]
      */
     public function getMatches()
     {
         return $this->matches;
     }
-
-
 }

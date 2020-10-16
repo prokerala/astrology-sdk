@@ -19,14 +19,14 @@ class PlanetPosition implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
+     * @var PlanetPosition\Planet[]
      */
     private $planetPosition;
 
     /**
      * PlanetPosition constructor.
      *
-     * @param \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[] $planetPosition
+     * @param PlanetPosition\Planet[] $planetPosition
      */
     public function __construct(array $planetPosition)
     {
@@ -34,7 +34,7 @@ class PlanetPosition implements ResultInterface
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
+     * @return PlanetPosition\Planet[]
      */
     public function getPlanetPosition()
     {

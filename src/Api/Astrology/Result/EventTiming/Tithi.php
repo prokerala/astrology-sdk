@@ -11,29 +11,58 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
+use DateTimeInterface;
+
 class Tithi
 {
-    /** @var int */
+
+    /**
+     * @var int
+     */
     private $index;
-    /** @var int */
+    /**
+     * @var int
+     */
     private $id;
-    /** @var string */
+    /**
+     * @var string
+     */
     private $name;
-    /** @var \DateTimeInterface */
+    /**
+     * @var string
+     */
+    private $paksha;
+    /**
+     * @var DateTimeInterface
+     */
     private $start;
-    /** @var \DateTimeInterface */
+    /**
+     * @var DateTimeInterface
+     */
     private $end;
 
     /**
-     * @param int    $index
-     * @param int    $id
+     * Tithi constructor.
+     * @param int $index
+     * @param int $id
      * @param string $name
+     * @param string $paksha
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
      */
-    public function __construct($index, $id, $name, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(
+        $index,
+        $id,
+        $name,
+        $paksha,
+        DateTimeInterface $start,
+        DateTimeInterface $end
+    )
     {
         $this->index = $index;
         $this->id = $id;
         $this->name = $name;
+        $this->paksha = $paksha;
         $this->start = $start;
         $this->end = $end;
     }
@@ -63,7 +92,15 @@ class Tithi
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return string
+     */
+    public function getPaksha()
+    {
+        return $this->paksha;
+    }
+
+    /**
+     * @return DateTimeInterface
      */
     public function getStart()
     {
@@ -71,10 +108,12 @@ class Tithi
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEnd()
     {
         return $this->end;
     }
+
+
 }

@@ -10,6 +10,8 @@
  */
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
+use DateTimeInterface;
+use \Prokerala\Api\Astrology\Result\Element\Planet;
 
 class Nakshatra
 {
@@ -23,15 +25,15 @@ class Nakshatra
      */
     private $name;
     /**
-     * @var string
+     * @var Planet
      */
     private $lord;
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $start;
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $end;
 
@@ -39,13 +41,12 @@ class Nakshatra
      * Nakshatra constructor.
      * @param int $id
      * @param string $name
-     * @param string $lord
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
+     * @param Planet $lord
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
      */
-    public function __construct($id, $name, $lord, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct($id, $name, Planet $lord, DateTimeInterface $start, DateTimeInterface $end)
     {
-
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
@@ -70,7 +71,7 @@ class Nakshatra
     }
 
     /**
-     * @return string
+     * @return Planet
      */
     public function getLord()
     {
@@ -78,7 +79,7 @@ class Nakshatra
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStart()
     {
@@ -86,12 +87,11 @@ class Nakshatra
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEnd()
     {
         return $this->end;
     }
-
 
 }
