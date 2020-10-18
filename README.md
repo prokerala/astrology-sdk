@@ -36,14 +36,14 @@ The current version of the SDK no longer ships with an HTTP client, instead depe
 composer require nyholm/psr7 guzzlehttp/guzzle
 ```
 
-You also need an implementation of `PSR-16` Simple Cache interface for caching the access token and responses. As before, you can choose any implementation of [PSR-16](https://packagist.org/providers/psr/simple-cache-implementation). The following command will install `symfony/cache`.
+Optionally, you can pass an implementation of `PSR-16` Simple Cache interface for caching the access token and responses. As before, you can choose any implementation of [PSR-16](https://packagist.org/providers/psr/simple-cache-implementation). The following command will install `symfony/cache`.
 
 ```
 composer require symfony/cache
 ```
 
 
-Now that you have all the dependencies installed, you can install the SDK by running the following command.
+Now that you have all the dependencies installed, install the SDK by running the following command.
 
 ```
 composer require prokerala/astrology-sdk:^0.4
@@ -56,6 +56,62 @@ If you are not using composer, download the latest release from the releases sec
 For further help, Please visit our [documentation](https://api.prokerala.com/docs)
 
 ## Usage
+
+```
+<?php
+
+use Prokerala\Api\Astrology\Location;
+use Prokerala\Api\Astrology\Service\MangalDosha;
+use Prokerala\Common\Api\Authentication\Oauth2;
+use Prokerala\Common\Api\Client;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
+use Prokerala\Common\Api\Exception\RateLimitExceededException;
+
+# Include composer autoloader	
+include __DIR__.'/vendor/autoload.php';
+
+# Create the PSR-17 Factory. The following line creates a PSR-17 factory using
+# nyholm/psr7. If you are using a different implementation, update accordingly.
+$psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+
+# Create the PSR-18 HTTP Client
+$httpClient = new \GuzzleHttp\Client();
+
+# Create the PSR-16 Cache. Even though the cache parameter is optional, it is
+# highly recommended to pass a cache to Oauth2, to improve performance.
+$cache = new \Symfony\Component\Cache\Psr16Cache(
+    new \Symfony\Component\Cache\Adapter\FilesystemAdapter()
+);
+
+$authClient = new Oauth2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET', $httpClient, $psr17Factory, $psr17Factory, $cache);
+
+$client = new Client($authClient, $httpClient, $psr17Factory);
+$input = [
+    'datetime' => '1967-08-29T09:00:00+05:30',
+    'latitude' => '19.0821978',
+    'longitude' => '72.7411014', // Mumbai
+];
+
+$datetime = new DateTime($input['datetime']);
+$tz = $datetime->getTimezone();
+
+$location = new Location($input['latitude'], $input['longitude'], 0, $tz);
+
+try {
+    $method = new MangalDosha($client);
+    $result = $method->process($location, $datetime);
+
+    $mangalDoshaResult = [
+    	'has_mangal_dosha' => $result->hasDosha(),
+    	'description' => $result->getDescription(),
+    ];
+
+    print_r($mangalDoshaResult);
+} catch (QuotaExceededException $e) {
+} catch (RateLimitExceededException $e) {
+}
+
+```
 
 Please check out our [API Demo](https://api.prokerala.com/demo) for a sample implementation using the SDK. The source code for the demo is available under the GitHub repository [prokerala/astrology-api-demo](https://github.com/prokerala/astrology-api-demo).
 
