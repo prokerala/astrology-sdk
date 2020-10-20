@@ -18,7 +18,7 @@ This is the recommended method for installation of the SDK.
 
 If you have `composer` already installed, and just want to get started quickly, the following command will install the SDK and its dependencies:
 
-```
+```sh
 composer require prokerala/astrology-sdk:^0.4 nyholm/psr7 guzzlehttp/guzzle symfony/cache
 ```
 
@@ -28,26 +28,26 @@ That's it. The SDK is now ready to use. You can skip to the **Usage** section be
 
 If you do not have `composer` already installed, you can install it with the following command.
 
-```
+```sh
 curl -sS https://getcomposer.org/installer | php
 ```
 
 The current version of the SDK no longer ships with an HTTP client, instead depends on external implementations of `PSR-17` ([HTTP Message factory](https://www.php-fig.org/psr/psr-17/)) and `PSR-18` ([HTTP client](https://www.php-fig.org/psr/psr-18/)). You may choose any implementation of [PSR-17](https://packagist.org/providers/psr/http-factory-implementation) and [PSR-18](https://packagist.org/providers/php-http/client-implementation), for example, the following command installs `nyholm/psr7` for `PSR-17` and Guzzle HTTP client for `PSR-18`.
 
-```
+```sh
 composer require nyholm/psr7 guzzlehttp/guzzle
 ```
 
 Optionally, you can pass an implementation of `PSR-16` Simple Cache interface for caching the access token and responses. As before, you can choose any implementation of [PSR-16](https://packagist.org/providers/psr/simple-cache-implementation). The following command will install `symfony/cache`.
 
-```
+```sh
 composer require symfony/cache
 ```
 
 
 Now that you have all the dependencies installed, install the SDK by running the following command.
 
-```
+```sh
 composer require prokerala/astrology-sdk:^0.4
 ```
 
@@ -61,7 +61,7 @@ For further help, Please visit our [documentation](https://api.prokerala.com/doc
 
 This SDK is powering our API demo page. The source code of the demos are open source and available on a separate [GitHub repostiory](https://github.com/prokerala/astrology-api-demo).
 
-```
+```php
 <?php
 
 use Prokerala\Api\Astrology\Location;
