@@ -2,6 +2,8 @@
 
 Prokerala Astrology SDK provides convenient access to Prokerala Astrology API for applications developed in PHP. [Prokerala API](https://api.prokerala.com) integration helps you generate custom [horoscope](https://api.prokerala.com/demo/kundli.php), perform [horoscope matching](https://api.prokerala.com/demo/kundli-matching.php), check [mangal dosha](https://api.prokerala.com/demo/mangal-dosha.php), [panchang](https://api.prokerala.com/demo/panchang.php) and [much more](https://api.prokerala.com/demo).
 
+> We have open sourced the code for our [API demo](https://api.prokerala.com/demo/) at [prokerala/astrology-api-demo](https://github.com/prokerala/astrology-api-demo). 
+
 ## Requirements
 
 PHP needs to be a minimum version of PHP 5.6.0.
@@ -56,6 +58,8 @@ If you are not using composer, download the latest release from the releases sec
 For further help, Please visit our [documentation](https://api.prokerala.com/docs)
 
 ## Usage
+
+This SDK is powering our API demo page. The source code of the demos are open source and available on a separate [GitHub repostiory](https://github.com/prokerala/astrology-api-demo).
 
 ```
 <?php
