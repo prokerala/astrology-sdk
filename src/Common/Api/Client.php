@@ -67,10 +67,11 @@ class Client
 
         $responseType = $response->getHeader('content-type');
         $responseBody = (string) $response->getBody();
-        $responseData = json_decode($responseBody);
 
         if (isset($responseType[0]) && $responseType[0] == 'image/svg+xml') {
             $responseData = $responseBody;
+        } else {
+            $responseData = json_decode($responseBody);
         }
 
         switch ($response->getStatusCode()) {
