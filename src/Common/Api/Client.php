@@ -26,7 +26,7 @@ class Client
     private $authClient;
     private $httpClient;
     private $httpRequestFactory;
-    private $apiCreditUsed;
+    private $apiCreditUsed = 0;
 
     /**
      * @param $authClient
