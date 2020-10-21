@@ -26,6 +26,7 @@ class Client
     private $authClient;
     private $httpClient;
     private $httpRequestFactory;
+    private $apiCreditUsed;
 
     /**
      * @param $authClient
@@ -68,6 +69,9 @@ class Client
         $responseType = $response->getHeader('content-type');
         $responseBody = (string) $response->getBody();
 
+        $apiCredits = $response->getHeader('X-Api-Credits');
+        $this->apiCreditUsed = isset($apiCredits) ? $apiCredits[0] : 0;
+
         if (isset($responseType[0]) && $responseType[0] == 'image/svg+xml') {
             $responseData = $responseBody;
         } else {
@@ -94,5 +98,9 @@ class Client
     private function request(RequestInterface $request)
     {
         return $this->httpClient->sendRequest($request);
+    }
+
+    public function getCreditUsed() {
+        return $this->apiCreditUsed;
     }
 }
