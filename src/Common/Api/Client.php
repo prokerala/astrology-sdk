@@ -70,7 +70,7 @@ class Client
         $responseBody = (string) $response->getBody();
 
         $apiCredits = $response->getHeader('X-Api-Credits');
-        $this->apiCreditUsed = isset($apiCredits) ? $apiCredits[0] : 0;
+        $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits[0] : 0;
 
         if (isset($responseType[0]) && $responseType[0] == 'image/svg+xml') {
             $responseData = $responseBody;
@@ -100,7 +100,11 @@ class Client
         return $this->httpClient->sendRequest($request);
     }
 
-    public function getCreditUsed() {
+    /*
+     * @return int
+     */
+    public function getCreditUsed()
+    {
         return $this->apiCreditUsed;
     }
 }
