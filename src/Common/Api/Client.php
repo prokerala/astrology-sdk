@@ -100,7 +100,7 @@ class Client
         return $this->httpClient->sendRequest($request);
     }
 
-    /*
+    /**
      * @return int
      */
     public function getCreditUsed()
