@@ -11,8 +11,10 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
+use DateTimeInterface;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition as PlanetPositionResult;
+use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
@@ -40,17 +42,18 @@ class PlanetPosition
     /**
      * Fetch result from API.
      *
-     * @param Location           $location Location details
-     * @param \DateTimeInterface $datetime Date and time
-     *
-     * @return PlanetPositionResult
+     * @param Location $location Location details
+     * @param DateTimeInterface $datetime Date and time
+     * @param string|null $planet
+     * @return ResultInterface
      */
-    public function process(Location $location, \DateTimeInterface $datetime)
+    public function process(Location $location, DateTimeInterface $datetime, $planet = null)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
+            'planet' => $planet,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
