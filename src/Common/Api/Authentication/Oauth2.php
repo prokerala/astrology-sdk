@@ -117,7 +117,7 @@ class Oauth2 implements AuthenticationTypeInterface
         try {
             $response = $this->httpClient->sendRequest($request);
         } catch (ClientExceptionInterface $e) {
-            throw new AuthenticationException('Failed to fetch access token', 0, $e);
+            throw new AuthenticationException("Failed to fetch access token. Request failed with error - {$e->getMessage()}", 0, $e);
         }
 
         $responseData = json_decode($response->getBody(), false, 512);
