@@ -13,7 +13,6 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedSadeSati as AdvancedSadeSatiResult;
 use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as SadeSatiResult;
-use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -49,11 +48,11 @@ class SadeSati
     /**
      * Fetch result from API.
      *
-     * @param Location $location Location details
-     * @param \DateTimeInterface $datetime Date and time
+     * @param Location           $location        Location details
+     * @param \DateTimeInterface $datetime        Date and time
+     * @param bool               $detailed_report
      *
-     * @param bool $detailed_report
-     * @return ResultInterface
+     * @return AdvancedSadeSatiResult|SadeSatiResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false)
     {

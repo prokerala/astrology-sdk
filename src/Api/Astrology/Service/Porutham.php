@@ -13,7 +13,6 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedPorutham as AdvancedMatchResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham as MatchResult;
-use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
@@ -48,7 +47,7 @@ class Porutham
      * @param $system
      * @param bool $detailed_report
      *
-     * @return ResultInterface
+     * @return AdvancedMatchResult|MatchResult
      */
     public function process(Profile $girl_profile, Profile $boy_profile, $system, $detailed_report = false)
     {
