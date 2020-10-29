@@ -19,11 +19,11 @@ class KaalSarpDosha implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var string|null
+     * @var null|string
      */
     private $type;
     /**
-     * @var string|null
+     * @var null|string
      */
     private $doshaType;
     /**
@@ -37,14 +37,14 @@ class KaalSarpDosha implements ResultInterface
 
     /**
      * KaalSarpDosha constructor.
-     * @param string|null $type
-     * @param string|null $doshaType
-     * @param bool $hasDosha
-     * @param string $description
+     *
+     * @param null|string $type
+     * @param null|string $doshaType
+     * @param bool        $hasDosha
+     * @param string      $description
      */
     public function __construct($type, $doshaType, $hasDosha, $description)
     {
-
         $this->type = $type;
         $this->doshaType = $doshaType;
         $this->hasDosha = $hasDosha;
@@ -52,7 +52,7 @@ class KaalSarpDosha implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getType()
     {
@@ -60,7 +60,7 @@ class KaalSarpDosha implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getDoshaType()
     {
@@ -84,12 +84,10 @@ class KaalSarpDosha implements ResultInterface
     }
 
     /**
-     * @return \stdClass|null
+     * @return null|\stdClass
      */
     public function getApiResponse()
     {
         return $this->apiResponse;
     }
-
-
 }

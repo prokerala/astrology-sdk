@@ -11,7 +11,6 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\AuspiciousPeriod;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -51,8 +50,6 @@ try {
         }
     }
     print_r($auspiciousPeriodResult);
-
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

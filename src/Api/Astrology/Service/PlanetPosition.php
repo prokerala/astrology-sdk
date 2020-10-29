@@ -53,7 +53,7 @@ class PlanetPosition
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'planet' => $planet,
+            'planets' => $planet,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

@@ -11,7 +11,6 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\SadeSati;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 

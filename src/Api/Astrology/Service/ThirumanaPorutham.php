@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -39,10 +40,7 @@ class ThirumanaPorutham
         $this->advancedResponseTransformer = new Transformer(AdvancedPorutham::class);
     }
 
-
     /**
-     * @param NakshatraProfile $girl_profile
-     * @param NakshatraProfile $boy_profile
      * @param bool $detailed_report
      *
      * @return AdvancedPorutham|Porutham
@@ -69,4 +67,3 @@ class ThirumanaPorutham
         return $this->basicResponseTransformer->transform($apiResponse->data);
     }
 }
-

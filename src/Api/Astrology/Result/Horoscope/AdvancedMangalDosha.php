@@ -31,7 +31,7 @@ class AdvancedMangalDosha implements ResultInterface
      */
     private $hasException;
     /**
-     * @var string|null
+     * @var null|string
      */
     private $type;
     /**
@@ -45,12 +45,13 @@ class AdvancedMangalDosha implements ResultInterface
 
     /**
      * AdvancedMangalDosha constructor.
-     * @param bool $hasDosha
-     * @param string $description
-     * @param bool $hasException
-     * @param string|null $type
-     * @param string[] $exceptions
-     * @param string[] $remedies
+     *
+     * @param bool        $hasDosha
+     * @param string      $description
+     * @param bool        $hasException
+     * @param null|string $type
+     * @param string[]    $exceptions
+     * @param string[]    $remedies
      */
     public function __construct(
         $hasDosha,
@@ -60,7 +61,6 @@ class AdvancedMangalDosha implements ResultInterface
         array $exceptions,
         array $remedies
     ) {
-
         $this->hasDosha = $hasDosha;
         $this->description = $description;
         $this->hasException = $hasException;
@@ -94,7 +94,7 @@ class AdvancedMangalDosha implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getType()
     {
@@ -116,5 +116,4 @@ class AdvancedMangalDosha implements ResultInterface
     {
         return $this->remedies;
     }
-
 }

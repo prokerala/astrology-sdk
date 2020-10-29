@@ -27,8 +27,6 @@ class Profile
 
     /**
      * Profile constructor.
-     * @param \Prokerala\Api\Astrology\Result\Element\Nakshatra $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Element\Rasi $rasi
      */
     public function __construct(Nakshatra $nakshatra, Rasi $rasi)
     {

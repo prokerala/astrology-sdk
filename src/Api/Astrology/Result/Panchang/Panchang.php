@@ -19,7 +19,6 @@ class Panchang implements ResultInterface
 {
     use RawResponseTrait;
 
-
     private $vaara;
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
@@ -56,15 +55,12 @@ class Panchang implements ResultInterface
 
     /**
      * Panchang constructor.
-     * @param string $vaara
+     *
+     * @param string                                                  $vaara
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[] $tithi
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[] $karana
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[] $yoga
-     * @param DateTimeInterface $sunrise
-     * @param DateTimeInterface $sunset
-     * @param DateTimeInterface $moonrise
-     * @param DateTimeInterface $moonset
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]      $yoga
      */
     public function __construct(
         $vaara,
@@ -76,8 +72,7 @@ class Panchang implements ResultInterface
         DateTimeInterface $sunset,
         DateTimeInterface $moonrise,
         DateTimeInterface $moonset
-    )
-    {
+    ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
         $this->tithi = $tithi;

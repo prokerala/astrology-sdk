@@ -10,12 +10,10 @@
  */
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
-
 
 /**
  * InauspiciousPeriod.

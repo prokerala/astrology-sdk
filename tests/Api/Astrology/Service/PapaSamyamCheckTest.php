@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Tests\Api\Astrology\Service;
 
 use DateTime;
@@ -9,12 +18,16 @@ use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam as PapasamyamResult;
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapaPlanet;
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails;
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PlanetDoshaDetails;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\PapaSamyamCheck as PapaSamyamCheckResult;
 use Prokerala\Api\Astrology\Service\PapaSamyamCheck;
 use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
 use Prokerala\Tests\BaseTestCase;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\PapaSamyamCheck as PapaSamyamCheckResult;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PapaSamyamCheckTest extends BaseTestCase
 {
     use AuthenticationTrait;
@@ -32,199 +45,200 @@ class PapaSamyamCheckTest extends BaseTestCase
     ];
 
     const EXPECTED_RESULT = [
-        "girl_papasamyam" => [
-            "total_points" => 5.5,
-            "papa_samyam" => [
-                "papa_planet" => [
+        'girl_papasamyam' => [
+            'total_points' => 5.5,
+            'papa_samyam' => [
+                'papa_planet' => [
                     [
-                        "name" => "Ascendant",
-                        "planet_dosha" => [
+                        'name' => 'Ascendant',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 2,
-                                "has_dosha" => true
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 2,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 7,
-                                "has_dosha" => true
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 7,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 12,
-                                "has_dosha" => true
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 12,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 8,
-                                "has_dosha" => true
-                            ]
-                        ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 8,
+                                'has_dosha' => true,
+                            ],
+                        ],
                     ],
                     [
-                        "name" => "Moon",
-                        "planet_dosha" => [
+                        'name' => 'Moon',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 6,
-                                "has_dosha" => false
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 6,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 11,
-                                "has_dosha" => false
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 11,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 4,
-                                "has_dosha" => true
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 4,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 12,
-                                "has_dosha" => true
-                            ]
-                        ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 12,
+                                'has_dosha' => true,
+                            ],
+                        ],
                     ],
                     [
-                        "name" => "Venus",
-                        "planet_dosha" => [
+                        'name' => 'Venus',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 3,
-                                "has_dosha" => false
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 3,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 8,
-                                "has_dosha" => true
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 8,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 1,
-                                "has_dosha" => true
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 1,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 9,
-                                "has_dosha" => false
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 9,
+                                'has_dosha' => false,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
-        "boy_papasamyam" => [
-            "total_points" => 2.75,
-            "papa_samyam" => [
-                "papa_planet" => [
+        'boy_papasamyam' => [
+            'total_points' => 2.75,
+            'papa_samyam' => [
+                'papa_planet' => [
                     [
-                        "name" => "Ascendant",
-                        "planet_dosha" => [
+                        'name' => 'Ascendant',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 10,
-                                "has_dosha" => false
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 10,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 5,
-                                "has_dosha" => false
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 5,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 11,
-                                "has_dosha" => false
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 11,
+                                'has_dosha' => false,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 3,
-                                "has_dosha" => false
-                            ]
-                        ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 3,
+                                'has_dosha' => false,
+                            ],
+                        ],
                     ],
                     [
-                        "name" => "Moon",
-                        "planet_dosha" => [
+                        'name' => 'Moon',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 7,
-                                "has_dosha" => true
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 7,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 2,
-                                "has_dosha" => true
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 2,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 8,
-                                "has_dosha" => true
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 8,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 12,
-                                "has_dosha" => true
-                            ]
-                        ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 12,
+                                'has_dosha' => true,
+                            ],
+                        ],
                     ],
                     [
-                        "name" => "Venus",
-                        "planet_dosha" => [
+                        'name' => 'Venus',
+                        'planet_dosha' => [
                             [
-                                "id" => 4,
-                                "name" => "Mars",
-                                "position" => 12,
-                                "has_dosha" => true
+                                'id' => 4,
+                                'name' => 'Mars',
+                                'position' => 12,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 6,
-                                "name" => "Saturn",
-                                "position" => 7,
-                                "has_dosha" => true
+                                'id' => 6,
+                                'name' => 'Saturn',
+                                'position' => 7,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 0,
-                                "name" => "Sun",
-                                "position" => 1,
-                                "has_dosha" => true
+                                'id' => 0,
+                                'name' => 'Sun',
+                                'position' => 1,
+                                'has_dosha' => true,
                             ],
                             [
-                                "id" => 101,
-                                "name" => "Rahu",
-                                "position" => 5,
-                                "has_dosha" => false
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'id' => 101,
+                                'name' => 'Rahu',
+                                'position' => 5,
+                                'has_dosha' => false,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
-        "message" => [
-            "type" => "Not Satisfactory",
-            "description" => "Girl has more dosha than boy. Hence this combination is Not Satisfactory"
-        ]
+        'message' => [
+            'type' => 'Not Satisfactory',
+            'description' => 'Girl has more dosha than boy. Hence this combination is Not Satisfactory',
+        ],
     ];
+
     public function testProcess()
     {
         $girl_location = new Location(self::GIRL_INPUT['latitude'], self::GIRL_INPUT['longitude']);
@@ -250,25 +264,23 @@ class PapaSamyamCheckTest extends BaseTestCase
                 $arPlanetDoshaObject = [];
                 foreach ($papa_planet['planet_dosha'] as $planet_dosha) {
                     $arPlanetDosha[] = new PlanetDoshaDetails($planet_dosha['id'], $planet_dosha['name'], $planet_dosha['position'], $planet_dosha['has_dosha']);
-                    $arPlanetDoshaObject[] = (object)$planet_dosha;
+                    $arPlanetDoshaObject[] = (object) $planet_dosha;
                 }
                 $arPapaPlanets[] = new PapaPlanet($papa_planet['name'], $arPlanetDosha);
-                $arPapaPlanetObject[] = (object)['name' => $papa_planet['name'], 'planet_dosha' => $arPlanetDoshaObject];
+                $arPapaPlanetObject[] = (object) ['name' => $papa_planet['name'], 'planet_dosha' => $arPlanetDoshaObject];
             }
             $papasamyamDetails = new PapasamyamDetails($arPapaPlanets);
-            $papasamyamDetailObject = (object)['papa_planet' => $arPapaPlanetObject];
+            $papasamyamDetailObject = (object) ['papa_planet' => $arPapaPlanetObject];
 
             $arPapasamyam[$index] = new PapasamyamResult($result[$index]['total_points'], $papasamyamDetails);
-            $arPapasamyamObject[$index] = ((object)['total_points' => $result[$index]['total_points'], 'papa_samyam' => $papasamyamDetailObject]);
+            $arPapasamyamObject[$index] = ((object) ['total_points' => $result[$index]['total_points'], 'papa_samyam' => $papasamyamDetailObject]);
         }
         $message = new Message($result['message']['type'], $result['message']['description']);
-        $message_object = (object)$result['message'];
+        $message_object = (object) $result['message'];
 
         $expected_result = new PapaSamyamCheckResult($arPapasamyam['girl_papasamyam'], $arPapasamyam['boy_papasamyam'], $message);
-        $expected_result->setRawResponse((object)['girl_papasamyam' => $arPapasamyamObject['girl_papasamyam'], 'boy_papasamyam' => $arPapasamyamObject['boy_papasamyam'], 'message' => $message_object]);
+        $expected_result->setRawResponse((object) ['girl_papasamyam' => $arPapasamyamObject['girl_papasamyam'], 'boy_papasamyam' => $arPapasamyamObject['boy_papasamyam'], 'message' => $message_object]);
 
         $this->assertEquals($expected_result, $test_result);
-
     }
-
 }

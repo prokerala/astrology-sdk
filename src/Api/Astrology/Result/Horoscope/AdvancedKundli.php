@@ -18,7 +18,6 @@ class AdvancedKundli implements ResultInterface
 {
     use RawResponseTrait;
 
-
     /**
      * @var BirthDetails
      */
@@ -38,10 +37,9 @@ class AdvancedKundli implements ResultInterface
 
     /**
      * AdvancedKundli constructor.
-     * @param BirthDetails $nakshatraDetails
-     * @param AdvancedMangalDosha $mangalDosha
+     *
      * @param Yoga\AdvancedYogaDetails[] $yogaDetails
-     * @param Dasha\DashaPeriod[] $dashaPeriods
+     * @param Dasha\DashaPeriod[]        $dashaPeriods
      */
     public function __construct(
         BirthDetails $nakshatraDetails,
@@ -49,7 +47,6 @@ class AdvancedKundli implements ResultInterface
         array $yogaDetails,
         array $dashaPeriods
     ) {
-
         $this->nakshatraDetails = $nakshatraDetails;
         $this->mangalDosha = $mangalDosha;
         $this->yogaDetails = $yogaDetails;

@@ -15,8 +15,6 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaKoot
 {
-
-
     /**
      * @var int
      */
@@ -48,12 +46,13 @@ class GunaKoot
 
     /**
      * GunaKoot constructor.
-     * @param int $id
+     *
+     * @param int    $id
      * @param string $name
      * @param string $girlKoot
      * @param string $boyKoot
-     * @param float $maximumPoints
-     * @param float $obtainedPoints
+     * @param float  $maximumPoints
+     * @param float  $obtainedPoints
      * @param string $description
      */
     public function __construct(
@@ -64,9 +63,7 @@ class GunaKoot
         $maximumPoints,
         $obtainedPoints,
         $description
-    )
-    {
-
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->girlKoot = $girlKoot;
@@ -131,5 +128,4 @@ class GunaKoot
     {
         return $this->description;
     }
-
 }

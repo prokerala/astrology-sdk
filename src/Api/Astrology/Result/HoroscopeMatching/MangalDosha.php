@@ -13,7 +13,6 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 class MangalDosha
 {
-
     /**
      * @var bool
      */
@@ -23,7 +22,7 @@ class MangalDosha
      */
     private $hasException;
     /**
-     * @var string|null
+     * @var null|string
      */
     private $doshaType;
     /**
@@ -33,14 +32,14 @@ class MangalDosha
 
     /**
      * MangalDosha constructor.
-     * @param bool $hasDosha
-     * @param bool $hasException
-     * @param string|null $doshaType
-     * @param string $description
+     *
+     * @param bool        $hasDosha
+     * @param bool        $hasException
+     * @param null|string $doshaType
+     * @param string      $description
      */
     public function __construct($hasDosha, $hasException, $doshaType, $description)
     {
-
         $this->hasDosha = $hasDosha;
         $this->hasException = $hasException;
         $this->doshaType = $doshaType;
@@ -64,7 +63,7 @@ class MangalDosha
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getDoshaType()
     {
@@ -78,6 +77,4 @@ class MangalDosha
     {
         return $this->description;
     }
-
-
 }

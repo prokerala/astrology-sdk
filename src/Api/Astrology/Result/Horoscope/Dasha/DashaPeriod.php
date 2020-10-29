@@ -18,7 +18,6 @@ use DateTimeInterface;
  */
 class DashaPeriod
 {
-
     /**
      * @var int
      */
@@ -42,10 +41,9 @@ class DashaPeriod
 
     /**
      * DashaPeriod constructor.
-     * @param int $id
-     * @param string $name
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
+     *
+     * @param int          $id
+     * @param string       $name
      * @param Antardasha[] $antardasha
      */
     public function __construct(
@@ -55,8 +53,6 @@ class DashaPeriod
         DateTimeInterface $end,
         array $antardasha
     ) {
-
-
         $this->id = $id;
         $this->name = $name;
         $this->start = $start;
@@ -103,8 +99,4 @@ class DashaPeriod
     {
         return $this->antardasha;
     }
-
-
-
-
 }

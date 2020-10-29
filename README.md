@@ -71,7 +71,7 @@ use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
-# Include composer autoloader	
+# Include composer autoloader
 include __DIR__.'/vendor/autoload.php';
 
 # Create the PSR-17 Factory. The following line creates a PSR-17 factory using
@@ -106,8 +106,8 @@ try {
     $result = $method->process($location, $datetime);
 
     $mangalDoshaResult = [
-    	'has_mangal_dosha' => $result->hasDosha(),
-    	'description' => $result->getDescription(),
+        'has_mangal_dosha' => $result->hasDosha(),
+        'description' => $result->getDescription(),
     ];
 
     print_r($mangalDoshaResult);
@@ -122,4 +122,3 @@ Please check out our [API Demo](https://api.prokerala.com/demo) for a sample imp
 ## License
 
 Copyright &copy; 2019-2020 [Ennexa Technologies Private Limited](https://www.ennexa.com). The Prokerala [Astrology](https://www.prokerala.com/astrology/) API PHP SDK is released under the [MIT License](https://github.com/prokerala/astrology-sdk/blob/master/LICENSE).
-

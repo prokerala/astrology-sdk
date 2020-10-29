@@ -11,14 +11,13 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\Panchang;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
 /**
- * Panchang
+ * Panchang.
  */
 $input = [
     'datetime' => '2020-05-12T09:20:00+05:30',
@@ -92,7 +91,7 @@ try {
 
 try {
     $method = new Panchang($client);
-    $result =  $method->process($location, $datetime, true);
+    $result = $method->process($location, $datetime, true);
 
     $panchangResult = [
         'vaara' => $result->getVaara(),
@@ -183,7 +182,6 @@ try {
     $panchangResult['inauspiciousPeriod'] = $inauspiciousPeriodResult;
 
     print_r($panchangResult);
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

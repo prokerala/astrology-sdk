@@ -13,7 +13,6 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Yoga;
 
 class YogaDetails
 {
-
     /**
      * @var string
      */
@@ -25,6 +24,7 @@ class YogaDetails
 
     /**
      * YogaDetails constructor.
+     *
      * @param string $name
      * @param string $description
      */
@@ -32,7 +32,6 @@ class YogaDetails
         $name,
         $description
     ) {
-
         $this->name = $name;
         $this->description = $description;
     }
@@ -52,6 +51,4 @@ class YogaDetails
     {
         return $this->description;
     }
-
-
 }

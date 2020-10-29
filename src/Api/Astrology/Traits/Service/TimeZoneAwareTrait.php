@@ -34,11 +34,13 @@ trait TimeZoneAwareTrait
         if (!isset($this->tz)) {
             $this->tz = new \DateTimeZone(date_default_timezone_get());
         }
+
         return $this->tz;
     }
 
     /**
      * @param Transformer $transformer
+     *
      * @return void
      */
     private function addDateTimeTransformer($transformer)

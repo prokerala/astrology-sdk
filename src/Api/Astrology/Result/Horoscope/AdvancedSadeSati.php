@@ -26,7 +26,7 @@ class AdvancedSadeSati implements ResultInterface
      */
     private $transitPhase;
     /**
-     * @var string|null
+     * @var null|string
      */
     private $description;
 
@@ -38,9 +38,9 @@ class AdvancedSadeSati implements ResultInterface
     /**
      * SadeSati constructor.
      *
-     * @param bool                                                               $isInSadeSati
-     * @param string|null                                                             $transitPhase
-     * @param string                                                             $description
+     * @param bool                     $isInSadeSati
+     * @param null|string              $transitPhase
+     * @param string                   $description
      * @param SadeSati\SaturnTransit[] $transits
      */
     public function __construct($isInSadeSati, $transitPhase, $description, array $transits)
@@ -60,7 +60,7 @@ class AdvancedSadeSati implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getTransitPhase()
     {

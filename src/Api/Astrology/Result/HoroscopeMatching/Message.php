@@ -22,6 +22,7 @@ class Message
 
     /**
      * Message constructor.
+     *
      * @param string $type
      * @param string $description
      */

@@ -12,7 +12,6 @@
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Service\KundliMatching;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -21,7 +20,6 @@ include 'prepend.inc.php';
 /**
  * Nakshatra Porutham.
  */
-
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
     'latitude' => '19.0821978',
@@ -65,7 +63,6 @@ try {
     $matchResult['boy_info']['koot'] = $boy_koot->getKoot();
     $matchResult['girl_info']['koot'] = $girl_koot->getKoot();
 
-
     $matchResult['girl_info']['nakshatra'] = [
         'id' => $girl_nakshatra->getId(),
         'name' => $girl_nakshatra->getName(),
@@ -73,7 +70,7 @@ try {
         'lord' => [
             'id' => $girl_nakshatra_lord->getId(),
             'name' => $girl_nakshatra_lord->getName(),
-            'vedicName' => $girl_nakshatra_lord->getVedicName()
+            'vedicName' => $girl_nakshatra_lord->getVedicName(),
         ],
     ];
 
@@ -84,7 +81,7 @@ try {
         'lord' => [
             'id' => $boy_nakshatra_lord->getId(),
             'name' => $boy_nakshatra_lord->getName(),
-            'vedicName' => $boy_nakshatra_lord->getVedicName()
+            'vedicName' => $boy_nakshatra_lord->getVedicName(),
         ],
     ];
 
@@ -94,7 +91,7 @@ try {
         'lord' => [
             'id' => $girl_rasi_lord->getId(),
             'name' => $girl_rasi_lord->getName(),
-            'vedicName' => $girl_rasi_lord->getVedicName()
+            'vedicName' => $girl_rasi_lord->getVedicName(),
         ],
     ];
 
@@ -104,7 +101,7 @@ try {
         'lord' => [
             'id' => $boy_rasi_lord->getId(),
             'name' => $boy_rasi_lord->getName(),
-            'vedicName' => $boy_rasi_lord->getVedicName()
+            'vedicName' => $boy_rasi_lord->getVedicName(),
         ],
     ];
 
@@ -175,7 +172,6 @@ try {
     $matchResult['boy_info']['koot'] = $boy_koot->getKoot();
     $matchResult['girl_info']['koot'] = $girl_koot->getKoot();
 
-
     $matchResult['girl_info']['nakshatra'] = [
         'id' => $girl_nakshatra->getId(),
         'name' => $girl_nakshatra->getName(),
@@ -183,7 +179,7 @@ try {
         'lord' => [
             'id' => $girl_nakshatra_lord->getId(),
             'name' => $girl_nakshatra_lord->getName(),
-            'vedicName' => $girl_nakshatra_lord->getVedicName()
+            'vedicName' => $girl_nakshatra_lord->getVedicName(),
         ],
     ];
 
@@ -194,7 +190,7 @@ try {
         'lord' => [
             'id' => $boy_nakshatra_lord->getId(),
             'name' => $boy_nakshatra_lord->getName(),
-            'vedicName' => $boy_nakshatra_lord->getVedicName()
+            'vedicName' => $boy_nakshatra_lord->getVedicName(),
         ],
     ];
 
@@ -204,7 +200,7 @@ try {
         'lord' => [
             'id' => $girl_rasi_lord->getId(),
             'name' => $girl_rasi_lord->getName(),
-            'vedicName' => $girl_rasi_lord->getVedicName()
+            'vedicName' => $girl_rasi_lord->getVedicName(),
         ],
     ];
 
@@ -214,7 +210,7 @@ try {
         'lord' => [
             'id' => $boy_rasi_lord->getId(),
             'name' => $boy_rasi_lord->getName(),
-            'vedicName' => $boy_rasi_lord->getVedicName()
+            'vedicName' => $boy_rasi_lord->getVedicName(),
         ],
     ];
 
@@ -230,7 +226,6 @@ try {
         'maximumPoints' => $gunaMilan->getMaximumPoints(),
     ];
     print_r($matchResult);
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

@@ -70,9 +70,9 @@ class Client
         $responseBody = (string) $response->getBody();
 
         $apiCredits = $response->getHeader('X-Api-Credits');
-        $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits[0] : 0;
+        $this->apiCreditUsed = isset($apiCredits) ? (int) $apiCredits[0] : 0;
 
-        if (isset($responseType[0]) && $responseType[0] == 'image/svg+xml') {
+        if (isset($responseType[0]) && 'image/svg+xml' == $responseType[0]) {
             $responseData = $responseBody;
         } else {
             $responseData = json_decode($responseBody);
@@ -93,18 +93,18 @@ class Client
     }
 
     /**
-     * @return ResponseInterface
-     */
-    private function request(RequestInterface $request)
-    {
-        return $this->httpClient->sendRequest($request);
-    }
-
-    /**
      * @return int
      */
     public function getCreditUsed()
     {
         return $this->apiCreditUsed;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    private function request(RequestInterface $request)
+    {
+        return $this->httpClient->sendRequest($request);
     }
 }

@@ -18,7 +18,6 @@ class AdvancedThirumanaPorutham implements ResultInterface
 {
     use RawResponseTrait;
 
-
     /**
      * @var float
      */
@@ -38,9 +37,9 @@ class AdvancedThirumanaPorutham implements ResultInterface
 
     /**
      * AdvancedThirumanaPorutham constructor.
-     * @param float $maximumPoints
-     * @param float $obtainedPoints
-     * @param Message $message
+     *
+     * @param float                    $maximumPoints
+     * @param float                    $obtainedPoints
      * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
@@ -49,8 +48,6 @@ class AdvancedThirumanaPorutham implements ResultInterface
         Message $message,
         array $matches
     ) {
-
-
         $this->maximumPoints = $maximumPoints;
         $this->obtainedPoints = $obtainedPoints;
         $this->message = $message;
@@ -88,6 +85,4 @@ class AdvancedThirumanaPorutham implements ResultInterface
     {
         return $this->matches;
     }
-
-
 }

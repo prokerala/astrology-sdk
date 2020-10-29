@@ -13,7 +13,6 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 class GunaMilan
 {
-
     /**
      * @var float
      */
@@ -25,6 +24,7 @@ class GunaMilan
 
     /**
      * GunaMilan constructor.
+     *
      * @param float $totalPoints
      * @param float $maximumPoints
      */
@@ -32,8 +32,6 @@ class GunaMilan
         $totalPoints,
         $maximumPoints
     ) {
-
-
         $this->totalPoints = $totalPoints;
         $this->maximumPoints = $maximumPoints;
     }
@@ -53,7 +51,4 @@ class GunaMilan
     {
         return $this->maximumPoints;
     }
-
-
-
 }

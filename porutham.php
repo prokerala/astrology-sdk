@@ -12,7 +12,6 @@
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Service\Porutham;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -68,7 +67,7 @@ try {
             'lord' => [
                 'id' => $girl_nakshatra_lord->getId(),
                 'name' => $girl_nakshatra_lord->getName(),
-                'vedicName' => $girl_nakshatra_lord->getVedicName()
+                'vedicName' => $girl_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -77,7 +76,7 @@ try {
             'lord' => [
                 'id' => $girl_rasi_lord->getId(),
                 'name' => $girl_rasi_lord->getName(),
-                'vedicName' => $girl_rasi_lord->getVedicName()
+                'vedicName' => $girl_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -90,7 +89,7 @@ try {
             'lord' => [
                 'id' => $boy_nakshatra_lord->getId(),
                 'name' => $boy_nakshatra_lord->getName(),
-                'vedicName' => $boy_nakshatra_lord->getVedicName()
+                'vedicName' => $boy_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -99,7 +98,7 @@ try {
             'lord' => [
                 'id' => $boy_rasi_lord->getId(),
                 'name' => $boy_rasi_lord->getName(),
-                'vedicName' => $boy_rasi_lord->getVedicName()
+                'vedicName' => $boy_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -129,7 +128,7 @@ try {
 }
 
 try {
-    $result =$porutham->process($girl_profile, $boy_profile, 'kerala', true);
+    $result = $porutham->process($girl_profile, $boy_profile, 'kerala', true);
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -153,7 +152,7 @@ try {
             'lord' => [
                 'id' => $girl_nakshatra_lord->getId(),
                 'name' => $girl_nakshatra_lord->getName(),
-                'vedicName' => $girl_nakshatra_lord->getVedicName()
+                'vedicName' => $girl_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -162,7 +161,7 @@ try {
             'lord' => [
                 'id' => $girl_rasi_lord->getId(),
                 'name' => $girl_rasi_lord->getName(),
-                'vedicName' => $girl_rasi_lord->getVedicName()
+                'vedicName' => $girl_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -175,7 +174,7 @@ try {
             'lord' => [
                 'id' => $boy_nakshatra_lord->getId(),
                 'name' => $boy_nakshatra_lord->getName(),
-                'vedicName' => $boy_nakshatra_lord->getVedicName()
+                'vedicName' => $boy_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -184,7 +183,7 @@ try {
             'lord' => [
                 'id' => $boy_rasi_lord->getId(),
                 'name' => $boy_rasi_lord->getName(),
-                'vedicName' => $boy_rasi_lord->getVedicName()
+                'vedicName' => $boy_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -240,7 +239,7 @@ try {
             'lord' => [
                 'id' => $girl_nakshatra_lord->getId(),
                 'name' => $girl_nakshatra_lord->getName(),
-                'vedicName' => $girl_nakshatra_lord->getVedicName()
+                'vedicName' => $girl_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -249,7 +248,7 @@ try {
             'lord' => [
                 'id' => $girl_rasi_lord->getId(),
                 'name' => $girl_rasi_lord->getName(),
-                'vedicName' => $girl_rasi_lord->getVedicName()
+                'vedicName' => $girl_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -262,7 +261,7 @@ try {
             'lord' => [
                 'id' => $boy_nakshatra_lord->getId(),
                 'name' => $boy_nakshatra_lord->getName(),
-                'vedicName' => $boy_nakshatra_lord->getVedicName()
+                'vedicName' => $boy_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -271,7 +270,7 @@ try {
             'lord' => [
                 'id' => $boy_rasi_lord->getId(),
                 'name' => $boy_rasi_lord->getName(),
-                'vedicName' => $boy_rasi_lord->getVedicName()
+                'vedicName' => $boy_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -300,9 +299,8 @@ try {
 } catch (RateLimitExceededException $e) {
 }
 
-
 try {
-    $result =  $porutham->process($girl_profile, $boy_profile, 'tamil', true);
+    $result = $porutham->process($girl_profile, $boy_profile, 'tamil', true);
     $compatibilityResult = [];
     $girl_info = $result->getGirlInfo();
     $girl_nakshatra = $girl_info->getNakshatra();
@@ -326,7 +324,7 @@ try {
             'lord' => [
                 'id' => $girl_nakshatra_lord->getId(),
                 'name' => $girl_nakshatra_lord->getName(),
-                'vedicName' => $girl_nakshatra_lord->getVedicName()
+                'vedicName' => $girl_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -335,7 +333,7 @@ try {
             'lord' => [
                 'id' => $girl_rasi_lord->getId(),
                 'name' => $girl_rasi_lord->getName(),
-                'vedicName' => $girl_rasi_lord->getVedicName()
+                'vedicName' => $girl_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -348,7 +346,7 @@ try {
             'lord' => [
                 'id' => $boy_nakshatra_lord->getId(),
                 'name' => $boy_nakshatra_lord->getName(),
-                'vedicName' => $boy_nakshatra_lord->getVedicName()
+                'vedicName' => $boy_nakshatra_lord->getVedicName(),
             ],
         ],
         'rasi' => [
@@ -357,7 +355,7 @@ try {
             'lord' => [
                 'id' => $boy_rasi_lord->getId(),
                 'name' => $boy_rasi_lord->getName(),
-                'vedicName' => $boy_rasi_lord->getVedicName()
+                'vedicName' => $boy_rasi_lord->getVedicName(),
             ],
         ],
     ];
@@ -388,4 +386,3 @@ try {
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
-

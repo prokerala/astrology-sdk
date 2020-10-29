@@ -17,7 +17,6 @@ class Rasi
 {
     use StringableTrait;
 
-
     /**
      * @var int
      */
@@ -33,14 +32,12 @@ class Rasi
 
     /**
      * Rasi constructor.
-     * @param int $id
+     *
+     * @param int    $id
      * @param string $name
-     * @param Planet $lord
      */
     public function __construct($id, $name, Planet $lord)
     {
-
-
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
@@ -69,8 +66,4 @@ class Rasi
     {
         return $this->lord;
     }
-
-
-
-
 }

@@ -1,17 +1,30 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Tests\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\NakshatraProfile;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
-use Prokerala\Api\Astrology\Service\NakshatraPorutham;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedNakshatraPorutham as AdvancedNakshatraPoruthamResult;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham as BasicNakshatraPoruthamResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\AdvancedMatch as AdvancedMatchResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Match as BasicMatchResult;
+use Prokerala\Api\Astrology\Service\NakshatraPorutham;
+use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
+use Prokerala\Tests\BaseTestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class NakshatraPoruthamTest extends BaseTestCase
 {
     use AuthenticationTrait;
@@ -26,94 +39,94 @@ class NakshatraPoruthamTest extends BaseTestCase
         'nakshatra_pada' => 3,
     ];
     const EXPECTED_RESULT = [
-        "maximum_points" => 10.0,
-        "obtained_points" => 5.0,
-        "message" => [
-            "type" => null,
-            "description" => "Matching between boy and girl is 5/10"
+        'maximum_points' => 10.0,
+        'obtained_points' => 5.0,
+        'message' => [
+            'type' => null,
+            'description' => 'Matching between boy and girl is 5/10',
         ],
-        "matches" => [
+        'matches' => [
             [
-                "id" => 1,
-                "name" => "Dina Porutham",
-                "has_porutham" => false,
-                "porutham_status" => "Bad",
-                "points" => 0.0,
-                "description" => "Their match is deemed to be 'unsuccessful' or 'Athamam' since on counting from birth star of girl to boy – the result shows 14 and that is a bad sign."
+                'id' => 1,
+                'name' => 'Dina Porutham',
+                'has_porutham' => false,
+                'porutham_status' => 'Bad',
+                'points' => 0.0,
+                'description' => "Their match is deemed to be 'unsuccessful' or 'Athamam' since on counting from birth star of girl to boy – the result shows 14 and that is a bad sign.",
             ],
             [
-                "id" => 2,
-                "name" => "Gana Porutham",
-                "has_porutham" => false,
-                "porutham_status" => "Bad",
-                "points" => 0.0,
-                "description" => "Here in this case the girl's star is of the Deva Ganam and the boy's star belongs to Asura Ganam. So, it is deemed to be a Athamam relationship – which means they will not be able to live happily."
+                'id' => 2,
+                'name' => 'Gana Porutham',
+                'has_porutham' => false,
+                'porutham_status' => 'Bad',
+                'points' => 0.0,
+                'description' => "Here in this case the girl's star is of the Deva Ganam and the boy's star belongs to Asura Ganam. So, it is deemed to be a Athamam relationship – which means they will not be able to live happily.",
             ],
             [
-                "id" => 3,
-                "name" => "Mahendra Porutham",
-                "has_porutham" => false,
-                "porutham_status" => "Bad",
-                "points" => 0.0,
-                "description" => "This relationship can be declared as an 'Athamam' relationship as on counting the birth star of girl to boy, it can come to the number 14 - which shows that here both will find it difficult to enjoy a smooth relation."
+                'id' => 3,
+                'name' => 'Mahendra Porutham',
+                'has_porutham' => false,
+                'porutham_status' => 'Bad',
+                'points' => 0.0,
+                'description' => "This relationship can be declared as an 'Athamam' relationship as on counting the birth star of girl to boy, it can come to the number 14 - which shows that here both will find it difficult to enjoy a smooth relation.",
             ],
             [
-                "id" => 4,
-                "name" => "Stree Deergha Porutham",
-                "has_porutham" => true,
-                "porutham_status" => "Satisfactory",
-                "points" => 1.0,
-                "description" => "This relationship can be declared as an 'Madhyamam' relationship as on counting the birth star of girl to boy, it can come to the number 14- which shows that here both will adjust with each other."
+                'id' => 4,
+                'name' => 'Stree Deergha Porutham',
+                'has_porutham' => true,
+                'porutham_status' => 'Satisfactory',
+                'points' => 1.0,
+                'description' => "This relationship can be declared as an 'Madhyamam' relationship as on counting the birth star of girl to boy, it can come to the number 14- which shows that here both will adjust with each other.",
             ],
             [
-                "id" => 5,
-                "name" => "Yoni Porutham",
-                "has_porutham" => false,
-                "porutham_status" => "Bad",
-                "points" => 0.0,
-                "description" => "The gender of the girl’s Nakshatra is male and the gender of the boy’s Nakshatra is female. This makes this a Bad match (Athamam) ."
+                'id' => 5,
+                'name' => 'Yoni Porutham',
+                'has_porutham' => false,
+                'porutham_status' => 'Bad',
+                'points' => 0.0,
+                'description' => 'The gender of the girl’s Nakshatra is male and the gender of the boy’s Nakshatra is female. This makes this a Bad match (Athamam) .',
             ],
             [
-                "id" => 6,
-                "name" => "Veda Porutham",
-                "has_porutham" => true,
-                "porutham_status" => "Good",
-                "points" => 1.0,
-                "description" => "For the couples where the birth stars do not have vedha, there is a satisfactory match in their birth stars."
+                'id' => 6,
+                'name' => 'Veda Porutham',
+                'has_porutham' => true,
+                'porutham_status' => 'Good',
+                'points' => 1.0,
+                'description' => 'For the couples where the birth stars do not have vedha, there is a satisfactory match in their birth stars.',
             ],
             [
-                "id" => 7,
-                "name" => "Rajju Porutham",
-                "has_porutham" => true,
-                "porutham_status" => "Good",
-                "points" => 1.0,
-                "description" => "As per the stars, both belong to different Rajju, and therefore this can be selected as a perfect match."
+                'id' => 7,
+                'name' => 'Rajju Porutham',
+                'has_porutham' => true,
+                'porutham_status' => 'Good',
+                'points' => 1.0,
+                'description' => 'As per the stars, both belong to different Rajju, and therefore this can be selected as a perfect match.',
             ],
             [
-                "id" => 8,
-                "name" => "Rasi Porutham",
-                "has_porutham" => true,
-                "porutham_status" => "Good",
-                "points" => 1.0,
-                "description" => "This match is highly recommended and can be called as 'Ati Uthamam' because on counting the rashis from the girl to the boy's rashi – it can be calculated to 7, which shows this to be a very good relationship."
+                'id' => 8,
+                'name' => 'Rasi Porutham',
+                'has_porutham' => true,
+                'porutham_status' => 'Good',
+                'points' => 1.0,
+                'description' => "This match is highly recommended and can be called as 'Ati Uthamam' because on counting the rashis from the girl to the boy's rashi – it can be calculated to 7, which shows this to be a very good relationship.",
             ],
             [
-                "id" => 9,
-                "name" => "Rasi Lord Porutham",
-                "has_porutham" => true,
-                "porutham_status" => "Good",
-                "points" => 1.0,
-                "description" => "Since the ruling Lords of the girl and the boy are loving and united in thoughts and deeds, so this relationships is said to be 'Uthamam'."
+                'id' => 9,
+                'name' => 'Rasi Lord Porutham',
+                'has_porutham' => true,
+                'porutham_status' => 'Good',
+                'points' => 1.0,
+                'description' => "Since the ruling Lords of the girl and the boy are loving and united in thoughts and deeds, so this relationships is said to be 'Uthamam'.",
             ],
             [
-                "id" => 10,
-                "name" => "Vashya Porutham",
-                "has_porutham" => false,
-                "porutham_status" => "Bad",
-                "points" => 0.0,
-                "description" => "This is an Athamam relationship since the girl's rasi is not at all compatible to the boy's vasya or even in the opposite manner. Hence this will not be a peaceful relationship."
-            ]
-        ]
+                'id' => 10,
+                'name' => 'Vashya Porutham',
+                'has_porutham' => false,
+                'porutham_status' => 'Bad',
+                'points' => 0.0,
+                'description' => "This is an Athamam relationship since the girl's rasi is not at all compatible to the boy's vasya or even in the opposite manner. Hence this will not be a peaceful relationship.",
+            ],
+        ],
     ];
 
     public function testProcess()
@@ -132,35 +145,34 @@ class NakshatraPoruthamTest extends BaseTestCase
         $test_basic_result = $nakshatra_porutham->process($girl_profile, $boy_profile);
         $expected_result = self::EXPECTED_RESULT;
         $message = new Message($expected_result['message']['type'], $expected_result['message']['description']);
-        $message_object = (object)$expected_result['message'];
+        $message_object = (object) $expected_result['message'];
         $arBasicMatch = $arBasicMatchObject = $arAdvancedMatch = $arAdvancedMatchObject = [];
         foreach ($expected_result['matches'] as $match) {
             $arBasicMatch[] = new BasicMatchResult($match['id'], $match['name'], $match['has_porutham']);
             $arAdvancedMatch[] = new AdvancedMatchResult($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
-            $arBasicMatchObject[] = (object)['id' => $match['id'], 'name' => $match['name'], 'has_porutham' => $match['has_porutham']];
-            $arAdvancedMatchObject[] = (object)$match;
+            $arBasicMatchObject[] = (object) ['id' => $match['id'], 'name' => $match['name'], 'has_porutham' => $match['has_porutham']];
+            $arAdvancedMatchObject[] = (object) $match;
         }
 
         $expected_basic_result = new BasicNakshatraPoruthamResult($expected_result['maximum_points'], $expected_result['obtained_points'], $message, $arBasicMatch);
-        $expected_basic_result->setRawResponse((object)[
+        $expected_basic_result->setRawResponse((object) [
             'maximum_points' => $expected_result['maximum_points'],
             'obtained_points' => $expected_result['obtained_points'],
             'message' => $message_object,
-            'matches' => $arBasicMatchObject
+            'matches' => $arBasicMatchObject,
         ]);
 
         $this->assertEquals($expected_basic_result, $test_basic_result);
 
         $test_advanced_result = $nakshatra_porutham->process($girl_profile, $boy_profile, true);
         $expected_advanced_result = new AdvancedNakshatraPoruthamResult($expected_result['maximum_points'], $expected_result['obtained_points'], $message, $arAdvancedMatch);
-        $expected_advanced_result->setRawResponse((object)[
+        $expected_advanced_result->setRawResponse((object) [
             'maximum_points' => $expected_result['maximum_points'],
             'obtained_points' => $expected_result['obtained_points'],
             'message' => $message_object,
-            'matches' => $arAdvancedMatchObject
+            'matches' => $arAdvancedMatchObject,
         ]);
 
         $this->assertEquals($expected_advanced_result, $test_advanced_result);
-
     }
 }

@@ -15,7 +15,6 @@ use DateTimeInterface;
 
 class SaturnTransit
 {
-
     /**
      * @var string
      */
@@ -43,16 +42,14 @@ class SaturnTransit
 
     /**
      * SaturnTransit constructor.
+     *
      * @param string $saturnSign
      * @param string $phase
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
      * @param string $description
-     * @param null $isRetrograde
+     * @param null   $isRetrograde
      */
     public function __construct($saturnSign, $phase, DateTimeInterface $start, DateTimeInterface $end, $description, $isRetrograde = null)
     {
-
         $this->saturnSign = $saturnSign;
         $this->phase = $phase;
         $this->start = $start;
@@ -108,6 +105,4 @@ class SaturnTransit
     {
         return $this->isRetrograde;
     }
-
-
 }

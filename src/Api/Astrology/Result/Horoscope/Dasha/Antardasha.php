@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 use DateTimeInterface;
@@ -28,10 +38,9 @@ class Antardasha
 
     /**
      * Pratyantardasha constructor.
-     * @param int $id
-     * @param string $name
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
+     *
+     * @param int               $id
+     * @param string            $name
      * @param Pratyantardasha[] $pratyantardasha
      */
     public function __construct(
@@ -41,8 +50,6 @@ class Antardasha
         DateTimeInterface $end,
         array $pratyantardasha
     ) {
-
-
         $this->id = $id;
         $this->name = $name;
         $this->start = $start;

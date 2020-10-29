@@ -11,12 +11,10 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\Kundli;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
-
 
 /**
  * Kaal Sarp Dosha.
@@ -57,7 +55,6 @@ try {
 
     $kundliResult = [
         'nakshatraDetails' => [
-
             'nakshatra' => [
                 'id' => $nakshatra->getId(),
                 'name' => $nakshatra->getName(),
@@ -77,7 +74,7 @@ try {
                     'vedicName' => $chandraRasiLord->getVedicName(),
                 ],
             ],
-            'sooryaRasi' =>  [
+            'sooryaRasi' => [
                 'id' => $sooryaRasi->getId(),
                 'name' => $sooryaRasi->getName(),
                 'lord' => [
@@ -86,7 +83,7 @@ try {
                     'vedicName' => $sooryaRasiLord->getVedicName(),
                 ],
             ],
-            'zodiac' =>  [
+            'zodiac' => [
                 'id' => $zodiac->getId(),
                 'name' => $zodiac->getName(),
             ],
@@ -122,7 +119,6 @@ try {
 
     $kundliResult['yogaDetails'] = $yogaDetailResult;
     print_r($kundliResult);
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
@@ -153,7 +149,6 @@ try {
 
     $kundliResult = [
         'nakshatraDetails' => [
-
             'nakshatra' => [
                 'id' => $nakshatra->getId(),
                 'name' => $nakshatra->getName(),
@@ -173,7 +168,7 @@ try {
                     'vedicName' => $chandraRasiLord->getVedicName(),
                 ],
             ],
-            'sooryaRasi' =>  [
+            'sooryaRasi' => [
                 'id' => $sooryaRasi->getId(),
                 'name' => $sooryaRasi->getName(),
                 'lord' => [
@@ -182,7 +177,7 @@ try {
                     'vedicName' => $sooryaRasiLord->getVedicName(),
                 ],
             ],
-            'zodiac' =>  [
+            'zodiac' => [
                 'id' => $zodiac->getId(),
                 'name' => $zodiac->getName(),
             ],
@@ -246,12 +241,12 @@ try {
                     'end' => $pratyantardasha->getEnd(),
                 ];
             }
-            $antardashaResult[]  = [
+            $antardashaResult[] = [
                 'id' => $antardasha->getId(),
                 'name' => $antardasha->getName(),
                 'start' => $antardasha->getStart(),
                 'end' => $antardasha->getEnd(),
-                'pratyantardasha' => $pratyantardashaResult
+                'pratyantardasha' => $pratyantardashaResult,
             ];
         }
         $dashaPeriodResult[] = [
@@ -259,12 +254,11 @@ try {
             'name' => $dashaPeriod->getName(),
             'start' => $dashaPeriod->getStart(),
             'end' => $dashaPeriod->getEnd(),
-            'antardasha' => $antardashaResult
+            'antardasha' => $antardashaResult,
         ];
     }
     $kundliResult['dashaPeriods'] = $dashaPeriodResult;
     print_r($kundliResult);
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

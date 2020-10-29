@@ -37,12 +37,6 @@ class AdvancedKundliMatching implements ResultInterface
     /**
      * AdvancedKundliMatching constructor.
      *
-     * @param ProfileInfo $girlInfo
-     * @param ProfileInfo $boyInfo
-     * @param Message $message
-     * @param AdvancedGunaMilan $gunaMilan
-     * @param MangalDosha $girlMangalDoshaDetails
-     * @param MangalDosha $boyMangalDoshaDetails
      * @param string[] $exceptions
      */
     public function __construct(

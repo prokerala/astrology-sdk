@@ -11,7 +11,6 @@
 
 use Prokerala\Api\Astrology\NakshatraProfile;
 use Prokerala\Api\Astrology\Service\NakshatraPorutham;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -65,7 +64,6 @@ try {
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }
-
 
 try {
     $result = $nakshatra_porutham->process($girl_profile, $boy_profile, true);

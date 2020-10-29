@@ -14,10 +14,7 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Chart as ChartResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
-use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Api\Exception\QuotaExceededException;
-use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
 class Chart
@@ -39,10 +36,11 @@ class Chart
     /**
      * Fetch result from API.
      *
-     * @param Location $location Location details
-     * @param \DateTimeInterface $datetime Date and time
-     * @param string $chart_type Chart type
-     * @param string $chart_style
+     * @param Location           $location    Location details
+     * @param \DateTimeInterface $datetime    Date and time
+     * @param string             $chart_type  Chart type
+     * @param string             $chart_style
+     *
      * @return ChartResult
      */
     public function process(Location $location, $datetime, $chart_type, $chart_style)
@@ -55,7 +53,6 @@ class Chart
             'chart_style' => $chart_style,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        return $apiResponse;
+        return $this->apiClient->process($this->slug, $parameters);
     }
 }

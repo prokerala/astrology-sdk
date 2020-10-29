@@ -11,7 +11,6 @@
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Service\Choghadiya;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -39,8 +38,7 @@ try {
 
     $choghadiyaResult = [];
 
-    foreach ($arData as $data)
-    {
+    foreach ($arData as $data) {
         $choghadiyaResult[] = [
             'id' => $data->getId(),
             'name' => $data->getName(),
@@ -52,7 +50,6 @@ try {
         ];
     }
     print_r($choghadiyaResult);
-
 } catch (QuotaExceededException $e) {
 } catch (RateLimitExceededException $e) {
 }

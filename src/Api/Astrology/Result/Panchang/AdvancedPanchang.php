@@ -67,17 +67,13 @@ class AdvancedPanchang implements ResultInterface
     /**
      * AdvancedPanchang constructor.
      *
-     * @param string $vaara
+     * @param string                                                  $vaara
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[] $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[] $tithi
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[] $karana
-     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[] $yoga
-     * @param DateTimeInterface $sunrise
-     * @param DateTimeInterface $sunset
-     * @param DateTimeInterface $moonrise
-     * @param DateTimeInterface $moonset
-     * @param Muhurat\Muhurat[] $auspiciousPeriod
-     * @param Muhurat\Muhurat[] $inauspiciousPeriod
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]     $tithi
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
+     * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]      $yoga
+     * @param Muhurat\Muhurat[]                                       $auspiciousPeriod
+     * @param Muhurat\Muhurat[]                                       $inauspiciousPeriod
      */
     public function __construct(
         $vaara,

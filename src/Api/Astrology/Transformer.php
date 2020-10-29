@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Prokerala Astrology API PHP SDK
+ *
+ * © Ennexa Technologies <info@ennexa.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Prokerala\Api\Astrology;
 
 use Prokerala\Api\Astrology\Exception\Result\Transformer\Exception;
@@ -23,7 +32,7 @@ class Transformer
     private $paramConverters = [];
 
     /**
-     * @var class-string $class
+     * @var class-string
      * @psalm-var class-string $class
      */
     private $class;
@@ -39,14 +48,16 @@ class Transformer
 
     /**
      * @param "string"|"int" $from
-     * @param class-string $to
-     * @param callable $converter
+     * @param class-string   $to
+     * @param callable       $converter
+     *
      * @return void
      */
     public function setParamConverter($from, $to, $converter)
     {
         if (null === $converter) {
             unset($this->paramConverters[$from][$to]);
+
             return;
         }
 
@@ -69,6 +80,7 @@ class Transformer
     /**
      * @param string    $class
      * @param \stdClass $data
+     *
      * @return object
      * @pslam-param class-string of C $class
      * @psalm-return C
@@ -183,12 +195,13 @@ class Transformer
     }
 
     /**
-     * @param mixed $data Data
-     * @param string $dataType Data type
+     * @param mixed    $data       Data
+     * @param string   $dataType   Data type
      * @param string[] $paramTypes Parameter type
      *
-     * @return mixed
      * @throws ParameterMismatchException
+     *
+     * @return mixed
      */
     private function parseParameter($data, $dataType, $paramTypes)
     {
@@ -202,10 +215,10 @@ class Transformer
             if (isset($this->paramConverters[$dataType][$targetType])) {
                 // Convert using configured transformer
                 $transformer = $this->paramConverters[$dataType][$targetType];
+
                 return $transformer($data);
             }
         }
-
 
         if (null === $data || is_scalar($data) || $isEmptyArray || (\is_array($data) && is_scalar($data[0]))) {
             if (null === $dataType) {

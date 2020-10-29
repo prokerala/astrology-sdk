@@ -37,9 +37,9 @@ class ThirumanaPorutham implements ResultInterface
 
     /**
      * ThirumanaPorutham constructor.
-     * @param float $maximumPoints
-     * @param float $obtainedPoints
-     * @param Message $message
+     *
+     * @param float            $maximumPoints
+     * @param float            $obtainedPoints
      * @param Porutham\Match[] $matches
      */
     public function __construct(
@@ -48,7 +48,6 @@ class ThirumanaPorutham implements ResultInterface
         Message $message,
         array $matches
     ) {
-
         $this->maximumPoints = $maximumPoints;
         $this->obtainedPoints = $obtainedPoints;
         $this->matches = $matches;
@@ -86,7 +85,4 @@ class ThirumanaPorutham implements ResultInterface
     {
         return $this->matches;
     }
-
-
-
 }

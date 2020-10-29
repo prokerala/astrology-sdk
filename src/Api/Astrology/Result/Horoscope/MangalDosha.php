@@ -18,7 +18,6 @@ class MangalDosha implements ResultInterface
 {
     use RawResponseTrait;
 
-
     /**
      * @var bool
      */
@@ -30,12 +29,12 @@ class MangalDosha implements ResultInterface
 
     /**
      * MangalDosha constructor.
-     * @param bool $hasDosha
+     *
+     * @param bool   $hasDosha
      * @param string $description
      */
     public function __construct($hasDosha, $description)
     {
-
         $this->hasDosha = $hasDosha;
         $this->description = $description;
     }
@@ -57,12 +56,10 @@ class MangalDosha implements ResultInterface
     }
 
     /**
-     * @return \stdClass|null
+     * @return null|\stdClass
      */
     public function getApiResponse()
     {
         return $this->apiResponse;
     }
-
-
 }

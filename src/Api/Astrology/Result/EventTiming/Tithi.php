@@ -15,7 +15,6 @@ use DateTimeInterface;
 
 class Tithi
 {
-
     /**
      * @var int
      */
@@ -43,12 +42,11 @@ class Tithi
 
     /**
      * Tithi constructor.
-     * @param int $index
-     * @param int $id
+     *
+     * @param int    $index
+     * @param int    $id
      * @param string $name
      * @param string $paksha
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
      */
     public function __construct(
         $index,
@@ -57,8 +55,7 @@ class Tithi
         $paksha,
         DateTimeInterface $start,
         DateTimeInterface $end
-    )
-    {
+    ) {
         $this->index = $index;
         $this->id = $id;
         $this->name = $name;
@@ -114,6 +111,4 @@ class Tithi
     {
         return $this->end;
     }
-
-
 }

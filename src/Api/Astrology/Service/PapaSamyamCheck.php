@@ -40,8 +40,6 @@ class PapaSamyamCheck
     /**
      * Fetch result from API.
      *
-     * @param Profile $girl_profile
-     * @param Profile $boy_profile
      * @return PapaSamyamCheckResult
      */
     public function process(Profile $girl_profile, Profile $boy_profile)

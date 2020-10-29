@@ -46,11 +46,9 @@ class Porutham implements ResultInterface
 
     /**
      * Porutham constructor.
-     * @param Profile $girlInfo
-     * @param Profile $boyInfo
-     * @param float $maximumPoints
-     * @param float $totalPoints
-     * @param Message $message
+     *
+     * @param float            $maximumPoints
+     * @param float            $totalPoints
      * @param Porutham\Match[] $matches
      */
     public function __construct(
@@ -61,8 +59,6 @@ class Porutham implements ResultInterface
         Message $message,
         array $matches
     ) {
-
-
         $this->girlInfo = $girlInfo;
         $this->boyInfo = $boyInfo;
         $this->maximumPoints = $maximumPoints;
@@ -118,6 +114,4 @@ class Porutham implements ResultInterface
     {
         return $this->matches;
     }
-
-
 }

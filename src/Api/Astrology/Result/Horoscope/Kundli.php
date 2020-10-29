@@ -33,8 +33,7 @@ class Kundli implements ResultInterface
 
     /**
      * Kundli constructor.
-     * @param BirthDetails $nakshatraDetails
-     * @param MangalDosha $mangalDosha
+     *
      * @param Yoga\YogaDetails[] $yogaDetails
      */
     public function __construct(BirthDetails $nakshatraDetails, MangalDosha $mangalDosha, array $yogaDetails)

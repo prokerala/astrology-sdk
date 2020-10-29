@@ -11,10 +11,10 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo;
-use Prokerala\Api\Astrology\Result\Element\Rasi;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
+use Prokerala\Api\Astrology\Result\Element\Rasi;
 use Prokerala\Api\Astrology\Result\Element\Zodiac;
+use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
@@ -48,10 +48,7 @@ class BirthDetails implements ResultInterface
 
     /**
      * BirthDetails constructor.
-     * @param \Prokerala\Api\Astrology\Result\Element\Nakshatra $nakshatra
-     * @param \Prokerala\Api\Astrology\Result\Element\Rasi $chandraRasi
-     * @param \Prokerala\Api\Astrology\Result\Element\Rasi $sooryaRasi
-     * @param \Prokerala\Api\Astrology\Result\Element\Zodiac $zodiac
+     *
      * @param Nakshatra\NakshatraInfo $additionalInfo
      */
     public function __construct(
@@ -61,7 +58,6 @@ class BirthDetails implements ResultInterface
         Zodiac $zodiac,
         NakshatraInfo $additionalInfo
     ) {
-
         $this->nakshatra = $nakshatra;
         $this->chandraRasi = $chandraRasi;
         $this->sooryaRasi = $sooryaRasi;
@@ -108,5 +104,4 @@ class BirthDetails implements ResultInterface
     {
         return $this->additionalInfo;
     }
-
 }

@@ -12,7 +12,6 @@
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Service\PapaSamyamCheck;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -21,7 +20,6 @@ include 'prepend.inc.php';
 /**
  * Nakshatra Porutham.
  */
-
 $girl_input = [
     'datetime' => '1967-08-29T09:00:00+05:30',
     'latitude' => '19.0821978',

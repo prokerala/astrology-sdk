@@ -10,7 +10,6 @@
  */
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -45,16 +44,16 @@ try {
     $chandraRasiLord = $chandraRasi->getLord();
 
     $birthDetails = [
-       'nakshatra' => [
-           'id' => $nakshatra->getId(),
-           'name' => $nakshatra->getName(),
-           'pada' => $nakshatra->getPada(),
-           'lord' => [
-               'id' => $nakshatraLord->getId(),
-               'name' => $nakshatraLord->getName(),
-               'vedicName' => $nakshatraLord->getVedicName(),
-           ],
-       ],
+        'nakshatra' => [
+            'id' => $nakshatra->getId(),
+            'name' => $nakshatra->getName(),
+            'pada' => $nakshatra->getPada(),
+            'lord' => [
+                'id' => $nakshatraLord->getId(),
+                'name' => $nakshatraLord->getName(),
+                'vedicName' => $nakshatraLord->getVedicName(),
+            ],
+        ],
         'sooryaRasi' => [
             'id' => $sooryaRasi->getId(),
             'name' => $sooryaRasi->getName(),
@@ -92,7 +91,6 @@ try {
             'enemyYoni' => $additionalInfo->getEnemyYoni(),
         ],
     ];
-
 
     print_r($birthDetails);
 } catch (QuotaExceededException $e) {

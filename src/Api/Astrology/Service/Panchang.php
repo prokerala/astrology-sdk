@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\AdvancedKundli as AdvancedKundliResult;
-use Prokerala\Api\Astrology\Result\Horoscope\Kundli as KundliResult;
 use Prokerala\Api\Astrology\Result\Panchang\AdvancedPanchang as AdvancedPanchangResult;
 use Prokerala\Api\Astrology\Result\Panchang\Panchang as PanchangResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
@@ -23,7 +21,6 @@ use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
-use stdClass;
 
 /**
  * Defines the Panchang.

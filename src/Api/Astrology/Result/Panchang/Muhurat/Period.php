@@ -26,8 +26,6 @@ class Period
 
     /**
      * Period constructor.
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
      */
     public function __construct(DateTimeInterface $start, DateTimeInterface $end)
     {

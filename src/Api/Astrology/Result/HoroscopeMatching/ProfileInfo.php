@@ -17,8 +17,6 @@ use Prokerala\Api\Astrology\Result\Horoscope\Koot;
 
 class ProfileInfo
 {
-
-
     /**
      * @var Koot
      */
@@ -34,13 +32,9 @@ class ProfileInfo
 
     /**
      * ProfileInfo constructor.
-     * @param Koot $koot
-     * @param Nakshatra $nakshatra
-     * @param Rasi $rasi
      */
     public function __construct(Koot $koot, Nakshatra $nakshatra, Rasi $rasi)
     {
-
         $this->koot = $koot;
         $this->nakshatra = $nakshatra;
         $this->rasi = $rasi;
@@ -69,6 +63,4 @@ class ProfileInfo
     {
         return $this->rasi;
     }
-
-
 }

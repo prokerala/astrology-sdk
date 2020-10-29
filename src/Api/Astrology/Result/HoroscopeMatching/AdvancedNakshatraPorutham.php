@@ -37,9 +37,9 @@ class AdvancedNakshatraPorutham implements ResultInterface
 
     /**
      * AdvancedNakshatraPorutham constructor.
-     * @param float $maximumPoints
-     * @param float $obtainedPoints
-     * @param Message $message
+     *
+     * @param float                    $maximumPoints
+     * @param float                    $obtainedPoints
      * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
@@ -48,8 +48,6 @@ class AdvancedNakshatraPorutham implements ResultInterface
         Message $message,
         array $matches
     ) {
-
-
         $this->maximumPoints = $maximumPoints;
         $this->obtainedPoints = $obtainedPoints;
         $this->message = $message;
@@ -87,5 +85,4 @@ class AdvancedNakshatraPorutham implements ResultInterface
     {
         return $this->matches;
     }
-
 }

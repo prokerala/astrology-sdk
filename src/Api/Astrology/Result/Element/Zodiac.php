@@ -13,8 +13,6 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 class Zodiac
 {
-
-
     /**
      * @var int
      */
@@ -26,12 +24,12 @@ class Zodiac
 
     /**
      * Zodiac constructor.
-     * @param int $id
+     *
+     * @param int    $id
      * @param string $name
      */
     public function __construct($id, $name)
     {
-
         $this->id = $id;
         $this->name = $name;
     }
@@ -51,6 +49,4 @@ class Zodiac
     {
         return $this->name;
     }
-
-
 }

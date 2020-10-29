@@ -9,8 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-use Nyholm\Psr7\Factory\Psr17Factory;
 use GuzzleHttp\Client as HttpClient;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Prokerala\Common\Api\Authentication\Oauth2;
 use Prokerala\Common\Api\Client;
 
