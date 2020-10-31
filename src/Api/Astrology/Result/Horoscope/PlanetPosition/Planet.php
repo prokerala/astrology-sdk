@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition;
 
 use Prokerala\Api\Astrology\Result\Element\Rasi;
 
-class Planet
+final class Planet
 {
     /**
      * @var int
@@ -45,8 +45,6 @@ class Planet
     private $rasi;
 
     /**
-     * Planet constructor.
-     *
      * @param int    $id
      * @param string $name
      * @param float  $longitude

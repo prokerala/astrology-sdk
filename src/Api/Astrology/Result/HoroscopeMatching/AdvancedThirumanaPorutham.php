@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedThirumanaPorutham implements ResultInterface
+final class AdvancedThirumanaPorutham implements ResultInterface
 {
     use RawResponseTrait;
 

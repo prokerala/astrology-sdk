@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham;
 
 use Prokerala\Api\Astrology\Traits\StringableTrait;
 
-class AdvancedMatch
+final class AdvancedMatch
 {
     use StringableTrait;
     /**

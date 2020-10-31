@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 use Prokerala\Api\Astrology\Traits\StringableTrait;
 
-class Planet
+final class Planet
 {
     use StringableTrait;
 

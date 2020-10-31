@@ -18,10 +18,7 @@ use Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-/**
- * Defines Birth Details.
- */
-class BirthDetails implements ResultInterface
+final class BirthDetails implements ResultInterface
 {
     use RawResponseTrait;
 

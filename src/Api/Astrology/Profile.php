@@ -11,18 +11,16 @@
 
 namespace Prokerala\Api\Astrology;
 
-/**
- * Defines Profile.
- */
-class Profile
+final class Profile
 {
     /**
-     * Init Profile.
-     *
-     * @param array $data nakshatra details
+     * @var Location
      */
-    public $location;
-    public $datetime;
+    private $location;
+    /**
+     * @var \DateTimeInterface
+     */
+    private $datetime;
 
     public function __construct(Location $location, \DateTimeInterface $datetime)
     {
@@ -31,9 +29,9 @@ class Profile
     }
 
     /**
-     * Function returns the datetime.
+     * Get birth time.
      *
-     * @return object
+     * @return \DateTimeInterface
      */
     public function getDateTime()
     {
@@ -41,9 +39,9 @@ class Profile
     }
 
     /**
-     * Function returns the location.
+     * Get birth location.
      *
-     * @return object
+     * @return Location
      */
     public function getLocation()
     {

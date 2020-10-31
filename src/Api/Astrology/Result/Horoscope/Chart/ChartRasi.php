@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Chart;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class ChartRasi implements ResultInterface
+final class ChartRasi implements ResultInterface
 {
     use RawResponseTrait;
 

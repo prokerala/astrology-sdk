@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 use DateTimeInterface;
 
-class Tithi
+final class Tithi
 {
     /**
      * @var int

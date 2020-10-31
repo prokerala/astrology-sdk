@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang\Muhurat;
 
-class Muhurat
+final class Muhurat
 {
     /**
      * @var int

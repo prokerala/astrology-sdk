@@ -23,7 +23,7 @@ use RuntimeException;
 /**
  * @template T of ResultInterface
  */
-class Transformer
+final class Transformer
 {
     /**
      * @var callable[]

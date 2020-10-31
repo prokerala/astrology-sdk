@@ -19,7 +19,7 @@ use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class PlanetPosition
+final class PlanetPosition
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

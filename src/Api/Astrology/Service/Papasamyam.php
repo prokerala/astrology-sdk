@@ -18,7 +18,7 @@ use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class Papasamyam
+final class Papasamyam
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

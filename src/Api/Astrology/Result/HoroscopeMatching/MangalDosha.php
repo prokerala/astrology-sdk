@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-class MangalDosha
+final class MangalDosha
 {
     /**
      * @var bool

@@ -11,19 +11,16 @@
 
 namespace Prokerala\Api\Astrology;
 
-/**
- * Defines Ayanamsa.
- */
-class Ayanamsa
+final class Ayanamsa
 {
-    public const LAHIRI = 1;
-    public const RAMAN = 3;
-    public const KP = 5;
+    const LAHIRI = 1;
+    const RAMAN = 3;
+    const KP = 5;
 
     /**
-     * Function returns the latitude.
+     * Get list of supported ayanamsas.
      *
-     * @return float
+     * @return array<int,string>
      */
     public function getAyanamsaList()
     {

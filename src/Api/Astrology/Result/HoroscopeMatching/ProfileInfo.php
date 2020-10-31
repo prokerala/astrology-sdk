@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
 use Prokerala\Api\Astrology\Result\Horoscope\Koot;
 
-class ProfileInfo
+final class ProfileInfo
 {
     /**
      * @var Koot

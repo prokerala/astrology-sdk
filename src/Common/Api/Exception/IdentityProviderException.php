@@ -11,6 +11,6 @@
 
 namespace Prokerala\Common\Api\Exception;
 
-class IdentityProviderException extends \Exception
+final class IdentityProviderException extends \Exception
 {
 }

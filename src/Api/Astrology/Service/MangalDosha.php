@@ -21,7 +21,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class MangalDosha
+final class MangalDosha
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

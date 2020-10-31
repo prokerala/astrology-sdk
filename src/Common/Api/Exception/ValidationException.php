@@ -11,7 +11,7 @@
 
 namespace Prokerala\Common\Api\Exception;
 
-class ValidationException extends \InvalidArgumentException
+final class ValidationException extends \InvalidArgumentException
 {
     private $errors;
 

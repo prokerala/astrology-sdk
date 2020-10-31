@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class InauspiciousPeriod implements ResultInterface
+final class InauspiciousPeriod implements ResultInterface
 {
     use RawResponseTrait;
 

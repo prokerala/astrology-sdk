@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 use DateTimeInterface;
 
-class Pratyantardasha
+final class Pratyantardasha
 {
     /**
      * @var int

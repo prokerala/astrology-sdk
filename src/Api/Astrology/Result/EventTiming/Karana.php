@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-class Karana
+final class Karana
 {
     /** @var int */
     private $index;

@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
-class Tithi
+final class Tithi
 {
     const PRATIPADA = 1;
     const DWITIYA = 2;

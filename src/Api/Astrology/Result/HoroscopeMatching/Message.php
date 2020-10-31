@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of Prokerala Astrology API PHP SDK
  *
@@ -13,7 +11,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
-class Message
+final class Message
 {
     /** @var string */
     private $type;

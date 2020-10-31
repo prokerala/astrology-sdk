@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
-class Nakshatra
+final class Nakshatra
 {
     /**
      * @var int

@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Kundli implements ResultInterface
+final class Kundli implements ResultInterface
 {
     use RawResponseTrait;
 

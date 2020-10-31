@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-class Rasi
+final class Rasi
 {
     /** @var int */
     private $id;

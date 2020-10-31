@@ -11,6 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Exception\Result\Transformer;
 
-class ParameterMismatchException extends Exception
+final class ParameterMismatchException extends Exception
 {
 }

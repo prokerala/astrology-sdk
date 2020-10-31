@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
-class Karana
+final class Karana
 {
     const BAVA = 0;
     const BALAVA = 1;

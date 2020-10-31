@@ -11,6 +11,6 @@
 
 namespace Prokerala\Common\Api\Exception;
 
-class RateLimitExceededException extends \RuntimeException
+final class RateLimitExceededException extends \RuntimeException
 {
 }

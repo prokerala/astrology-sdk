@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-class ChandraRasi
+final class ChandraRasi
 {
     /**
      * @var int

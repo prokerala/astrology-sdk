@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
-class Weekday
+final class Weekday
 {
     const MONDAY = 0;
     const TUESDAY = 1;

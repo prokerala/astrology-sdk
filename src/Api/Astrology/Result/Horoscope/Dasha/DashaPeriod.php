@@ -13,10 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 use DateTimeInterface;
 
-/**
- * Defines DashaPeriod.
- */
-class DashaPeriod
+final class DashaPeriod
 {
     /**
      * @var int

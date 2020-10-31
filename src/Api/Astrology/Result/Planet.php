@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result;
 
-class Planet
+final class Planet
 {
     const SUN = 0;
     const MOON = 1;

@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan\GunaMilan;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class KundliMatching implements ResultInterface
+final class KundliMatching implements ResultInterface
 {
     use RawResponseTrait;
 

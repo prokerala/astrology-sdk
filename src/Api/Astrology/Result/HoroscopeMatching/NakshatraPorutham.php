@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class NakshatraPorutham implements ResultInterface
+final class NakshatraPorutham implements ResultInterface
 {
     use RawResponseTrait;
 
@@ -36,8 +36,6 @@ class NakshatraPorutham implements ResultInterface
     private $matches;
 
     /**
-     * NakshatraPorutham constructor.
-     *
      * @param float            $maximumPoints
      * @param float            $obtainedPoints
      * @param Porutham\Match[] $matches

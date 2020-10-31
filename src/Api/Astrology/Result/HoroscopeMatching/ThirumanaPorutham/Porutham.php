@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham;
 
-class Porutham
+final class Porutham
 {
     /**
      * @var bool

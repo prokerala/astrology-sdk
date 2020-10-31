@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
-class GunaMilan
+final class GunaMilan
 {
     /**
      * @var float

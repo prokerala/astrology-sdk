@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 use DateTimeInterface;
 use Prokerala\Api\Astrology\Result\Element\Planet;
 
-class Nakshatra
+final class Nakshatra
 {
     /**
      * @var int

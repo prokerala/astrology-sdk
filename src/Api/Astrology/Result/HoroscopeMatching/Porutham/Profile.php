@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
 
-class Profile
+final class Profile
 {
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra

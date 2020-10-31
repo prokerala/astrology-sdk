@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-class Yoga
+final class Yoga
 {
     /**
      * @var int

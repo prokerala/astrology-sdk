@@ -11,6 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Exception\Result\Transformer;
 
-class ParameterValueMissingException extends Exception
+final class ParameterValueMissingException extends Exception
 {
 }

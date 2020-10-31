@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class SadeSati implements ResultInterface
+final class SadeSati implements ResultInterface
 {
     use RawResponseTrait;
     /**
@@ -31,8 +31,6 @@ class SadeSati implements ResultInterface
     private $description;
 
     /**
-     * SadeSati constructor.
-     *
      * @param bool        $isInSadeSati
      * @param null|string $transitPhase
      * @param string      $description

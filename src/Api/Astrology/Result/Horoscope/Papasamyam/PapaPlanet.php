@@ -11,10 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 
-/**
- * Defines PapaPlanet.
- */
-class PapaPlanet
+final class PapaPlanet
 {
     /**
      * @var string

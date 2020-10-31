@@ -17,7 +17,7 @@ use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class Chart
+final class Chart
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

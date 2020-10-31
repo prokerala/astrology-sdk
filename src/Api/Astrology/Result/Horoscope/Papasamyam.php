@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Papasamyam implements ResultInterface
+final class Papasamyam implements ResultInterface
 {
     use RawResponseTrait;
 

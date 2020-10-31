@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Panchang\Muhurat;
 
 use DateTimeInterface;
 
-class Period
+final class Period
 {
     /**
      * @var DateTimeInterface

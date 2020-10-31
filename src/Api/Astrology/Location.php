@@ -11,27 +11,24 @@
 
 namespace Prokerala\Api\Astrology;
 
-/**
- * Defines.
- */
-class Location
+final class Location
 {
     /**
      * @var float
      */
-    protected $latitude;
+    private $latitude;
     /**
      * @var float
      */
-    protected $longitude;
+    private $longitude;
     /**
      * @var float
      */
-    protected $altitude;
+    private $altitude;
     /**
      * @var \DateTimeZone
      */
-    protected $timezone;
+    private $timezone;
 
     public function __construct($latitude, $longitude, $altitude = 0, \DateTimeZone $timezone = null)
     {

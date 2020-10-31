@@ -11,10 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 
-/**
- * Defines PlanetDoshaDetails.
- */
-class PlanetDoshaDetails
+final class PlanetDoshaDetails
 {
     /**
      * @var int
@@ -34,8 +31,6 @@ class PlanetDoshaDetails
     private $hasDosha;
 
     /**
-     * PlanetDoshaDetails constructor.
-     *
      * @param int    $id
      * @param string $name
      * @param int    $position

@@ -20,7 +20,7 @@ use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class SadeSati
+final class SadeSati
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

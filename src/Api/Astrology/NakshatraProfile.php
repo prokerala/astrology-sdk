@@ -11,18 +11,18 @@
 
 namespace Prokerala\Api\Astrology;
 
-/**
- * Defines NakshatraProfile.
- */
-class NakshatraProfile
+final class NakshatraProfile
 {
-    public $nakshatra;
-    public $nakshatra_pada;
-
     /**
-     * NakshatraProfile constructor.
+     * @var int
      */
-    public function __construct(int $nakshatra, int $nakshatra_pada)
+    private $nakshatra;
+    /**
+     * @var int
+     */
+    private $nakshatra_pada;
+
+    public function __construct($nakshatra, $nakshatra_pada)
     {
         $this->nakshatra = $nakshatra;
         $this->nakshatra_pada = $nakshatra_pada;

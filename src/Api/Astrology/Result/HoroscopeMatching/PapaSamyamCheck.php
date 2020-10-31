@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class PapaSamyamCheck implements ResultInterface
+final class PapaSamyamCheck implements ResultInterface
 {
     use RawResponseTrait;
 
@@ -32,9 +32,6 @@ class PapaSamyamCheck implements ResultInterface
      */
     private $message;
 
-    /**
-     * PapaSamyamCheck constructor.
-     */
     public function __construct(
         Papasamyam $girlPapasamyam,
         Papasamyam $boyPapasamyam,

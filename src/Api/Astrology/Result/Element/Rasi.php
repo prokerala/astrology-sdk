@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 use Prokerala\Api\Astrology\Traits\StringableTrait;
 
-class Rasi
+final class Rasi
 {
     use StringableTrait;
 

@@ -19,7 +19,7 @@ use Prokerala\Common\Api\Exception\ValidationException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class Client
+final class Client
 {
     const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
 

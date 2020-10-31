@@ -22,7 +22,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class Kundli
+final class Kundli
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

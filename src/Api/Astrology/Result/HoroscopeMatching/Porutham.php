@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Porutham implements ResultInterface
+final class Porutham implements ResultInterface
 {
     use RawResponseTrait;
 

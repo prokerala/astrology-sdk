@@ -11,10 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 
-/**
- * Defines PlanetDoshaDetails.
- */
-class PapasamyamDetails
+final class PapasamyamDetails
 {
     /**
      * @var PapaPlanet[]

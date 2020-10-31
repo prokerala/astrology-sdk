@@ -14,7 +14,7 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Choghadiya implements ResultInterface
+final class Choghadiya implements ResultInterface
 {
     use RawResponseTrait;
 

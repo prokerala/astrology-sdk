@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 use DateTimeInterface;
 
-class Antardasha
+final class Antardasha
 {
     /**
      * @var int
@@ -37,8 +37,6 @@ class Antardasha
     private $pratyantardasha;
 
     /**
-     * Pratyantardasha constructor.
-     *
      * @param int               $id
      * @param string            $name
      * @param Pratyantardasha[] $pratyantardasha

@@ -15,7 +15,7 @@ use DateTimeInterface;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AdvancedPanchang implements ResultInterface
+final class AdvancedPanchang implements ResultInterface
 {
     use RawResponseTrait;
 

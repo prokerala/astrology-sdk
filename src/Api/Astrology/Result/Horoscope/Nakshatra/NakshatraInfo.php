@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Nakshatra;
 
-class NakshatraInfo
+final class NakshatraInfo
 {
     /** @var string */
     private $deity;

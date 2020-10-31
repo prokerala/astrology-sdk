@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang\Choghadiya;
 
-class Period
+final class Period
 {
     /**
      * @var int

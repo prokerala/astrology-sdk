@@ -19,7 +19,7 @@ use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-class KundliMatching
+final class KundliMatching
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;

@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Yoga;
 
-class Yoga
+final class Yoga
 {
     /**
      * @var string
@@ -27,8 +27,6 @@ class Yoga
     private $description;
 
     /**
-     * Yoga constructor.
-     *
      * @param string $name
      * @param bool   $hasYoga
      * @param string $description

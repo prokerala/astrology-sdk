@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\SadeSati;
 
 use DateTimeInterface;
 
-class SaturnTransit
+final class SaturnTransit
 {
     /**
      * @var string
@@ -41,8 +41,6 @@ class SaturnTransit
     private $isRetrograde;
 
     /**
-     * SaturnTransit constructor.
-     *
      * @param string $saturnSign
      * @param string $phase
      * @param string $description

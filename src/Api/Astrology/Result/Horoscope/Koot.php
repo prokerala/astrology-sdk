@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-class Koot
+final class Koot
 {
     /** @var string */
     private $varna;

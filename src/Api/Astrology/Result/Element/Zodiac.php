@@ -11,7 +11,7 @@
 
 namespace Prokerala\Api\Astrology\Result\Element;
 
-class Zodiac
+final class Zodiac
 {
     /**
      * @var int
@@ -23,8 +23,6 @@ class Zodiac
     private $name;
 
     /**
-     * Zodiac constructor.
-     *
      * @param int    $id
      * @param string $name
      */

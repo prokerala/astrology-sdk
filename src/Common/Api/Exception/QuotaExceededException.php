@@ -11,6 +11,6 @@
 
 namespace Prokerala\Common\Api\Exception;
 
-class QuotaExceededException extends \RuntimeException
+final class QuotaExceededException extends \RuntimeException
 {
 }
