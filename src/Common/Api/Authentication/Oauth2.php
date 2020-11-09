@@ -104,8 +104,7 @@ class Oauth2 implements AuthenticationTypeInterface
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
         ];
-        $queryString = http_build_query($data);
-        $url = self::TOKEN_ENDPOINT."?{$queryString}";
+        $url = self::TOKEN_ENDPOINT;
 
         $stream = $this->streamFactory->createStream(http_build_query($data));
         $request = $this->httpRequestFactory->createRequest('POST', $url)
