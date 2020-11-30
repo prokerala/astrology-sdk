@@ -10,6 +10,8 @@ PHP needs to be a minimum version of PHP 5.6.0.
 
 ## Installation
 
+> **If you prefer to work with the JSON response directly, please checkout our dependency free [minimal PHP Client example](https://github.com/prokerala/astrology-api-client-example/tree/master/php) that calls the API directly.**
+
 ### Using composer (recommended)
 
 This is the recommended method for installation of the SDK.
