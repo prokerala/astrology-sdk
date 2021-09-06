@@ -126,7 +126,7 @@ final class Transformer
             }
 
             $dataType = $this->getType($paramValue);
-            $paramClass = $param->getClass();
+            $paramClass = $param->getType() && !$param->getType()->isBuiltin() ? new ReflectionClass($param->getType()->getName()) : null;
 
             if ($paramClass) {
                 $paramType = [$paramClass->getName()];
