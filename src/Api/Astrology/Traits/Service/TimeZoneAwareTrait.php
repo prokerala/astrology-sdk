@@ -46,7 +46,7 @@ trait TimeZoneAwareTrait
     private function addDateTimeTransformer($transformer)
     {
         $transformer->setParamConverter('string', \DateTimeInterface::class, function ($data) {
-            return new \DateTimeImmutable($data, $this->getTimeZone());
+            return (new \DateTimeImmutable($data))->setTimezone($this->getTimeZone());
         });
     }
 }
