@@ -17,7 +17,7 @@ use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Planet;
 use Prokerala\Api\Astrology\Service\HoroscopeMatch;
-use Prokerala\Api\Astrology\Service\KundliMatch;
+use Prokerala\Api\Astrology\Service\KundliMatching;
 use Prokerala\Api\Astrology\Service\MangalDosha;
 use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Api\Astrology\Service\Panchang;
@@ -89,7 +89,7 @@ try {
     }
     print_r($arNakshatra);
 
-    print_r("\n\n".Nakshatra::NAKSHATRA_UTTARA_BHADRAPADA);
+    print_r("\n\n".Nakshatra::UTTARA_BHADRAPADA);
 
     print_r("\n\n".$result->getInput()->datetime);
 } catch (\Exception $e) {
@@ -120,9 +120,9 @@ try {
 
     print_r($arPlanet);
 
-    print_r($arPlanet[Planet::PLANET_MOON]->getName());
+    print_r($arPlanet[Planet::MOON]->getName());
 
-    print_r($arPlanet[Planet::PLANET_MOON]->getDegree());
+    print_r($arPlanet[Planet::MOON]->getDegree());
 } catch (\Exception $e) {
     handleException($e);
 }
@@ -195,7 +195,7 @@ try {
     $groom_location = new Location($latitude, $longitude);
     $groom_profile = new Profile($groom_location, $groom_dob);
 
-    $kundli_match_service = new KundliMatch($client);
+    $kundli_match_service = new KundliMatching($client);
 
     $kundli_match = $kundli_match_service->process($bride_profile, $groom_profile);
 

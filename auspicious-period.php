@@ -16,6 +16,7 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 include 'prepend.inc.php';
 
+/** @var \Prokerala\Common\Api\Client $client */
 /**
  * AuspiciousPeriod.
  */
