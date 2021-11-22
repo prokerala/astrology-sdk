@@ -6,7 +6,7 @@ Prokerala Astrology SDK provides convenient access to Prokerala Astrology API fo
 
 ## Requirements
 
-PHP needs to be a minimum version of PHP 5.6.0.
+PHP needs to be a minimum version of PHP 7.1.0
 
 ## Installation
 
