@@ -31,14 +31,14 @@ final class NakshatraPorutham implements ResultInterface
      */
     private $message;
     /**
-     * @var Porutham\Match[]
+     * @var Porutham\BasicMatch[]
      */
     private $matches;
 
     /**
      * @param float            $maximumPoints
      * @param float            $obtainedPoints
-     * @param Porutham\Match[] $matches
+     * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(
         $maximumPoints,
@@ -77,7 +77,7 @@ final class NakshatraPorutham implements ResultInterface
     }
 
     /**
-     * @return Porutham\Match[]
+     * @return Porutham\BasicMatch[]
      */
     public function getMatches()
     {

@@ -40,7 +40,7 @@ final class Porutham implements ResultInterface
      */
     private $message;
     /**
-     * @var Porutham\Match[]
+     * @var Porutham\BasicMatch[]
      */
     private $matches;
 
@@ -49,7 +49,7 @@ final class Porutham implements ResultInterface
      *
      * @param float            $maximumPoints
      * @param float            $totalPoints
-     * @param Porutham\Match[] $matches
+     * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(
         Profile $girlInfo,
@@ -108,7 +108,7 @@ final class Porutham implements ResultInterface
     }
 
     /**
-     * @return Porutham\Match[]
+     * @return Porutham\BasicMatch[]
      */
     public function getMatches()
     {

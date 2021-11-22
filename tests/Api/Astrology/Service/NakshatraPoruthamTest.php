@@ -16,7 +16,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedNakshatraPorutham a
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\NakshatraPorutham as BasicNakshatraPoruthamResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\AdvancedMatch as AdvancedMatchResult;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Match as BasicMatchResult;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\BasicMatch as BasicMatchResult;
 use Prokerala\Api\Astrology\Service\NakshatraPorutham;
 use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
 use Prokerala\Tests\BaseTestCase;

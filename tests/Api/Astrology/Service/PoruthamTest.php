@@ -21,7 +21,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedPorutham as Advance
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\AdvancedMatch;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham as BasicMatchResult;
-use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Match;
+use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\BasicMatch;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\Profile as ProfileInfo;
 use Prokerala\Api\Astrology\Service\Porutham;
 use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
@@ -356,7 +356,7 @@ class PoruthamTest extends BaseTestCase
 
         foreach ($kerala_result['matches'] as $match) {
             $advanced_match_result[] = new AdvancedMatch($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
-            $basic_match_result[] = new Match($match['id'], $match['name'], $match['has_porutham']);
+            $basic_match_result[] = new BasicMatch($match['id'], $match['name'], $match['has_porutham']);
             $basic_match_object[] = (object) [
                 'id' => $match['id'],
                 'name' => $match['name'],
@@ -403,7 +403,7 @@ class PoruthamTest extends BaseTestCase
 
         foreach ($tamil_result['matches'] as $match) {
             $advanced_tamil_match_result[] = new AdvancedMatch($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
-            $basic_tamil_match_result[] = new Match($match['id'], $match['name'], $match['has_porutham']);
+            $basic_tamil_match_result[] = new BasicMatch($match['id'], $match['name'], $match['has_porutham']);
             $basic_tamil_match_object[] = (object) [
                 'id' => $match['id'],
                 'name' => $match['name'],
