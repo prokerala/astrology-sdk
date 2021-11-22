@@ -2,7 +2,7 @@
   "name": "prokerala/astrology-sdk",
   "description": "Prokerala.com Astrology API Client Library for PHP.",
   "type": "library",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
