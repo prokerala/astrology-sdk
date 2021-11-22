@@ -39,15 +39,10 @@ final class BirthDetails implements ResultInterface
      */
     private $zodiac;
     /**
-     * @var Nakshatra\NakshatraInfo
+     * @var \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
      */
     private $additionalInfo;
 
-    /**
-     * BirthDetails constructor.
-     *
-     * @param Nakshatra\NakshatraInfo $additionalInfo
-     */
     public function __construct(
         Nakshatra $nakshatra,
         Rasi $chandraRasi,

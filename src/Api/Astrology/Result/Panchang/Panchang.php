@@ -85,7 +85,7 @@ final class Panchang implements ResultInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getVaara()
     {

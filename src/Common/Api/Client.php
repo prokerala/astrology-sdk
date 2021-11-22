@@ -48,7 +48,7 @@ final class Client
      * @param string $path  section path
      * @param array  $input request parameters
      *
-     * @return array
+     * @return \stdClass
      */
     public function process($path, $input)
     {

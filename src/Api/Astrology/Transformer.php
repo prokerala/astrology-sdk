@@ -78,7 +78,7 @@ final class Transformer
     }
 
     /**
-     * @param string    $class
+     * @param string    $className
      * @param \stdClass $data
      *
      * @return object
@@ -147,7 +147,6 @@ final class Transformer
     }
 
     /**
-     * @param ReflectionMethod $docComment
      * @param string           $namespace
      *
      * @return array
