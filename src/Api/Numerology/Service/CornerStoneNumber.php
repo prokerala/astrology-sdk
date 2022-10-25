@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\CornerStoneResult;
+use Prokerala\Api\Numerology\Result\CornerStone;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
@@ -27,9 +27,9 @@ final class CornerStoneNumber
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = '/numerology/corner-stone-number';
+    protected $slug = '/numerology/cornerstone-number';
 
-    /** @var Transformer<CornerStoneResult> */
+    /** @var Transformer<CornerStone> */
     private $transformer;
 
     /**
@@ -38,7 +38,7 @@ final class CornerStoneNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(CornerStoneResult::class);
+        $this->transformer = new Transformer(CornerStone::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -48,7 +48,7 @@ final class CornerStoneNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return CornerStoneResult
+     * @return CornerStone
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

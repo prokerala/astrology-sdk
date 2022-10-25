@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\UniversalMonthResult;
+use Prokerala\Api\Numerology\Result\UniversalMonth;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -27,7 +27,7 @@ final class UniversalMonthNumber
     /** @var string */
     protected $slug = '/numerology/universal-month-number';
 
-    /** @var Transformer<UniversalMonthResult> */
+    /** @var Transformer<UniversalMonth> */
     private $transformer;
 
     /**
@@ -36,7 +36,7 @@ final class UniversalMonthNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(UniversalMonthResult::class);
+        $this->transformer = new Transformer(UniversalMonth::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 

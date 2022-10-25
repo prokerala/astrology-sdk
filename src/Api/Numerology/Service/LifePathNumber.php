@@ -13,13 +13,13 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
+use Prokerala\Api\Numerology\Result\LifePath;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-final class LifepathNumber
+final class LifePathNumber
 {
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
@@ -27,7 +27,7 @@ final class LifepathNumber
     /** @var string */
     protected $slug = '/numerology/life-path-number';
 
-    /** @var Transformer<LifePathResult> */
+    /** @var Transformer<LifePath> */
     private $transformer;
 
     /**
@@ -36,7 +36,7 @@ final class LifepathNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(LifePathResult::class);
+        $this->transformer = new Transformer(LifePath::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -45,10 +45,10 @@ final class LifepathNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return LifePath
+     *@throws RateLimitExceededException
      **
-     * @return LifePathResult
+     * @throws QuotaExceededException
      */
     public function process(\DateTimeInterface $datetime)
     {
@@ -57,7 +57,6 @@ final class LifepathNumber
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-
         return $this->transformer->transform($apiResponse->data);
     }
 }

@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\BalanceNumberResult;
+use Prokerala\Api\Numerology\Result\Balance;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
@@ -29,7 +29,7 @@ final class BalanceNumber
     /** @var string */
     protected $slug = '/numerology/balance-number';
 
-    /** @var Transformer<BalanceNumberResult> */
+    /** @var Transformer<Balance> */
     private $transformer;
 
     /**
@@ -38,17 +38,17 @@ final class BalanceNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(BalanceNumberResult::class);
+        $this->transformer = new Transformer(Balance::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return Balance
+     *@throws RateLimitExceededException
      **
-     * @return BalanceNumberResult
+     * @throws QuotaExceededException
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

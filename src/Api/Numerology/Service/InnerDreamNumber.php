@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\InnerDreamResult;
+use Prokerala\Api\Numerology\Result\InnerDream;
 use Prokerala\Api\Numerology\Result\PersonalityResult;
 use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
@@ -29,7 +29,7 @@ final class InnerDreamNumber
     /** @var string */
     protected $slug = '/numerology/inner-dream-number';
 
-    /** @var Transformer<InnerDreamResult> */
+    /** @var Transformer<InnerDream> */
     private $transformer;
 
     /**
@@ -38,7 +38,7 @@ final class InnerDreamNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(InnerDreamResult::class);
+        $this->transformer = new Transformer(InnerDream::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -48,7 +48,7 @@ final class InnerDreamNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return InnerDreamResult
+     * @return InnerDream
      */
     public function process(string $firstName, string $middleName, string $lastName, string $additionalVowel)
     {

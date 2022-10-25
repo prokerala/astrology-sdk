@@ -13,8 +13,8 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\PersonalYearResult;
+use Prokerala\Api\Numerology\Result\LifePathNumber;
+use Prokerala\Api\Numerology\Result\PersonalYear;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +28,7 @@ final class PersonalYearNumber
     /** @var string */
     protected $slug = '/numerology/personal-year-number';
 
-    /** @var Transformer<PersonalYearResult> */
+    /** @var Transformer<PersonalYear> */
     private $transformer;
 
     /**
@@ -37,7 +37,7 @@ final class PersonalYearNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(PersonalYearResult::class);
+        $this->transformer = new Transformer(PersonalYear::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +49,7 @@ final class PersonalYearNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PersonalYearResult
+     * @return PersonalYear
      */
     public function process(\DateTimeInterface $datetime, int $referenceDate)
     {

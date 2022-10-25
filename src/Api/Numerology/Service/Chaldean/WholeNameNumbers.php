@@ -14,10 +14,7 @@ namespace Prokerala\Api\Numerology\Service\Chaldean;
 use App\Prokerala\Module\Numerology\Entity\Name;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\BalanceNumberResult;
-use Prokerala\Api\Numerology\Result\Chaldean\BirthNumberResult;
-use Prokerala\Api\Numerology\Result\DestinyResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
+use Prokerala\Api\Numerology\Result\Chaldean\WholeName;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\IdentityProviderException;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -32,7 +29,7 @@ final class WholeNameNumbers
     /** @var string */
     protected $slug = '/numerology/chaldean/whole-name-number';
 
-    /** @var Transformer<IdentityInitialCode> */
+    /** @var Transformer<WholeName> */
     private $transformer;
 
     /**
@@ -41,22 +38,24 @@ final class WholeNameNumbers
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(IdentityInitialCode::class);
+        $this->transformer = new Transformer(WholeName::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return WholeName
+     *@throws RateLimitExceededException
      **
-     * @return BalanceNumberResult
+     * @throws QuotaExceededException
      */
-    public function process(Name $name)
+    public function process(string $firstName, string $middleName, string $lastName)
     {
         $parameters = [
-            'name' => $name,
+            'first_name' => $firstName,
+            'middle_name' => $middleName,
+            'last_name' => $lastName,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

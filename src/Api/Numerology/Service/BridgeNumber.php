@@ -13,9 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer as TransformerAlias;
-use Prokerala\Api\Numerology\Result\BridgeNumberResult;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\RationalThoughtResult;
+use Prokerala\Api\Numerology\Result\Bridge as BridgeResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -27,9 +25,9 @@ final class BridgeNumber
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = '/numerology/rational-thought-number';
+    protected $slug = '/numerology/bridge-number';
 
-    /** @var TransformerAlias<BridgeNumberResult> */
+    /** @var TransformerAlias<BridgeResult> */
     private $transformer;
 
     /**
@@ -38,7 +36,7 @@ final class BridgeNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new TransformerAlias(BridgeNumberResult::class);
+        $this->transformer = new TransformerAlias(BridgeResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,8 +47,7 @@ final class BridgeNumber
      *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     **
-     * @return BridgeNumberResult
+     * @return BridgeResult
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

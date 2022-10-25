@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\UniversalDayResult;
+use Prokerala\Api\Numerology\Result\UniversalDay;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -27,7 +27,7 @@ final class UniversalDayNumber
     /** @var string */
     protected $slug = '/numerology/universal-day-number';
 
-    /** @var Transformer<UniversalDayResult> */
+    /** @var Transformer<UniversalDay> */
     private $transformer;
 
     /**
@@ -36,7 +36,7 @@ final class UniversalDayNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(UniversalDayResult::class);
+        $this->transformer = new Transformer(UniversalDay::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -48,7 +48,7 @@ final class UniversalDayNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return UniversalDayResult
+     * @return UniversalDay
      */
     public function process(\DateTimeInterface $datetime)
     {

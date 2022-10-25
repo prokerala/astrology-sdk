@@ -2,29 +2,45 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class Number implements JsonSerializable
+class Number
 {
     /**
-     * @var ?int $number
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var ?int
      */
     private $number;
+
     /**
-     * @var string $description
+     * @var string
      */
     private $description;
+
     /**
-     * @param ?int $number
+     * @param string $name
+     * @param int|null $number
      * @param string $description
      */
-    public function __construct ($number, $description) {
+    public function __construct (string $name, ?int $number, string $description) {
+        $this->name = $name;
         $this->number = $number;
         $this->description = $description;
     }
 
     /**
-     * @return ?int
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return int|null
      */
     public function getNumber(): ?int
     {
@@ -39,11 +55,4 @@ class Number implements JsonSerializable
         return $this->description;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'number' => $this->number,
-            'description' => $this->description
-        ];
-    }
 }

@@ -13,10 +13,8 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\PersonalDayResult;
-use Prokerala\Api\Numerology\Result\PersonalMonthResult;
-use Prokerala\Api\Numerology\Result\PersonalYearResult;
+use Prokerala\Api\Numerology\Result\LifePathNumber;
+use Prokerala\Api\Numerology\Result\PersonalDay;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -30,7 +28,7 @@ final class PersonalDayNumber
     /** @var string */
     protected $slug = '/numerology/personal-day-number';
 
-    /** @var Transformer<PersonalDayResult> */
+    /** @var Transformer<PersonalDay> */
     private $transformer;
 
     /**
@@ -39,7 +37,7 @@ final class PersonalDayNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(PersonalDayResult::class);
+        $this->transformer = new Transformer(PersonalDay::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -51,7 +49,7 @@ final class PersonalDayNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PersonalDayResult
+     * @return PersonalDay
      */
     public function process(\DateTimeInterface $datetime, int $referenceDate)
     {

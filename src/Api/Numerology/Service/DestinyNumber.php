@@ -13,8 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\DestinyResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
+use Prokerala\Api\Numerology\Result\Destiny;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +27,7 @@ final class DestinyNumber
     /** @var string */
     protected $slug = '/numerology/destiny-number';
 
-    /** @var Transformer<DestinyResult> */
+    /** @var Transformer<Destiny> */
     private $transformer;
 
     /**
@@ -37,7 +36,7 @@ final class DestinyNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(DestinyResult::class);
+        $this->transformer = new Transformer(Destiny::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -47,7 +46,7 @@ final class DestinyNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return DestinyResult
+     * @return Destiny
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

@@ -13,8 +13,8 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\RationalThoughtResult;
+use Prokerala\Api\Numerology\Result\LifePathNumber;
+use Prokerala\Api\Numerology\Result\RationalThought;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +28,7 @@ final class RationalThoughtNumber
     /** @var string */
     protected $slug = '/numerology/rational-thought-number';
 
-    /** @var Transformer<RationalThoughtResult> */
+    /** @var Transformer<RationalThought> */
     private $transformer;
 
     /**
@@ -37,7 +37,7 @@ final class RationalThoughtNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(RationalThoughtResult::class);
+        $this->transformer = new Transformer(RationalThought::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +49,7 @@ final class RationalThoughtNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return RationalThoughtResult
+     * @return RationalThought
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

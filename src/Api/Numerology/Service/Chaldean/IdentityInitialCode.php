@@ -14,7 +14,7 @@ namespace Prokerala\Api\Numerology\Service\Chaldean;
 use App\Prokerala\Module\Numerology\Entity\Name;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\BalanceNumberResult;
+use Prokerala\Api\Numerology\Result\Balance;
 use Prokerala\Api\Numerology\Result\Chaldean\BirthNumberResult;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
@@ -48,10 +48,10 @@ final class IdentityInitialCode
     /**
      * Fetch result from API.
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return Balance
+     *@throws RateLimitExceededException
      **
-     * @return BalanceNumberResult
+     * @throws QuotaExceededException
      */
     public function process(Name $name)
     {

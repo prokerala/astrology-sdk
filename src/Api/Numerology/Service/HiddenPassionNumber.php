@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\HiddenPassionResult;
+use Prokerala\Api\Numerology\Result\HiddenPassion;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
@@ -29,7 +29,7 @@ final class HiddenPassionNumber
     /** @var string */
     protected $slug = '/numerology/hidden-passion-number';
 
-    /** @var Transformer<HiddenPassionResult> */
+    /** @var Transformer<HiddenPassion> */
     private $transformer;
 
     /**
@@ -38,7 +38,7 @@ final class HiddenPassionNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(HiddenPassionResult::class);
+        $this->transformer = new Transformer(HiddenPassion::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -48,7 +48,7 @@ final class HiddenPassionNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return HiddenPassionResult
+     * @return HiddenPassion
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

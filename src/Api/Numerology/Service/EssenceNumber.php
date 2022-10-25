@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\EssenceResult;
 use Prokerala\Api\Numerology\Result\KarmicDebt;
-use Prokerala\Api\Numerology\Result\LifePathResult;
+use Prokerala\Api\Numerology\Result\LifePathNumber;
 use Prokerala\Api\Numerology\Result\RationalThoughtResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;

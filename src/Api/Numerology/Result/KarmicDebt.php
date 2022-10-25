@@ -2,33 +2,30 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
+
+use Prokerala\Api\Numerology\Result\KarmicDebtNumber\Expression;
+use Prokerala\Api\Numerology\Result\KarmicDebtNumber\HeartDesire;
+use Prokerala\Api\Numerology\Result\KarmicDebtNumber\Personality;
+use Prokerala\Api\Numerology\Result\KarmicDebtNumber\LifePath;
+
 use JsonSerializable;
 
 class KarmicDebt implements JsonSerializable
 {
-
     /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
-    /**
-     * @var Number|null
+     * @var LifePath
      */
     private $lifePath;
     /**
-     * @var Number|null
+     * @var Expression
      */
     private $expression;
     /**
-     * @var Number|null
+     * @var HeartDesire
      */
     private $heartDesire;
     /**
-     * @var Number|null
+     * @var Personality
      */
     private $personality;
     /**
@@ -41,18 +38,14 @@ class KarmicDebt implements JsonSerializable
     private $nameResult;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param Number|null $lifePath
-     * @param Number|null $expression
-     * @param Number|null $heartDesire
-     * @param Number|null $personality
+     * @param LifePath $lifePath
+     * @param Expression $expression
+     * @param HeartDesire $heartDesire
+     * @param Personality $personality
      * @param Number|null $birthDay
      * @param NameResult $nameResult
      */
     public function __construct(
-         $id,
-         $title,
          $lifePath,
          $expression,
          $heartDesire,
@@ -61,8 +54,6 @@ class KarmicDebt implements JsonSerializable
          $nameResult
     )
     {
-         $this->id = $id;
-         $this->title = $title;
          $this->lifePath = $lifePath;
          $this->expression = $expression;
          $this->heartDesire = $heartDesire;
@@ -71,21 +62,6 @@ class KarmicDebt implements JsonSerializable
          $this->nameResult = $nameResult;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
 
     /**
      * @return NameResult
@@ -98,7 +74,7 @@ class KarmicDebt implements JsonSerializable
     /**
      * @return ?Number
      */
-    public function getPersonality(): ?Number
+    public function getPersonality(): Personality
     {
         return $this->personality;
     }
@@ -114,7 +90,7 @@ class KarmicDebt implements JsonSerializable
     /**
      * @return ?Number
      */
-    public function getLifePath(): ?Number
+    public function getLifePath(): LifePath
     {
         return $this->lifePath;
     }
@@ -122,7 +98,7 @@ class KarmicDebt implements JsonSerializable
     /**
      * @return ?Number
      */
-    public function getHeartDesire(): ?Number
+    public function getHeartDesire(): HeartDesire
     {
         return $this->heartDesire;
     }
@@ -130,7 +106,7 @@ class KarmicDebt implements JsonSerializable
     /**
      * @return ?Number
      */
-    public function getExpression(): ?Number
+    public function getExpression(): Expression
     {
         return $this->expression;
     }
@@ -138,8 +114,6 @@ class KarmicDebt implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
             'life_path' => $this->lifePath,
             'expression' => $this->expression,
             'heart_desire' => $this->heartDesire,

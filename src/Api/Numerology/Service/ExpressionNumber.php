@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\ExpressionResult;
+use Prokerala\Api\Numerology\Result\Expression;
 use Prokerala\Api\Numerology\Result\HiddenPassionResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Api\Numerology\Result\Transit;
@@ -30,7 +30,7 @@ final class ExpressionNumber
     /** @var string */
     protected $slug = '/numerology/expression-number';
 
-    /** @var Transformer<ExpressionResult> */
+    /** @var Transformer<Expression> */
     private $transformer;
 
     /**
@@ -39,7 +39,7 @@ final class ExpressionNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(ExpressionResult::class);
+        $this->transformer = new Transformer(Expression::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +49,7 @@ final class ExpressionNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return ExpressionResult
+     * @return Expression
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

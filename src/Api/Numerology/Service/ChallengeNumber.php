@@ -13,8 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\ChallengeNumbers;
-use Prokerala\Api\Numerology\Result\LifePathResult;
+use Prokerala\Api\Numerology\Result\Challenge as ChallengeNumbersResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +27,7 @@ final class ChallengeNumber
     /** @var string */
     protected $slug = '/numerology/challenge-number';
 
-    /** @var Transformer<ChallengeNumbers> */
+    /** @var Transformer<ChallengeNumbersResult> */
     private $transformer;
 
     /**
@@ -37,7 +36,7 @@ final class ChallengeNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(ChallengeNumbers::class);
+        $this->transformer = new Transformer(ChallengeNumbersResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +48,7 @@ final class ChallengeNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return ChallengeNumbers
+     * @return ChallengeNumbersResult
      */
     public function process(\DateTimeInterface $datetime)
     {

@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\CapStoneResult;
+use Prokerala\Api\Numerology\Result\CapStone;
 use Prokerala\Api\Numerology\Result\CornerStoneResult;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
@@ -28,9 +28,9 @@ final class CapStoneNumber
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = '/numerology/cap-stone-number';
+    protected $slug = '/numerology/capstone-number';
 
-    /** @var Transformer<CapStoneResult> */
+    /** @var Transformer<CapStone> */
     private $transformer;
 
     /**
@@ -39,7 +39,7 @@ final class CapStoneNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(CapStoneResult::class);
+        $this->transformer = new Transformer(CapStone::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +49,7 @@ final class CapStoneNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return CapStoneResult
+     * @return CapStone
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

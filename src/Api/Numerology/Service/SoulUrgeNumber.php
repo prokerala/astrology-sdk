@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\SoulUrgeResult;
+use Prokerala\Api\Numerology\Result\SoulUrge;
 use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -28,7 +28,7 @@ final class SoulUrgeNumber
     /** @var string */
     protected $slug = '/numerology/soul-urge-number';
 
-    /** @var Transformer<SoulUrgeResult> */
+    /** @var Transformer<SoulUrge> */
     private $transformer;
 
     /**
@@ -37,7 +37,7 @@ final class SoulUrgeNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(SoulUrgeResult::class);
+        $this->transformer = new Transformer(SoulUrge::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -47,7 +47,7 @@ final class SoulUrgeNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return SoulUrgeResult
+     * @return SoulUrge
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

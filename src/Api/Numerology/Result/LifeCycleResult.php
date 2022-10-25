@@ -2,9 +2,8 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class LifeCycleResult implements JsonSerializable
+class LifeCycleResult
 {
     /**
      * @var int
@@ -83,14 +82,4 @@ class LifeCycleResult implements JsonSerializable
         return $this->thirdCycle;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' =>$this->id,
-            'title' =>$this->title,
-            'first_cycle' => $this->firstCycle,
-            'second_cycle' => $this->secondCycle,
-            'third_cycle' => $this->thirdCycle,
-        ];
-    }
 }

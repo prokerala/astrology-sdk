@@ -2,40 +2,20 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class BirthDayResult implements JsonSerializable
+class BirthDayResult
 {
+
     /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
-    /**
-     * @var Number $number
+     * @var Number $numberres
      */
     private $number;
 
     /**
-     * @param int $id
-     * @param string $title
      * @param Number $number
      */
-    public function __construct($id, $title, $number) {
-        $this->id = $id;
-        $this->title = $title;
+    public function __construct($number) {
         $this->number = $number;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**
@@ -46,20 +26,4 @@ class BirthDayResult implements JsonSerializable
         return $this->number;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' =>$this->id,
-            'title' =>$this->title,
-            'number' => $this->number,
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
 }

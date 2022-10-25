@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\UniversalYearResult;
+use Prokerala\Api\Numerology\Result\UniversalYear;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -27,7 +27,7 @@ final class UniversalYearNumber
     /** @var string */
     protected $slug = '/numerology/universal-year-number';
 
-    /** @var Transformer<UniversalYearResult> */
+    /** @var Transformer<UniversalYear> */
     private $transformer;
 
     /**
@@ -36,7 +36,7 @@ final class UniversalYearNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(UniversalYearResult::class);
+        $this->transformer = new Transformer(UniversalYear::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 

@@ -2,18 +2,9 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class EssenceResult implements JsonSerializable
+class EssenceResult
 {
-    /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
     /**
      * @var ArrayNumber
      */
@@ -23,19 +14,9 @@ class EssenceResult implements JsonSerializable
      */
     private $nameResult;
 
-    public function __construct($id, $title, $arrayNumber, $nameResult) {
-        $this->id = $id;
-        $this->title = $title;
+    public function __construct($arrayNumber, $nameResult) {
         $this->arrayNumber = $arrayNumber;
         $this->nameResult = $nameResult;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**
@@ -52,23 +33,5 @@ class EssenceResult implements JsonSerializable
     public function getNameResult(): NameResult
     {
         return $this->nameResult;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' =>$this->id,
-            'title' =>$this->title,
-            'array_number' => $this->arrayNumber,
-            'name_result' => $this->nameResult,
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

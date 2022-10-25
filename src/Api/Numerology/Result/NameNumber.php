@@ -2,45 +2,47 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-class AgeNumberDescription
+
+class NameNumber
 {
     /**
-     * @var string
-     */
-    private $age;
-    /**
-     * @var int
+     * @var ?int
      */
     private $number;
+
     /**
      * @var string
      */
     private $description;
 
     /**
-     * @param string $age
-     * @param int $number
-     * @param string $description
+     * @var NameResult
      */
-    public function __construct($age, $number, $description)
-    {
-        $this->age = $age;
+    private $nameResult;
+
+    /**
+     * @param int|null $number
+     * @param string $description
+     * @param NameResult $nameResult
+     */
+    public function __construct (?int $number, string $description, NameResult $nameResult) {
         $this->number = $number;
         $this->description = $description;
+        $this->nameResult = $nameResult;
     }
 
     /**
-     * @return string
+     * @return NameResult
      */
-    public function getAge(): string
+    public function getNameResult(): NameResult
     {
-        return $this->age;
+        return $this->nameResult;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
@@ -52,4 +54,5 @@ class AgeNumberDescription
     {
         return $this->description;
     }
+
 }

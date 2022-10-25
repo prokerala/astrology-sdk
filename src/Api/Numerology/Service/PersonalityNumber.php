@@ -13,8 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\PersonalityResult;
-use Prokerala\Api\Numerology\Result\Transit;
+use Prokerala\Api\Numerology\Result\Personality;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +27,7 @@ final class PersonalityNumber
     /** @var string */
     protected $slug = '/numerology/personality-number';
 
-    /** @var Transformer<PersonalityResult> */
+    /** @var Transformer<Personality> */
     private $transformer;
 
     /**
@@ -37,7 +36,7 @@ final class PersonalityNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(PersonalityResult::class);
+        $this->transformer = new Transformer(Personality::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -47,7 +46,7 @@ final class PersonalityNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PersonalityResult
+     * @return Personality
      */
     public function process(string $firstName, string $middleName, string $lastName, string $additionalVowel)
     {

@@ -13,7 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\SubconsciousSelfResult;
+use Prokerala\Api\Numerology\Result\SubconsciousSelf;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -27,7 +27,7 @@ final class SubconsciousSelfNumber
     /** @var string */
     protected $slug = '/numerology/subconscious-self-number';
 
-    /** @var Transformer<SubconsciousSelfResult> */
+    /** @var Transformer<SubconsciousSelf> */
     private $transformer;
 
     /**
@@ -36,7 +36,7 @@ final class SubconsciousSelfNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(SubconsciousSelfResult::class);
+        $this->transformer = new Transformer(SubconsciousSelf::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -46,7 +46,7 @@ final class SubconsciousSelfNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return SubconsciousSelfResult
+     * @return SubconsciousSelf
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

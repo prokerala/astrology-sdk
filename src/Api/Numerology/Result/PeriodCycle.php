@@ -7,14 +7,6 @@ use JsonSerializable;
 class PeriodCycle implements JsonSerializable
 {
     /**
-     * @var int
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $title;
-    /**
      * @var Number
      */
      private $birthMonth;
@@ -28,35 +20,15 @@ class PeriodCycle implements JsonSerializable
     private $birthYear;
 
     /**
-     * @param int $id
-     * @param string $title
      * @param Number $birthMonth
      * @param Number $birthNumber
      * @param Number $birthYear
      */
-    public function __construct($id, $title, $birthMonth, $birthNumber, $birthYear)
+    public function __construct($birthMonth, $birthNumber, $birthYear)
     {
-        $this->id = $id;
-        $this->title = $title;
         $this->birthMonth = $birthMonth;
         $this->birthNumber = $birthNumber;
         $this->birthYear = $birthYear;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 
     /**
@@ -81,16 +53,5 @@ class PeriodCycle implements JsonSerializable
     public function getBirthYear(): Number
     {
         return $this->birthYear;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' =>$this->id,
-            'title' =>$this->title,
-            'birth_month' => $this->birthMonth,
-            'birth_day' => $this->birthNumber,
-            'birth_year' => $this->birthYear,
-        ];
     }
 }

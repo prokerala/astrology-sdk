@@ -13,8 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\PinnacleNumbers;
+use Prokerala\Api\Numerology\Result\Pinnacle as PinnacleResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -28,7 +27,7 @@ final class PinnacleNumber
     /** @var string */
     protected $slug = '/numerology/pinnacle-number';
 
-    /** @var Transformer<PinnacleNumbers> */
+    /** @var Transformer<PinnacleResult> */
     private $transformer;
 
     /**
@@ -37,7 +36,7 @@ final class PinnacleNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(PinnacleNumbers::class);
+        $this->transformer = new Transformer(PinnacleResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -49,7 +48,7 @@ final class PinnacleNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PinnacleNumbers
+     * @return PinnacleResult
      */
     public function process(\DateTimeInterface $datetime)
     {

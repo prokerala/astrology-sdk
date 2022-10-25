@@ -13,9 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\MaturityResult;
-use Prokerala\Api\Numerology\Result\RationalThoughtResult;
+use Prokerala\Api\Numerology\Result\Maturity;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -29,7 +27,7 @@ final class MaturityNumber
     /** @var string */
     protected $slug = '/numerology/maturity-number';
 
-    /** @var Transformer<MaturityResult> */
+    /** @var Transformer<Maturity> */
     private $transformer;
 
     /**
@@ -38,7 +36,7 @@ final class MaturityNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(MaturityResult::class);
+        $this->transformer = new Transformer(Maturity::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -50,7 +48,7 @@ final class MaturityNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return MaturityResult
+     * @return Maturity
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

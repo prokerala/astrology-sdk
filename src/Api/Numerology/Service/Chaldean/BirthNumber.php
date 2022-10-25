@@ -13,8 +13,7 @@ namespace Prokerala\Api\Numerology\Service\Chaldean;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\BalanceNumberResult;
-use Prokerala\Api\Numerology\Result\Chaldean\BirthNumberResult;
+use Prokerala\Api\Numerology\Result\Chaldean\Birth as BirthResult;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
@@ -30,7 +29,7 @@ final class BirthNumber
     /** @var string */
     protected $slug = '/numerology/chaldean/birth-number';
 
-    /** @var Transformer<BirthNumberResult> */
+    /** @var Transformer<BirthResult> */
     private $transformer;
 
     /**
@@ -39,22 +38,22 @@ final class BirthNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(BirthNumberResult::class);
+        $this->transformer = new Transformer(BirthResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @throws QuotaExceededException
-     * @throws RateLimitExceededException
+     * @return BirthResult
+     *@throws RateLimitExceededException
      **
-     * @return BalanceNumberResult
+     * @throws QuotaExceededException
      */
     public function process(\DateTimeImmutable $datetime)
     {
         $parameters = [
-            'datetime' => $datetime,
+            'datetime' => $datetime->format('c'),
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

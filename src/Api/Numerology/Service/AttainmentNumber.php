@@ -13,10 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer as TransformerAlias;
-use Prokerala\Api\Numerology\Result\AttainmentNumberResult;
-use Prokerala\Api\Numerology\Result\BridgeNumberResult;
-use Prokerala\Api\Numerology\Result\LifePathResult;
-use Prokerala\Api\Numerology\Result\RationalThoughtResult;
+use Prokerala\Api\Numerology\Result\Attainment;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -30,7 +27,7 @@ final class AttainmentNumber
     /** @var string */
     protected $slug = '/numerology/attainment-number';
 
-    /** @var TransformerAlias<AttainmentNumberResult> */
+    /** @var TransformerAlias<Attainment> */
     private $transformer;
 
     /**
@@ -39,7 +36,7 @@ final class AttainmentNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new TransformerAlias(AttainmentNumberResult::class);
+        $this->transformer = new TransformerAlias(Attainment::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -51,7 +48,7 @@ final class AttainmentNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return AttainmentNumberResult
+     * @return Attainment
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {
