@@ -17,7 +17,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\KundliMatching as MatchResu
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Traits\Api\ClientAwareTrait;
+use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class KundliMatching
 {

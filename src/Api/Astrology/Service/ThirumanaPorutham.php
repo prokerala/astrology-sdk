@@ -16,7 +16,7 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedThirumanaPorutham a
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham as Porutham;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Traits\Api\ClientAwareTrait;
+use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class ThirumanaPorutham
 {

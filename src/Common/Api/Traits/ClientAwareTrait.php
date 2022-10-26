@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Common\Traits\Api;
+namespace Prokerala\Common\Api\Traits;
 
 use Prokerala\Common\Api\Client;
 

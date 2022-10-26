@@ -20,7 +20,7 @@ use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use Prokerala\Common\Traits\Api\ClientAwareTrait;
+use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class Panchang
 {

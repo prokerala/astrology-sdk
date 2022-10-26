@@ -15,7 +15,7 @@ use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Chart as ChartResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Common\Api\Client;
-use Prokerala\Common\Traits\Api\ClientAwareTrait;
+use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class Chart
 {
