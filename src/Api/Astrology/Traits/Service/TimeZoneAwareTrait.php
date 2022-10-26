@@ -13,6 +13,9 @@ namespace Prokerala\Api\Astrology\Traits\Service;
 
 use Prokerala\Api\Astrology\Transformer;
 
+/**
+ * @internal
+ */
 trait TimeZoneAwareTrait
 {
     /** @var \DateTimeZone */

@@ -13,6 +13,9 @@ namespace Prokerala\Common\Api\Authentication;
 
 use Psr\Http\Message\RequestInterface;
 
+/**
+ * @internal
+ */
 trait BasicAuthTrait
 {
     /**

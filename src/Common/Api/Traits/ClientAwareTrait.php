@@ -13,6 +13,9 @@ namespace Prokerala\Common\Api\Traits;
 
 use Prokerala\Common\Api\Client;
 
+/**
+ * @internal
+ */
 trait ClientAwareTrait
 {
     /** @var Client */

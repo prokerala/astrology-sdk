@@ -11,6 +11,9 @@
 
 namespace Prokerala\Api\Astrology\Traits\Service;
 
+/**
+ * @internal
+ */
 trait AyanamsaAwareTrait
 {
     /** @var int */

@@ -11,6 +11,9 @@
 
 namespace Prokerala\Api\Astrology\Traits\Result;
 
+/**
+ * @internal
+ */
 trait RawResponseTrait
 {
     /**

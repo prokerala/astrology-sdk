@@ -11,6 +11,9 @@
 
 namespace Prokerala\Api\Astrology\Traits;
 
+/**
+ * @internal
+ */
 trait StringableTrait
 {
     public function __toString()
