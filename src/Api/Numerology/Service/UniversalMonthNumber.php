@@ -48,7 +48,7 @@ final class UniversalMonthNumber
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return UniversalMonthResult
+     * @return UniversalMonth
      */
     public function process(\DateTimeInterface $datetime)
     {

@@ -16,24 +16,24 @@ class Balance implements ResultInterface
     private $balanceNumber;
 
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param BalanceNumber $balanceNumber
      */
-    public function __construct(BalanceNumber $balanceNumber, NameResult $nameResult) {
+    public function __construct(BalanceNumber $balanceNumber, NameChart $nameChart) {
         $this->balanceNumber = $balanceNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameResult(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

@@ -11,16 +11,16 @@ class AttainmentNumberResult implements JsonSerializable
      */
     private $number;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
     /**
      * @param Number $number
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($id, $title, $number, $nameResult) {
+    public function __construct($number, $nameChart) {
         $this->number = $number;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
@@ -32,11 +32,11 @@ class AttainmentNumberResult implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
     /**
      * @return string
