@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-class BridgeNumber
+class ChallengeNumber
 {
     /**
      * @var string
@@ -11,18 +11,18 @@ class BridgeNumber
     private string $name;
 
     /**
-     * @var Number[]
+     * @var AgeNumber[]
      */
-    private array $differences;
+    private array $challenges;
 
     /**
      * @param string $name
-     * @param Number[] $differences
+     * @param AgeNumber[] $challenges
      */
-    public function __construct(string $name, array $differences)
+    public function __construct(string $name, array $challenges)
     {
         $this->name = $name;
-        $this->differences = $differences;
+        $this->challenges = $challenges;
     }
 
     /**
@@ -33,11 +33,11 @@ class BridgeNumber
         return $this->name;
     }
     /**
-     * @return Number[]
+     * @return AgeNumber[]
      */
-    public function getDifferences(): array
+    public function getChallenges(): array
     {
-        return $this->differences;
+        return $this->challenges;
     }
 
 

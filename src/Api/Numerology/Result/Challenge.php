@@ -13,24 +13,24 @@ class Challenge implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var ChallengeNumbers
+     * @var ChallengeNumber
      */
-    private $challenge;
+    private $challengeNumber;
 
 
     /**
-     * @param ChallengeNumbers $challenge
+     * @param ChallengeNumber $challengeNumber
      */
-    public function __construct(ChallengeNumbers $challenge) {
-        $this->challenge = $challenge;
+    public function __construct(ChallengeNumber $challengeNumber) {
+        $this->challengeNumber = $challengeNumber;
     }
 
     /**
-     * @return ChallengeNumbers
+     * @return ChallengeNumber
      */
-    public function getChallenge(): ChallengeNumbers
+    public function getChallengeNumber(): ChallengeNumber
     {
-        return $this->challenge;
+        return $this->challengeNumber;
     }
 
 }

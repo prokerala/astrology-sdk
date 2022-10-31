@@ -5,35 +5,30 @@ namespace Prokerala\Api\Numerology\Result;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-use Prokerala\Api\Numerology\Result\PinnacleNumber\FirstPinnacle;
-use Prokerala\Api\Numerology\Result\PinnacleNumber\SecondPinnacle;
-use Prokerala\Api\Numerology\Result\PinnacleNumber\ThirdPinnacle;
-use Prokerala\Api\Numerology\Result\PinnacleNumber\FourthPinnacle;
-
 
 class Pinnacle implements ResultInterface
 {
     use RawResponseTrait;
 
     /**
-     * @var PinnacleResult
+     * @var PinnacleNumber
      */
-    private $pinnacle;
+    private $pinnacleNumber;
 
 
     /**
-     * @param PinnacleResult $challenge
+     * @param PinnacleNumber $pinnacleNumber
      */
-    public function __construct(PinnacleResult $pinnacle) {
-        $this->pinnacle = $pinnacle;
+    public function __construct(PinnacleNumber $pinnacleNumber) {
+        $this->pinnacleNumber = $pinnacleNumber;
     }
 
     /**
-     * @return PinnacleResult
+     * @return PinnacleNumber
      */
-    public function getPinnacle(): PinnacleResult
+    public function getPinnacleNumber(): PinnacleNumber
     {
-        return $this->pinnacle;
+        return $this->pinnacleNumber;
     }
 
 }

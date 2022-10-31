@@ -3,122 +3,32 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-use Prokerala\Api\Numerology\Result\KarmicDebtNumber\Expression;
-use Prokerala\Api\Numerology\Result\KarmicDebtNumber\HeartDesire;
-use Prokerala\Api\Numerology\Result\KarmicDebtNumber\Personality;
-use Prokerala\Api\Numerology\Result\KarmicDebtNumber\LifePath;
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-use JsonSerializable;
-
-class KarmicDebt implements JsonSerializable
+class KarmicDebt implements ResultInterface
 {
-    /**
-     * @var LifePath
-     */
-    private $lifePath;
-    /**
-     * @var Expression
-     */
-    private $expression;
-    /**
-     * @var HeartDesire
-     */
-    private $heartDesire;
-    /**
-     * @var Personality
-     */
-    private $personality;
-    /**
-     * @var Number|null
-     */
-    private $birthDay;
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    use RawResponseTrait;
 
     /**
-     * @param LifePath $lifePath
-     * @param Expression $expression
-     * @param HeartDesire $heartDesire
-     * @param Personality $personality
-     * @param Number|null $birthDay
-     * @param NameChart $nameChart
+     * @var KarmicDebtNumber
      */
-    public function __construct(
-         $lifePath,
-         $expression,
-         $heartDesire,
-         $personality,
-         $birthDay,
-         $nameChart
-    )
-    {
-         $this->lifePath = $lifePath;
-         $this->expression = $expression;
-         $this->heartDesire = $heartDesire;
-         $this->personality = $personality;
-         $this->birthDay = $birthDay;
-         $this->nameChart = $nameChart;
-    }
+    private $karmicDebtNumber;
 
 
     /**
-     * @return NameChart
+     * @param KarmicDebtNumber $karmicDebtNumber
      */
-    public function getNameChart(): NameChart
-    {
-        return $this->nameChart;
+    public function __construct(KarmicDebtNumber $karmicDebtNumber) {
+        $this->karmicDebtNumber = $karmicDebtNumber;
     }
 
     /**
-     * @return ?Number
+     * @return KarmicDebtNumber
      */
-    public function getPersonality(): Personality
+    public function getKarmicDebtNumber(): KarmicDebtNumber
     {
-        return $this->personality;
+        return $this->karmicDebtNumber;
     }
 
-    /**
-     * @return ?Number
-     */
-    public function getBirthDay(): ?Number
-    {
-        return $this->birthDay;
-    }
-
-    /**
-     * @return ?Number
-     */
-    public function getLifePath(): LifePath
-    {
-        return $this->lifePath;
-    }
-
-    /**
-     * @return ?Number
-     */
-    public function getHeartDesire(): HeartDesire
-    {
-        return $this->heartDesire;
-    }
-
-    /**
-     * @return ?Number
-     */
-    public function getExpression(): Expression
-    {
-        return $this->expression;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'life_path' => $this->lifePath,
-            'expression' => $this->expression,
-            'heart_desire' => $this->heartDesire,
-            'personality' => $this->personality,
-            'name_chart' => $this->nameChart,
-        ];
-    }
 }

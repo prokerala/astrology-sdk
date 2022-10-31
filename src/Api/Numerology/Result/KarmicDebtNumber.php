@@ -2,28 +2,43 @@
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
 class KarmicDebtNumber
 {
+    /**
+     * @var string
+     */
+    private string $name;
 
     /**
-     * @var AgeNumber[]
+     * @var Number[]
      */
-    private array $karmicDebts;
+    private array $debts;
 
     /**
-     * @param AgeNumber[] $karmicDebts
+     * @param string $name
+     * @param Number[] $debts
      */
-    public function __construct(array $karmicDebts)
+    public function __construct(string $name, array $debts)
     {
-        $this->karmicDebts = $karmicDebts;
+        $this->name = $name;
+        $this->debts = $debts;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
     /**
-     * @return AgeNumber[]
+     * @return Number[]
      */
-    public function getKarmicDebts(): array
+    public function getDebts(): array
     {
-        return $this->karmicDebts;
+        return $this->debts;
     }
+
+
 }
