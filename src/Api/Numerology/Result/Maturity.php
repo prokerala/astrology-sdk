@@ -15,26 +15,26 @@ class Maturity implements ResultInterface
      */
     private $maturityNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param MaturityNumber $maturityNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(MaturityNumber $maturityNumber, NameResult $nameResult) {
+    public function __construct(MaturityNumber $maturityNumber, NameChart $nameChart) {
 
         $this->maturityNumber = $maturityNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

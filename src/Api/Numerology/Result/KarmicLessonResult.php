@@ -7,37 +7,20 @@ use JsonSerializable;
 class KarmicLessonResult implements JsonSerializable
 {
     /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
-    /**
      * @var ArrayNumber
      */
     private $arrayNumber;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
 
-    public function __construct($id, $title, $arrayNumber, $nameResult) {
-        $this->id = $id;
-        $this->title = $title;
+    public function __construct($arrayNumber, $nameChart) {
+
         $this->arrayNumber = $arrayNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     /**
      * @return ArrayNumber
@@ -48,28 +31,19 @@ class KarmicLessonResult implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'id' =>$this->id,
-            'title' =>$this->title,
             'array_number' => $this->arrayNumber,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
 }

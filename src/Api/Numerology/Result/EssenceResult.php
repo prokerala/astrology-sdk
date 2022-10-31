@@ -10,13 +10,13 @@ class EssenceResult
      */
     private $arrayNumber;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
 
-    public function __construct($arrayNumber, $nameResult) {
+    public function __construct($arrayNumber, $nameChart) {
         $this->arrayNumber = $arrayNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
@@ -28,10 +28,10 @@ class EssenceResult
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 }

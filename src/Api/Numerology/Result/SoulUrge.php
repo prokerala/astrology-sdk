@@ -15,26 +15,26 @@ class SoulUrge implements ResultInterface
      */
     private $soulUrgeNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param SoulUrgeNumber $soulUrgeNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(SoulUrgeNumber $soulUrgeNumber, NameResult $nameResult) {
+    public function __construct(SoulUrgeNumber $soulUrgeNumber, NameChart $nameChart) {
 
         $this->soulUrgeNumber = $soulUrgeNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

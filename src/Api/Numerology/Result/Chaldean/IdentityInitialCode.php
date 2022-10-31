@@ -1,36 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Prokerala\Api\Numerology\Result;
+namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-use Prokerala\Api\Numerology\Result\Chaldean\DailyNameNumber;
-
 
 class IdentityInitialCode implements ResultInterface
 {
     use RawResponseTrait;
 
     /**
-     * @var IdentityInitialCode
+     * @var IdentityInitialCodeNumber
      */
-    private $identityInitialCode;
+    private $identityInitialCodeNumber;
 
 
     /**
-     * @param IdentityInitialCode $identityInitialCode
+     * @param IdentityInitialCodeNumber $identityInitialCodeNumber
      */
-    public function __construct(IdentityInitialCode $identityInitialCode) {
-        $this->identityInitialCode = $identityInitialCode;
+    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber) {
+        $this->identityInitialCodeNumber = $identityInitialCodeNumber;
     }
 
     /**
-     * @return IdentityInitialCode
+     * @return IdentityInitialCodeNumber
      */
-    public function getDailyNameNumber(): IdentityInitialCode
+    public function getIdentityInitialCodeNumber(): IdentityInitialCodeNumber
     {
-        return $this->identityInitialCode;
+        return $this->identityInitialCodeNumber;
     }
 
 

@@ -15,26 +15,26 @@ class Expression implements ResultInterface
      */
     private $expressionNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param ExpressionNumber $expressionNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(ExpressionNumber $expressionNumber, NameResult $nameResult) {
+    public function __construct(ExpressionNumber $expressionNumber, NameChart $nameChart) {
 
         $this->expressionNumber = $expressionNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

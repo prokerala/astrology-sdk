@@ -15,26 +15,26 @@ class CapStone implements ResultInterface
      */
     private $capstoneNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param CapStoneNumber $capstoneNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(CapStoneNumber $capstoneNumber, NameResult $nameResult) {
+    public function __construct(CapStoneNumber $capstoneNumber, NameChart $nameChart) {
 
         $this->capstoneNumber = $capstoneNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

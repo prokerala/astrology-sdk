@@ -15,7 +15,7 @@ use App\Prokerala\Module\Numerology\Entity\Name;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Balance;
-use Prokerala\Api\Numerology\Result\Chaldean\BirthNumberResult;
+use Prokerala\Api\Numerology\Result\Chaldean\IdentityInitialCode as IdentityInitialCodeResult;
 use Prokerala\Api\Numerology\Result\DestinyResult;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
@@ -32,7 +32,7 @@ final class IdentityInitialCode
     /** @var string */
     protected $slug = '/numerology/chaldean/identity-initial-code-number';
 
-    /** @var Transformer<IdentityInitialCode> */
+    /** @var Transformer<IdentityInitialCodeResult> */
     private $transformer;
 
     /**
@@ -41,22 +41,24 @@ final class IdentityInitialCode
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(IdentityInitialCode::class);
+        $this->transformer = new Transformer(IdentityInitialCodeResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @return Balance
+     * @return IdentityInitialCodeResult
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(Name $name)
+    public function process(string $firstName, string $middleName, string $lastName)
     {
         $parameters = [
-            'name' => $name,
+            'first_name' => $firstName,
+            'middle_name' => $middleName,
+            'last_name' => $lastName,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

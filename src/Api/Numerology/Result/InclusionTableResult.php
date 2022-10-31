@@ -7,34 +7,22 @@ use JsonSerializable;
 class InclusionTableResult implements JsonSerializable
 {
     /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
-    /**
      * @var array
      */
     private $inclusionNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
-     * @param int $id
-     * @param string $title
      * @param array $inclusionNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($id, $title, $inclusionNumber, $nameResult)
+    public function __construct($inclusionNumber, $nameChart)
     {
-        $this->id = $id;
-        $this->title = $title;
         $this->inclusionNumber = $inclusionNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
@@ -54,20 +42,18 @@ class InclusionTableResult implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'id' =>$this->id,
-            'title' =>$this->title,
             'InclusionNumber' => $this->inclusionNumber,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 

@@ -31,7 +31,7 @@ class Balance implements ResultInterface
     /**
      * @return NameChart
      */
-    public function getNameResult(): NameChart
+    public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }

@@ -7,41 +7,23 @@ use JsonSerializable;
 class SoulUrgeResult implements JsonSerializable
 {
     /**
-     * @var int $id
-     */
-    private $id;
-    /**
-     * @var string $title
-     */
-    private $title;
-    /**
      * @var Number $number
      */
     private $number;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
     /**
-     * @param int $id
-     * @param string $title
+     *
      * @param Number $number
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($id, $title, $number, $nameResult) {
-        $this->id = $id;
-        $this->title = $title;
+    public function __construct($number, $nameChart) {
         $this->number = $number;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     /**
      * @return Number
@@ -52,28 +34,18 @@ class SoulUrgeResult implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'id' =>$this->id,
-            'title' =>$this->title,
             'number' => $this->number,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

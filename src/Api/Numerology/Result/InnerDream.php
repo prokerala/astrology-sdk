@@ -15,26 +15,26 @@ class InnerDream implements ResultInterface
      */
     private $innerDreamNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param InnerDreamNumber $innerDreamNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(InnerDreamNumber $innerDreamNumber, NameResult $nameResult) {
+    public function __construct(InnerDreamNumber $innerDreamNumber, NameChart $nameChart) {
 
         $this->innerDreamNumber = $innerDreamNumber;
-        $this->nameResult = $nameResult;
+        $this->nameeChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameeChart;
     }
 
     /**

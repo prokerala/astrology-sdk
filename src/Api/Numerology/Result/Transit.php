@@ -27,9 +27,9 @@ class Transit implements JsonSerializable
      */
     private $spiritual;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param int $id
@@ -37,15 +37,13 @@ class Transit implements JsonSerializable
      * @param Cycle[] $physical
      * @param Cycle[] $mental
      * @param Cycle[] $spiritual
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($id, $title, $physical, $mental, $spiritual, $nameResult){
-        $this->id = $id;
-        $this->title = $title;
+    public function __construct($physical, $mental, $spiritual, $nameChart){
         $this->physical = $physical;
         $this->mental = $mental;
         $this->spiritual = $spiritual;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
@@ -65,11 +63,11 @@ class Transit implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**
@@ -103,12 +101,10 @@ class Transit implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' =>$this->id,
-            'title' =>$this->title,
             'physical' => $this->physical,
             'mental' => $this->mental,
             'spiritual' => $this->spiritual,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 }

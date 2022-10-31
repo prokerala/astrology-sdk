@@ -15,26 +15,26 @@ class Destiny implements ResultInterface
      */
     private $destinyNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param DestinyNumber $destinyNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(DestinyNumber $destinyNumber, NameResult $nameResult) {
+    public function __construct(DestinyNumber $destinyNumber, NameChart $nameChart) {
 
         $this->destinyNumber = $destinyNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameResult(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

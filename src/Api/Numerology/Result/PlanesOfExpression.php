@@ -7,14 +7,6 @@ use JsonSerializable;
 class PlanesOfExpression implements JsonSerializable
 {
     /**
-     * @var int
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $title;
-    /**
      * @var Number
      */
     private $physical;
@@ -32,32 +24,21 @@ class PlanesOfExpression implements JsonSerializable
     private $spiritual;
 
     /**
-     * @param int $id
-     * @param string $title
      * @param Number $physical
      * @param Number $mental
      * @param Number $emotional
      * @param Number $spiritual
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($id, $title, $physical, $mental, $emotional, $spiritual, $nameResult)
+    public function __construct( $physical, $mental, $emotional, $spiritual, $nameChart)
     {
-        $this->id = $id;
-        $this->title = $title;
         $this->physical = $physical;
         $this->mental = $mental;
         $this->emotional = $emotional;
         $this->spiritual = $spiritual;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     /**
      * @return string
@@ -68,11 +49,11 @@ class PlanesOfExpression implements JsonSerializable
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**
@@ -116,7 +97,7 @@ class PlanesOfExpression implements JsonSerializable
             'mental' => $this->mental,
             'emotional' => $this->emotional,
             'spiritual' => $this->spiritual,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 }

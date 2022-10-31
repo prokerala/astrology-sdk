@@ -5,7 +5,6 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-use Prokerala\Api\Numerology\Result\Chaldean\LifePathNumber;
 
 
 class LifePath implements ResultInterface
@@ -19,16 +18,16 @@ class LifePath implements ResultInterface
 
 
     /**
-     * @param LifePathNumber $birthNumber
+     * @param LifePathNumber $lifePathNumber
      */
     public function __construct(LifePathNumber $lifePathNumber) {
         $this->lifePathNumber = $lifePathNumber;
     }
 
     /**
-     * @return BirthNumber
+     * @return LifePathNumber
      */
-    public function getBirthNumber(): LifePathNumber
+    public function getLifePathNumber(): LifePathNumber
     {
         return $this->lifePathNumber;
     }

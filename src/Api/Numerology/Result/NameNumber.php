@@ -16,25 +16,25 @@ class NameNumber
     private $description;
 
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param int|null $number
      * @param string $description
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct (?int $number, string $description, NameResult $nameResult) {
+    public function __construct (?int $number, string $description, NameChart $nameChart) {
         $this->number = $number;
         $this->description = $description;
-        $this->nameResult = $nameResult;
+        $this->nameResult = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameResult(): NameChart
     {
         return $this->nameResult;
     }

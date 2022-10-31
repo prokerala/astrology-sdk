@@ -15,26 +15,26 @@ class HiddenPassion implements ResultInterface
      */
     private $hiddenPassionNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param HiddenPassionNumber $hiddenPassionNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(HiddenPassionNumber $hiddenPassionNumber, NameResult $nameResult) {
+    public function __construct(HiddenPassionNumber $hiddenPassionNumber, NameChart $nameChart) {
 
         $this->hiddenPassionNumber = $hiddenPassionNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

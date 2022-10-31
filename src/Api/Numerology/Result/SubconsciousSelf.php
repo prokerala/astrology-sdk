@@ -15,26 +15,26 @@ class SubconsciousSelf implements ResultInterface
      */
     private $subconsciousSelfNumber;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param SubconsciousSelfNumber $subconsciousSelfNumber
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct(SubconsciousSelfNumber $subconsciousSelfNumber, NameResult $nameResult) {
+    public function __construct(SubconsciousSelfNumber $subconsciousSelfNumber, NameChart $nameChart) {
 
         $this->subconsciousSelfNumber = $subconsciousSelfNumber;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**

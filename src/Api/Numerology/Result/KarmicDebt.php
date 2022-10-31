@@ -33,9 +33,9 @@ class KarmicDebt implements JsonSerializable
      */
     private $birthDay;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param LifePath $lifePath
@@ -43,7 +43,7 @@ class KarmicDebt implements JsonSerializable
      * @param HeartDesire $heartDesire
      * @param Personality $personality
      * @param Number|null $birthDay
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
     public function __construct(
          $lifePath,
@@ -51,7 +51,7 @@ class KarmicDebt implements JsonSerializable
          $heartDesire,
          $personality,
          $birthDay,
-         $nameResult
+         $nameChart
     )
     {
          $this->lifePath = $lifePath;
@@ -59,16 +59,16 @@ class KarmicDebt implements JsonSerializable
          $this->heartDesire = $heartDesire;
          $this->personality = $personality;
          $this->birthDay = $birthDay;
-         $this->nameResult = $nameResult;
+         $this->nameChart = $nameChart;
     }
 
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     /**
@@ -118,7 +118,7 @@ class KarmicDebt implements JsonSerializable
             'expression' => $this->expression,
             'heart_desire' => $this->heartDesire,
             'personality' => $this->personality,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 }

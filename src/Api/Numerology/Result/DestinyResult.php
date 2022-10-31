@@ -11,16 +11,16 @@ class DestinyResult
      */
     private $number;
     /**
-     * @var NameResult $nameResult
+     * @var NameChart $nameChart
      */
-    private $nameResult;
+    private $nameChart;
     /**
      * @param Number $number
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
-    public function __construct($number, $nameResult) {
+    public function __construct($number, $nameChart) {
         $this->number = $number;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
 
@@ -34,10 +34,10 @@ class DestinyResult
     }
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 }

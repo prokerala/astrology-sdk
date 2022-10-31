@@ -27,30 +27,30 @@ class BridgeNumber implements JsonSerializable
      */
     private $gapBetweenPersonalityAndLifePath;
     /**
-     * @var NameResult
+     * @var NameChart
      */
-    private $nameResult;
+    private $nameChart;
 
     /**
      * @param GapBetweenLifePathAndExpression $gapBetweenLifePathAndExpression
      * @param GapBetweenHeartDesireAndPersonality $gapBetweenHeartDesireAndPersonality
      * @param GapBetweenExpressionAndHeartDesire $gapBetweenExpressionAndHeartDesire
      * @param GapBetweenPersonalityAndLifePath $gapBetweenPersonalityAndLifePath
-     * @param NameResult $nameResult
+     * @param NameChart $nameChart
      */
     public function __construct(
         $gapBetweenLifePathAndExpression,
         $gapBetweenHeartDesireAndPersonality,
         $gapBetweenExpressionAndHeartDesire,
         $gapBetweenPersonalityAndLifePath,
-        $nameResult
+        $nameChart
     )
     {
         $this->gapBetweenLifePathAndExpression = $gapBetweenLifePathAndExpression;
         $this->gapBetweenHeartDesireAndPersonality = $gapBetweenHeartDesireAndPersonality;
         $this->gapBetweenExpressionAndHeartDesire = $gapBetweenExpressionAndHeartDesire;
         $this->gapBetweenPersonalityAndLifePath = $gapBetweenPersonalityAndLifePath;
-        $this->nameResult = $nameResult;
+        $this->nameChart = $nameChart;
     }
 
     /**
@@ -92,16 +92,16 @@ class BridgeNumber implements JsonSerializable
             'heartDesire_personality' => $this->gapBetweenHeartDesireAndPersonality,
             'expression_heartDesire' => $this->gapBetweenExpressionAndHeartDesire,
             'personality_lifePath' => $this->gapBetweenPersonalityAndLifePath,
-            'name_result' => $this->nameResult,
+            'name_chart' => $this->nameChart,
         ];
     }
 
 
     /**
-     * @return NameResult
+     * @return NameChart
      */
-    public function getNameResult(): NameResult
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 }
