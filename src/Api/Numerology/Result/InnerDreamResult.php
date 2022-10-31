@@ -20,7 +20,7 @@ class InnerDreamResult implements JsonSerializable
      */
     public function __construct($number, $nameChart) {
         $this->number = $number;
-        $this->nameChart = $nameChart;
+        $this->nameChart = $nameChartpinnacles;
     }
 
     /**

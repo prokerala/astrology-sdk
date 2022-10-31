@@ -5,10 +5,7 @@ namespace Prokerala\Api\Numerology\Result;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-use Prokerala\Api\Numerology\Result\ChallengeNumbers\FirstChallenge;
-use Prokerala\Api\Numerology\Result\ChallengeNumbers\SecondChallenge;
-use Prokerala\Api\Numerology\Result\ChallengeNumbers\ThirdChallenge;
-use Prokerala\Api\Numerology\Result\ChallengeNumbers\FourthChallenge;
+
 
 
 class Challenge implements ResultInterface
@@ -16,22 +13,22 @@ class Challenge implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var ChallengeResult
+     * @var ChallengeNumbers
      */
     private $challenge;
 
 
     /**
-     * @param ChallengeResult $challenge
+     * @param ChallengeNumbers $challenge
      */
-    public function __construct(ChallengeResult $challenge) {
+    public function __construct(ChallengeNumbers $challenge) {
         $this->challenge = $challenge;
     }
 
     /**
-     * @return ChallengeResult
+     * @return ChallengeNumbers
      */
-    public function getChallenge(): ChallengeResult
+    public function getChallenge(): ChallengeNumbers
     {
         return $this->challenge;
     }
