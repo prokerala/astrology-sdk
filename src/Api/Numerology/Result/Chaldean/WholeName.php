@@ -5,7 +5,7 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-use Prokerala\Api\Numerology\Result\Chaldean\WholeNameNumber;
+
 
 class WholeName implements ResultInterface
 {
@@ -31,6 +31,5 @@ class WholeName implements ResultInterface
     {
         return $this->wholeNameNumber;
     }
-
 
 }

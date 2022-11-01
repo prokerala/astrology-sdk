@@ -19,7 +19,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
-final class LifeCycle
+final class LifeCycleNumber
 {
     use ClientAwareTrait;
     use TimeZoneAwareTrait;

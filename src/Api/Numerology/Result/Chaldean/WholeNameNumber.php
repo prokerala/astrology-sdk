@@ -5,55 +5,42 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Numerology\Result\Number;
 
+
 class WholeNameNumber
 {
     /**
-     * @var ?int
+     * @var string
      */
-    private $social_energy;
-    /**
-    * @var ?int
-    */
-    private $soul_energy;
-    /**
-    * @var ?int
-     */
-    private $domestic_energy;
+    private string $name;
 
     /**
-     * @param int|null $social_energy
-     * @param int|null $soul_energy
-     * @param int|null $domestic_energy
+     * @var \Prokerala\Api\Numerology\Result\Number[]
      */
-    public function __construct(?int $social_energy, ?int $soul_energy, ?int $domestic_energy)
+    private array $energies;
+
+    /**
+     * @param string $name
+     * @param \Prokerala\Api\Numerology\Result\Number[] $energies
+     */
+    public function __construct(string $name, array $energies)
     {
-        $this->social_energy = $social_energy;
-        $this->soul_energy = $soul_energy;
-        $this->domestic_energy = $domestic_energy;
+        $this->name = $name;
+        $this->energies = $energies;
     }
 
     /**
-     * @return int|null
+     * @return string
      */
-    public function getSocialEnergy(): ?int
+    public function getName(): string
     {
-        return $this->social_energy;
+        return $this->name;
     }
-
     /**
-     * @return int|null
+     * @return \Prokerala\Api\Numerology\Result\Number[]
      */
-    public function getSoulEnergy(): ?int
+    public function getEnergies(): array
     {
-        return $this->soul_energy;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getDomesticEnergy(): ?int
-    {
-        return $this->domestic_energy;
+        return $this->energies;
     }
 
 
