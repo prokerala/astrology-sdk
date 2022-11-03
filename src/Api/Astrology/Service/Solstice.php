@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Panchang\AuspiciousPeriod as AuspiciousPeriodResult;
+use Prokerala\Api\Astrology\Result\Panchang\Solstice as SolsticeResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -21,16 +21,16 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class AuspiciousPeriod
+final class Solstice
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'auspicious-period';
+    protected $slug = 'solstice';
 
-    /** @var Transformer<AuspiciousPeriodResult> */
+    /** @var Transformer<SolsticeResult> */
     private $transformer;
 
     /**
@@ -39,7 +39,7 @@ final class AuspiciousPeriod
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(AuspiciousPeriodResult::class);
+        $this->transformer = new Transformer(SolsticeResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -52,7 +52,7 @@ final class AuspiciousPeriod
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return AuspiciousPeriodResult
+     * @return SolsticeResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {
@@ -60,7 +60,7 @@ final class AuspiciousPeriod
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

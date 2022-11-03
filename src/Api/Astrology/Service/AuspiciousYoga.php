@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Panchang\AuspiciousPeriod as AuspiciousPeriodResult;
+use Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga as AuspiciousPeriodResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -21,14 +21,14 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class AuspiciousPeriod
+final class AuspiciousYoga
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'auspicious-period';
+    protected $slug = 'auspicious-yoga';
 
     /** @var Transformer<AuspiciousPeriodResult> */
     private $transformer;
@@ -60,7 +60,7 @@ final class AuspiciousPeriod
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
