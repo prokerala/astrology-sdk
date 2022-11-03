@@ -50,7 +50,7 @@ final class Porutham
      *
      * @return AdvancedMatchResult|MatchResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, $system, $detailed_report = false)
+    public function process(Profile $girl_profile, Profile $boy_profile, $system, $detailed_report = false, $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {
@@ -67,6 +67,7 @@ final class Porutham
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'system' => $system,
             'ayanamsa' => $this->getAyanamsa(),
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);

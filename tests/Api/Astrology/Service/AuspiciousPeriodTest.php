@@ -14,10 +14,10 @@ namespace Prokerala\Tests\Api\Astrology\Service;
 use DateTime;
 use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Panchang\AuspiciousPeriod as AuspiciousPeriodResult;
+use Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga as AuspiciousPeriodResult;
 use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
 use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Period;
-use Prokerala\Api\Astrology\Service\AuspiciousPeriod;
+use Prokerala\Api\Astrology\Service\AuspiciousYoga;
 use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
 use Prokerala\Tests\BaseTestCase;
 
@@ -84,7 +84,7 @@ final class AuspiciousPeriodTest extends BaseTestCase
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
 
-        $method = new AuspiciousPeriod($client);
+        $method = new AuspiciousYoga($client);
         $test_result = $method->process($location, $datetime);
         $result = self::EXPECTED_RESULT;
         $arMuhurat = $apiResponseMuhurat = [];

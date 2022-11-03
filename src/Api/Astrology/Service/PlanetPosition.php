@@ -47,13 +47,14 @@ final class PlanetPosition
      *
      * @return PlanetPositionResult
      */
-    public function process(Location $location, DateTimeInterface $datetime, $planets = null)
+    public function process(Location $location, DateTimeInterface $datetime, string $la, $planets = null,)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
             'planets' => $planets,
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

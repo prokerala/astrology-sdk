@@ -45,12 +45,13 @@ final class Papasamyam
      *
      * @return PapasamyamResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime)
+    public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
+            'la' => $la
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

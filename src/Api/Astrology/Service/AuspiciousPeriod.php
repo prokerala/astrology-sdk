@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Panchang\AuspiciousPeriod as AuspiciousPeriodResult;
+use Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga as AuspiciousPeriodResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -54,12 +54,13 @@ final class AuspiciousPeriod
      **
      * @return AuspiciousPeriodResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime)
+    public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
+            'la' => $la
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
