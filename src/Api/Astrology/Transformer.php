@@ -44,7 +44,7 @@ final class Transformer
     /**
      * @param "int"|"string" $from
      * @param class-string   $to
-     * @param callable       $converter
+     * @param null|callable       $converter
      *
      * @return void
      */
@@ -90,7 +90,6 @@ final class Transformer
         }
 
         $constructor = $class->getConstructor();
-        $params = null;
         if (null === $constructor) {
             throw new \RuntimeException("{$className} is not instantiable");
         }
@@ -120,10 +119,14 @@ final class Transformer
             }
 
             $dataType = $this->getType($paramValue);
-            $paramClass = $param->getType() && !$param->getType()->isBuiltin() ? new \ReflectionClass($param->getType()->getName()) : null;
+            /** @var null|\ReflectionNamedType $reflectionType */
+            $reflectionType = $param->getType();
+            $paramClass = $reflectionType && !$reflectionType->isBuiltin() ? new \ReflectionClass($reflectionType->getName()) : null;
 
             if ($paramClass) {
                 $paramType = [$paramClass->getName()];
+            } elseif (null !== $reflectionType && $reflectionType->isBuiltin() && 'array' !== $reflectionType->getName()) {
+                $paramType = [$reflectionType->getName()];
             } elseif (isset($paramTypes[$paramName])) {
                 $paramType = $paramTypes[$paramName];
             } else {
