@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PersonalDayNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<PersonalDay> */
     use TimeZoneAwareTrait;
 
     /** @var string */

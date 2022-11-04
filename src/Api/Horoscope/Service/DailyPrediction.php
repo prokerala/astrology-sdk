@@ -20,6 +20,7 @@ use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
 final class DailyPrediction
 {
+    /** @use TimeZoneAwareTrait<DailyHoroscope> */
     use TimeZoneAwareTrait;
 
     /** @var string */

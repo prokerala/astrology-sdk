@@ -25,6 +25,7 @@ final class Choghadiya
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<ChoghadiyaResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

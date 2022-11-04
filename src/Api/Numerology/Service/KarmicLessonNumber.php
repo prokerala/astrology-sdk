@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class KarmicLessonNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<KarmicLessonResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

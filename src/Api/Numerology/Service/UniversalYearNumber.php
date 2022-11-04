@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class UniversalYearNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<UniversalYear> */
     use TimeZoneAwareTrait;
 
     /** @var string */
@@ -45,7 +46,7 @@ final class UniversalYearNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return UniversalYearResult
+     * @return UniversalYear
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **

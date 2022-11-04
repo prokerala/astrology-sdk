@@ -26,8 +26,10 @@ final class Kundli
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 
+    /** @var string $slug */
     protected $slug = 'kundli';
 
     /** @var Transformer<KundliResult> */

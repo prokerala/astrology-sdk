@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class CapStoneNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<CapStone> */
     use TimeZoneAwareTrait;
 
     /** @var string */

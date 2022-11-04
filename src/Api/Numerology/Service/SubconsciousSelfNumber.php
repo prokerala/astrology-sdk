@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class SubconsciousSelfNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<SubconsciousSelf> */
     use TimeZoneAwareTrait;
 
     /** @var string */

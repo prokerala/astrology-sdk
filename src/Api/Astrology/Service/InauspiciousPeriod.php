@@ -23,6 +23,7 @@ final class InauspiciousPeriod
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<InauspiciousPeriodResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

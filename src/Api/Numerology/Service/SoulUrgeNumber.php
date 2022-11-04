@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class SoulUrgeNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<SoulUrge> */
     use TimeZoneAwareTrait;
 
     /** @var string */

@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PeriodCycleNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<PeriodCycle> */
     use TimeZoneAwareTrait;
 
     /** @var string */

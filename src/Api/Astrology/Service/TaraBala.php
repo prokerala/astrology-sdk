@@ -25,6 +25,7 @@ final class TaraBala
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<TaraBalaResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

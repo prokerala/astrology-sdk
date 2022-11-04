@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class UniversalMonthNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<UniversalMonth> */
     use TimeZoneAwareTrait;
 
     /** @var string */

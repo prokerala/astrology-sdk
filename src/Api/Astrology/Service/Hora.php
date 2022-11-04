@@ -25,6 +25,7 @@ final class Hora
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<HoraTiming> */
     use TimeZoneAwareTrait;
 
     /** @var string */

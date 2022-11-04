@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class MaturityNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<Maturity> */
     use TimeZoneAwareTrait;
 
     /** @var string */

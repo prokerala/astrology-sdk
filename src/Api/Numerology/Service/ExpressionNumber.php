@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class ExpressionNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<Expression> */
     use TimeZoneAwareTrait;
 
     /** @var string */

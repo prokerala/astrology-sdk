@@ -25,6 +25,7 @@ final class AnandadiYoga
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<AnandadiYogaResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

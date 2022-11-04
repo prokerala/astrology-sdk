@@ -24,6 +24,7 @@ final class SadeSati
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<SadeSatiResult|AdvancedSadeSatiResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

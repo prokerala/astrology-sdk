@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BirthNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<BirthResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

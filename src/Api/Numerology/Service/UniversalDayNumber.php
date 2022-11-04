@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class UniversalDayNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<UniversalDay> */
     use TimeZoneAwareTrait;
 
     /** @var string */

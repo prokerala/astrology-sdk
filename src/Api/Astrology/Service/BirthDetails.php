@@ -25,6 +25,7 @@ final class BirthDetails
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<NakshatraResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

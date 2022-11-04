@@ -15,6 +15,7 @@ use Prokerala\Api\Astrology\Transformer;
 
 /**
  * @internal
+ * @template T
  */
 trait TimeZoneAwareTrait
 {

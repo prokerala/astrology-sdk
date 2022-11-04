@@ -26,6 +26,7 @@ final class Panchang
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<PanchangResult|AdvancedPanchangResult> */
     use TimeZoneAwareTrait;
 
     /** @var string */

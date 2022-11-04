@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class HiddenPassionNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<HiddenPassion> */
     use TimeZoneAwareTrait;
 
     /** @var string */

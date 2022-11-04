@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class LifePathNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<LifePath> */
     use TimeZoneAwareTrait;
 
     /** @var string */

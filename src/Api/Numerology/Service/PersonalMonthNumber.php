@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PersonalMonthNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<PersonalMonth> */
     use TimeZoneAwareTrait;
 
     /** @var string */

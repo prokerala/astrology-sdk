@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class AttainmentNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<Attainment> */
     use TimeZoneAwareTrait;
 
     /** @var string */

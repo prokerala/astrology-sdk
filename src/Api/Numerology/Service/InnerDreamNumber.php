@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class InnerDreamNumber
 {
     use ClientAwareTrait;
+    /** @use TimeZoneAwareTrait<InnerDream> */
     use TimeZoneAwareTrait;
 
     /** @var string */
