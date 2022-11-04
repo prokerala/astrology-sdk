@@ -25,6 +25,8 @@ trait ClientAwareTrait
      * Set API Client.
      *
      * @param Client $client Api client
+     *
+     * @return void
      */
     public function setApiClient(Client $client)
     {
