@@ -24,12 +24,12 @@ final class AdvancedSadeSati implements ResultInterface
     private $isInSadeSati;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $transitPhase;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $description;
 

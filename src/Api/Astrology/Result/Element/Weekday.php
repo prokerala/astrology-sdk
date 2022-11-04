@@ -62,7 +62,7 @@ final class Weekday
     /**
      * Get week day list.
      *
-     * @return array
+     * @return list<string>
      */
     public function getWeekdayList()
     {

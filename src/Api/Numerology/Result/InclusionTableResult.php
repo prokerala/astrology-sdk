@@ -7,12 +7,12 @@ namespace Prokerala\Api\Numerology\Result;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class InclusionTableResult implements \JsonSerializable, ResultInterface
+class InclusionTableResult implements ResultInterface
 {
     use RawResponseTrait;
 
     /**
-     * @var array
+     * @var InclusionNumber[]
      */
     private $inclusionNumber;
 
@@ -22,18 +22,13 @@ class InclusionTableResult implements \JsonSerializable, ResultInterface
     private $nameChart;
 
     /**
-     * @param array     $inclusionNumber
+     * @param \Prokerala\Api\Numerology\Result\InclusionNumber[]  $inclusionNumber
      * @param NameChart $nameChart
      */
     public function __construct($inclusionNumber, $nameChart)
     {
         $this->inclusionNumber = $inclusionNumber;
         $this->nameChart = $nameChart;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**
@@ -47,18 +42,5 @@ class InclusionTableResult implements \JsonSerializable, ResultInterface
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'InclusionNumber' => $this->inclusionNumber,
-            'name_chart' => $this->nameChart,
-        ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

@@ -126,7 +126,7 @@ final class Koot
     }
 
     /**
-     * @return array
+     * @return array<string,string>
      */
     public function getKoot()
     {

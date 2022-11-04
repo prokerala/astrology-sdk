@@ -11,7 +11,7 @@ class PinnacleNumber
     /**
      * @var AgeNumber[]
      */
-    private array $pinnacles;
+    private $pinnacles;
 
     /**
      * @param AgeNumber[] $pinnacles

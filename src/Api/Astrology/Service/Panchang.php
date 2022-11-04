@@ -35,7 +35,7 @@ final class Panchang
     /** @var Transformer<PanchangResult> */
     private $basicResponseTransformer;
 
-    /** @var Transformer<AdvancedPanchangResult */
+    /** @var Transformer<AdvancedPanchangResult> */
     private $advancedResponseTransformer;
 
     /**

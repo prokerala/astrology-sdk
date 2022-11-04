@@ -14,7 +14,7 @@ class RationalThought implements ResultInterface
     /**
      * @var RationalThoughtNumber
      */
-    private $maturityNumber;
+    private $rationalThoughtNumber;
 
     /**
      * @var NameChart

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-class ArrayNumber implements \JsonSerializable
+class ArrayNumber
 {
     /**
      * @var array
@@ -20,11 +20,6 @@ class ArrayNumber implements \JsonSerializable
     }
 
     public function getArray(): array
-    {
-        return $this->array;
-    }
-
-    public function jsonSerialize(): array
     {
         return $this->array;
     }

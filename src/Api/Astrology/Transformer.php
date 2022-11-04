@@ -29,14 +29,12 @@ final class Transformer
     private $paramConverters = [];
 
     /**
-     * @var class-string
-     * @psalm-var class-string $class
+     * @var class-string<T>
      */
     private $class;
 
     /**
-     * @param class-string $class
-     * @psalm-param class-string of T
+     * @param class-string<T> $class
      */
     public function __construct($class)
     {
@@ -62,12 +60,10 @@ final class Transformer
     }
 
     /**
-     * @return object
-     * @psalm-return T
+     * @return T
      */
     public function transform(\stdClass $data)
     {
-        /** @var ResultInterface $result */
         $result = $this->create($this->class, $data);
         $result->setRawResponse($data);
 
@@ -75,12 +71,12 @@ final class Transformer
     }
 
     /**
-     * @param string    $className
+     * @template C of object
+     * @param class-string<C> $className
      * @param \stdClass $data
      *
      * @return object
-     * @pslam-param class-string of C $class
-     * @psalm-return C
+     * @return C
      */
     private function create($className, $data)
     {
@@ -95,9 +91,10 @@ final class Transformer
 
         $constructor = $class->getConstructor();
         $params = null;
-        if ($constructor) {
-            $params = $constructor->getParameters();
+        if (null === $constructor) {
+            throw new \RuntimeException("{$className} is not instantiable");
         }
+        $params = $constructor->getParameters();
 
         if (!$params) {
             // Constructor takes no argument
@@ -111,7 +108,7 @@ final class Transformer
             $paramName = $param->getName();
             $dataKey = preg_replace_callback('/[A-Z]/', function ($match) {
                 return '_' . lcfirst($match[0]);
-            }, $paramName);
+            }, $paramName) ?? $paramName;
 
             $paramValue = null;
             if (property_exists($data, $dataKey)) {
@@ -146,7 +143,7 @@ final class Transformer
     /**
      * @param string $namespace
      *
-     * @return array
+     * @return array<string, list<string>>
      */
     private function parsePhpDoc(\ReflectionMethod $method, $namespace)
     {
@@ -192,7 +189,7 @@ final class Transformer
 
     /**
      * @param mixed    $data       Data
-     * @param string   $dataType   Data type
+     * @param null|string   $dataType   Data type
      * @param string[] $paramTypes Parameter type
      *
      * @return mixed
@@ -224,18 +221,22 @@ final class Transformer
         }
 
         if ($data instanceof \stdClass) {
-            return $this->create($paramTypes[0], $data);
+            return $this->create($paramTypes[0], $data); // @phpstan-ignore-line
         }
 
         $paramValue = [];
         foreach ($data as $val) {
             \assert($val instanceof \stdClass);
-            $paramValue[] = $this->create(substr($paramTypes[0], 0, -2), $val);
+            $paramValue[] = $this->create(substr($paramTypes[0], 0, -2), $val); // @phpstan-ignore-line
         }
 
         return $paramValue;
     }
 
+    /**
+     * @param mixed $val
+     * @return string
+     */
     private function getType($val)
     {
         if (null === $val) {

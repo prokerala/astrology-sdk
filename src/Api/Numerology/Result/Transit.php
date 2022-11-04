@@ -7,19 +7,9 @@ namespace Prokerala\Api\Numerology\Result;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class Transit implements \JsonSerializable, ResultInterface
+class Transit implements ResultInterface
 {
     use RawResponseTrait;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $title;
 
     /**
      * @var Cycle[]
@@ -42,8 +32,6 @@ class Transit implements \JsonSerializable, ResultInterface
     private $nameChart;
 
     /**
-     * @param int       $id
-     * @param string    $title
      * @param Cycle[]   $physical
      * @param Cycle[]   $mental
      * @param Cycle[]   $spiritual
@@ -57,46 +45,32 @@ class Transit implements \JsonSerializable, ResultInterface
         $this->nameChart = $nameChart;
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }
 
+    /**
+     * @return Cycle[]
+     */
     public function getPhysical(): array
     {
         return $this->physical;
     }
 
+    /**
+     * @return Cycle[]
+     */
     public function getMental(): array
     {
         return $this->mental;
     }
 
+    /**
+     * @return Cycle[]
+     */
     public function getSpiritual(): array
     {
         return $this->spiritual;
-    }
-
-    /**
-     * @return array{physical: Cycle[], mental: Cycle[], spiritual: Cycle[]}
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'physical' => $this->physical,
-            'mental' => $this->mental,
-            'spiritual' => $this->spiritual,
-            'name_chart' => $this->nameChart,
-        ];
     }
 }

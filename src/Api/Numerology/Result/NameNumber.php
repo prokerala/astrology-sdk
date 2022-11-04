@@ -25,12 +25,12 @@ class NameNumber
     {
         $this->number = $number;
         $this->description = $description;
-        $this->nameResult = $nameChart;
+        $this->nameChart = $nameChart;
     }
 
-    public function getNameResult(): NameChart
+    public function getNameChart(): NameChart
     {
-        return $this->nameResult;
+        return $this->nameChart;
     }
 
     public function getNumber(): ?int

@@ -19,7 +19,7 @@ final class AnandadiYoga implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var AnandadiYogaResult
+     * @var AnandadiYogaResult[]
      */
     private $anandadiYoga;
 

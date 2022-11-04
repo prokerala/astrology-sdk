@@ -94,7 +94,7 @@ final class BirthDetails implements ResultInterface
     }
 
     /**
-     * @return Nakshatra\NakshatraInfo
+     * @return NakshatraInfo
      */
     public function getAdditionalInfo()
     {

@@ -7,7 +7,7 @@ namespace Prokerala\Api\Numerology\Result;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class KarmicLessonResult implements \JsonSerializable, ResultInterface
+class KarmicLessonResult implements ResultInterface
 {
     use RawResponseTrait;
 
@@ -21,7 +21,7 @@ class KarmicLessonResult implements \JsonSerializable, ResultInterface
      */
     private $nameChart;
 
-    public function __construct($arrayNumber, $nameChart)
+    public function __construct(ArrayNumber $arrayNumber, NameChart $nameChart)
     {
         $this->arrayNumber = $arrayNumber;
         $this->nameChart = $nameChart;
@@ -35,13 +35,5 @@ class KarmicLessonResult implements \JsonSerializable, ResultInterface
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'array_number' => $this->arrayNumber,
-            'name_chart' => $this->nameChart,
-        ];
     }
 }

@@ -12,7 +12,7 @@ class DailyHoroscopePrediction
     private $signName;
 
     /**
-     * @var ?int
+     * @var int
      */
     private $signId;
 
@@ -27,9 +27,12 @@ class DailyHoroscopePrediction
     private $prediction;
 
     /**
-     * @param null|int $signId
+     * @param string $signName
+     * @param int $signId
+     * @param \DateTimeImmutable $date
+     * @param string $prediction
      */
-    public function __construct(string $signName, int $signId, \DateTimeImmutable $date, string $prediction)
+    public function __construct($signName, $signId, \DateTimeImmutable $date, $prediction)
     {
         $this->signName = $signName;
         $this->signId = $signId;
@@ -37,7 +40,10 @@ class DailyHoroscopePrediction
         $this->prediction = $prediction;
     }
 
-    public function getSignName(): string
+    /**
+     * @return string
+     */
+    public function getSignName()
     {
         return $this->signName;
     }
@@ -45,7 +51,7 @@ class DailyHoroscopePrediction
     /**
      * @return int
      */
-    public function getSignId(): ?int
+    public function getSignId()
     {
         return $this->signId;
     }
@@ -55,7 +61,10 @@ class DailyHoroscopePrediction
         return $this->date;
     }
 
-    public function getPrediction(): string
+    /**
+     * @return string
+     */
+    public function getPrediction()
     {
         return $this->prediction;
     }

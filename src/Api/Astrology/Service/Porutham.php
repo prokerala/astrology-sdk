@@ -47,6 +47,8 @@ final class Porutham
      * Fetch result from API.
      *
      * @param bool $detailed_report
+     * @param string $la
+     * @param string $system
      *
      * @return AdvancedMatchResult|MatchResult
      */

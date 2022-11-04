@@ -18,6 +18,9 @@ final class Panchang implements ResultInterface
 {
     use RawResponseTrait;
 
+    /**
+     * @var string
+     */
     private $vaara;
 
     /**

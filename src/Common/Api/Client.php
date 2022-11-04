@@ -11,11 +11,14 @@
 
 namespace Prokerala\Common\Api;
 
+use Prokerala\Common\Api\Authentication\AuthenticationTypeInterface;
 use Prokerala\Common\Api\Exception\AuthenticationException;
 use Prokerala\Common\Api\Exception\Exception;
 use Prokerala\Common\Api\Exception\RetryableExceptionInterface;
 use Prokerala\Common\Api\Exception\ServerException;
 use Prokerala\Common\Api\Exception\ValidationException;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -23,12 +26,24 @@ final class Client
 {
     public const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
 
+    /**
+     * @var AuthenticationTypeInterface
+     */
     private $authClient;
+    /**
+     * @var ClientInterface
+     */
     private $httpClient;
+    /**
+     * @var RequestFactoryInterface
+     */
     private $httpRequestFactory;
+    /**
+     * @var int
+     */
     private $apiCreditUsed = 0;
 
-    public function __construct($authClient, $httpClient, $httpRequestFactory)
+    public function __construct(AuthenticationTypeInterface $authClient, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory)
     {
         $this->authClient = $authClient;
         $this->httpClient = $httpClient;
@@ -54,7 +69,7 @@ final class Client
             $request = $this->authClient->process($request);
             $response = $this->request($request);
             if (401 === $response->getStatusCode()) {
-                $this->authClient->handleError($response->message, $response->code);
+                $this->authClient->handleError($response->message, $response->getStatusCode());
             }
         } catch (RetryableExceptionInterface $e) {
             $request = $this->authClient->process($request);
@@ -64,12 +79,13 @@ final class Client
         $responseType = $response->getHeader('content-type');
         $responseBody = (string)$response->getBody();
 
-        $apiCredits = $response->getHeader('X-Api-Credits');
+        $apiCredits = $response->getHeader('X-Api-Credits')[0] ?? null;
         $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits[0] : 0;
 
         if (isset($responseType[0]) && 'image/svg+xml' == $responseType[0]) {
             $responseData = $responseBody;
         } else {
+            /** @var \stdClass $responseData */
             $responseData = json_decode($responseBody);
         }
 

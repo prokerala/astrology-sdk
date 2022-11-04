@@ -24,12 +24,12 @@ class InnerDream implements ResultInterface
     public function __construct(InnerDreamNumber $innerDreamNumber, NameChart $nameChart)
     {
         $this->innerDreamNumber = $innerDreamNumber;
-        $this->nameeChart = $nameChart;
+        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart
     {
-        return $this->nameeChart;
+        return $this->nameChart;
     }
 
     public function getInnerDreamNumber(): InnerDreamNumber

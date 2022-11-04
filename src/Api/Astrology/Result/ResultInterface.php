@@ -13,11 +13,17 @@ namespace Prokerala\Api\Astrology\Result;
 
 interface ResultInterface
 {
-    /** @internal */
+    /**
+     * @internal
+     *
+     * @return void
+     */
     public function setRawResponse(\stdClass $data);
 
     /**
      * Get the raw response returned by the API server.
+     *
+     * @return null|\stdClass
      */
     public function getRawResponse();
 }

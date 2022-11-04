@@ -12,7 +12,6 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\Chart as ChartResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
@@ -41,7 +40,7 @@ final class Chart
      * @param string             $chart_type  Chart type
      * @param string             $chart_style
      *
-     * @return ChartResult
+     * @return string
      */
     public function process(Location $location, $datetime, $chart_type, $chart_style)
     {
@@ -53,6 +52,6 @@ final class Chart
             'chart_style' => $chart_style,
         ];
 
-        return $this->apiClient->process($this->slug, $parameters);
+        return $this->apiClient->process($this->slug, $parameters); // @phpstan-ignore-line
     }
 }

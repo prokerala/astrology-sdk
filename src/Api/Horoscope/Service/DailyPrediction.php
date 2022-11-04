@@ -29,6 +29,9 @@ final class DailyPrediction
     /** @var TransformerAlias<DailyHoroscope> */
     private $transformer;
 
+    /** @var Client */
+    private $apiClient;
+
     /**
      * @param Client $client Api client
      */

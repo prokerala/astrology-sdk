@@ -24,6 +24,7 @@ class Attainment implements ResultInterface
     public function __construct(AttainmentNumber $attainmentNumber, NameChart $nameChart)
     {
         $this->attainmentNumber = $attainmentNumber;
+        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

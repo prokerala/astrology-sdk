@@ -62,14 +62,12 @@ class Oauth2 implements AuthenticationTypeInterface
         $this->httpClient = $httpClient;
         $this->cache = $cache;
 
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->httpClient = $httpClient;
-
         // Try loading access token from cache
         if ($cache) {
             $this->cache = $cache;
-            $this->accessToken = $cache->get(self::CACHE_KEY);
+            $accessToken = $cache->get(self::CACHE_KEY);
+            assert(is_string($accessToken));
+            $this->accessToken = $accessToken;
         }
         $this->httpRequestFactory = $httpRequestFactory;
         $this->streamFactory = $streamFactory;
@@ -91,6 +89,7 @@ class Oauth2 implements AuthenticationTypeInterface
     /**
      * @param string $message
      * @param int    $code
+     * @return void
      */
     public function handleError($message, $code)
     {
@@ -101,6 +100,7 @@ class Oauth2 implements AuthenticationTypeInterface
     }
 
     /**
+     * @return void
      * @throws AuthenticationException
      */
     private function requestAccessToken()
@@ -125,6 +125,7 @@ class Oauth2 implements AuthenticationTypeInterface
             throw new AuthenticationException("Failed to fetch access token. Request failed with error - {$e->getMessage()}", 0, $e);
         }
 
+        /** @var null|\stdClass $responseData */
         $responseData = json_decode($response->getBody(), false, 512);
         if (!$responseData) {
             throw new AuthenticationException('Failed to parse token');

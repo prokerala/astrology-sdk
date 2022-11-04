@@ -33,16 +33,25 @@ class NameChart
         $this->middleName = $middleName;
     }
 
+    /**
+     * @return CharacterValues[]
+     */
     public function getFirstName(): array
     {
         return $this->firstName;
     }
 
+    /**
+     * @return CharacterValues[]
+     */
     public function getLastName(): array
     {
         return $this->lastName;
     }
 
+    /**
+     * @return CharacterValues[]
+     */
     public function getMiddleName(): array
     {
         return $this->middleName;

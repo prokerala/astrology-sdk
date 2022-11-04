@@ -27,6 +27,8 @@ interface AuthenticationTypeInterface
      *
      * @param string $message
      * @param int    $code
+     *
+     * @return void
      */
     public function handleError($message, $code);
 }

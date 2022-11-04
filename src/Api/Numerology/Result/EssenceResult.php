@@ -21,7 +21,7 @@ class EssenceResult implements ResultInterface
      */
     private $nameChart;
 
-    public function __construct($arrayNumber, $nameChart)
+    public function __construct(ArrayNumber $arrayNumber, NameChart $nameChart)
     {
         $this->arrayNumber = $arrayNumber;
         $this->nameChart = $nameChart;

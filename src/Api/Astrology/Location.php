@@ -33,7 +33,13 @@ final class Location
      */
     private $timezone;
 
-    public function __construct($latitude, $longitude, $altitude = 0, \DateTimeZone $timezone = null)
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $altitude
+     * @param \DateTimeZone|null $timezone
+     */
+    public function __construct($latitude, $longitude, $altitude = 0, $timezone = null)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;

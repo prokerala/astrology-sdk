@@ -7,7 +7,7 @@ namespace Prokerala\Api\Numerology\Result;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class PlanesOfExpression implements \JsonSerializable, ResultInterface
+class PlanesOfExpression implements ResultInterface
 {
     use RawResponseTrait;
 
@@ -30,6 +30,10 @@ class PlanesOfExpression implements \JsonSerializable, ResultInterface
      * @var Number
      */
     private $spiritual;
+    /**
+     * @var NameChart
+     */
+    private $nameChart;
 
     /**
      * @param Number    $physical
@@ -45,11 +49,6 @@ class PlanesOfExpression implements \JsonSerializable, ResultInterface
         $this->emotional = $emotional;
         $this->spiritual = $spiritual;
         $this->nameChart = $nameChart;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 
     public function getNameChart(): NameChart
@@ -75,18 +74,5 @@ class PlanesOfExpression implements \JsonSerializable, ResultInterface
     public function getPhysical(): Number
     {
         return $this->physical;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'physical' => $this->physical,
-            'mental' => $this->mental,
-            'emotional' => $this->emotional,
-            'spiritual' => $this->spiritual,
-            'name_chart' => $this->nameChart,
-        ];
     }
 }
