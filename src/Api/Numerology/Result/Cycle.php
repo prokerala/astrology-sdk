@@ -21,12 +21,7 @@ class Cycle
      */
     private $description;
 
-    /**
-     * @param string $character
-     * @param int    $number
-     * @param string $description
-     */
-    public function __construct($character, $number, $description)
+    public function __construct(string $character, int $number, string $description)
     {
         $this->character = $character;
         $this->number = $number;

@@ -16,11 +16,7 @@ class CharacterValues
      */
     private $number;
 
-    /**
-     * @param string $character
-     * @param int    $number
-     */
-    public function __construct($character, $number)
+    public function __construct(string $character, int $number)
     {
         $this->character = $character;
         $this->number = $number;

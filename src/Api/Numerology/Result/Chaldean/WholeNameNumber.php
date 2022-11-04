@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result\Chaldean;
 
+use Prokerala\Api\Numerology\Result\Number;
+
 class WholeNameNumber
 {
     /** @var string */
     private $name;
 
     /**
-     * @var \Prokerala\Api\Numerology\Result\Number[]
+     * @var Number[]
      */
     private $energies;
 
     /**
-     * @param \Prokerala\Api\Numerology\Result\Number[] $energies
+     * @param Number[] $energies
      */
     public function __construct(string $name, array $energies)
     {
@@ -29,7 +31,7 @@ class WholeNameNumber
     }
 
     /**
-     * @return \Prokerala\Api\Numerology\Result\Number[]
+     * @return Number[]
      */
     public function getEnergies(): array
     {

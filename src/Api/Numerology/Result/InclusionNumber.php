@@ -21,12 +21,7 @@ class InclusionNumber
      */
     private $description;
 
-    /**
-     * @param int    $characterNumber
-     * @param int    $repeatedNumber
-     * @param string $description
-     */
-    public function __construct($characterNumber, $repeatedNumber, $description)
+    public function __construct(int $characterNumber, int $repeatedNumber, string $description)
     {
         $this->characterNumber = $characterNumber;
         $this->repeatedNumber = $repeatedNumber;

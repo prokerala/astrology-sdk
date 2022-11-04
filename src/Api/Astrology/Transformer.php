@@ -16,6 +16,7 @@ use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterMismatchExcept
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterTypeMissingException;
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterValueMissingException;
 use Prokerala\Api\Astrology\Result\ResultInterface;
+use RuntimeException;
 
 /**
  * @template T of ResultInterface
@@ -81,17 +82,17 @@ final class Transformer
     private function create($className, $data)
     {
         if (!$data instanceof \stdClass) {
-            throw new \RuntimeException('Cannot create object from ' . \gettype($data));
+            throw new RuntimeException('Cannot create object from ' . \gettype($data));
         }
 
         $class = new \ReflectionClass($className);
         if (!$class->isInstantiable()) {
-            throw new \RuntimeException("{$className} is not instantiable");
+            throw new RuntimeException("{$className} is not instantiable");
         }
 
         $constructor = $class->getConstructor();
         if (null === $constructor) {
-            throw new \RuntimeException("{$className} is not instantiable");
+            throw new RuntimeException("{$className} is not instantiable");
         }
         $params = $constructor->getParameters();
 
@@ -121,12 +122,9 @@ final class Transformer
             $dataType = $this->getType($paramValue);
             /** @var null|\ReflectionNamedType $reflectionType */
             $reflectionType = $param->getType();
-            $paramClass = $reflectionType && !$reflectionType->isBuiltin() ? new \ReflectionClass($reflectionType->getName()) : null;
 
-            if ($paramClass) {
-                $paramType = [$paramClass->getName()];
-            } elseif (null !== $reflectionType && $reflectionType->isBuiltin() && 'array' !== $reflectionType->getName()) {
-                $paramType = [$reflectionType->getName()];
+            if (null !== $reflectionType && (!$reflectionType->isBuiltin() || 'array' !== $reflectionType->getName())) {
+                $paramType = $reflectionType->allowsNull() ? ['null', $reflectionType->getName()] : [$reflectionType->getName()];
             } elseif (isset($paramTypes[$paramName])) {
                 $paramType = $paramTypes[$paramName];
             } else {
@@ -228,6 +226,7 @@ final class Transformer
         }
 
         $paramValue = [];
+        assert(is_array($data));
         foreach ($data as $val) {
             \assert($val instanceof \stdClass);
             $paramValue[] = $this->create(substr($paramTypes[0], 0, -2), $val); // @phpstan-ignore-line

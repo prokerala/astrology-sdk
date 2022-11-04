@@ -15,7 +15,7 @@ class AgeNumber
     private $age;
 
     /**
-     * @var ?int
+     * @var null|int
      */
     private $number;
 

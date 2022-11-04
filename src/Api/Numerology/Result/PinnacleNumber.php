@@ -6,7 +6,10 @@ namespace Prokerala\Api\Numerology\Result;
 
 class PinnacleNumber
 {
-    private string $name;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * @var AgeNumber[]

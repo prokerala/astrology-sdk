@@ -11,10 +11,7 @@ class ArrayNumber
      */
     private $array;
 
-    /**
-     * @param array $array
-     */
-    public function __construct($array)
+    public function __construct(array $array)
     {
         $this->array = $array;
     }

@@ -23,11 +23,7 @@ final class NakshatraProfile
      */
     private $nakshatra_pada;
 
-    /**
-     * @param int $nakshatra
-     * @param int $nakshatra_pada
-     */
-    public function __construct($nakshatra, $nakshatra_pada)
+    public function __construct(int $nakshatra, int $nakshatra_pada)
     {
         $this->nakshatra = $nakshatra;
         $this->nakshatra_pada = $nakshatra_pada;

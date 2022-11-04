@@ -6,12 +6,15 @@ namespace Prokerala\Api\Numerology\Result;
 
 class BridgeNumber
 {
-    private string $name;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * @var Number[]
      */
-    private array $differences;
+    private $differences;
 
     /**
      * @param Number[] $differences
