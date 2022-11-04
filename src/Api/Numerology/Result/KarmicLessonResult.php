@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-class KarmicLessonResult implements \JsonSerializable
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class KarmicLessonResult implements \JsonSerializable, ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var ArrayNumber
      */

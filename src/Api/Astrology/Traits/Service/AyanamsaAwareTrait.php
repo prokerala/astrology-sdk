@@ -23,6 +23,8 @@ trait AyanamsaAwareTrait
      * Set ayanamsa system.
      *
      * @param int $ayanamsa
+     *
+     * @return void
      */
     public function setAyanamsa($ayanamsa)
     {

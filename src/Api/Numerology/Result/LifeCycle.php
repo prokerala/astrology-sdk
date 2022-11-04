@@ -16,9 +16,6 @@ class LifeCycle implements ResultInterface
      */
     private $lifeCycle;
 
-    /**
-     * @param LifeCycleNumber $lifeCycleNumber
-     */
     public function __construct(LifeCycleNumber $lifeCycle)
     {
         $this->lifeCycle = $lifeCycle;

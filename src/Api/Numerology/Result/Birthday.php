@@ -12,13 +12,10 @@ class Birthday implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Birthday
+     * @var BirthdayNumber
      */
     private $birthdayNumber;
 
-    /**
-     * @param Birthday $birthdayNumber
-     */
     public function __construct(BirthdayNumber $birthdayNumber)
     {
         $this->birthdayNumber = $birthdayNumber;

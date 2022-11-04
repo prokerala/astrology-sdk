@@ -24,6 +24,7 @@ final class Porutham
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
+    /** @var string $slug */
     protected $slug = 'porutham';
 
     /** @var Transformer<MatchResult> */

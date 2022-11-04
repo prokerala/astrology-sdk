@@ -19,12 +19,12 @@ class CornerStone implements ResultInterface
     /**
      * @var NameChart
      */
-    private $nameChart;
+    private $nameResult;
 
-    public function __construct(CornerStoneNumber $cornerStoneNumber, NameChart $nameChart)
+    public function __construct(CornerStoneNumber $cornerStoneNumber, NameChart $nameResult)
     {
         $this->cornerStoneNumber = $cornerStoneNumber;
-        $this->nameResult = $nameChart;
+        $this->nameResult = $nameResult;
     }
 
     public function getNameResult(): NameChart

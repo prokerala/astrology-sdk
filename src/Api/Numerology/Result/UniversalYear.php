@@ -16,9 +16,6 @@ class UniversalYear implements ResultInterface
      */
     private $universalYearNumber;
 
-    /**
-     * @param UniversalYearNumber $universalMonthNumber
-     */
     public function __construct(UniversalYearNumber $universalYearNumber)
     {
         $this->universalYearNumber = $universalYearNumber;

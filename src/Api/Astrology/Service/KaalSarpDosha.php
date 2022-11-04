@@ -25,6 +25,7 @@ final class KaalSarpDosha
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
+    /** @var string $slug */
     protected $slug = 'kaal-sarp-dosha';
 
     /** @var Transformer<KaalSarpDoshaResult> */

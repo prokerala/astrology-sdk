@@ -24,6 +24,7 @@ final class KundliMatching
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
+    /** @var string $slug */
     protected $slug = 'kundli-matching';
 
     /** @var Transformer<KundliMatching> */

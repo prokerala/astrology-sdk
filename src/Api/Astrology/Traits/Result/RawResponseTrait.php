@@ -21,6 +21,9 @@ trait RawResponseTrait
      */
     private $apiResponse;
 
+    /**
+     * @return void
+     */
     public function setRawResponse(\stdClass $data)
     {
         $this->apiResponse = $data;

@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-class Transit implements \JsonSerializable
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class Transit implements \JsonSerializable, ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var int
      */
@@ -84,7 +89,6 @@ class Transit implements \JsonSerializable
 
     /**
      * @return array{physical: Cycle[], mental: Cycle[], spiritual: Cycle[]}
-     *                                                                       //     * @return mixed
      */
     public function jsonSerialize(): array
     {

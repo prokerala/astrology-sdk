@@ -19,11 +19,13 @@ use Prokerala\Api\Astrology\Transformer;
  */
 trait TimeZoneAwareTrait
 {
-    /** @var \DateTimeZone */
+    /** @var null|\DateTimeZone */
     private $tz;
 
     /**
      * @param null|\DateTimeZone $tz
+     *
+     * @return void
      */
     public function setTimeZone($tz)
     {
@@ -43,7 +45,7 @@ trait TimeZoneAwareTrait
     }
 
     /**
-     * @param Transformer $transformer
+     * @param Transformer<T> $transformer
      *
      * @return void
      */

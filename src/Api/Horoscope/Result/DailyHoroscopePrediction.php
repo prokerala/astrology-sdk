@@ -29,7 +29,7 @@ class DailyHoroscopePrediction
     /**
      * @param null|int $signId
      */
-    public function __construct(string $signName, int $signId, \DateTimeInterface $date, string $prediction)
+    public function __construct(string $signName, int $signId, \DateTimeImmutable $date, string $prediction)
     {
         $this->signName = $signName;
         $this->signId = $signId;

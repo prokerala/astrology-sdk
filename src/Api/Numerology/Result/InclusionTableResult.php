@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
-class InclusionTableResult implements \JsonSerializable
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class InclusionTableResult implements \JsonSerializable, ResultInterface
 {
+    use RawResponseTrait;
+
     /**
      * @var array
      */
