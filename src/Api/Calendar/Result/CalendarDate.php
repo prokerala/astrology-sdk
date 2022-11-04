@@ -28,7 +28,7 @@ final class CalendarDate implements ResultInterface
         $this->calendarDate = $calendarDate;
     }
 
-    public function getDishaShool(): CalendarDateResult
+    public function getCalendarDate(): CalendarDateResult
     {
         return $this->calendarDate;
     }
