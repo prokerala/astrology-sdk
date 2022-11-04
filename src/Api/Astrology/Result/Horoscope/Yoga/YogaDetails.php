@@ -17,6 +17,7 @@ final class YogaDetails
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */

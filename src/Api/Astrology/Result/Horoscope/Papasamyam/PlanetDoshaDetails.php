@@ -17,14 +17,17 @@ final class PlanetDoshaDetails
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var int
      */
     private $position;
+
     /**
      * @var bool
      */

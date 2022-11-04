@@ -12,9 +12,6 @@
 namespace Prokerala\Tests;
 
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
-use ReflectionException;
-use ReflectionMethod;
 
 /**
  * @internal
@@ -26,13 +23,12 @@ class BaseTestCase extends TestCase
      * @param string $class
      * @param string $method
      *
-     * @throws ReflectionException
-     *
-     * @return ReflectionMethod
+     * @return \ReflectionMethod
+     * @throws \ReflectionException
      */
     protected function getPrivateMethod($class, $method)
     {
-        $class = new ReflectionClass($class);
+        $class = new \ReflectionClass($class);
         $method = $class->getMethod($method);
         $method->setAccessible(true);
 

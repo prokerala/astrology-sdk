@@ -21,12 +21,15 @@ final class KundliMatching implements ResultInterface
 
     /** @var ProfileInfo */
     private $girlInfo;
+
     /** @var ProfileInfo */
     private $boyInfo;
+
     /**
      * @var Message
      */
     private $message;
+
     /**
      * @var GunaMilan
      */

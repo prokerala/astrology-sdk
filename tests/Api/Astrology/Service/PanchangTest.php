@@ -11,8 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
-use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Planet;
 use Prokerala\Api\Astrology\Result\EventTiming\Karana;
@@ -35,13 +33,13 @@ class PanchangTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '2020-05-12T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'vaara' => 'Tuesday',
         'nakshatra' => [
             [
@@ -226,7 +224,7 @@ class PanchangTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -238,44 +236,44 @@ class PanchangTest extends BaseTestCase
         $arNakshatra = $arNakshatraObject = [];
         foreach ($basic_result['nakshatra'] as $nakshatra) {
             $lord = new Planet($nakshatra['lord']['id'], $nakshatra['lord']['name'], $nakshatra['lord']['vedic_name']);
-            $start = new DateTimeImmutable($nakshatra['start']);
-            $end = new DateTimeImmutable($nakshatra['end']);
+            $start = new \DateTimeImmutable($nakshatra['start']);
+            $end = new \DateTimeImmutable($nakshatra['end']);
             $arNakshatra[] = new Nakshatra($nakshatra['id'], $nakshatra['name'], $lord, $start, $end);
-            $nakshatraObject = (object) $nakshatra;
-            $nakshatraObject->lord = (object) $nakshatra['lord'];
+            $nakshatraObject = (object)$nakshatra;
+            $nakshatraObject->lord = (object)$nakshatra['lord'];
             $arNakshatraObject[] = $nakshatraObject;
         }
 
         $arTithi = $arTithiObject = [];
         foreach ($basic_result['tithi'] as $tithi) {
-            $start = new DateTimeImmutable($tithi['start']);
-            $end = new DateTimeImmutable($tithi['end']);
+            $start = new \DateTimeImmutable($tithi['start']);
+            $end = new \DateTimeImmutable($tithi['end']);
             $arTithi[] = new Tithi($tithi['index'], $tithi['id'], $tithi['name'], $tithi['paksha'], $start, $end);
-            $arTithiObject[] = (object) $tithi;
+            $arTithiObject[] = (object)$tithi;
         }
 
         $arKarana = $arKaranaObject = [];
         foreach ($basic_result['karana'] as $karana) {
-            $start = new DateTimeImmutable($karana['start']);
-            $end = new DateTimeImmutable($karana['end']);
+            $start = new \DateTimeImmutable($karana['start']);
+            $end = new \DateTimeImmutable($karana['end']);
             $arKarana[] = new Karana($karana['index'], $karana['id'], $karana['name'], $start, $end);
-            $arKaranaObject[] = (object) $karana;
+            $arKaranaObject[] = (object)$karana;
         }
 
         $arYoga = $arYogaObject = [];
         foreach ($basic_result['yoga'] as $yoga) {
-            $start = new DateTimeImmutable($yoga['start']);
-            $end = new DateTimeImmutable($yoga['end']);
+            $start = new \DateTimeImmutable($yoga['start']);
+            $end = new \DateTimeImmutable($yoga['end']);
             $arYoga[] = new Yoga($yoga['id'], $yoga['name'], $start, $end);
-            $arYogaObject[] = (object) $yoga;
+            $arYogaObject[] = (object)$yoga;
         }
-        $sunrise = new DateTimeImmutable($basic_result['sunrise']);
-        $sunset = new DateTimeImmutable($basic_result['sunset']);
-        $moonrise = new DateTimeImmutable($basic_result['moonrise']);
-        $moonset = new DateTimeImmutable($basic_result['moonset']);
+        $sunrise = new \DateTimeImmutable($basic_result['sunrise']);
+        $sunset = new \DateTimeImmutable($basic_result['sunset']);
+        $moonrise = new \DateTimeImmutable($basic_result['moonrise']);
+        $moonset = new \DateTimeImmutable($basic_result['moonset']);
 
         $expected_basic_result = new BasicPanchangResult($basic_result['vaara'], $arNakshatra, $arTithi, $arKarana, $arYoga, $sunrise, $sunset, $moonrise, $moonset);
-        $expected_basic_result->setRawResponse((object) [
+        $expected_basic_result->setRawResponse((object)[
             'vaara' => $basic_result['vaara'],
             'nakshatra' => $arNakshatraObject,
             'tithi' => $arTithiObject,
@@ -296,13 +294,13 @@ class PanchangTest extends BaseTestCase
         foreach ($advanced_result['inauspicious_period'] as $muhurat) {
             $periods = $apiResponsePeriod = [];
             foreach ($muhurat['period'] as $period) {
-                $start = new DateTimeImmutable($period['start']);
-                $end = new DateTimeImmutable($period['end']);
+                $start = new \DateTimeImmutable($period['start']);
+                $end = new \DateTimeImmutable($period['end']);
                 $periods[] = new Period($start, $end);
-                $apiResponsePeriod[] = (object) ['start' => $period['start'], 'end' => $period['end']];
+                $apiResponsePeriod[] = (object)['start' => $period['start'], 'end' => $period['end']];
             }
             $arMuhurat[] = new Muhurat($muhurat['id'], $muhurat['name'], $muhurat['type'], $periods);
-            $apiResponseMuhurat[] = (object) ['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
+            $apiResponseMuhurat[] = (object)['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
         }
         $inauspicious_period = $arMuhurat;
         $inauspicious_period_object = $apiResponseMuhurat;
@@ -311,19 +309,19 @@ class PanchangTest extends BaseTestCase
         foreach ($advanced_result['auspicious_period'] as $muhurat) {
             $periods = $apiResponsePeriod = [];
             foreach ($muhurat['period'] as $period) {
-                $start = new DateTimeImmutable($period['start']);
-                $end = new DateTimeImmutable($period['end']);
+                $start = new \DateTimeImmutable($period['start']);
+                $end = new \DateTimeImmutable($period['end']);
                 $periods[] = new Period($start, $end);
-                $apiResponsePeriod[] = (object) ['start' => $period['start'], 'end' => $period['end']];
+                $apiResponsePeriod[] = (object)['start' => $period['start'], 'end' => $period['end']];
             }
             $arMuhurat[] = new Muhurat($muhurat['id'], $muhurat['name'], $muhurat['type'], $periods);
-            $apiResponseMuhurat[] = (object) ['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
+            $apiResponseMuhurat[] = (object)['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
         }
         $auspicious_period = $arMuhurat;
         $auspicious_period_object = $apiResponseMuhurat;
 
         $expected_advanced_result = new AdvancedPanchangResult($basic_result['vaara'], $arNakshatra, $arTithi, $arKarana, $arYoga, $sunrise, $sunset, $moonrise, $moonset, $auspicious_period, $inauspicious_period);
-        $expected_advanced_result->setRawResponse((object) [
+        $expected_advanced_result->setRawResponse((object)[
             'vaara' => $basic_result['vaara'],
             'nakshatra' => $arNakshatraObject,
             'tithi' => $arTithiObject,

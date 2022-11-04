@@ -15,6 +15,7 @@ final class Message
 {
     /** @var string */
     private $type;
+
     /** @var string */
     private $description;
 

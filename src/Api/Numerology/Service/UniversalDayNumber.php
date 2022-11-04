@@ -45,10 +45,10 @@ final class UniversalDayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return UniversalDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return UniversalDay
      */
     public function process(\DateTimeInterface $datetime)
     {

@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-include __DIR__.'/../vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 use Prokerala\Api\Astrology\Ayanamsa;
 use Prokerala\Api\Astrology\Location;
@@ -43,10 +43,12 @@ function handleException($e)
 
     if ($e instanceof QuotaExceededException) {
         echo 'ERROR: You have exceeded your quota allocation for the day', PHP_EOL;
+
         exit(1);
     }
     if ($e instanceof RateLimitedException) {
         echo 'ERROR: Rate limit exceeded. Throttle your requests.', PHP_EOL;
+
         exit(2);
     }
     echo "API Request Failed with error {$e->getMessage()}", PHP_EOL, PHP_EOL;
@@ -56,8 +58,8 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     // $datetime_string = '2004-02-01T15:19:21Z';//input time in UTC
-    $datetime_string = '2004-02-01T15:19:21+05:30'; //input time in user timezone
-    $datetime = new DateTime($datetime_string);
+    $datetime_string = '2004-02-01T15:19:21+05:30'; // input time in user timezone
+    $datetime = new DateTimeImmutable($datetime_string);
 
     $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
@@ -77,7 +79,7 @@ try {
 
     $tithi = $result->getTithi()[0];
     print_r($tithi->getStartTime());
-    print_r("\n\n".$tithi->getName());
+    print_r("\n\n" . $tithi->getName());
 
     foreach ($result->getNakshatra() as $key => $value) {
         $arNakshatra[$key] = [
@@ -89,9 +91,9 @@ try {
     }
     print_r($arNakshatra);
 
-    print_r("\n\n".Nakshatra::UTTARA_BHADRAPADA);
+    print_r("\n\n" . Nakshatra::UTTARA_BHADRAPADA);
 
-    print_r("\n\n".$result->getInput()->datetime);
+    print_r("\n\n" . $result->getInput()->datetime);
 } catch (\Exception $e) {
     handleException($e);
 }
@@ -107,9 +109,9 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
-    $datetime_string = '2004-02-01T15:19:21Z'; //input time in UTC
+    $datetime_string = '2004-02-01T15:19:21Z'; // input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
-    $datetime = new DateTime($datetime_string);
+    $datetime = new DateTimeImmutable($datetime_string);
 
     $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
@@ -138,9 +140,9 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
-    $datetime_string = '2004-02-01T15:19:21Z'; //input time in UTC
+    $datetime_string = '2004-02-01T15:19:21Z'; // input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
-    $datetime = new DateTime($datetime_string);
+    $datetime = new DateTimeImmutable($datetime_string);
 
     $client = new Client($apiKey);
     $location = new Location($latitude, $longitude);
@@ -181,17 +183,17 @@ try {
     $latitude = 10.214747;
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
-    $datetime_string = '2004-02-01T15:19:21Z'; //input time in UTC
+    $datetime_string = '2004-02-01T15:19:21Z'; // input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
-    $bride_dob = new DateTime($datetime_string);
+    $bride_dob = new DateTimeImmutable($datetime_string);
     $bride_location = new Location($latitude, $longitude);
     $bride_profile = new Profile($bride_location, $bride_dob);
 
     $latitude = 10.214747;
     $longitude = 78.097626;
-    $datetime_string = '2019-01-01T15:19:21Z'; //input time in UTC
+    $datetime_string = '2019-01-01T15:19:21Z'; // input time in UTC
     // $datetime_string = '2019-01-01T15:19:21+05:30';////input time in user timezone
-    $groom_dob = new DateTime($datetime_string);
+    $groom_dob = new DateTimeImmutable($datetime_string);
     $groom_location = new Location($latitude, $longitude);
     $groom_profile = new Profile($groom_location, $groom_dob);
 
@@ -230,16 +232,16 @@ try {
     $longitude = 78.097626;
     $ayanamsa = Ayanamsa::LAHIRI;
     $system = 'kerala';
-    $datetime_string = '2004-02-01T15:19:21Z'; //input time in UTC
+    $datetime_string = '2004-02-01T15:19:21Z'; // input time in UTC
     // $datetime_string = '2004-02-01T15:19:21+05:30';//input time in user timezone
-    $bride_dob = new DateTime($datetime_string);
+    $bride_dob = new DateTimeImmutable($datetime_string);
     $bride_location = new Location($latitude, $longitude);
     $bride_profile = new Profile($bride_location, $bride_dob);
 
     $latitude = 10.214747;
     $longitude = 78.097626;
     $datetime_string = '2019-01-01T15:19:21Z';
-    $groom_dob = new DateTime($datetime_string);
+    $groom_dob = new DateTimeImmutable($datetime_string);
     $groom_location = new Location($latitude, $longitude);
     $groom_profile = new Profile($groom_location, $groom_dob);
 
@@ -257,13 +259,13 @@ try {
 
     print_r($horoscope_match_result->bridegroom_details->nakshatra_details->getName());
 
-    print_r("\n\n".$horoscope_match_result->papa_samaya_result->papa_status);
+    print_r("\n\n" . $horoscope_match_result->papa_samaya_result->papa_status);
 
-    print_r("\n\n".$horoscope_match_result->average_porutham);
+    print_r("\n\n" . $horoscope_match_result->average_porutham);
 
-    print_r("\n\n".$horoscope_match_result->compatibility);
+    print_r("\n\n" . $horoscope_match_result->compatibility);
 
-    print_r((array) $horoscope_match_result->detailed_information);
+    print_r((array)$horoscope_match_result->detailed_information);
 } catch (\Exception $e) {
     handleException($e);
 }
@@ -281,8 +283,8 @@ try {
 try {
     $client = new Client($apiKey);
     $lang = 'en';
-    $bride_star = 2; //Bhrani
-    $groom_star = '21-2'; //Uttara Ashadha - 2nd Pada,
+    $bride_star = 2; // Bhrani
+    $groom_star = '21-2'; // Uttara Ashadha - 2nd Pada,
 
     $nakshatra_match_service = new NakshatraPorutham($client);
 

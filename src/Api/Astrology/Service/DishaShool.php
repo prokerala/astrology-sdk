@@ -49,10 +49,10 @@ final class DishaShool
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return DishaShoolResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return DishaShoolResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

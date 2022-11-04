@@ -11,7 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\KaalSarpDosha as KaalSarpDoshaResult;
 use Prokerala\Api\Astrology\Service\KaalSarpDosha;
@@ -26,13 +25,13 @@ class KaalSarpDoshaTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '2020-05-12T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'type' => null,
         'dosha_type' => 'Kaal Amrita',
         'has_dosha' => true,
@@ -41,7 +40,7 @@ class KaalSarpDoshaTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -50,7 +49,7 @@ class KaalSarpDoshaTest extends BaseTestCase
 
         $result = self::EXPECTED_RESULT;
         $expected_result = new KaalSarpDoshaResult($result['type'], $result['dosha_type'], $result['has_dosha'], $result['description']);
-        $expected_result->setRawResponse((object) $result);
+        $expected_result->setRawResponse((object)$result);
         $this->assertEquals($expected_result, $test_result);
     }
 }

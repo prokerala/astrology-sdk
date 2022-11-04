@@ -23,20 +23,13 @@ final class ChandraBala implements ResultInterface
      */
     private $chandraBala;
 
-    /**
-     * @param ChandraBalaResult $chandraBala
-     */
     public function __construct(ChandraBalaResult $chandraBala)
     {
         $this->chandraBala = $chandraBala;
     }
 
-    /**
-     * @return ChandraBalaResult
-     */
     public function getChandraBala(): ChandraBalaResult
     {
         return $this->chandraBala;
     }
-
 }

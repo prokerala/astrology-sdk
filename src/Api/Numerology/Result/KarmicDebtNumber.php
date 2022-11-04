@@ -1,13 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
 class KarmicDebtNumber
 {
-    /**
-     * @var string
-     */
     private string $name;
 
     /**
@@ -16,7 +14,6 @@ class KarmicDebtNumber
     private array $debts;
 
     /**
-     * @param string $name
      * @param Number[] $debts
      */
     public function __construct(string $name, array $debts)
@@ -25,13 +22,11 @@ class KarmicDebtNumber
         $this->debts = $debts;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * @return Number[]
      */
@@ -39,6 +34,4 @@ class KarmicDebtNumber
     {
         return $this->debts;
     }
-
-
 }

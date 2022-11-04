@@ -49,10 +49,10 @@ final class Solstice
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return SolsticeResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return SolsticeResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

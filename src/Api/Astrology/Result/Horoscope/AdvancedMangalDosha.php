@@ -22,22 +22,27 @@ final class AdvancedMangalDosha implements ResultInterface
      * @var bool
      */
     private $hasDosha;
+
     /**
      * @var string
      */
     private $description;
+
     /**
      * @var bool
      */
     private $hasException;
+
     /**
      * @var null|string
      */
     private $type;
+
     /**
      * @var string[]
      */
     private $exceptions;
+
     /**
      * @var string[]
      */

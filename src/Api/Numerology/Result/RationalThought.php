@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -14,32 +15,23 @@ class RationalThought implements ResultInterface
      * @var RationalThoughtNumber
      */
     private $maturityNumber;
+
     /**
      * @var NameChart
      */
     private $nameChart;
 
-    /**
-     * @param RationalThoughtNumber $rationalThoughtNumber
-     * @param NameChart $nameChart
-     */
-    public function __construct(RationalThoughtNumber $rationalThoughtNumber, NameChart $nameChart) {
-
+    public function __construct(RationalThoughtNumber $rationalThoughtNumber, NameChart $nameChart)
+    {
         $this->rationalThoughtNumber = $rationalThoughtNumber;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }
 
-    /**
-     * @return RationalThoughtNumber
-     */
     public function getRationalThoughtNumber(): RationalThoughtNumber
     {
         return $this->rationalThoughtNumber;

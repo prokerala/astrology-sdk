@@ -24,8 +24,8 @@ include 'prepend.inc.php';
 $latitude = 10.214747;
 $longitude = 78.097626;
 
-$datetime_string = '2004-02-01T15:19:21+05:30'; //input time in user timezone
-$datetime = new DateTime($datetime_string);
+$datetime_string = '2004-02-01T15:19:21+05:30'; // input time in user timezone
+$datetime = new DateTimeImmutable($datetime_string);
 
 $location = new Location($latitude, $longitude, 0, new DateTimeZone('Asia/Kolkata'));
 

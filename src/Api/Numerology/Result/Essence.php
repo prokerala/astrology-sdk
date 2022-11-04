@@ -1,27 +1,29 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class Essence implements JsonSerializable
+class Essence implements \JsonSerializable
 {
     /**
      * @var int
      */
-    private$characterNumber;
+    private $characterNumber;
+
     /**
      * @var int
      */
     private $number;
+
     /**
      * @var string
      */
     private $description;
 
     /**
-     * @param int $characterNumber
-     * @param int $number
+     * @param int    $characterNumber
+     * @param int    $number
      * @param string $description
      */
     public function __construct($characterNumber, $number, $description)
@@ -31,17 +33,11 @@ class Essence implements JsonSerializable
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
     public function getNumber(): int
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
@@ -52,13 +48,10 @@ class Essence implements JsonSerializable
         return [
             'character_number' => $this->characterNumber,
             'number' => $this->number,
-            'description' => $this->description
+            'description' => $this->description,
         ];
     }
 
-    /**
-     * @return int
-     */
     public function getCharacterNumber(): int
     {
         return $this->characterNumber;

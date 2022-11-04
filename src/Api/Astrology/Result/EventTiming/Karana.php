@@ -15,12 +15,16 @@ final class Karana
 {
     /** @var int */
     private $index;
+
     /** @var int */
     private $id;
+
     /** @var string */
     private $name;
+
     /** @var \DateTimeInterface */
     private $start;
+
     /** @var \DateTimeInterface */
     private $end;
 

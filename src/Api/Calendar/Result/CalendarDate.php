@@ -23,20 +23,13 @@ final class CalendarDate implements ResultInterface
      */
     private $calendarDate;
 
-    /**
-     * @param CalendarDateResult $calendarDate
-     */
     public function __construct(CalendarDateResult $calendarDate)
     {
         $this->calendarDate = $calendarDate;
     }
 
-    /**
-     * @return CalendarDateResult
-     */
     public function getDishaShool(): CalendarDateResult
     {
         return $this->calendarDate;
     }
-
 }

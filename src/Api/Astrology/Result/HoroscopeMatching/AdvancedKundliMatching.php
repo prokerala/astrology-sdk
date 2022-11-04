@@ -21,16 +21,22 @@ final class AdvancedKundliMatching implements ResultInterface
 
     /** @var ProfileInfo */
     private $girlInfo;
+
     /** @var ProfileInfo */
     private $boyInfo;
+
     /** @var Message */
     private $message;
+
     /** @var AdvancedGunaMilan */
     private $gunaMilan;
+
     /** @var MangalDosha */
     private $girlMangalDoshaDetails;
+
     /** @var MangalDosha */
     private $boyMangalDoshaDetails;
+
     /** @var string[] */
     private $exceptions;
 

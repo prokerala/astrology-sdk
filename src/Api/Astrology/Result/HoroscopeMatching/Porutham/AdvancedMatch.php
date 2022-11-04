@@ -16,26 +16,32 @@ use Prokerala\Api\Astrology\Traits\StringableTrait;
 final class AdvancedMatch
 {
     use StringableTrait;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var bool
      */
     private $hasPorutham;
+
     /**
      * @var null|string
      */
     private $poruthamStatus;
+
     /**
      * @var float
      */
     private $points;
+
     /**
      * @var string
      */
     private $description;
+
     /**
      * @var int|int
      */

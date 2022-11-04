@@ -17,14 +17,17 @@ final class Yoga
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var \DateTimeInterface
      */
     private $start;
+
     /**
      * @var \DateTimeInterface
      */

@@ -17,14 +17,17 @@ final class Muhurat
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $type;
+
     /**
      * @var Period[]
      */

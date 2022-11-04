@@ -21,18 +21,13 @@ use Psr\Http\Message\ResponseInterface;
 
 final class Client
 {
-    const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
+    public const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
 
     private $authClient;
     private $httpClient;
     private $httpRequestFactory;
     private $apiCreditUsed = 0;
 
-    /**
-     * @param $authClient
-     * @param $httpClient
-     * @param $httpRequestFactory
-     */
     public function __construct($authClient, $httpClient, $httpRequestFactory)
     {
         $this->authClient = $authClient;
@@ -52,7 +47,7 @@ final class Client
      */
     public function process($path, $input)
     {
-        $uri = self::BASE_URI.$path.'?'.http_build_query($input);
+        $uri = self::BASE_URI . $path . '?' . http_build_query($input);
         $request = $this->httpRequestFactory->createRequest('GET', $uri);
 
         try {
@@ -67,10 +62,10 @@ final class Client
         }
 
         $responseType = $response->getHeader('content-type');
-        $responseBody = (string) $response->getBody();
+        $responseBody = (string)$response->getBody();
 
         $apiCredits = $response->getHeader('X-Api-Credits');
-        $this->apiCreditUsed = isset($apiCredits) ? (int) $apiCredits[0] : 0;
+        $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits[0] : 0;
 
         if (isset($responseType[0]) && 'image/svg+xml' == $responseType[0]) {
             $responseData = $responseBody;
@@ -81,12 +76,16 @@ final class Client
         switch ($response->getStatusCode()) {
             case 200:
                 return $responseData;
+
             case 401:
                 throw new AuthenticationException($responseData->errors[0]->detail);
+
             case 400:
                 throw new ValidationException($responseData->errors);
+
             case 500:
                 throw new ServerException($responseData->errors[0]->detail);
+
             default:
                 throw new Exception($responseData->errors[0]->detail);
         }

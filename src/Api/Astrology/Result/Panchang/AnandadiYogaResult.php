@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-
 final class AnandadiYogaResult
 {
     /**
@@ -23,32 +22,29 @@ final class AnandadiYogaResult
      * @var string
      */
     private $name;
+
     /**
      * @var \DateTimeInterface
      */
     private $start;
+
     /**
      * @var \DateTimeInterface
      */
     private $end;
+
     /**
      * @var string
      */
     private $type;
+
     /**
      * @var string
      */
     private $description;
 
-    /**
-     * @param int $id
-     * @param string $name
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
-     * @param string $type
-     * @param string $description
-     */
-    public function __construct(int $id, string $name, \DateTimeInterface $start, \DateTimeInterface $end, string $type, string $description) {
+    public function __construct(int $id, string $name, \DateTimeInterface $start, \DateTimeInterface $end, string $type, string $description)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->start = $start;
@@ -57,49 +53,31 @@ final class AnandadiYogaResult
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;

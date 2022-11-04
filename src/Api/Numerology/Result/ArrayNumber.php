@@ -1,15 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class ArrayNumber implements JsonSerializable
+class ArrayNumber implements \JsonSerializable
 {
     /**
      * @var array
      */
     private $array;
+
     /**
      * @param array $array
      */
@@ -18,9 +19,6 @@ class ArrayNumber implements JsonSerializable
         $this->array = $array;
     }
 
-    /**
-     * @return array
-     */
     public function getArray(): array
     {
         return $this->array;

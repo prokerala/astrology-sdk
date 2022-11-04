@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -15,20 +16,16 @@ class LifeCycle implements ResultInterface
      */
     private $lifeCycle;
 
-
     /**
      * @param LifeCycleNumber $lifeCycleNumber
      */
-    public function __construct(LifeCycleNumber $lifeCycle) {
+    public function __construct(LifeCycleNumber $lifeCycle)
+    {
         $this->lifeCycle = $lifeCycle;
     }
 
-    /**
-     * @return LifeCycleNumber
-     */
     public function getLifeCycleNumber(): LifeCycleNumber
     {
         return $this->lifeCycle;
     }
-
 }

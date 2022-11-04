@@ -11,8 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
-use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedSadeSati as AdvancedSadeSatiResult;
 use Prokerala\Api\Astrology\Result\Horoscope\SadeSati as BasicSadeSatiResult;
@@ -29,13 +27,13 @@ class SadeSatiTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '1994-02-12T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'is_in_sade_sati' => true,
         'transit_phase' => 'Rising',
         'description' => 'You are going through sade sati phase and you are in Rising phase.',
@@ -221,7 +219,7 @@ class SadeSatiTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -229,7 +227,7 @@ class SadeSatiTest extends BaseTestCase
         $result = self::EXPECTED_RESULT;
 
         $expected_basic_result = new BasicSadeSatiResult($result['is_in_sade_sati'], $result['transit_phase'], $result['description']);
-        $expected_basic_result->setRawResponse((object) [
+        $expected_basic_result->setRawResponse((object)[
             'is_in_sade_sati' => $result['is_in_sade_sati'],
             'transit_phase' => $result['transit_phase'],
             'description' => $result['description'],
@@ -243,13 +241,13 @@ class SadeSatiTest extends BaseTestCase
 
         $transit_result = $transit_object = [];
         foreach ($result['transits'] as $transit) {
-            $start = new DateTimeImmutable($transit['start']);
-            $end = new DateTimeImmutable($transit['end']);
+            $start = new \DateTimeImmutable($transit['start']);
+            $end = new \DateTimeImmutable($transit['end']);
             $transit_result[] = new SaturnTransit($transit['saturn_sign'], $transit['phase'], $start, $end, $transit['description'], $transit['is_retrograde']);
-            $transit_object[] = (object) $transit;
+            $transit_object[] = (object)$transit;
         }
         $expected_advanced_result = new AdvancedSadeSatiResult($result['is_in_sade_sati'], $result['transit_phase'], $result['description'], $transit_result);
-        $expected_advanced_result->setRawResponse((object) [
+        $expected_advanced_result->setRawResponse((object)[
             'is_in_sade_sati' => $result['is_in_sade_sati'],
             'transit_phase' => $result['transit_phase'],
             'description' => $result['description'],

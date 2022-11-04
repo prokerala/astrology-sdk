@@ -17,10 +17,12 @@ final class Yoga
      * @var string
      */
     private $name;
+
     /**
      * @var bool
      */
     private $hasYoga;
+
     /**
      * @var string
      */

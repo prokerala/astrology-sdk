@@ -49,10 +49,10 @@ final class AnandadiYoga
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return AnandadiYogaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return AnandadiYogaResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

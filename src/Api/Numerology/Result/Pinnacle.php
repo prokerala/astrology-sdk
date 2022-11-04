@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -15,20 +16,13 @@ class Pinnacle implements ResultInterface
      */
     private $pinnacleNumber;
 
-
-    /**
-     * @param PinnacleNumber $pinnacleNumber
-     */
-    public function __construct(PinnacleNumber $pinnacleNumber) {
+    public function __construct(PinnacleNumber $pinnacleNumber)
+    {
         $this->pinnacleNumber = $pinnacleNumber;
     }
 
-    /**
-     * @return PinnacleNumber
-     */
     public function getPinnacleNumber(): PinnacleNumber
     {
         return $this->pinnacleNumber;
     }
-
 }

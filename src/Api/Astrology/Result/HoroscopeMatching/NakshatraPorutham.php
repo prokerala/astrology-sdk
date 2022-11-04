@@ -22,22 +22,25 @@ final class NakshatraPorutham implements ResultInterface
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $obtainedPoints;
+
     /**
      * @var Message
      */
     private $message;
+
     /**
      * @var Porutham\BasicMatch[]
      */
     private $matches;
 
     /**
-     * @param float            $maximumPoints
-     * @param float            $obtainedPoints
+     * @param float                 $maximumPoints
+     * @param float                 $obtainedPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(

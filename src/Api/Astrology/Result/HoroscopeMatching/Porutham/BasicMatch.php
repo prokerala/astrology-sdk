@@ -16,14 +16,17 @@ use Prokerala\Api\Astrology\Traits\StringableTrait;
 final class BasicMatch
 {
     use StringableTrait;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var bool
      */
     private $hasPorutham;
+
     /**
      * @var int
      */

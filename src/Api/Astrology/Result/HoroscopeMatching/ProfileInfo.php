@@ -21,10 +21,12 @@ final class ProfileInfo
      * @var Koot
      */
     private $koot;
+
     /**
      * @var Nakshatra
      */
     private $nakshatra;
+
     /**
      * @var Rasi
      */

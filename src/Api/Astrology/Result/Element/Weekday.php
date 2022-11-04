@@ -13,18 +13,19 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 final class Weekday
 {
-    const MONDAY = 0;
-    const TUESDAY = 1;
-    const WEDNESDAY = 2;
-    const THURSDAY = 3;
-    const FRIDAY = 4;
-    const SATURDAY = 5;
-    const SUNDAY = 6;
+    public const MONDAY = 0;
+    public const TUESDAY = 1;
+    public const WEDNESDAY = 2;
+    public const THURSDAY = 3;
+    public const FRIDAY = 4;
+    public const SATURDAY = 5;
+    public const SUNDAY = 6;
 
-    const WEEKDAY_LIST = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    public const WEEKDAY_LIST = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     /** @var int */
-    protected $id;
+    private $id;
+
     /** @var string */
     private $name;
 

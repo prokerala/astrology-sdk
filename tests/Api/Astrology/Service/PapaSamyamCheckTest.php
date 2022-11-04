@@ -11,7 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam as PapasamyamResult;
@@ -32,19 +31,19 @@ class PapaSamyamCheckTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const GIRL_INPUT = [
+    public const GIRL_INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const BOY_INPUT = [
+    public const BOY_INPUT = [
         'datetime' => '1970-11-10T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'girl_papasamyam' => [
             'total_points' => 5.5,
             'papa_samyam' => [
@@ -242,11 +241,11 @@ class PapaSamyamCheckTest extends BaseTestCase
     public function testProcess()
     {
         $girl_location = new Location(self::GIRL_INPUT['latitude'], self::GIRL_INPUT['longitude']);
-        $girl_dob = new DateTime(self::GIRL_INPUT['datetime']);
+        $girl_dob = new \DateTimeImmutable(self::GIRL_INPUT['datetime']);
         $girl_profile = new Profile($girl_location, $girl_dob);
 
         $boy_location = new Location(self::BOY_INPUT['latitude'], self::BOY_INPUT['longitude']);
-        $boy_dob = new DateTime(self::BOY_INPUT['datetime']);
+        $boy_dob = new \DateTimeImmutable(self::BOY_INPUT['datetime']);
         $boy_profile = new Profile($boy_location, $boy_dob);
         $client = $this->setClient();
 
@@ -264,22 +263,22 @@ class PapaSamyamCheckTest extends BaseTestCase
                 $arPlanetDoshaObject = [];
                 foreach ($papa_planet['planet_dosha'] as $planet_dosha) {
                     $arPlanetDosha[] = new PlanetDoshaDetails($planet_dosha['id'], $planet_dosha['name'], $planet_dosha['position'], $planet_dosha['has_dosha']);
-                    $arPlanetDoshaObject[] = (object) $planet_dosha;
+                    $arPlanetDoshaObject[] = (object)$planet_dosha;
                 }
                 $arPapaPlanets[] = new PapaPlanet($papa_planet['name'], $arPlanetDosha);
-                $arPapaPlanetObject[] = (object) ['name' => $papa_planet['name'], 'planet_dosha' => $arPlanetDoshaObject];
+                $arPapaPlanetObject[] = (object)['name' => $papa_planet['name'], 'planet_dosha' => $arPlanetDoshaObject];
             }
             $papasamyamDetails = new PapasamyamDetails($arPapaPlanets);
-            $papasamyamDetailObject = (object) ['papa_planet' => $arPapaPlanetObject];
+            $papasamyamDetailObject = (object)['papa_planet' => $arPapaPlanetObject];
 
             $arPapasamyam[$index] = new PapasamyamResult($result[$index]['total_points'], $papasamyamDetails);
-            $arPapasamyamObject[$index] = ((object) ['total_points' => $result[$index]['total_points'], 'papa_samyam' => $papasamyamDetailObject]);
+            $arPapasamyamObject[$index] = ((object)['total_points' => $result[$index]['total_points'], 'papa_samyam' => $papasamyamDetailObject]);
         }
         $message = new Message($result['message']['type'], $result['message']['description']);
-        $message_object = (object) $result['message'];
+        $message_object = (object)$result['message'];
 
         $expected_result = new PapaSamyamCheckResult($arPapasamyam['girl_papasamyam'], $arPapasamyam['boy_papasamyam'], $message);
-        $expected_result->setRawResponse((object) ['girl_papasamyam' => $arPapasamyamObject['girl_papasamyam'], 'boy_papasamyam' => $arPapasamyamObject['boy_papasamyam'], 'message' => $message_object]);
+        $expected_result->setRawResponse((object)['girl_papasamyam' => $arPapasamyamObject['girl_papasamyam'], 'boy_papasamyam' => $arPapasamyamObject['boy_papasamyam'], 'message' => $message_object]);
 
         $this->assertEquals($expected_result, $test_result);
     }

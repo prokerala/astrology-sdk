@@ -11,7 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Planet as Lord;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
@@ -28,13 +27,13 @@ use Prokerala\Tests\BaseTestCase;
 class PlanetPositionTest extends BaseTestCase
 {
     use AuthenticationTrait;
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '2020-05-12T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'planet_position' => [
             [
                 'id' => 0,
@@ -211,7 +210,7 @@ class PlanetPositionTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -222,18 +221,18 @@ class PlanetPositionTest extends BaseTestCase
         $arPlanet = $arPlanetObject = [];
         foreach ($result['planet_position'] as $planet_position) {
             $lordData = $planet_position['rasi']['lord'];
-            $lordObject = (object) $lordData;
+            $lordObject = (object)$lordData;
             $lord = new Lord($lordData['id'], $lordData['name'], $lordData['vedic_name']);
             $rasi = new Rasi($planet_position['rasi']['id'], $planet_position['rasi']['name'], $lord);
-            $rasiObject = (object) $planet_position['rasi'];
+            $rasiObject = (object)$planet_position['rasi'];
             $rasiObject->lord = $lordObject;
             $arPlanet[] = new Planet($planet_position['id'], $planet_position['name'], $planet_position['longitude'], $planet_position['is_retrograde'], $planet_position['position'], $planet_position['degree'], $rasi);
-            $planetObject = (object) $planet_position;
+            $planetObject = (object)$planet_position;
             $planetObject->rasi = $rasiObject;
             $arPlanetObject[] = $planetObject;
         }
         $expected_result = new PlanetPositionResult($arPlanet);
-        $expected_result->setRawResponse((object) ['planet_position' => $arPlanetObject]);
+        $expected_result->setRawResponse((object)['planet_position' => $arPlanetObject]);
         $this->assertEquals($expected_result, $test_result);
     }
 }

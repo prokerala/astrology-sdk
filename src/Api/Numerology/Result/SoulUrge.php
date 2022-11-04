@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -14,32 +15,23 @@ class SoulUrge implements ResultInterface
      * @var SoulUrgeNumber
      */
     private $soulUrgeNumber;
+
     /**
      * @var NameChart
      */
     private $nameChart;
 
-    /**
-     * @param SoulUrgeNumber $soulUrgeNumber
-     * @param NameChart $nameChart
-     */
-    public function __construct(SoulUrgeNumber $soulUrgeNumber, NameChart $nameChart) {
-
+    public function __construct(SoulUrgeNumber $soulUrgeNumber, NameChart $nameChart)
+    {
         $this->soulUrgeNumber = $soulUrgeNumber;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }
 
-    /**
-     * @return SoulUrgeNumber
-     */
     public function getSoulUrgeNumber(): SoulUrgeNumber
     {
         return $this->soulUrgeNumber;

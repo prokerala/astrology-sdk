@@ -11,26 +11,28 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
-use DateTimeInterface;
-
 final class DashaPeriod
 {
     /**
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $start;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $end;
+
     /**
      * @var Antardasha[]
      */
@@ -46,8 +48,8 @@ final class DashaPeriod
     public function __construct(
         $id,
         $name,
-        DateTimeInterface $start,
-        DateTimeInterface $end,
+        \DateTimeInterface $start,
+        \DateTimeInterface $end,
         array $antardasha
     ) {
         $this->id = $id;
@@ -74,7 +76,7 @@ final class DashaPeriod
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getStart()
     {
@@ -82,7 +84,7 @@ final class DashaPeriod
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getEnd()
     {

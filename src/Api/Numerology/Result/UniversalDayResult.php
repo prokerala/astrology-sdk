@@ -1,46 +1,43 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class UniversalDayResult implements JsonSerializable
+class UniversalDayResult implements \JsonSerializable
 {
     /**
-     * @var int $id
+     * @var int
      */
     private $id;
+
     /**
-     * @var string $title
+     * @var string
      */
     private $title;
+
     /**
-     * @var Number $number
+     * @var Number
      */
     private $number;
 
     /**
-     * @param int $id
+     * @param int    $id
      * @param string $title
      * @param Number $number
      */
-    public function __construct($id, $title, $number) {
+    public function __construct($id, $title, $number)
+    {
         $this->id = $id;
         $this->title = $title;
         $this->number = $number;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return Number
-     */
     public function getNumber(): Number
     {
         return $this->number;
@@ -49,15 +46,12 @@ class UniversalDayResult implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' =>$this->id,
-            'title' =>$this->title,
+            'id' => $this->id,
+            'title' => $this->title,
             'number' => $this->number,
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;

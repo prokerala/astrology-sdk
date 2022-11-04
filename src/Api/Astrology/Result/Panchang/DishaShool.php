@@ -23,20 +23,13 @@ final class DishaShool implements ResultInterface
      */
     private $dishaShool;
 
-    /**
-     * @param DishaShoolResult $dishaShool
-     */
     public function __construct(DishaShoolResult $dishaShool)
     {
         $this->dishaShool = $dishaShool;
     }
 
-    /**
-     * @return DishaShoolResult
-     */
     public function getDishaShool(): DishaShoolResult
     {
         return $this->dishaShool;
     }
-
 }

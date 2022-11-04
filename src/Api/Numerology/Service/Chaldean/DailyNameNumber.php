@@ -11,13 +11,9 @@
 
 namespace Prokerala\Api\Numerology\Service\Chaldean;
 
-use App\Prokerala\Module\Numerology\Entity\Name;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\Balance;
 use Prokerala\Api\Numerology\Result\Chaldean\DailyName;
-use Prokerala\Api\Numerology\Result\DestinyResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;

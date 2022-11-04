@@ -15,26 +15,37 @@ final class NakshatraInfo
 {
     /** @var string */
     private $deity;
+
     /** @var string */
     private $ganam;
+
     /** @var string */
     private $symbol;
+
     /** @var string */
     private $animalSign;
+
     /** @var string */
     private $nadi;
+
     /** @var string */
     private $color;
+
     /** @var string */
     private $bestDirection;
+
     /** @var string */
     private $syllables;
+
     /** @var string */
     private $birthStone;
+
     /** @var string */
     private $gender;
+
     /** @var string */
     private $planet;
+
     /** @var string */
     private $enemyYoni;
 

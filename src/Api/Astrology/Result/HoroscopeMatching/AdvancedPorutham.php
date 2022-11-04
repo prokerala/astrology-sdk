@@ -23,22 +23,27 @@ final class AdvancedPorutham implements ResultInterface
      * @var Porutham\Profile
      */
     private $girlInfo;
+
     /**
      * @var Porutham\Profile
      */
     private $boyInfo;
+
     /**
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $totalPoints;
+
     /**
      * @var Message
      */
     private $message;
+
     /**
      * @var Porutham\AdvancedMatch[]
      */

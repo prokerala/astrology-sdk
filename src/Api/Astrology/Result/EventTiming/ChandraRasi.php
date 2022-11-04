@@ -17,14 +17,17 @@ final class ChandraRasi
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $lord;
+
     /**
      * @var string
      */

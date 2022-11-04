@@ -20,8 +20,10 @@ final class ChartRasi implements ResultInterface
 
     /** @var int */
     private $id;
+
     /** @var string */
     private $name;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
      */

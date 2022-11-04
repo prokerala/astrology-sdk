@@ -17,6 +17,7 @@ final class Profile
      * @var Location
      */
     private $location;
+
     /**
      * @var \DateTimeInterface
      */

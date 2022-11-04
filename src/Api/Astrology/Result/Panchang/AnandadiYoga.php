@@ -38,5 +38,4 @@ final class AnandadiYoga implements ResultInterface
     {
         return $this->anandadiYoga;
     }
-
 }

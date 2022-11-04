@@ -43,10 +43,10 @@ final class PersonalityNumber
     /**
      * Fetch result from API.
      *
+     * @return Personality
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return Personality
      */
     public function process(string $firstName, string $middleName, string $lastName, string $additionalVowel)
     {

@@ -14,8 +14,6 @@ namespace Prokerala\Api\Numerology\Service\Chaldean;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Chaldean\Birth as BirthResult;
-use Prokerala\Api\Numerology\Result\DestinyResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;

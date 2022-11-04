@@ -49,10 +49,10 @@ final class BirthDetails
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return NakshatraResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return NakshatraResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {
@@ -60,7 +60,7 @@ final class BirthDetails
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

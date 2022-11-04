@@ -23,6 +23,7 @@ final class Papasamyam implements ResultInterface
      * @var float
      */
     private $totalPoints;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails
      */

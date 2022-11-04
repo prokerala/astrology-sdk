@@ -16,9 +16,6 @@ use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterMismatchExcept
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterTypeMissingException;
 use Prokerala\Api\Astrology\Exception\Result\Transformer\ParameterValueMissingException;
 use Prokerala\Api\Astrology\Result\ResultInterface;
-use ReflectionClass;
-use ReflectionMethod;
-use RuntimeException;
 
 /**
  * @template T of ResultInterface
@@ -47,7 +44,7 @@ final class Transformer
     }
 
     /**
-     * @param "string"|"int" $from
+     * @param "int"|"string" $from
      * @param class-string   $to
      * @param callable       $converter
      *
@@ -88,12 +85,12 @@ final class Transformer
     private function create($className, $data)
     {
         if (!$data instanceof \stdClass) {
-            throw new RuntimeException('Cannot create object from '.\gettype($data));
+            throw new \RuntimeException('Cannot create object from ' . \gettype($data));
         }
 
-        $class = new ReflectionClass($className);
+        $class = new \ReflectionClass($className);
         if (!$class->isInstantiable()) {
-            throw new RuntimeException("{$className} is not instantiable");
+            throw new \RuntimeException("{$className} is not instantiable");
         }
 
         $constructor = $class->getConstructor();
@@ -113,7 +110,7 @@ final class Transformer
         foreach ($params as $param) {
             $paramName = $param->getName();
             $dataKey = preg_replace_callback('/[A-Z]/', function ($match) {
-                return '_'.lcfirst($match[0]);
+                return '_' . lcfirst($match[0]);
             }, $paramName);
 
             $paramValue = null;
@@ -126,7 +123,7 @@ final class Transformer
             }
 
             $dataType = $this->getType($paramValue);
-            $paramClass = $param->getType() && !$param->getType()->isBuiltin() ? new ReflectionClass($param->getType()->getName()) : null;
+            $paramClass = $param->getType() && !$param->getType()->isBuiltin() ? new \ReflectionClass($param->getType()->getName()) : null;
 
             if ($paramClass) {
                 $paramType = [$paramClass->getName()];
@@ -139,7 +136,7 @@ final class Transformer
             try {
                 $arguments[] = $this->parseParameter($paramValue, $dataType, $paramType);
             } catch (ParameterMismatchException $e) {
-                throw new Exception("Failed to parse {$className}::{$paramName} - ".$e->getMessage());
+                throw new Exception("Failed to parse {$className}::{$paramName} - " . $e->getMessage());
             }
         }
 
@@ -147,11 +144,11 @@ final class Transformer
     }
 
     /**
-     * @param string           $namespace
+     * @param string $namespace
      *
      * @return array
      */
-    private function parsePhpDoc(ReflectionMethod $method, $namespace)
+    private function parsePhpDoc(\ReflectionMethod $method, $namespace)
     {
         $phpDoc = $method->getDocComment() ?: '';
 
@@ -174,17 +171,17 @@ final class Transformer
                     $type = substr($type, 0, -2);
                 }
                 if (isset($scalarTypes[$type])) {
-                    $resolvedTypes[] = $scalarTypes[$type].($isArray ? '[]' : '');
+                    $resolvedTypes[] = $scalarTypes[$type] . ($isArray ? '[]' : '');
 
                     continue;
                 }
 
                 if ('\\' !== $type[0]) {
-                    $type = $namespace.'\\'.$type;
+                    $type = $namespace . '\\' . $type;
                 } else {
                     $type = substr($type, 1);
                 }
-                $resolvedTypes[] = $type.($isArray ? '[]' : '');
+                $resolvedTypes[] = $type . ($isArray ? '[]' : '');
             }
 
             $resolvedArgTypes[$match[2]] = $resolvedTypes;
@@ -198,9 +195,8 @@ final class Transformer
      * @param string   $dataType   Data type
      * @param string[] $paramTypes Parameter type
      *
-     * @throws ParameterMismatchException
-     *
      * @return mixed
+     * @throws ParameterMismatchException
      */
     private function parseParameter($data, $dataType, $paramTypes)
     {
@@ -219,7 +215,7 @@ final class Transformer
             }
         }
 
-        if (null === $data || is_scalar($data) || $isEmptyArray || (\is_array($data) && is_scalar($data[0]))) {
+        if (null === $data || \is_scalar($data) || $isEmptyArray || (\is_array($data) && \is_scalar($data[0]))) {
             if (null === $dataType) {
                 throw new ParameterMismatchException('Unexpected parameter type');
             }
@@ -247,7 +243,7 @@ final class Transformer
         }
 
         if (\is_array($val)) {
-            return empty($val) ? 'array' : $this->getType($val[0]).'[]';
+            return empty($val) ? 'array' : $this->getType($val[0]) . '[]';
         }
 
         return \gettype($val);

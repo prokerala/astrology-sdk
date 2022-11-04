@@ -14,9 +14,6 @@ namespace Prokerala\Api\Numerology\Service;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Expression;
-use Prokerala\Api\Numerology\Result\HiddenPassionResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
-use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -46,10 +43,10 @@ final class ExpressionNumber
     /**
      * Fetch result from API.
      *
+     * @return Expression
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return Expression
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

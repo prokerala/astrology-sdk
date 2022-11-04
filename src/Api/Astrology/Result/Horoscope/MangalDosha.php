@@ -22,6 +22,7 @@ final class MangalDosha implements ResultInterface
      * @var bool
      */
     private $hasDosha;
+
     /**
      * @var string
      */

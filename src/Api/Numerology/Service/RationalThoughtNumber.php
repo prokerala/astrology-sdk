@@ -13,7 +13,6 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathNumber;
 use Prokerala\Api\Numerology\Result\RationalThought;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -46,10 +45,10 @@ final class RationalThoughtNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return RationalThought
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return RationalThought
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

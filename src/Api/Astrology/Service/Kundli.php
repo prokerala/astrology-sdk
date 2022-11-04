@@ -55,10 +55,9 @@ final class Kundli
      * @param \DateTimeInterface $datetime        Date and time
      * @param bool               $detailed_report Return detailed result
      *
+     * @return AdvancedKundliResult|KundliResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     *
-     * @return AdvancedKundliResult|KundliResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la, $detailed_report = false)
     {

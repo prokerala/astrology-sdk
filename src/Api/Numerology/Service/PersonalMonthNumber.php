@@ -13,9 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathNumber;
 use Prokerala\Api\Numerology\Result\PersonalMonth;
-use Prokerala\Api\Numerology\Result\PersonalYearResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -47,10 +45,10 @@ final class PersonalMonthNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return PersonalMonth
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PersonalMonth
      */
     public function process(\DateTimeInterface $datetime, int $referenceDate)
     {

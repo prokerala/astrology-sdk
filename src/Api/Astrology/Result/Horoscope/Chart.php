@@ -20,10 +20,13 @@ final class Chart implements ResultInterface
 
     /** @var string */
     private $chartType;
+
     /** @var string */
     private $chartName;
+
     /** @var string */
     private $chartShortName;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[]
      */

@@ -49,10 +49,10 @@ final class TaraBala
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return TaraBalaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return TaraBalaResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

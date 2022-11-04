@@ -43,10 +43,10 @@ final class SubconsciousSelfNumber
     /**
      * Fetch result from API.
      *
+     * @return SubconsciousSelf
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return SubconsciousSelf
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

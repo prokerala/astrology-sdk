@@ -11,32 +11,35 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-use DateTimeInterface;
-
 final class Tithi
 {
     /**
      * @var int
      */
     private $index;
+
     /**
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $paksha;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $start;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $end;
 
@@ -53,8 +56,8 @@ final class Tithi
         $id,
         $name,
         $paksha,
-        DateTimeInterface $start,
-        DateTimeInterface $end
+        \DateTimeInterface $start,
+        \DateTimeInterface $end
     ) {
         $this->index = $index;
         $this->id = $id;
@@ -97,7 +100,7 @@ final class Tithi
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getStart()
     {
@@ -105,7 +108,7 @@ final class Tithi
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getEnd()
     {

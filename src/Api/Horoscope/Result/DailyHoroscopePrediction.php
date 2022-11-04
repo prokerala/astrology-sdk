@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Horoscope\Result;
@@ -26,21 +27,16 @@ class DailyHoroscopePrediction
     private $prediction;
 
     /**
-     * @param string $signName
-     * @param int|null $signId
-     * @param \DateTimeInterface $date
-     * @param string $prediction
+     * @param null|int $signId
      */
-    public function __construct (string $signName, int $signId, \DateTimeInterface $date, string $prediction) {
+    public function __construct(string $signName, int $signId, \DateTimeInterface $date, string $prediction)
+    {
         $this->signName = $signName;
         $this->signId = $signId;
         $this->date = $date;
         $this->prediction = $prediction;
     }
 
-    /**
-     * @return string
-     */
     public function getSignName(): string
     {
         return $this->signName;
@@ -54,17 +50,11 @@ class DailyHoroscopePrediction
         return $this->signId;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getDate(): \DateTimeInterface
     {
         return $this->date;
     }
 
-    /**
-     * @return string
-     */
     public function getPrediction(): string
     {
         return $this->prediction;

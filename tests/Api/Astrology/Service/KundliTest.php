@@ -11,8 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
-use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
 use Prokerala\Api\Astrology\Result\Element\Planet;
@@ -42,13 +40,13 @@ class KundliTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const EXPECTED_OUTPUT = [
+    public const EXPECTED_OUTPUT = [
         'nakshatra_details' => [
             'nakshatra' => [
                 'id' => 3,
@@ -5363,7 +5361,7 @@ class KundliTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -5373,42 +5371,42 @@ class KundliTest extends BaseTestCase
         $nakshatra_details = $basic_result['nakshatra_details'];
         $nakshatra_lord = new Planet($nakshatra_details['nakshatra']['lord']['id'], $nakshatra_details['nakshatra']['lord']['name'], $nakshatra_details['nakshatra']['lord']['vedic_name']);
         $nakshatra = new Nakshatra($nakshatra_details['nakshatra']['id'], $nakshatra_details['nakshatra']['name'], $nakshatra_lord, $nakshatra_details['nakshatra']['pada']);
-        $nakshatra_object = (object) $nakshatra_details['nakshatra'];
-        $nakshatra_object->lord = (object) $nakshatra_details['nakshatra']['lord'];
+        $nakshatra_object = (object)$nakshatra_details['nakshatra'];
+        $nakshatra_object->lord = (object)$nakshatra_details['nakshatra']['lord'];
 
         $chandra_rasi_lord = new Planet($nakshatra_details['chandra_rasi']['lord']['id'], $nakshatra_details['chandra_rasi']['lord']['name'], $nakshatra_details['chandra_rasi']['lord']['vedic_name']);
         $chandra_rasi = new Rasi($nakshatra_details['chandra_rasi']['id'], $nakshatra_details['chandra_rasi']['name'], $chandra_rasi_lord);
-        $chandra_rasi_object = (object) $nakshatra_details['chandra_rasi'];
-        $chandra_rasi_object->lord = (object) $nakshatra_details['chandra_rasi']['lord'];
+        $chandra_rasi_object = (object)$nakshatra_details['chandra_rasi'];
+        $chandra_rasi_object->lord = (object)$nakshatra_details['chandra_rasi']['lord'];
 
         $soorya_rasi_lord = new Planet($nakshatra_details['soorya_rasi']['lord']['id'], $nakshatra_details['soorya_rasi']['lord']['name'], $nakshatra_details['soorya_rasi']['lord']['vedic_name']);
         $soorya_rasi = new Rasi($nakshatra_details['soorya_rasi']['id'], $nakshatra_details['soorya_rasi']['name'], $soorya_rasi_lord);
-        $soorya_rasi_object = (object) $nakshatra_details['soorya_rasi'];
-        $soorya_rasi_object->lord = (object) $nakshatra_details['soorya_rasi']['lord'];
+        $soorya_rasi_object = (object)$nakshatra_details['soorya_rasi'];
+        $soorya_rasi_object->lord = (object)$nakshatra_details['soorya_rasi']['lord'];
 
         $zodiac = new Zodiac($nakshatra_details['zodiac']['id'], $nakshatra_details['zodiac']['name']);
-        $zodiac_object = (object) $nakshatra_details['zodiac'];
+        $zodiac_object = (object)$nakshatra_details['zodiac'];
 
         $additional_info = new NakshatraInfo($nakshatra_details['additional_info']['deity'], $nakshatra_details['additional_info']['ganam'], $nakshatra_details['additional_info']['symbol'], $nakshatra_details['additional_info']['animal_sign'], $nakshatra_details['additional_info']['nadi'], $nakshatra_details['additional_info']['color'], $nakshatra_details['additional_info']['best_direction'], $nakshatra_details['additional_info']['syllables'], $nakshatra_details['additional_info']['birth_stone'], $nakshatra_details['additional_info']['gender'], $nakshatra_details['additional_info']['planet'], $nakshatra_details['additional_info']['enemy_yoni']);
-        $additional_info_object = (object) $nakshatra_details['additional_info'];
+        $additional_info_object = (object)$nakshatra_details['additional_info'];
 
         $expected_basic_mangal_dosha_result = new BasicMangalDoshaResult($basic_result['mangal_dosha']['has_dosha'], $basic_result['mangal_dosha']['description']);
-        $mangal_dosha_object = (object) $basic_result['mangal_dosha'];
+        $mangal_dosha_object = (object)$basic_result['mangal_dosha'];
 
         $yoga_details = $yoga_detail_object = [];
 
         foreach ($basic_result['yoga_details'] as $yoga) {
             $yoga_details[] = new BasicYogaResult($yoga['name'], $yoga['description']);
             unset($yoga['yoga_list']);
-            $yoga_detail_object[] = (object) $yoga;
+            $yoga_detail_object[] = (object)$yoga;
         }
         $expected_nakshatra_details = new NakshatraResult($nakshatra, $chandra_rasi, $soorya_rasi, $zodiac, $additional_info);
 
         $expected_basic_result = new BasicKundliResult($expected_nakshatra_details, $expected_basic_mangal_dosha_result, $yoga_details);
 
         $expected_basic_result->setRawResponse(
-            (object) [
-                'nakshatra_details' => (object) [
+            (object)[
+                'nakshatra_details' => (object)[
                     'nakshatra' => $nakshatra_object,
                     'chandra_rasi' => $chandra_rasi_object,
                     'soorya_rasi' => $soorya_rasi_object,
@@ -5435,7 +5433,7 @@ class KundliTest extends BaseTestCase
             $advanced_result['mangal_dosha']['exceptions'],
             $advanced_result['mangal_dosha']['remedies']
         );
-        $advanced_mangal_dosha_object = (object) $advanced_result['mangal_dosha'];
+        $advanced_mangal_dosha_object = (object)$advanced_result['mangal_dosha'];
 
         $advanced_yoga_result = $advanced_yoga_object = [];
 
@@ -5443,10 +5441,10 @@ class KundliTest extends BaseTestCase
             $yoga_list = $yoga_list_object = [];
             foreach ($yoga['yoga_list'] as $details) {
                 $yoga_list[] = new Yoga($details['name'], $details['has_yoga'], $details['description']);
-                $yoga_list_object[] = (object) $details;
+                $yoga_list_object[] = (object)$details;
             }
             $advanced_yoga_result[] = new AdvancedYogaResult($yoga['name'], $yoga['description'], $yoga_list);
-            $yoga_object = (object) $yoga;
+            $yoga_object = (object)$yoga;
             $yoga_object->yoga_list = $yoga_list_object;
             $advanced_yoga_object[] = $yoga_object;
         }
@@ -5456,30 +5454,30 @@ class KundliTest extends BaseTestCase
             foreach ($dasha_period['antardasha'] as $antardasha) {
                 $pratyantardasha_result = $pratyantardasha_object = [];
                 foreach ($antardasha['pratyantardasha'] as $pratyantardasha) {
-                    $start = new DateTimeImmutable($pratyantardasha['start']);
-                    $end = new DateTimeImmutable($pratyantardasha['end']);
+                    $start = new \DateTimeImmutable($pratyantardasha['start']);
+                    $end = new \DateTimeImmutable($pratyantardasha['end']);
                     $pratyantardasha_result[] = new Pratyantardasha($pratyantardasha['id'], $pratyantardasha['name'], $start, $end);
-                    $pratyantardasha_object[] = (object) $pratyantardasha;
+                    $pratyantardasha_object[] = (object)$pratyantardasha;
                 }
-                $start = new DateTimeImmutable($antardasha['start']);
-                $end = new DateTimeImmutable($antardasha['end']);
+                $start = new \DateTimeImmutable($antardasha['start']);
+                $end = new \DateTimeImmutable($antardasha['end']);
                 $antardasha_result[] = new Antardasha($antardasha['id'], $antardasha['name'], $start, $end, $pratyantardasha_result);
-                $object = (object) $antardasha;
+                $object = (object)$antardasha;
                 $object->pratyantardasha = $pratyantardasha_object;
-                $antardasha_object[] = (object) $object;
+                $antardasha_object[] = (object)$object;
             }
-            $start = new DateTimeImmutable($dasha_period['start']);
-            $end = new DateTimeImmutable($dasha_period['end']);
+            $start = new \DateTimeImmutable($dasha_period['start']);
+            $end = new \DateTimeImmutable($dasha_period['end']);
 
             $dasha_result[] = new DashaPeriod($dasha_period['id'], $dasha_period['name'], $start, $end, $antardasha_result);
-            $object = (object) $dasha_period;
+            $object = (object)$dasha_period;
             $object->antardasha = $antardasha_object;
             $dasha_object[] = $object;
         }
         $expected_advanced_result = new AdvancedKundliResult($expected_nakshatra_details, $expected_advanced_mangal_dosha_result, $advanced_yoga_result, $dasha_result);
         $expected_advanced_result->setRawResponse(
-            (object) [
-                'nakshatra_details' => (object) [
+            (object)[
+                'nakshatra_details' => (object)[
                     'nakshatra' => $nakshatra_object,
                     'chandra_rasi' => $chandra_rasi_object,
                     'soorya_rasi' => $soorya_rasi_object,

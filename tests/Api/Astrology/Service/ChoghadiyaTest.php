@@ -11,8 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
-use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Panchang\Choghadiya as ChoghadiyaResult;
 use Prokerala\Api\Astrology\Result\Panchang\Choghadiya\Period;
@@ -28,13 +26,13 @@ class ChoghadiyaTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const ACTUAL_RESULT = [
+    public const ACTUAL_RESULT = [
         'muhurat' => [
             [
                 'id' => 6,
@@ -185,7 +183,7 @@ class ChoghadiyaTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -195,13 +193,13 @@ class ChoghadiyaTest extends BaseTestCase
         $arMuhurat = [];
         $arMuhuratObject = [];
         foreach ($result['muhurat'] as $muhurat) {
-            $start = new DateTimeImmutable($muhurat['start']);
-            $end = new DateTimeImmutable($muhurat['end']);
+            $start = new \DateTimeImmutable($muhurat['start']);
+            $end = new \DateTimeImmutable($muhurat['end']);
             $arMuhurat[] = new Period($muhurat['id'], $muhurat['name'], $muhurat['type'], $muhurat['vela'], $muhurat['is_day'], $start, $end);
-            $arMuhuratObject[] = (object) $muhurat;
+            $arMuhuratObject[] = (object)$muhurat;
         }
         $expected_result = new ChoghadiyaResult($arMuhurat);
-        $expected_result->setRawResponse((object) ['muhurat' => $arMuhuratObject]);
+        $expected_result->setRawResponse((object)['muhurat' => $arMuhuratObject]);
         $this->assertEquals($expected_result, $test_result);
     }
 }

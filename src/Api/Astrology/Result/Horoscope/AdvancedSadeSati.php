@@ -17,14 +17,17 @@ use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 final class AdvancedSadeSati implements ResultInterface
 {
     use RawResponseTrait;
+
     /**
      * @var bool
      */
     private $isInSadeSati;
+
     /**
      * @var string
      */
     private $transitPhase;
+
     /**
      * @var null|string
      */

@@ -51,10 +51,9 @@ final class MangalDosha
      * @param \DateTimeInterface $datetime        Date and time
      * @param bool               $detailed_report Return detailed result
      *
+     * @return AdvancedMangalDoshaResult|MangalDoshaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     *
-     * @return AdvancedMangalDoshaResult|MangalDoshaResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la, $detailed_report = false)
     {

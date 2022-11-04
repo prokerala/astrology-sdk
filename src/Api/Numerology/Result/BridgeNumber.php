@@ -1,13 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
 class BridgeNumber
 {
-    /**
-     * @var string
-     */
     private string $name;
 
     /**
@@ -16,7 +14,6 @@ class BridgeNumber
     private array $differences;
 
     /**
-     * @param string $name
      * @param Number[] $differences
      */
     public function __construct(string $name, array $differences)
@@ -25,13 +22,11 @@ class BridgeNumber
         $this->differences = $differences;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * @return Number[]
      */
@@ -39,6 +34,4 @@ class BridgeNumber
     {
         return $this->differences;
     }
-
-
 }

@@ -53,7 +53,7 @@ final class PapaSamyamCheck
             'boy_coordinates' => $boy_location->getCoordinates(),
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

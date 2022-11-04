@@ -11,38 +11,37 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang\Muhurat;
 
-use DateTimeInterface;
-
 final class Period
 {
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $start;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $end;
 
     /**
      * Period constructor.
      */
-    public function __construct(DateTimeInterface $start, DateTimeInterface $end)
+    public function __construct(\DateTimeInterface $start, \DateTimeInterface $end)
     {
         $this->start = $start;
         $this->end = $end;
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getStart()
     {
-        return  $this->start;
+        return $this->start;
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getEnd()
     {

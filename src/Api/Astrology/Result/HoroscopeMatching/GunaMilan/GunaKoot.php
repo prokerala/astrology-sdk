@@ -17,26 +17,32 @@ final class GunaKoot
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $girlKoot;
+
     /**
      * @var string
      */
     private $boyKoot;
+
     /**
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $obtainedPoints;
+
     /**
      * @var string
      */

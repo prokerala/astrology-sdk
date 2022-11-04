@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -14,32 +15,23 @@ class Expression implements ResultInterface
      * @var ExpressionNumber
      */
     private $expressionNumber;
+
     /**
      * @var NameChart
      */
     private $nameChart;
 
-    /**
-     * @param ExpressionNumber $expressionNumber
-     * @param NameChart $nameChart
-     */
-    public function __construct(ExpressionNumber $expressionNumber, NameChart $nameChart) {
-
+    public function __construct(ExpressionNumber $expressionNumber, NameChart $nameChart)
+    {
         $this->expressionNumber = $expressionNumber;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }
 
-    /**
-     * @return ExpressionNumber
-     */
     public function getExpressionNumber(): ExpressionNumber
     {
         return $this->expressionNumber;

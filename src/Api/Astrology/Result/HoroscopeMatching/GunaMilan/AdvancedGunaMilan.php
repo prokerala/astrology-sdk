@@ -17,10 +17,12 @@ final class AdvancedGunaMilan
      * @var float
      */
     private $totalPoints;
+
     /**
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var GunaKoot[]
      */

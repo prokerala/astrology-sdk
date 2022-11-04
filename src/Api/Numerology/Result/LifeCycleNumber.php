@@ -1,13 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
 class LifeCycleNumber
 {
-    /**
-     * @var string
-     */
     private string $name;
 
     /**
@@ -16,7 +14,6 @@ class LifeCycleNumber
     private array $cycles;
 
     /**
-     * @param string $name
      * @param AgeNumber[] $cycles
      */
     public function __construct(string $name, array $cycles)
@@ -25,13 +22,11 @@ class LifeCycleNumber
         $this->cycles = $cycles;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * @return AgeNumber[]
      */
@@ -39,6 +34,4 @@ class LifeCycleNumber
     {
         return $this->cycles;
     }
-
-
 }

@@ -14,7 +14,6 @@ namespace Prokerala\Api\Numerology\Service;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\PlanesOfExpression as PlanesOfExpressionResult;
-use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -44,10 +43,10 @@ final class PlanesOfExpression
     /**
      * Fetch result from API.
      *
+     * @return PlanesOfExpressionResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PlanesOfExpressionResult
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

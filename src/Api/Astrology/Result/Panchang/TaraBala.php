@@ -23,20 +23,13 @@ final class TaraBala implements ResultInterface
      */
     private $taraBala;
 
-    /**
-     * @param TaraBalaResult $taraBala
-     */
     public function __construct(TaraBalaResult $taraBala)
     {
         $this->taraBala = $taraBala;
     }
 
-    /**
-     * @return TaraBalaResult
-     */
     public function getTaraBala(): TaraBalaResult
     {
         return $this->taraBala;
     }
-
 }

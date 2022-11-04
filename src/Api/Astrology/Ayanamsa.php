@@ -13,9 +13,9 @@ namespace Prokerala\Api\Astrology;
 
 final class Ayanamsa
 {
-    const LAHIRI = 1;
-    const RAMAN = 3;
-    const KP = 5;
+    public const LAHIRI = 1;
+    public const RAMAN = 3;
+    public const KP = 5;
 
     /**
      * Get list of supported ayanamsas.

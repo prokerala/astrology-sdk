@@ -11,7 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
@@ -34,19 +33,19 @@ use Prokerala\Tests\BaseTestCase;
 class PoruthamTest extends BaseTestCase
 {
     use AuthenticationTrait;
-    const GIRL_INPUT = [
+    public const GIRL_INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const BOY_INPUT = [
+    public const BOY_INPUT = [
         'datetime' => '1970-11-10T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'kerala' => [
             'girl_info' => [
                 'nakshatra' => [
@@ -316,11 +315,11 @@ class PoruthamTest extends BaseTestCase
     public function testProcess()
     {
         $girl_location = new Location(self::GIRL_INPUT['latitude'], self::GIRL_INPUT['longitude']);
-        $girl_dob = new DateTime(self::GIRL_INPUT['datetime']);
+        $girl_dob = new \DateTimeImmutable(self::GIRL_INPUT['datetime']);
         $girl_profile = new Profile($girl_location, $girl_dob);
 
         $boy_location = new Location(self::BOY_INPUT['latitude'], self::BOY_INPUT['longitude']);
-        $boy_dob = new DateTime(self::BOY_INPUT['datetime']);
+        $boy_dob = new \DateTimeImmutable(self::BOY_INPUT['datetime']);
         $boy_profile = new Profile($boy_location, $boy_dob);
         $client = $this->setClient();
 
@@ -345,10 +344,10 @@ class PoruthamTest extends BaseTestCase
         $boy_rasi = new Rasi($boy_details['rasi']['id'], $boy_details['rasi']['name'], $boy_rasi_lord);
 
         $boy_info = new ProfileInfo($boy_nakshatra, $boy_rasi);
-        $girl_details['nakshatra']['lord'] = (object) $girl_details['nakshatra']['lord'];
-        $girl_details['rasi']['lord'] = (object) $girl_details['rasi']['lord'];
-        $boy_details['nakshatra']['lord'] = (object) $boy_details['nakshatra']['lord'];
-        $boy_details['rasi']['lord'] = (object) $boy_details['rasi']['lord'];
+        $girl_details['nakshatra']['lord'] = (object)$girl_details['nakshatra']['lord'];
+        $girl_details['rasi']['lord'] = (object)$girl_details['rasi']['lord'];
+        $boy_details['nakshatra']['lord'] = (object)$boy_details['nakshatra']['lord'];
+        $boy_details['rasi']['lord'] = (object)$boy_details['rasi']['lord'];
 
         $message = new Message($kerala_result['message']['type'], $kerala_result['message']['description']);
 
@@ -357,28 +356,28 @@ class PoruthamTest extends BaseTestCase
         foreach ($kerala_result['matches'] as $match) {
             $advanced_match_result[] = new AdvancedMatch($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
             $basic_match_result[] = new BasicMatch($match['id'], $match['name'], $match['has_porutham']);
-            $basic_match_object[] = (object) [
+            $basic_match_object[] = (object)[
                 'id' => $match['id'],
                 'name' => $match['name'],
                 'has_porutham' => $match['has_porutham'],
             ];
-            $advanced_match_object[] = (object) $match;
+            $advanced_match_object[] = (object)$match;
         }
-        $girl_info_object = (object) [
-            'rasi' => (object) $girl_details['rasi'],
-            'nakshatra' => (object) $girl_details['nakshatra'],
+        $girl_info_object = (object)[
+            'rasi' => (object)$girl_details['rasi'],
+            'nakshatra' => (object)$girl_details['nakshatra'],
         ];
-        $boy_info_object = (object) [
-            'rasi' => (object) $boy_details['rasi'],
-            'nakshatra' => (object) $boy_details['nakshatra'],
+        $boy_info_object = (object)[
+            'rasi' => (object)$boy_details['rasi'],
+            'nakshatra' => (object)$boy_details['nakshatra'],
         ];
         $expected_basic_kerala_result = new BasicMatchResult($girl_info, $boy_info, $kerala_result['maximum_points'], $kerala_result['total_points'], $message, $basic_match_result);
-        $expected_basic_kerala_result->setRawResponse((object) [
+        $expected_basic_kerala_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
             'maximum_points' => $kerala_result['maximum_points'],
             'total_points' => $kerala_result['total_points'],
-            'message' => (object) $kerala_result['message'],
+            'message' => (object)$kerala_result['message'],
             'matches' => $basic_match_object,
         ]);
 
@@ -386,12 +385,12 @@ class PoruthamTest extends BaseTestCase
 
         $advanced_kerala_test_result = $porutham->process($girl_profile, $boy_profile, 'kerala', true);
         $expected_advanced_kerala_result = new AdvancedMatchResult($girl_info, $boy_info, $kerala_result['maximum_points'], $kerala_result['total_points'], $message, $advanced_match_result);
-        $expected_advanced_kerala_result->setRawResponse((object) [
+        $expected_advanced_kerala_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
             'maximum_points' => $kerala_result['maximum_points'],
             'total_points' => $kerala_result['total_points'],
-            'message' => (object) $kerala_result['message'],
+            'message' => (object)$kerala_result['message'],
             'matches' => $advanced_match_object,
         ]);
 
@@ -404,33 +403,33 @@ class PoruthamTest extends BaseTestCase
         foreach ($tamil_result['matches'] as $match) {
             $advanced_tamil_match_result[] = new AdvancedMatch($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
             $basic_tamil_match_result[] = new BasicMatch($match['id'], $match['name'], $match['has_porutham']);
-            $basic_tamil_match_object[] = (object) [
+            $basic_tamil_match_object[] = (object)[
                 'id' => $match['id'],
                 'name' => $match['name'],
                 'has_porutham' => $match['has_porutham'],
             ];
-            $advanced_tamil_match_object[] = (object) $match;
+            $advanced_tamil_match_object[] = (object)$match;
         }
         $message = new Message($tamil_result['message']['type'], $tamil_result['message']['description']);
         $expected_basic_tamil_result = new BasicMatchResult($girl_info, $boy_info, $tamil_result['maximum_points'], $tamil_result['total_points'], $message, $basic_tamil_match_result);
-        $expected_basic_tamil_result->setRawResponse((object) [
+        $expected_basic_tamil_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
             'maximum_points' => $tamil_result['maximum_points'],
             'total_points' => $tamil_result['total_points'],
-            'message' => (object) $tamil_result['message'],
+            'message' => (object)$tamil_result['message'],
             'matches' => $basic_tamil_match_object,
         ]);
         $basic_tamil_test_result = $porutham->process($girl_profile, $boy_profile, 'tamil');
         $this->assertEquals($expected_basic_tamil_result, $basic_tamil_test_result);
 
         $expected_advanced_tamil_result = new AdvancedMatchResult($girl_info, $boy_info, $tamil_result['maximum_points'], $tamil_result['total_points'], $message, $advanced_tamil_match_result);
-        $expected_advanced_tamil_result->setRawResponse((object) [
+        $expected_advanced_tamil_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
             'maximum_points' => $tamil_result['maximum_points'],
             'total_points' => $tamil_result['total_points'],
-            'message' => (object) $tamil_result['message'],
+            'message' => (object)$tamil_result['message'],
             'matches' => $advanced_tamil_match_object,
         ]);
         $advanced_tamil_test_result = $porutham->process($girl_profile, $boy_profile, 'tamil', true);

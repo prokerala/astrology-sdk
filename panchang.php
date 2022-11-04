@@ -27,7 +27,7 @@ $input = [
     'longitude' => '88.0495418', // Kolkata
 ];
 
-$datetime = new DateTime($input['datetime']);
+$datetime = new DateTimeImmutable($input['datetime']);
 $tz = $datetime->getTimezone();
 
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);

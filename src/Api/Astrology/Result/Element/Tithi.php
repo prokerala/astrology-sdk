@@ -13,29 +13,32 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 final class Tithi
 {
-    const PRATIPADA = 1;
-    const DWITIYA = 2;
-    const TRITIYA = 3;
-    const CHATURTHI = 4;
-    const PANCHAMI = 5;
-    const SHASHTHI = 6;
-    const SAPTAMI = 7;
-    const ASHTAMI = 8;
-    const NAVAMI = 9;
-    const DASHAMI = 10;
-    const EKADASHI = 11;
-    const DWADASHI = 12;
-    const TRAYODASHI = 13;
-    const CHATURDASHI = 14;
-    const PURNIMA = 15;
-    const AMAVASYA = 16;
+    public const PRATIPADA = 1;
+    public const DWITIYA = 2;
+    public const TRITIYA = 3;
+    public const CHATURTHI = 4;
+    public const PANCHAMI = 5;
+    public const SHASHTHI = 6;
+    public const SAPTAMI = 7;
+    public const ASHTAMI = 8;
+    public const NAVAMI = 9;
+    public const DASHAMI = 10;
+    public const EKADASHI = 11;
+    public const DWADASHI = 12;
+    public const TRAYODASHI = 13;
+    public const CHATURDASHI = 14;
+    public const PURNIMA = 15;
+    public const AMAVASYA = 16;
 
     /** @var string */
     private $paksha;
+
     /** @var int */
     private $id;
+
     /** @var int */
     private $index;
+
     /** @var string */
     private $name;
 

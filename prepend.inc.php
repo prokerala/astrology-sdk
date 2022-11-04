@@ -14,7 +14,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Prokerala\Common\Api\Authentication\Oauth2;
 use Prokerala\Common\Api\Client;
 
-include __DIR__.'/vendor/autoload.php';
+include __DIR__ . '/vendor/autoload.php';
 
 const CLIENT_ID = 'YOUR_CLIENT_ID';
 const CLIENT_SECRET = 'YOUR_CLIENT_SECRET';

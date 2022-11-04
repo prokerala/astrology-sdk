@@ -1,13 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
 
 class PinnacleNumber
 {
-    /**
-     * @var string
-     */
     private string $name;
 
     /**
@@ -16,7 +14,6 @@ class PinnacleNumber
     private array $pinnacles;
 
     /**
-     * @param string $name
      * @param AgeNumber[] $pinnacles
      */
     public function __construct(string $name, array $pinnacles)
@@ -25,13 +22,11 @@ class PinnacleNumber
         $this->pinnacles = $pinnacles;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
+
     /**
      * @return AgeNumber[]
      */
@@ -39,6 +34,4 @@ class PinnacleNumber
     {
         return $this->pinnacles;
     }
-
-
 }

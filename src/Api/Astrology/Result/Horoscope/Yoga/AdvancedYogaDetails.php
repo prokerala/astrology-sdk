@@ -17,10 +17,12 @@ final class AdvancedYogaDetails
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $description;
+
     /**
      * @var Yoga[]
      */

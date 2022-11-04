@@ -43,10 +43,10 @@ final class DestinyNumber
     /**
      * Fetch result from API.
      *
+     * @return Destiny
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return Destiny
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

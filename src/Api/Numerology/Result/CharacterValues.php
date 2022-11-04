@@ -1,13 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
+
 class CharacterValues
 {
     /**
      * @var string
      */
-    private$character;
+    private $character;
+
     /**
      * @var int
      */
@@ -15,7 +18,7 @@ class CharacterValues
 
     /**
      * @param string $character
-     * @param int $number
+     * @param int    $number
      */
     public function __construct($character, $number)
     {
@@ -23,17 +26,11 @@ class CharacterValues
         $this->number = $number;
     }
 
-    /**
-     * @return string
-     */
     public function getCharacter(): string
     {
         return $this->character;
     }
 
-    /**
-     * @return int
-     */
     public function getNumber(): int
     {
         return $this->number;

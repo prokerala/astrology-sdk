@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result\Chaldean;
@@ -15,21 +16,13 @@ class IdentityInitialCode implements ResultInterface
      */
     private $identityInitialCodeNumber;
 
-
-    /**
-     * @param IdentityInitialCodeNumber $identityInitialCodeNumber
-     */
-    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber) {
+    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber)
+    {
         $this->identityInitialCodeNumber = $identityInitialCodeNumber;
     }
 
-    /**
-     * @return IdentityInitialCodeNumber
-     */
     public function getIdentityInitialCodeNumber(): IdentityInitialCodeNumber
     {
         return $this->identityInitialCodeNumber;
     }
-
-
 }

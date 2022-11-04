@@ -44,7 +44,7 @@ final class HoraTiming implements ResultInterface
      */
     public function getDayHora(): array
     {
-        return array_filter($this->horaTiming, function($hora) {
+        return array_filter($this->horaTiming, function ($hora) {
             return $hora->isDay();
         });
     }
@@ -54,7 +54,7 @@ final class HoraTiming implements ResultInterface
      */
     public function getNightHora(): array
     {
-        return array_filter($this->horaTiming, function($hora) {
+        return array_filter($this->horaTiming, function ($hora) {
             return !$hora->isDay();
         });
     }

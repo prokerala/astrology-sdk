@@ -45,10 +45,10 @@ final class UniversalMonthNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return UniversalMonth
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return UniversalMonth
      */
     public function process(\DateTimeInterface $datetime)
     {

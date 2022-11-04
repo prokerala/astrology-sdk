@@ -1,49 +1,41 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class SubconsciousSelfResult implements JsonSerializable
+class SubconsciousSelfResult implements \JsonSerializable
 {
-
     /**
-     * @var Number $number
+     * @var Number
      */
     private $number;
+
     /**
-     * @var NameChart $nameChart
+     * @var NameChart
      */
     private $nameChart;
+
     /**
-     * @param Number $number
+     * @param Number    $number
      * @param NameChart $nameChart
      */
-    public function __construct($number, $nameChart) {
-
+    public function __construct($number, $nameChart)
+    {
         $this->number = $number;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return Number
-     */
     public function getNumber(): Number
     {
         return $this->number;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
@@ -56,5 +48,4 @@ class SubconsciousSelfResult implements JsonSerializable
             'name_chart' => $this->nameChart,
         ];
     }
-
 }

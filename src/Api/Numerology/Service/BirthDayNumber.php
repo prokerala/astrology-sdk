@@ -13,9 +13,7 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\BirthMonthResult;
 use Prokerala\Api\Numerology\Result\Birthday;
-use Prokerala\Api\Numerology\Result\LifePathNumber;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -47,10 +45,10 @@ final class BirthDayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return BirthDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return BirthDay
      */
     public function process(\DateTimeInterface $datetime)
     {

@@ -17,6 +17,7 @@ final class GunaMilan
      * @var float
      */
     private $totalPoints;
+
     /**
      * @var float
      */

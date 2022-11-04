@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Service;
 
-use DateTimeInterface;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition as PlanetPositionResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
@@ -41,13 +40,13 @@ final class PlanetPosition
     /**
      * Fetch result from API.
      *
-     * @param Location          $location Location details
-     * @param DateTimeInterface $datetime Date and time
-     * @param null|string       $planets
+     * @param Location           $location Location details
+     * @param \DateTimeInterface $datetime Date and time
+     * @param null|string        $planets
      *
      * @return PlanetPositionResult
      */
-    public function process(Location $location, DateTimeInterface $datetime, string $la, $planets = null,)
+    public function process(Location $location, \DateTimeInterface $datetime, string $la, $planets = null)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

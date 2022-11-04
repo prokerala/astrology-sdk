@@ -1,17 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
+
 class Cycle implements \JsonSerializable
 {
     /**
      * @var string
      */
     private $character;
+
     /**
      * @var int
      */
     private $number;
+
     /**
      * @var string
      */
@@ -19,7 +23,7 @@ class Cycle implements \JsonSerializable
 
     /**
      * @param string $character
-     * @param int $number
+     * @param int    $number
      * @param string $description
      */
     public function __construct($character, $number, $description)
@@ -29,25 +33,16 @@ class Cycle implements \JsonSerializable
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
     public function getCharacter(): string
     {
         return $this->character;
     }
 
-    /**
-     * @return int
-     */
     public function getNumber(): int
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
@@ -62,9 +57,6 @@ class Cycle implements \JsonSerializable
         ];
     }
 
-    /**
-     * @param string $character
-     */
     public function setDescription(string $character): void
     {
         $this->description = self::DESCRIPTION[$character];

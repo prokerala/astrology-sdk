@@ -17,7 +17,6 @@ use Prokerala\Api\Horoscope\Result\DailyHoroscope;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
-use Prokerala\Common\Traits\Api\ClientAwareTrait;
 
 final class DailyPrediction
 {
@@ -44,10 +43,9 @@ final class DailyPrediction
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return DailyHoroscope
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     *
-     * @return DailyHoroscope
      */
     public function process(\DateTimeInterface $datetime, string $sign)
     {

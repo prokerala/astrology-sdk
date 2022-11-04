@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -15,20 +16,13 @@ class Bridge implements ResultInterface
      */
     private $bridgeNumber;
 
-
-    /**
-     * @param BridgeNumber $bridgeNumber
-     */
-    public function __construct(BridgeNumber $bridgeNumber) {
+    public function __construct(BridgeNumber $bridgeNumber)
+    {
         $this->bridgeNumber = $bridgeNumber;
     }
 
-    /**
-     * @return BridgeNumber
-     */
     public function getBridgeNumber(): BridgeNumber
     {
         return $this->bridgeNumber;
     }
-
 }

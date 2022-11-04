@@ -17,10 +17,12 @@ final class Porutham
      * @var bool
      */
     private $hasPorutham;
+
     /**
      * @var int
      */
     private $point;
+
     /**
      * @var string
      */

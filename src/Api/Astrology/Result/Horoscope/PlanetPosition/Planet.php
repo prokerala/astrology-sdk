@@ -19,26 +19,32 @@ final class Planet
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var float
      */
     private $longitude;
+
     /**
      * @var bool
      */
     private $isRetrograde;
+
     /**
      * @var int
      */
     private $position;
+
     /**
      * @var float
      */
     private $degree;
+
     /**
      * @var Rasi
      */

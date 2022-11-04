@@ -45,10 +45,10 @@ final class LifeCycleNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return LifeCycleResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return LifeCycleResult
      */
     public function process(\DateTimeInterface $datetime)
     {

@@ -35,11 +35,11 @@ $boy_input = [
 ];
 
 $girl_location = new Location($girl_input['latitude'], $girl_input['longitude']);
-$girl_dob = new DateTime($girl_input['datetime']);
+$girl_dob = new DateTimeImmutable($girl_input['datetime']);
 $girl_profile = new Profile($girl_location, $girl_dob);
 
 $boy_location = new Location($boy_input['latitude'], $boy_input['longitude']);
-$boy_dob = new DateTime($boy_input['datetime']);
+$boy_dob = new DateTimeImmutable($boy_input['datetime']);
 $boy_profile = new Profile($boy_location, $boy_dob);
 
 $porutham = new Porutham($client);

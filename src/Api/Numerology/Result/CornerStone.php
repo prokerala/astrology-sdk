@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -14,32 +15,23 @@ class CornerStone implements ResultInterface
      * @var CornerStoneNumber
      */
     private $cornerStoneNumber;
+
     /**
      * @var NameChart
      */
     private $nameChart;
 
-    /**
-     * @param CornerStoneNumber $cornerStoneNumber
-     * @param NameChart $nameChart
-     */
-    public function __construct(CornerStoneNumber $cornerStoneNumber, NameChart $nameChart) {
-
+    public function __construct(CornerStoneNumber $cornerStoneNumber, NameChart $nameChart)
+    {
         $this->cornerStoneNumber = $cornerStoneNumber;
         $this->nameResult = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameResult(): NameChart
     {
         return $this->nameResult;
     }
 
-    /**
-     * @return CornerStoneNumber
-     */
     public function getCornerStoneNumber(): CornerStoneNumber
     {
         return $this->cornerStoneNumber;

@@ -15,18 +15,25 @@ final class Koot
 {
     /** @var string */
     private $varna;
+
     /** @var string */
     private $vasya;
+
     /** @var string */
     private $tara;
+
     /** @var string */
     private $yoni;
+
     /** @var string */
     private $grahaMaitri;
+
     /** @var string */
     private $gana;
+
     /** @var string */
     private $bhakoot;
+
     /** @var string */
     private $nadi;
 

@@ -17,26 +17,32 @@ final class Period
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $type;
+
     /**
      * @var null|string
      */
     private $vela;
+
     /**
      * @var bool
      */
     private $isDay;
+
     /**
      * @var \DateTimeInterface
      */
     private $start;
+
     /**
      * @var \DateTimeInterface
      */

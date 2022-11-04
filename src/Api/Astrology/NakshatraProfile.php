@@ -17,6 +17,7 @@ final class NakshatraProfile
      * @var int
      */
     private $nakshatra;
+
     /**
      * @var int
      */

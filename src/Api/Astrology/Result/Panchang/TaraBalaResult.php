@@ -11,8 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-
-
 use Prokerala\Api\Astrology\Result\EventTiming\Nakshatra;
 
 final class TaraBalaResult
@@ -21,35 +19,32 @@ final class TaraBalaResult
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var string
      */
     private $type;
+
     /**
      * @var \DateTimeInterface
      */
     private $start;
+
     /**
      * @var \DateTimeInterface
      */
     private $end;
+
     /**
      * @var Nakshatra
      */
     private $nakshatra;
 
-    /**
-     * @param int $id
-     * @param string $name
-     * @param string $type
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
-     * @param Nakshatra $nakshatra
-     */
     public function __construct(int $id, string $name, string $type, \DateTimeInterface $start, \DateTimeInterface $end, Nakshatra $nakshatra)
     {
         $this->id = $id;
@@ -60,53 +55,33 @@ final class TaraBalaResult
         $this->nakshatra = $nakshatra;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
 
-    /**
-     * @return Nakshatra
-     */
     public function getNakshatra(): Nakshatra
     {
         return $this->nakshatra;
     }
-
-
 }

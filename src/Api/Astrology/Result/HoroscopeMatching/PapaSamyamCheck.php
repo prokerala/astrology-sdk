@@ -23,10 +23,12 @@ final class PapaSamyamCheck implements ResultInterface
      * @var Papasamyam
      */
     private $girlPapasamyam;
+
     /**
      * @var Papasamyam
      */
     private $boyPapasamyam;
+
     /**
      * @var Message
      */

@@ -1,19 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
-use JsonSerializable;
 
-class PeriodCycle implements JsonSerializable
+class PeriodCycle implements \JsonSerializable
 {
     /**
      * @var Number
      */
-     private $birthMonth;
+    private $birthMonth;
+
     /**
      * @var Number
      */
     private $birthNumber;
+
     /**
      * @var Number
      */
@@ -31,25 +33,16 @@ class PeriodCycle implements JsonSerializable
         $this->birthYear = $birthYear;
     }
 
-    /**
-     * @return Number
-     */
     public function getBirthMonth(): Number
     {
         return $this->birthMonth;
     }
 
-    /**
-     * @return Number
-     */
     public function getBirthNumber(): Number
     {
         return $this->birthNumber;
     }
 
-    /**
-     * @return Number
-     */
     public function getBirthYear(): Number
     {
         return $this->birthYear;

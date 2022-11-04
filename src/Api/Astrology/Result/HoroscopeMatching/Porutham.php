@@ -23,22 +23,27 @@ final class Porutham implements ResultInterface
      * @var Profile
      */
     private $girlInfo;
+
     /**
      * @var Profile
      */
     private $boyInfo;
+
     /**
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $totalPoints;
+
     /**
      * @var Message
      */
     private $message;
+
     /**
      * @var Porutham\BasicMatch[]
      */
@@ -47,8 +52,8 @@ final class Porutham implements ResultInterface
     /**
      * Porutham constructor.
      *
-     * @param float            $maximumPoints
-     * @param float            $totalPoints
+     * @param float                 $maximumPoints
+     * @param float                 $totalPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(

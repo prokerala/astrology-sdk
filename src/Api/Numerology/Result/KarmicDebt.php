@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -15,20 +16,13 @@ class KarmicDebt implements ResultInterface
      */
     private $karmicDebtNumber;
 
-
-    /**
-     * @param KarmicDebtNumber $karmicDebtNumber
-     */
-    public function __construct(KarmicDebtNumber $karmicDebtNumber) {
+    public function __construct(KarmicDebtNumber $karmicDebtNumber)
+    {
         $this->karmicDebtNumber = $karmicDebtNumber;
     }
 
-    /**
-     * @return KarmicDebtNumber
-     */
     public function getKarmicDebtNumber(): KarmicDebtNumber
     {
         return $this->karmicDebtNumber;
     }
-
 }

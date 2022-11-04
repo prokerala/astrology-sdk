@@ -29,16 +29,16 @@ class NakshatraPoruthamTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const GIRL_INPUT = [
+    public const GIRL_INPUT = [
         'nakshatra' => 0,
         'nakshatra_pada' => 2,
     ];
 
-    const BOY_INPUT = [
+    public const BOY_INPUT = [
         'nakshatra' => 13,
         'nakshatra_pada' => 3,
     ];
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'maximum_points' => 10.0,
         'obtained_points' => 5.0,
         'message' => [
@@ -145,17 +145,17 @@ class NakshatraPoruthamTest extends BaseTestCase
         $test_basic_result = $nakshatra_porutham->process($girl_profile, $boy_profile);
         $expected_result = self::EXPECTED_RESULT;
         $message = new Message($expected_result['message']['type'], $expected_result['message']['description']);
-        $message_object = (object) $expected_result['message'];
+        $message_object = (object)$expected_result['message'];
         $arBasicMatch = $arBasicMatchObject = $arAdvancedMatch = $arAdvancedMatchObject = [];
         foreach ($expected_result['matches'] as $match) {
             $arBasicMatch[] = new BasicMatchResult($match['id'], $match['name'], $match['has_porutham']);
             $arAdvancedMatch[] = new AdvancedMatchResult($match['id'], $match['name'], $match['has_porutham'], $match['points'], $match['description'], $match['porutham_status']);
-            $arBasicMatchObject[] = (object) ['id' => $match['id'], 'name' => $match['name'], 'has_porutham' => $match['has_porutham']];
-            $arAdvancedMatchObject[] = (object) $match;
+            $arBasicMatchObject[] = (object)['id' => $match['id'], 'name' => $match['name'], 'has_porutham' => $match['has_porutham']];
+            $arAdvancedMatchObject[] = (object)$match;
         }
 
         $expected_basic_result = new BasicNakshatraPoruthamResult($expected_result['maximum_points'], $expected_result['obtained_points'], $message, $arBasicMatch);
-        $expected_basic_result->setRawResponse((object) [
+        $expected_basic_result->setRawResponse((object)[
             'maximum_points' => $expected_result['maximum_points'],
             'obtained_points' => $expected_result['obtained_points'],
             'message' => $message_object,
@@ -166,7 +166,7 @@ class NakshatraPoruthamTest extends BaseTestCase
 
         $test_advanced_result = $nakshatra_porutham->process($girl_profile, $boy_profile, true);
         $expected_advanced_result = new AdvancedNakshatraPoruthamResult($expected_result['maximum_points'], $expected_result['obtained_points'], $message, $arAdvancedMatch);
-        $expected_advanced_result->setRawResponse((object) [
+        $expected_advanced_result->setRawResponse((object)[
             'maximum_points' => $expected_result['maximum_points'],
             'obtained_points' => $expected_result['obtained_points'],
             'message' => $message_object,

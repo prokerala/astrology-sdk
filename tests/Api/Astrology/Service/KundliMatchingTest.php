@@ -11,7 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
@@ -38,18 +37,18 @@ class KundliMatchingTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const GIRL_INPUT = [
+    public const GIRL_INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const BOY_INPUT = [
+    public const BOY_INPUT = [
         'datetime' => '1970-11-10T09:20:00+05:30',
         'latitude' => '22.6757521',
         'longitude' => '88.0495418', // Kolkata
     ];
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'girl_info' => [
             'koot' => [
                 'varna' => 'Vaishya',
@@ -212,11 +211,11 @@ class KundliMatchingTest extends BaseTestCase
     public function testProcess()
     {
         $girl_location = new Location(self::GIRL_INPUT['latitude'], self::GIRL_INPUT['longitude']);
-        $girl_dob = new DateTime(self::GIRL_INPUT['datetime']);
+        $girl_dob = new \DateTimeImmutable(self::GIRL_INPUT['datetime']);
         $girl_profile = new Profile($girl_location, $girl_dob);
 
         $boy_location = new Location(self::BOY_INPUT['latitude'], self::BOY_INPUT['longitude']);
-        $boy_dob = new DateTime(self::BOY_INPUT['datetime']);
+        $boy_dob = new \DateTimeImmutable(self::BOY_INPUT['datetime']);
         $boy_profile = new Profile($boy_location, $boy_dob);
         $client = $this->setClient();
 
@@ -245,13 +244,13 @@ class KundliMatchingTest extends BaseTestCase
         $boy_rasi_lord = new Planet($boy_info['rasi']['lord']['id'], $boy_info['rasi']['lord']['name'], $boy_info['rasi']['lord']['vedic_name']);
         $boy_rasi = new Rasi($boy_info['rasi']['id'], $boy_info['rasi']['name'], $boy_rasi_lord);
 
-        $boy_info_object = (object) [
-            'koot' => (object) $boy_info['koot'],
-            'nakshatra' => (object) $boy_info['nakshatra'],
-            'rasi' => (object) $boy_info['rasi'],
+        $boy_info_object = (object)[
+            'koot' => (object)$boy_info['koot'],
+            'nakshatra' => (object)$boy_info['nakshatra'],
+            'rasi' => (object)$boy_info['rasi'],
         ];
-        $boy_info_object->nakshatra->lord = (object) $boy_info['nakshatra']['lord'];
-        $boy_info_object->rasi->lord = (object) $boy_info['rasi']['lord'];
+        $boy_info_object->nakshatra->lord = (object)$boy_info['nakshatra']['lord'];
+        $boy_info_object->rasi->lord = (object)$boy_info['rasi']['lord'];
         $boy_info = new ProfileInfo($boy_koot, $boy_nakshatra, $boy_rasi);
 
         $girl_koot = new Koot(
@@ -271,13 +270,13 @@ class KundliMatchingTest extends BaseTestCase
         $girl_rasi_lord = new Planet($girl_info['rasi']['lord']['id'], $girl_info['rasi']['lord']['name'], $girl_info['rasi']['lord']['vedic_name']);
         $girl_rasi = new Rasi($girl_info['rasi']['id'], $girl_info['rasi']['name'], $girl_rasi_lord);
 
-        $girl_info_object = (object) [
-            'koot' => (object) $girl_info['koot'],
-            'nakshatra' => (object) $girl_info['nakshatra'],
-            'rasi' => (object) $girl_info['rasi'],
+        $girl_info_object = (object)[
+            'koot' => (object)$girl_info['koot'],
+            'nakshatra' => (object)$girl_info['nakshatra'],
+            'rasi' => (object)$girl_info['rasi'],
         ];
-        $girl_info_object->nakshatra->lord = (object) $girl_info['nakshatra']['lord'];
-        $girl_info_object->rasi->lord = (object) $girl_info['rasi']['lord'];
+        $girl_info_object->nakshatra->lord = (object)$girl_info['nakshatra']['lord'];
+        $girl_info_object->rasi->lord = (object)$girl_info['rasi']['lord'];
         $girl_info = new ProfileInfo($girl_koot, $girl_nakshatra, $girl_rasi);
 
         $message = new Message($result['message']['type'], $result['message']['description']);
@@ -285,11 +284,11 @@ class KundliMatchingTest extends BaseTestCase
         $guna_milan = new GunaMilan($result['guna_milan']['total_points'], $result['guna_milan']['maximum_points']);
 
         $expected_basic_result = new BasicMatchResult($girl_info, $boy_info, $message, $guna_milan);
-        $expected_basic_result->setRawResponse((object) [
+        $expected_basic_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
-            'message' => (object) $result['message'],
-            'guna_milan' => (object) [
+            'message' => (object)$result['message'],
+            'guna_milan' => (object)[
                 'total_points' => $result['guna_milan']['total_points'],
                 'maximum_points' => $result['guna_milan']['maximum_points'],
             ],
@@ -301,7 +300,7 @@ class KundliMatchingTest extends BaseTestCase
         $guna_result = $guna_object = [];
         foreach ($result['guna_milan']['guna'] as $guna) {
             $guna_result[] = new GunaKoot($guna['id'], $guna['name'], $guna['girl_koot'], $guna['boy_koot'], $guna['maximum_points'], $guna['obtained_points'], $guna['description']);
-            $guna_object[] = (object) $guna;
+            $guna_object[] = (object)$guna;
         }
         $advanced_gunamilan_result = new AdvancedGunaMilan($result['guna_milan']['total_points'], $result['guna_milan']['maximum_points'], $guna_result);
 
@@ -320,17 +319,17 @@ class KundliMatchingTest extends BaseTestCase
         );
 
         $expected_advanced_result = new AdvancedMatchResult($girl_info, $boy_info, $message, $advanced_gunamilan_result, $girl_mangal_dosha_details, $boy_mangal_dosha_details, $result['exceptions']);
-        $expected_advanced_result->setRawResponse((object) [
+        $expected_advanced_result->setRawResponse((object)[
             'girl_info' => $girl_info_object,
             'boy_info' => $boy_info_object,
-            'message' => (object) $result['message'],
-            'guna_milan' => (object) [
+            'message' => (object)$result['message'],
+            'guna_milan' => (object)[
                 'total_points' => $result['guna_milan']['total_points'],
                 'maximum_points' => $result['guna_milan']['maximum_points'],
                 'guna' => $guna_object,
             ],
-            'girl_mangal_dosha_details' => (object) $result['girl_mangal_dosha_details'],
-            'boy_mangal_dosha_details' => (object) $result['boy_mangal_dosha_details'],
+            'girl_mangal_dosha_details' => (object)$result['girl_mangal_dosha_details'],
+            'boy_mangal_dosha_details' => (object)$result['boy_mangal_dosha_details'],
             'exceptions' => $result['exceptions'],
         ]);
 

@@ -49,10 +49,10 @@ final class Hora
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return HoraTiming
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return HoraTiming
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

@@ -23,20 +23,13 @@ final class Solstice implements ResultInterface
      */
     private $solstice;
 
-    /**
-     * @param SolsticeResult $solstice
-     */
     public function __construct(SolsticeResult $solstice)
     {
         $this->solstice = $solstice;
     }
 
-    /**
-     * @return SolsticeResult
-     */
     public function getDishaShool(): SolsticeResult
     {
         return $this->solstice;
     }
-
 }

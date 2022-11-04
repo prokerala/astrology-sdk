@@ -26,18 +26,22 @@ final class BirthDetails implements ResultInterface
      * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
      */
     private $nakshatra;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Rasi
      */
     private $chandraRasi;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Rasi
      */
     private $sooryaRasi;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Zodiac
      */
     private $zodiac;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
      */

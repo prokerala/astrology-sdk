@@ -17,6 +17,7 @@ final class PapaPlanet
      * @var string
      */
     private $name;
+
     /**
      * @var PlanetDoshaDetails[]
      */

@@ -13,28 +13,30 @@ namespace Prokerala\Api\Astrology\Result\Element;
 
 final class Karana
 {
-    const BAVA = 0;
-    const BALAVA = 1;
-    const KAULAVA = 2;
-    const TAITILA = 3;
-    const GARIJA = 4;
-    const VANIJA = 5;
-    const VISHTI = 6;
-    const KIMSTUGHNA = 7;
-    const SHAKUNI = 8;
-    const CHATUSHPADA = 9;
-    const NAGA = 10;
+    public const BAVA = 0;
+    public const BALAVA = 1;
+    public const KAULAVA = 2;
+    public const TAITILA = 3;
+    public const GARIJA = 4;
+    public const VANIJA = 5;
+    public const VISHTI = 6;
+    public const KIMSTUGHNA = 7;
+    public const SHAKUNI = 8;
+    public const CHATUSHPADA = 9;
+    public const NAGA = 10;
 
-    const KARANA_LIST = [
+    public const KARANA_LIST = [
         'Bava', 'Balava', 'Kaulava', 'Taitila',
         'Garija', 'Vanija', 'Vishti', 'Shakuni',
         'Chatushpada', 'Naga', 'Kimstughna',
     ];
 
     /** @var int */
-    protected $id;
+    private $id;
+
     /** @var int */
     private $index;
+
     /** @var string */
     private $name;
 

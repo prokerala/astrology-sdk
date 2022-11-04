@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-
 use Prokerala\Api\Astrology\Result\EventTiming\Rasi;
 
 final class ChandraBalaResult
@@ -20,25 +19,22 @@ final class ChandraBalaResult
      * @var Rasi
      */
     private $rasi;
+
     /**
      * @var string
      */
     private $type;
+
     /**
      * @var \DateTimeInterface
      */
     private $start;
+
     /**
      * @var \DateTimeInterface
      */
     private $end;
 
-    /**
-     * @param Rasi $rasi
-     * @param string $type
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
-     */
     public function __construct(Rasi $rasi, string $type, \DateTimeInterface $start, \DateTimeInterface $end)
     {
         $this->rasi = $rasi;
@@ -47,36 +43,23 @@ final class ChandraBalaResult
         $this->end = $end;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
 
-    /**
-     * @return Rasi
-     */
     public function getRasi(): Rasi
     {
         return $this->rasi;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
-
 }

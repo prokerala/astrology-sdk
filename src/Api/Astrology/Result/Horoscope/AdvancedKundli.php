@@ -22,14 +22,17 @@ final class AdvancedKundli implements ResultInterface
      * @var BirthDetails
      */
     private $nakshatraDetails;
+
     /**
      * @var AdvancedMangalDosha
      */
     private $mangalDosha;
+
     /**
      * @var Yoga\AdvancedYogaDetails[]
      */
     private $yogaDetails;
+
     /**
      * @var Dasha\DashaPeriod[]
      */

@@ -56,12 +56,11 @@ final class Panchang
      * @param \DateTimeInterface $datetime        Date and time
      * @param bool               $detailed_report Return detailed result
      *
+     * @return AdvancedPanchangResult|PanchangResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     *
-     * @return AdvancedPanchangResult|PanchangResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime,string $la, $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, string $la, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {
@@ -72,7 +71,7 @@ final class Panchang
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);

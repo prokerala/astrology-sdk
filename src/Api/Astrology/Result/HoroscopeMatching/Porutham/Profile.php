@@ -20,6 +20,7 @@ final class Profile
      * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
      */
     private $nakshatra;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Rasi
      */

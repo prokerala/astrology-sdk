@@ -14,9 +14,6 @@ namespace Prokerala\Api\Numerology\Service;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\CapStone;
-use Prokerala\Api\Numerology\Result\CornerStoneResult;
-use Prokerala\Api\Numerology\Result\DestinyResult;
-use Prokerala\Api\Numerology\Result\InclusionTableResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -46,10 +43,10 @@ final class CapStoneNumber
     /**
      * Fetch result from API.
      *
+     * @return CapStone
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return CapStone
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

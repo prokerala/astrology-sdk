@@ -9,7 +9,6 @@
  * with this source code in the file LICENSE.
  */
 
-
 namespace Prokerala\Api\Calendar\Service;
 
 use Prokerala\Api\Astrology\Location;
@@ -50,10 +49,10 @@ final class CalendarDate
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return CalendarDateResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return CalendarDateResult
      */
     public function process(Location $location, \DateTimeInterface $datetime)
     {

@@ -17,14 +17,17 @@ final class MangalDosha
      * @var bool
      */
     private $hasDosha;
+
     /**
      * @var bool
      */
     private $hasException;
+
     /**
      * @var null|string
      */
     private $doshaType;
+
     /**
      * @var string
      */

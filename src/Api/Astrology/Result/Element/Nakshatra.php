@@ -17,14 +17,17 @@ final class Nakshatra
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */
     private $name;
+
     /**
      * @var Planet
      */
     private $lord;
+
     /**
      * @var int
      */

@@ -14,9 +14,6 @@ namespace Prokerala\Api\Numerology\Service;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\EssenceResult;
-use Prokerala\Api\Numerology\Result\KarmicDebt;
-use Prokerala\Api\Numerology\Result\LifePathNumber;
-use Prokerala\Api\Numerology\Result\RationalThoughtResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -48,10 +45,10 @@ final class EssenceNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return EssenceResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return EssenceResult
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName, \DateTimeImmutable $dateOfBirth)
     {

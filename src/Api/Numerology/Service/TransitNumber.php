@@ -43,10 +43,10 @@ final class TransitNumber
     /**
      * Fetch result from API.
      *
+     * @return Transit
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return Transit
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

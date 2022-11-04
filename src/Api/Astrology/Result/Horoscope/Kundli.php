@@ -22,10 +22,12 @@ final class Kundli implements ResultInterface
      * @var BirthDetails
      */
     private $nakshatraDetails;
+
     /**
      * @var MangalDosha
      */
     private $mangalDosha;
+
     /**
      * @var Yoga\YogaDetails[]
      */

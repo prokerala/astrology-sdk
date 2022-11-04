@@ -45,10 +45,10 @@ final class UniversalYearNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return UniversalYearResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return UniversalYearResult
      */
     public function process(\DateTimeInterface $datetime)
     {

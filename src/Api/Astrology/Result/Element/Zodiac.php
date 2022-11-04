@@ -17,6 +17,7 @@ final class Zodiac
      * @var int
      */
     private $id;
+
     /**
      * @var string
      */

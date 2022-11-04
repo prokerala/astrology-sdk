@@ -45,10 +45,10 @@ final class PinnacleNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return PinnacleResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PinnacleResult
      */
     public function process(\DateTimeInterface $datetime)
     {

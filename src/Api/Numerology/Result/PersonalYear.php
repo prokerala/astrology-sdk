@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -15,21 +16,13 @@ class PersonalYear implements ResultInterface
      */
     private $personalYearNumber;
 
-
-    /**
-     * @param PersonalYearNumber $personalYearNumber
-     */
-    public function __construct(PersonalYearNumber $personalYearNumber) {
+    public function __construct(PersonalYearNumber $personalYearNumber)
+    {
         $this->personalYearNumber = $personalYearNumber;
     }
 
-    /**
-     * @return PersonalYearNumber
-     */
     public function getPersonalYearNumber(): PersonalYearNumber
     {
         return $this->personalYearNumber;
     }
-
-
 }

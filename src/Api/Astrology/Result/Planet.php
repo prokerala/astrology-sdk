@@ -13,36 +13,43 @@ namespace Prokerala\Api\Astrology\Result;
 
 final class Planet
 {
-    const SUN = 0;
-    const MOON = 1;
-    const MERCURY = 2;
-    const VENUS = 3;
-    const MARS = 4;
-    const JUPITER = 5;
-    const SATURN = 6;
-    const RAHU = 101;
-    const KETU = 102;
-    const ASCENDANT = 100;
+    public const SUN = 0;
+    public const MOON = 1;
+    public const MERCURY = 2;
+    public const VENUS = 3;
+    public const MARS = 4;
+    public const JUPITER = 5;
+    public const SATURN = 6;
+    public const RAHU = 101;
+    public const KETU = 102;
+    public const ASCENDANT = 100;
 
-    const PLANET_LIST = [
+    public const PLANET_LIST = [
         0 => 'Sun', 1 => 'Moon', 2 => 'Mercury', 3 => 'Venus', 4 => 'Mars',
         5 => 'Jupiter', 6 => 'Saturn', 101 => 'Rahu', 102 => 'Ketu', 100 => 'Ascendant',
     ];
 
     /** @var int */
     private $id;
+
     /** @var string */
     private $name;
+
     /** @var float */
     private $longitude;
+
     /** @var bool */
     private $isReverse;
+
     /** @var int */
     private $position;
+
     /** @var string */
     private $degree;
+
     /** @var int */
     private $rasi;
+
     /** @var string */
     private $rasiLord;
 

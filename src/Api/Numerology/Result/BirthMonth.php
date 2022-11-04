@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -18,18 +19,13 @@ class BirthMonth implements ResultInterface
     /**
      * @param BirthMonth $birthMonthNumber
      */
-    public function __construct(BirthMonthNumber $birthMonthNumber) {
+    public function __construct(BirthMonthNumber $birthMonthNumber)
+    {
         $this->birthMonthNumber = $birthMonthNumber;
     }
 
-
-    /**
-     * @return BirthMonthNumber
-     */
     public function getBirthMonthNumber(): BirthMonthNumber
     {
         return $this->birthMonthNumber;
     }
-
-
 }

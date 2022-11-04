@@ -11,8 +11,6 @@
 
 namespace Prokerala\Tests\Api\Astrology\Service;
 
-use DateTime;
-use DateTimeImmutable;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga as AuspiciousPeriodResult;
 use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
@@ -29,13 +27,13 @@ final class AuspiciousPeriodTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    const INPUT = [
+    public const INPUT = [
         'datetime' => '1967-08-29T09:00:00+05:30',
         'latitude' => '19.0821978',
         'longitude' => '72.7411014', // Mumbai
     ];
 
-    const EXPECTED_RESULT = [
+    public const EXPECTED_RESULT = [
         'muhurat' => [
             [
                 'id' => 1,
@@ -79,7 +77,7 @@ final class AuspiciousPeriodTest extends BaseTestCase
 
     public function testProcess()
     {
-        $datetime = new DateTime(self::INPUT['datetime']);
+        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
         $client = $this->setClient();
@@ -91,16 +89,16 @@ final class AuspiciousPeriodTest extends BaseTestCase
         foreach ($result['muhurat'] as $muhurat) {
             $periods = $apiResponsePeriod = [];
             foreach ($muhurat['period'] as $period) {
-                $start = new DateTimeImmutable($period['start']);
-                $end = new DateTimeImmutable($period['end']);
+                $start = new \DateTimeImmutable($period['start']);
+                $end = new \DateTimeImmutable($period['end']);
                 $periods[] = new Period($start, $end);
-                $apiResponsePeriod[] = (object) ['start' => $period['start'], 'end' => $period['end']];
+                $apiResponsePeriod[] = (object)['start' => $period['start'], 'end' => $period['end']];
             }
             $arMuhurat[] = new Muhurat($muhurat['id'], $muhurat['name'], $muhurat['type'], $periods);
-            $apiResponseMuhurat['muhurat'][] = (object) ['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
+            $apiResponseMuhurat['muhurat'][] = (object)['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
         }
         $expected_result = new AuspiciousPeriodResult($arMuhurat);
-        $expected_result->setRawResponse((object) $apiResponseMuhurat);
+        $expected_result->setRawResponse((object)$apiResponseMuhurat);
         $this->assertEquals($expected_result, $test_result);
     }
 }

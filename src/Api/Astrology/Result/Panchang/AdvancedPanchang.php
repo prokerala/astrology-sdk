@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-use DateTimeInterface;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
@@ -23,42 +22,52 @@ final class AdvancedPanchang implements ResultInterface
      * @var string
      */
     private $vaara;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
     private $nakshatra;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
     private $tithi;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
     private $karana;
+
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
     private $yoga;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $sunrise;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $sunset;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $moonrise;
+
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $moonset;
+
     /**
      * @var Muhurat\Muhurat[]
      */
     private $auspiciousPeriod;
+
     /**
      * @var Muhurat\Muhurat[]
      */
@@ -81,10 +90,10 @@ final class AdvancedPanchang implements ResultInterface
         array $tithi,
         array $karana,
         array $yoga,
-        DateTimeInterface $sunrise,
-        DateTimeInterface $sunset,
-        DateTimeInterface $moonrise,
-        DateTimeInterface $moonset,
+        \DateTimeInterface $sunrise,
+        \DateTimeInterface $sunset,
+        \DateTimeInterface $moonrise,
+        \DateTimeInterface $moonset,
         $auspiciousPeriod,
         $inauspiciousPeriod
     ) {
@@ -142,7 +151,7 @@ final class AdvancedPanchang implements ResultInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getSunrise()
     {
@@ -150,7 +159,7 @@ final class AdvancedPanchang implements ResultInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getSunset()
     {
@@ -158,7 +167,7 @@ final class AdvancedPanchang implements ResultInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getMoonrise()
     {
@@ -166,7 +175,7 @@ final class AdvancedPanchang implements ResultInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getMoonset()
     {

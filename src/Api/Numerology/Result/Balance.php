@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -20,29 +21,19 @@ class Balance implements ResultInterface
      */
     private $nameChart;
 
-    /**
-     * @param BalanceNumber $balanceNumber
-     */
-    public function __construct(BalanceNumber $balanceNumber, NameChart $nameChart) {
+    public function __construct(BalanceNumber $balanceNumber, NameChart $nameChart)
+    {
         $this->balanceNumber = $balanceNumber;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }
 
-    /**
-     * @return BalanceNumber
-     */
     public function getBalanceNumber(): BalanceNumber
     {
         return $this->balanceNumber;
     }
-
-
 }

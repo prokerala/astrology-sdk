@@ -22,14 +22,17 @@ final class ThirumanaPorutham implements ResultInterface
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $obtainedPoints;
+
     /**
      * @var Porutham\BasicMatch[]
      */
     private $matches;
+
     /**
      * @var Message
      */
@@ -38,8 +41,8 @@ final class ThirumanaPorutham implements ResultInterface
     /**
      * ThirumanaPorutham constructor.
      *
-     * @param float            $maximumPoints
-     * @param float            $obtainedPoints
+     * @param float                 $maximumPoints
+     * @param float                 $obtainedPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(

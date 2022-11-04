@@ -49,10 +49,10 @@ final class ChandraBala
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return ChandraBalaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return ChandraBalaResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

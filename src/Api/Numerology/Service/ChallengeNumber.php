@@ -45,10 +45,10 @@ final class ChallengeNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return ChallengeNumberResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return ChallengeNumberResult
      */
     public function process(\DateTimeInterface $datetime)
     {

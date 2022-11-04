@@ -45,10 +45,10 @@ final class MaturityNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return Maturity
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return Maturity
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

@@ -11,21 +11,20 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
-
-use Prokerala\Api\Astrology\Result\Element\Planet;
-
 final class Rasi
 {
     /** @var int */
     private $id;
+
     /** @var string */
     private $name;
+
     /** @var \Prokerala\Api\Astrology\Result\Element\Planet */
     private $lord;
 
     /**
-     * @param int    $id
-     * @param string $name
+     * @param int                                            $id
+     * @param string                                         $name
      * @param \Prokerala\Api\Astrology\Result\Element\Planet $lord
      */
     public function __construct($id, $name, $lord)

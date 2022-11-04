@@ -13,7 +13,6 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\LifePathNumber;
 use Prokerala\Api\Numerology\Result\PersonalDay;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -46,10 +45,10 @@ final class PersonalDayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return PersonalDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return PersonalDay
      */
     public function process(\DateTimeInterface $datetime, int $referenceDate)
     {

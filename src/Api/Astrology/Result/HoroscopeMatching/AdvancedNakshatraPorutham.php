@@ -22,14 +22,17 @@ final class AdvancedNakshatraPorutham implements ResultInterface
      * @var float
      */
     private $maximumPoints;
+
     /**
      * @var float
      */
     private $obtainedPoints;
+
     /**
      * @var Message
      */
     private $message;
+
     /**
      * @var Porutham\AdvancedMatch[]
      */

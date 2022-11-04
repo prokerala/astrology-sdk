@@ -14,7 +14,6 @@ namespace Prokerala\Api\Numerology\Service;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\InclusionTableResult;
-use Prokerala\Api\Numerology\Result\Transit;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -44,10 +43,10 @@ final class InclusionTable
     /**
      * Fetch result from API.
      *
+     * @return InclusionTableResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return InclusionTableResult
      */
     public function process(string $firstName, string $middleName, string $lastName)
     {

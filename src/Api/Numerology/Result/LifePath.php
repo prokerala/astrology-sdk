@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result;
@@ -14,21 +15,14 @@ class LifePath implements ResultInterface
      * @var LifePathNumber
      */
     private $lifePathNumber;
-    /**
-     * @param LifePathNumber $lifePathNumber
-     */
-    public function __construct(LifePathNumber $lifePathNumber) {
+
+    public function __construct(LifePathNumber $lifePathNumber)
+    {
         $this->lifePathNumber = $lifePathNumber;
     }
 
-
-    /**
-     * @return LifePathNumber
-     */
     public function getLifePathNumber(): LifePathNumber
     {
         return $this->lifePathNumber;
     }
-
-
 }

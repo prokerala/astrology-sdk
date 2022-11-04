@@ -49,10 +49,10 @@ final class Choghadiya
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return ChoghadiyaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return ChoghadiyaResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {
@@ -60,7 +60,7 @@ final class Choghadiya
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

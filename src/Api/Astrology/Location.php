@@ -17,14 +17,17 @@ final class Location
      * @var float
      */
     private $latitude;
+
     /**
      * @var float
      */
     private $longitude;
+
     /**
      * @var float
      */
     private $altitude;
+
     /**
      * @var \DateTimeZone
      */

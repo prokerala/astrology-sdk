@@ -45,9 +45,9 @@ final class BridgeNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return BridgeResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     * @return BridgeResult
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

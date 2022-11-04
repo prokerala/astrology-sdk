@@ -45,10 +45,9 @@ final class AttainmentNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
+     * @return Attainment
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     *
-     * @return Attainment
      */
     public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
     {

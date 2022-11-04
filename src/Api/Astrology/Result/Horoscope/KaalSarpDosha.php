@@ -22,14 +22,17 @@ final class KaalSarpDosha implements ResultInterface
      * @var null|string
      */
     private $type;
+
     /**
      * @var null|string
      */
     private $doshaType;
+
     /**
      * @var bool
      */
     private $hasDosha;
+
     /**
      * @var string
      */
