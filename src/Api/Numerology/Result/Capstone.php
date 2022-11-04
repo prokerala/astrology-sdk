@@ -7,12 +7,12 @@ namespace Prokerala\Api\Numerology\Result;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class CapStone implements ResultInterface
+class Capstone implements ResultInterface
 {
     use RawResponseTrait;
 
     /**
-     * @var CapStoneNumber
+     * @var CapstoneNumber
      */
     private $capstoneNumber;
 
@@ -21,7 +21,7 @@ class CapStone implements ResultInterface
      */
     private $nameChart;
 
-    public function __construct(CapStoneNumber $capstoneNumber, NameChart $nameChart)
+    public function __construct(CapstoneNumber $capstoneNumber, NameChart $nameChart)
     {
         $this->capstoneNumber = $capstoneNumber;
         $this->nameChart = $nameChart;
@@ -32,7 +32,7 @@ class CapStone implements ResultInterface
         return $this->nameChart;
     }
 
-    public function getCapStoneNumber(): CapStoneNumber
+    public function getCapStoneNumber(): CapstoneNumber
     {
         return $this->capstoneNumber;
     }

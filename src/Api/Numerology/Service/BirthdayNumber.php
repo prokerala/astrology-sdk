@@ -19,7 +19,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class BirthDayNumber
+final class BirthdayNumber
 {
     use ClientAwareTrait;
     /** @use TimeZoneAwareTrait<BirthDay> */

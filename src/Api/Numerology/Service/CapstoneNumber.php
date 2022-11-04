@@ -13,22 +13,22 @@ namespace Prokerala\Api\Numerology\Service;
 
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\CornerStone;
+use Prokerala\Api\Numerology\Result\Capstone;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class CornerStoneNumber
+final class CapstoneNumber
 {
     use ClientAwareTrait;
-    /** @use TimeZoneAwareTrait<CornerStone> */
+    /** @use TimeZoneAwareTrait<CapStone> */
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = '/numerology/cornerstone-number';
+    protected $slug = '/numerology/capstone-number';
 
-    /** @var Transformer<CornerStone> */
+    /** @var Transformer<Capstone> */
     private $transformer;
 
     /**
@@ -37,14 +37,14 @@ final class CornerStoneNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(CornerStone::class);
+        $this->transformer = new Transformer(Capstone::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @return CornerStone
+     * @return Capstone
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
