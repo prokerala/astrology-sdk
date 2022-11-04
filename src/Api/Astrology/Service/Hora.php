@@ -29,7 +29,7 @@ final class Hora
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'hora';
+    protected $slug = '/astrology/hora';
 
     /** @var Transformer<HoraTiming> */
     private $transformer;

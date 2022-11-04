@@ -29,7 +29,7 @@ final class ChandraBala
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'chandra-bala';
+    protected $slug = '/astrology/chandra-bala';
 
     /** @var Transformer<ChandraBalaResult> */
     private $transformer;

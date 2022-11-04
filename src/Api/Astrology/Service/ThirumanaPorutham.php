@@ -22,8 +22,7 @@ final class ThirumanaPorutham
 {
     use ClientAwareTrait;
 
-    /** @var string $slug */
-    protected $slug = 'thirumana-porutham';
+    protected $slug = '/astrology/thirumana-porutham';
 
     /** @var Transformer<Porutham> */
     private $basicResponseTransformer;

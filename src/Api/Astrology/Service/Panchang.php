@@ -30,7 +30,7 @@ final class Panchang
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'panchang';
+    protected $slug = '/astrology/panchang';
 
     /** @var Transformer<PanchangResult> */
     private $basicResponseTransformer;

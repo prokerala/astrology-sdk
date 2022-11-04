@@ -29,7 +29,7 @@ final class AuspiciousYoga
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'auspicious-yoga';
+    protected $slug = '/astrology/auspicious-yoga';
 
     /** @var Transformer<AuspiciousPeriodResult> */
     private $transformer;

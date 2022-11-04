@@ -29,7 +29,7 @@ final class AnandadiYoga
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'anandadi-yoga';
+    protected $slug = '/astrology/anandadi-yoga';
 
     /** @var Transformer<AnandadiYogaResult> */
     private $transformer;

@@ -27,7 +27,7 @@ final class InauspiciousPeriod
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'inauspicious-period';
+    protected $slug = '/astrology/inauspicious-period';
 
     /** @var Transformer<InauspiciousPeriodResult> */
     private $transformer;

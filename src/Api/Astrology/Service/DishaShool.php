@@ -29,7 +29,7 @@ final class DishaShool
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'disha-shool';
+    protected $slug = '/astrology/disha-shool';
 
     /** @var Transformer<DishaShoolResult> */
     private $transformer;

@@ -29,7 +29,7 @@ final class TaraBala
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'tara-bala';
+    protected $slug = '/astrology/tara-bala';
 
     /** @var Transformer<TaraBalaResult> */
     private $transformer;

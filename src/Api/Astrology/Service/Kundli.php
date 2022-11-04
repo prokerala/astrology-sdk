@@ -29,8 +29,7 @@ final class Kundli
     /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string $slug */
-    protected $slug = 'kundli';
+    protected $slug = '/astrology/kundli';
 
     /** @var Transformer<KundliResult> */
     private $basicResponseTransformers;

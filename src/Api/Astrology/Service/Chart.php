@@ -22,7 +22,7 @@ final class Chart
     use ClientAwareTrait;
 
     /** @var string */
-    protected $slug = 'chart';
+    protected $slug = '/astrology/chart';
 
     /**
      * @param Client $client Api client

@@ -29,7 +29,7 @@ final class BirthDetails
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'birth-details';
+    protected $slug = '/astrology/birth-details';
 
     /** @var Transformer<NakshatraResult> */
     private $transformer;

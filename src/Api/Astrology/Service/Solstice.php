@@ -29,7 +29,7 @@ final class Solstice
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'solstice';
+    protected $slug = '/astrology/solstice';
 
     /** @var Transformer<SolsticeResult> */
     private $transformer;

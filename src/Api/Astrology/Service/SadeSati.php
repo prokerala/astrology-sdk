@@ -28,7 +28,7 @@ final class SadeSati
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'sade-sati';
+    protected $slug = '/astrology/sade-sati';
 
     /** @var Transformer<AdvancedSadeSatiResult> */
     private $advancedResponseTransformer;

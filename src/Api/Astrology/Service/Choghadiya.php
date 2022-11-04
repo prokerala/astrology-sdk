@@ -29,7 +29,7 @@ final class Choghadiya
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'choghadiya';
+    protected $slug = '/astrology/choghadiya';
 
     /** @var Transformer<ChoghadiyaResult> */
     private $transformer;
