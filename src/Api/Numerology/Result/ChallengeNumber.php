@@ -6,12 +6,13 @@ namespace Prokerala\Api\Numerology\Result;
 
 class ChallengeNumber
 {
-    private string $name;
+    /** @var string */
+    private $name;
 
     /**
      * @var AgeNumber[]
      */
-    private array $challenges;
+    private $challenges;
 
     /**
      * @param AgeNumber[] $challenges

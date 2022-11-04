@@ -26,11 +26,6 @@ class SubconsciousSelfResult implements \JsonSerializable
         $this->nameChart = $nameChart;
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getNumber(): Number
     {
         return $this->number;
@@ -41,6 +36,7 @@ class SubconsciousSelfResult implements \JsonSerializable
         return $this->nameChart;
     }
 
+    /** @return array{number: Number, name_chart: NameChart} */
     public function jsonSerialize(): array
     {
         return [
