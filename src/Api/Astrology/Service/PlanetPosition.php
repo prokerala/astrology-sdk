@@ -24,7 +24,7 @@ final class PlanetPosition
     use ClientAwareTrait;
 
     /** @var string $slug */
-    protected $slug = 'planet-position';
+    protected $slug = '/astrology/planet-position';
 
     /** @var Transformer<PlanetPositionResult> */
     private $transformer;

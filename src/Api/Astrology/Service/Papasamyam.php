@@ -24,7 +24,7 @@ final class Papasamyam
     use ClientAwareTrait;
 
     /** @var string $slug */
-    protected $slug = 'papasamyam';
+    protected $slug = '/astrology/papasamyam';
 
     /** @var Transformer<PapasamyamResult> */
     private $transformer;

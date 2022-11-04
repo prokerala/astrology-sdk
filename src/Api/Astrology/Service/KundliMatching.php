@@ -25,7 +25,7 @@ final class KundliMatching
     use ClientAwareTrait;
 
     /** @var string $slug */
-    protected $slug = 'kundli-matching';
+    protected $slug = '/astrology/kundli-matching';
 
     /** @var Transformer<KundliMatching> */
     private $basicResponseTransformer;

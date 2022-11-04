@@ -25,7 +25,7 @@ final class Porutham
     use ClientAwareTrait;
 
     /** @var string $slug */
-    protected $slug = 'porutham';
+    protected $slug = '/astrology/porutham';
 
     /** @var Transformer<MatchResult> */
     private $basicResponseTransformer;

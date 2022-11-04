@@ -23,7 +23,7 @@ final class NakshatraPorutham
     use ClientAwareTrait;
 
     /** @var string $slug */
-    protected $slug = 'nakshatra-porutham';
+    protected $slug = '/astrology/nakshatra-porutham';
 
     /** @var Transformer<Porutham> */
     private $basicResponseTransformer;
