@@ -29,7 +29,7 @@ final class CalendarDate
     use TimeZoneAwareTrait;
 
     /** @var string */
-    protected $slug = 'solstice';
+    protected $slug = '/calendar';
 
     /** @var Transformer<CalendarDateResult> */
     private $transformer;

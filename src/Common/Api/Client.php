@@ -24,7 +24,7 @@ use Psr\Http\Message\ResponseInterface;
 
 final class Client
 {
-    public const BASE_URI = 'https://api.prokerala.com/v2/astrology/';
+    public const BASE_URI = 'https://api.prokerala.com/v2';
 
     /**
      * @var AuthenticationTypeInterface
