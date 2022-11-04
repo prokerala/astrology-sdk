@@ -27,7 +27,7 @@ class Destiny implements ResultInterface
         $this->nameChart = $nameChart;
     }
 
-    public function getNameResult(): NameChart
+    public function getNameChart(): NameChart
     {
         return $this->nameChart;
     }

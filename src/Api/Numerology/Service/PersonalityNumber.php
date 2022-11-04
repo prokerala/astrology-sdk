@@ -49,13 +49,13 @@ final class PersonalityNumber
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName, string $additionalVowel)
+    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel)
     {
         $parameters = [
             'first_name' => $firstName,
             'middle_name' => $middleName,
             'last_name' => $lastName,
-            'additional_vowels' => $additionalVowel,
+            'additional_vowel' => $additionalVowel,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

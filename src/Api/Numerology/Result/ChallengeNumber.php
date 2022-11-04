@@ -15,6 +15,7 @@ class ChallengeNumber
     private $challenges;
 
     /**
+     * @param string $name
      * @param AgeNumber[] $challenges
      */
     public function __construct(string $name, array $challenges)

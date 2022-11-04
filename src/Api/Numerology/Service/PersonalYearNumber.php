@@ -55,7 +55,7 @@ final class PersonalYearNumber
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
-            'reference_date' => $referenceDate,
+            'reference_year' => $referenceDate,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

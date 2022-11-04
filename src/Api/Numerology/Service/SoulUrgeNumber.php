@@ -49,12 +49,13 @@ final class SoulUrgeNumber
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel)
     {
         $parameters = [
             'first_name' => $firstName,
             'middle_name' => $middleName,
             'last_name' => $lastName,
+            'additional_vowel' => $additionalVowel,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

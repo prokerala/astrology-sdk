@@ -51,11 +51,11 @@ final class PersonalMonthNumber
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, int $referenceDate)
+    public function process(\DateTimeInterface $datetime, int $referenceYear)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
-            'reference_date' => $referenceDate,
+            'reference_year' => $referenceYear,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

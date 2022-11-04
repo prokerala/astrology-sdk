@@ -1,8 +1,10 @@
 <?php
 
-namespace Prokerala\Api\Numerology\Result;
+declare(strict_types=1);
 
-class AgeNumber
+namespace Prokerala\Api\Numerology\Result\Chaldean;
+
+class Number
 {
     /**
      * @var string
@@ -10,12 +12,7 @@ class AgeNumber
     private $name;
 
     /**
-     * @var string
-     */
-    private $age;
-
-    /**
-     * @var null|int
+     * @var ?int
      */
     private $number;
 
@@ -24,23 +21,11 @@ class AgeNumber
      */
     private $description;
 
-    /**
-     * @param string $name
-     * @param string $age
-     * @param int|null $number
-     * @param string $description
-     */
-    public function __construct(string $name, string $age, ?int $number, string $description)
+    public function __construct(string $name, ?int $number, string $description)
     {
         $this->name = $name;
-        $this->age = $age;
         $this->number = $number;
         $this->description = $description;
-    }
-
-    public function getAge(): string
-    {
-        return $this->age;
     }
 
     public function getName(): string
