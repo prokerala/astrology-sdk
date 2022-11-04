@@ -24,7 +24,7 @@ class Oauth2 implements AuthenticationTypeInterface
     use BasicAuthTrait;
 
     const CACHE_KEY = 'prokerala_api_client.oauth_access_token';
-    const TOKEN_ENDPOINT = 'https://api.prokerala.com/token';
+    const TOKEN_ENDPOINT = 'https://api.prokerala.loc/token';
 
     /** @var string */
     private $accessToken;

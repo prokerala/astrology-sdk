@@ -49,7 +49,7 @@ final class KundliMatching
      *
      * @return AdvancedMatchResult|MatchResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, $detailed_report = false)
+    public function process(Profile $girl_profile, Profile $boy_profile, string $la, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {
@@ -65,6 +65,7 @@ final class KundliMatching
             'boy_coordinates' => $boy_location->getCoordinates(),
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'ayanamsa' => $this->getAyanamsa(),
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);

@@ -42,7 +42,7 @@ final class PapaSamyamCheck
      *
      * @return PapaSamyamCheckResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile)
+    public function process(Profile $girl_profile, Profile $boy_profile, string $la)
     {
         $girl_location = $girl_profile->getLocation();
         $boy_location = $boy_profile->getLocation();
@@ -53,6 +53,7 @@ final class PapaSamyamCheck
             'boy_coordinates' => $boy_location->getCoordinates(),
             'boy_dob' => $boy_profile->getDateTime()->format('c'),
             'ayanamsa' => $this->getAyanamsa(),
+            'la' => $la
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

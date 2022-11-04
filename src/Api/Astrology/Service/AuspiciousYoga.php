@@ -12,22 +12,25 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\KaalSarpDosha as KaalSarpDoshaResult;
+use Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga as AuspiciousPeriodResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class KaalSarpDosha
+final class AuspiciousYoga
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
-    protected $slug = 'kaal-sarp-dosha';
+    /** @var string */
+    protected $slug = 'auspicious-yoga';
 
-    /** @var Transformer<KaalSarpDoshaResult> */
+    /** @var Transformer<AuspiciousPeriodResult> */
     private $transformer;
 
     /**
@@ -36,7 +39,8 @@ final class KaalSarpDosha
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(KaalSarpDoshaResult::class);
+        $this->transformer = new Transformer(AuspiciousPeriodResult::class);
+        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
@@ -48,7 +52,7 @@ final class KaalSarpDosha
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return KaalSarpDoshaResult
+     * @return AuspiciousPeriodResult
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la)
     {

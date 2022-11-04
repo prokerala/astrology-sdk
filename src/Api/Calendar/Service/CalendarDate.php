@@ -9,25 +9,29 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Service;
+
+namespace Prokerala\Api\Calendar\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\KaalSarpDosha as KaalSarpDoshaResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
+use Prokerala\Api\Calendar\Result\CalendarDate as CalendarDateResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class KaalSarpDosha
+final class CalendarDate
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+    use TimeZoneAwareTrait;
 
-    protected $slug = 'kaal-sarp-dosha';
+    /** @var string */
+    protected $slug = 'solstice';
 
-    /** @var Transformer<KaalSarpDoshaResult> */
+    /** @var Transformer<CalendarDateResult> */
     private $transformer;
 
     /**
@@ -36,7 +40,8 @@ final class KaalSarpDosha
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(KaalSarpDoshaResult::class);
+        $this->transformer = new Transformer(CalendarDateResult::class);
+        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
@@ -48,15 +53,14 @@ final class KaalSarpDosha
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
-     * @return KaalSarpDoshaResult
+     * @return CalendarDateResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la)
+    public function process(Location $location, \DateTimeInterface $datetime)
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

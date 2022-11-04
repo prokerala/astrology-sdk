@@ -10,7 +10,7 @@
  */
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Service\AuspiciousPeriod;
+use Prokerala\Api\Astrology\Service\AuspiciousYoga;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 
@@ -32,7 +32,7 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new AuspiciousPeriod($client);
+    $method = new AuspiciousYoga($client);
     $result = $method->process($location, $datetime);
     $arData = $result->getMuhurat();
     $auspiciousPeriodResult = [];

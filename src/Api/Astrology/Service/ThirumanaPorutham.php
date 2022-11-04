@@ -45,7 +45,7 @@ final class ThirumanaPorutham
      *
      * @return AdvancedPorutham|Porutham
      */
-    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false)
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, string $la, $detailed_report = false)
     {
         $slug = $this->slug;
         if ($detailed_report) {
@@ -56,6 +56,7 @@ final class ThirumanaPorutham
             'girl_nakshatra_pada' => $girl_profile->getNakshatraPada(),
             'boy_nakshatra' => $boy_profile->getNakshatra(),
             'boy_nakshatra_pada' => $boy_profile->getNakshatraPada(),
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);
