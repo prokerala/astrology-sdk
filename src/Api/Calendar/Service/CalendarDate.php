@@ -55,11 +55,12 @@ final class CalendarDate
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $calendar, \DateTimeInterface $date)
+    public function process(string $calendar, \DateTimeInterface $date, string $la = 'en')
     {
         $parameters = [
             'calendar' => $calendar,
             'date' => $date->format('Y-m-d'),
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
