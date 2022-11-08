@@ -43,7 +43,7 @@ final class PapaSamyamCheck
      *
      * @return PapaSamyamCheckResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, string $la)
+    public function process(Profile $girl_profile, Profile $boy_profile, string $la = 'en')
     {
         $girl_location = $girl_profile->getLocation();
         $boy_location = $boy_profile->getLocation();

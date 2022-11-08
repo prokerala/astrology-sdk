@@ -50,7 +50,7 @@ final class KundliMatching
      *
      * @return AdvancedMatchResult|MatchResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, string $la, $detailed_report = false)
+    public function process(Profile $girl_profile, Profile $boy_profile, $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

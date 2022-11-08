@@ -47,7 +47,7 @@ final class PlanetPosition
      *
      * @return PlanetPositionResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la, $planets = null)
+    public function process(Location $location, \DateTimeInterface $datetime, $planets = null, string $la = 'en')
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

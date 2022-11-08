@@ -42,7 +42,7 @@ final class Chart
      *
      * @return string
      */
-    public function process(Location $location, $datetime, $chart_type, $chart_style)
+    public function process(Location $location, \DateTimeInterface $datetime, string $chart_type, string $chart_style, string $la = 'en')
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
@@ -50,6 +50,7 @@ final class Chart
             'ayanamsa' => $this->getAyanamsa(),
             'chart_type' => $chart_type,
             'chart_style' => $chart_style,
+            'la' => $la,
         ];
 
         return $this->apiClient->process($this->slug, $parameters); // @phpstan-ignore-line

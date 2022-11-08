@@ -50,7 +50,7 @@ final class InauspiciousPeriod
      *
      * @return InauspiciousPeriodResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la)
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

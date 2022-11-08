@@ -61,7 +61,7 @@ final class Panchang
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la, $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

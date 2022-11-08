@@ -46,7 +46,7 @@ final class NakshatraPorutham
      *
      * @return AdvancedPorutham|Porutham
      */
-    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, string $la, $detailed_report = false)
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {
