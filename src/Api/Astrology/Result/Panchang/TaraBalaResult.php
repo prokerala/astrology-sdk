@@ -41,18 +41,26 @@ final class TaraBalaResult
     private $end;
 
     /**
-     * @var Nakshatra
+     * @var \Prokerala\Api\Astrology\Result\Element\NakshatraElement[]
      */
-    private $nakshatra;
+    private $nakshatras;
 
-    public function __construct(int $id, string $name, string $type, \DateTimeInterface $start, \DateTimeInterface $end, Nakshatra $nakshatra)
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $type
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $end
+     * @param \Prokerala\Api\Astrology\Result\Element\NakshatraElement[] $nakshatras
+     */
+    public function __construct(int $id, string $name, string $type, \DateTimeInterface $start, \DateTimeInterface $end, array $nakshatras)
     {
         $this->id = $id;
         $this->name = $name;
         $this->type = $type;
         $this->start = $start;
         $this->end = $end;
-        $this->nakshatra = $nakshatra;
+        $this->nakshatras = $nakshatras;
     }
 
     public function getId(): int
@@ -80,8 +88,8 @@ final class TaraBalaResult
         return $this->end;
     }
 
-    public function getNakshatra(): Nakshatra
+    public function getNakshatras(): array
     {
-        return $this->nakshatra;
+        return $this->nakshatras;
     }
 }

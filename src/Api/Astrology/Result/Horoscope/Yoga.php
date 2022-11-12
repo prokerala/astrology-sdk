@@ -21,23 +21,23 @@ final class Yoga implements ResultInterface
     /**
      * @var Yoga\AdvancedYogaDetails[]
      */
-    private $yogas;
+    private $yogaDetails;
 
     /**
      * Kundli constructor.
      *
-     * @param Yoga\AdvancedYogaDetails[] $yogas
+     * @param Yoga\AdvancedYogaDetails[] $yogaDetails
      */
-    public function __construct(array $yogas)
+    public function __construct(array $yogaDetails)
     {
-        $this->yogas = $yogas;
+        $this->yogaDetails = $yogaDetails;
     }
 
     /**
      * @return Yoga\AdvancedYogaDetails[]
      */
-    public function getYogas()
+    public function getYogaDetails()
     {
-        return $this->yogas;
+        return $this->yogaDetails;
     }
 }
