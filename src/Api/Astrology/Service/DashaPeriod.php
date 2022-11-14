@@ -21,14 +21,14 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class VimsottariDasha
+final class DashaPeriod
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
     /** @use TimeZoneAwareTrait<VimsottariDashaResult> */
     use TimeZoneAwareTrait;
 
-    protected $slug = '/astrology/vimsottari-dasha';
+    protected $slug = '/astrology/dasha-periods';
 
     /** @var Transformer<VimsottariDashaResult> */
     private $basicResponseTransformers;
