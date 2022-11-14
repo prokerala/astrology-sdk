@@ -80,13 +80,13 @@ final class Client
         $responseBody = (string)$response->getBody();
 
         $apiCredits = $response->getHeader('X-Api-Credits')[0] ?? null;
-        $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits[0] : 0;
+        $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits : 0;
 
-        if (isset($responseType[0]) && 'image/svg+xml' == $responseType[0]) {
-            $responseData = $responseBody;
-        } else {
+        if (isset($responseType[0]) && 'application/json' == $responseType[0]) {
             /** @var \stdClass $responseData */
             $responseData = json_decode($responseBody);
+        } else {
+            $responseData = $responseBody;
         }
 
         switch ($response->getStatusCode()) {
