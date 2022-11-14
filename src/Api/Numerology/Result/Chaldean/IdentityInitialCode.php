@@ -6,6 +6,7 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Numerology\Result\Pythagorean\NameChart;
 
 class IdentityInitialCode implements ResultInterface
 {
@@ -15,10 +16,23 @@ class IdentityInitialCode implements ResultInterface
      * @var IdentityInitialCodeNumber
      */
     private $identityInitialCodeNumber;
+    /**
+     * @var NameChart
+     */
+    private $nameChart;
 
-    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber)
+    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber, NameChart $nameChart)
     {
         $this->identityInitialCodeNumber = $identityInitialCodeNumber;
+        $this->nameChart = $nameChart;
+    }
+
+    /**
+     * @return NameChart
+     */
+    public function getNameChart(): NameChart
+    {
+        return $this->nameChart;
     }
 
     public function getIdentityInitialCodeNumber(): IdentityInitialCodeNumber

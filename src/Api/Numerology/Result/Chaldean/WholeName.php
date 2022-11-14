@@ -6,6 +6,7 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Numerology\Result\Pythagorean\NameChart;
 
 class WholeName implements ResultInterface
 {
@@ -15,10 +16,23 @@ class WholeName implements ResultInterface
      * @var WholeNameNumber
      */
     private $wholeNameNumber;
+    /**
+     * @var NameChart
+     */
+    private $nameChart;
 
-    public function __construct(WholeNameNumber $wholeNameNumber)
+    public function __construct(WholeNameNumber $wholeNameNumber, NameChart $nameChart)
     {
         $this->wholeNameNumber = $wholeNameNumber;
+        $this->nameChart = $nameChart;
+    }
+
+    /**
+     * @return NameChart
+     */
+    public function getNameChart(): NameChart
+    {
+        return $this->nameChart;
     }
 
     public function getWholeNameNumber(): WholeNameNumber
