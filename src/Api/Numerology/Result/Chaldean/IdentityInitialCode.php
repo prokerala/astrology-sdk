@@ -16,6 +16,7 @@ class IdentityInitialCode implements ResultInterface
      * @var IdentityInitialCodeNumber
      */
     private $identityInitialCodeNumber;
+
     /**
      * @var NameChart
      */
@@ -27,9 +28,6 @@ class IdentityInitialCode implements ResultInterface
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;

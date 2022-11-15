@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class LifeCycleNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<LifeCycleResult> */
     use TimeZoneAwareTrait;
 

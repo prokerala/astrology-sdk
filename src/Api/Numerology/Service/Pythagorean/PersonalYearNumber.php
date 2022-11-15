@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PersonalYearNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<PersonalYear> */
     use TimeZoneAwareTrait;
 

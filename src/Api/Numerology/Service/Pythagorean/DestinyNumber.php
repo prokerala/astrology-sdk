@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class DestinyNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<Destiny> */
     use TimeZoneAwareTrait;
 

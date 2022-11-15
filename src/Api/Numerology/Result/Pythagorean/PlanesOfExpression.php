@@ -30,6 +30,7 @@ class PlanesOfExpression implements ResultInterface
      * @var Number
      */
     private $spiritual;
+
     /**
      * @var NameChart
      */

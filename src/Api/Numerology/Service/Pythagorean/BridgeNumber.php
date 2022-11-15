@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BridgeNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<BridgeResult> */
     use TimeZoneAwareTrait;
 

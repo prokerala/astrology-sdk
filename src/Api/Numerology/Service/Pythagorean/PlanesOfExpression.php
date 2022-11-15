@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PlanesOfExpression
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<PlanesOfExpressionResult> */
     use TimeZoneAwareTrait;
 

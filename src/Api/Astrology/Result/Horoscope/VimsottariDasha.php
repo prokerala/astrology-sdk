@@ -34,5 +34,4 @@ final class VimsottariDasha implements ResultInterface
     {
         return $this->dashaPeriods;
     }
-
 }

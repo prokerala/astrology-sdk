@@ -64,5 +64,4 @@ final class NakshatraElement
     {
         return $this->lord;
     }
-
 }

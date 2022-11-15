@@ -25,6 +25,7 @@ final class DashaPeriod
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<VimsottariDashaResult> */
     use TimeZoneAwareTrait;
 
@@ -32,7 +33,6 @@ final class DashaPeriod
 
     /** @var Transformer<VimsottariDashaResult> */
     private $basicResponseTransformers;
-
 
     /**
      * @param Client $client Api client

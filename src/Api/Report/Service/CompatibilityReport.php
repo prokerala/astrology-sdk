@@ -1,16 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Prokerala\Api\Report\Service;
 
-use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class CompatibilityReport
 {
-
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
 
@@ -28,9 +27,8 @@ final class CompatibilityReport
     /**
      * Fetch result from API.
      *
-     * @param array             $input  Chart type
-     * @param array             $options
-     *
+     * @param array $input   Chart type
+     * @param array $options
      */
     public function process($input, $options)
     {

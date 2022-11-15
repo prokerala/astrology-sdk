@@ -24,6 +24,7 @@ final class SadeSati
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<SadeSatiResult|AdvancedSadeSatiResult> */
     use TimeZoneAwareTrait;
 
@@ -50,9 +51,8 @@ final class SadeSati
     /**
      * Fetch result from API.
      *
-     * @param Location           $location        Location details
-     * @param \DateTimeInterface $datetime        Date and time
-     * @param bool               $detailed_report
+     * @param Location           $location Location details
+     * @param \DateTimeInterface $datetime Date and time
      *
      * @return AdvancedSadeSatiResult|SadeSatiResult
      */

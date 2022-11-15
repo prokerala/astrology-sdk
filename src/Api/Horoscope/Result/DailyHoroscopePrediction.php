@@ -28,8 +28,7 @@ class DailyHoroscopePrediction
 
     /**
      * @param string $signName
-     * @param int $signId
-     * @param \DateTimeInterface $date
+     * @param int    $signId
      * @param string $prediction
      */
     public function __construct($signName, $signId, \DateTimeInterface $date, $prediction)

@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class TransitNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<Transit> */
     use TimeZoneAwareTrait;
 

@@ -25,6 +25,7 @@ final class CalendarDate
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<CalendarDateResult> */
     use TimeZoneAwareTrait;
 

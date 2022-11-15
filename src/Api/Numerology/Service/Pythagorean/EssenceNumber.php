@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class EssenceNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<EssenceResult> */
     use TimeZoneAwareTrait;
 

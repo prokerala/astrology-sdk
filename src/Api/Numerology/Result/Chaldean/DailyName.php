@@ -16,6 +16,7 @@ class DailyName implements ResultInterface
      * @var DailyNameNumber
      */
     private $dailyNameNumber;
+
     /**
      * @var NameChart
      */
@@ -27,9 +28,6 @@ class DailyName implements ResultInterface
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;

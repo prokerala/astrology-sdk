@@ -23,7 +23,7 @@ final class PlanetPosition
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string $slug */
+    /** @var string */
     protected $slug = '/astrology/planet-position';
 
     /** @var Transformer<PlanetPositionResult> */

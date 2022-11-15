@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class IdentityInitialCode
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<IdentityInitialCodeResult> */
     use TimeZoneAwareTrait;
 

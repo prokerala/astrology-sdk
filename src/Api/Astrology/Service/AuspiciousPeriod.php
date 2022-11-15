@@ -25,6 +25,7 @@ final class AuspiciousPeriod
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<AuspiciousPeriodResult> */
     use TimeZoneAwareTrait;
 

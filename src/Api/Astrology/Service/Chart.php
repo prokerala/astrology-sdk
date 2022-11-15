@@ -35,10 +35,9 @@ final class Chart
     /**
      * Fetch result from API.
      *
-     * @param Location           $location    Location details
-     * @param \DateTimeInterface $datetime    Date and time
-     * @param string             $chart_type  Chart type
-     * @param string             $chart_style
+     * @param Location           $location   Location details
+     * @param \DateTimeInterface $datetime   Date and time
+     * @param string             $chart_type Chart type
      *
      * @return string
      */

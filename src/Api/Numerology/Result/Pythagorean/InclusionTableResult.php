@@ -22,8 +22,8 @@ class InclusionTableResult implements ResultInterface
     private $nameChart;
 
     /**
-     * @param \Prokerala\Api\Numerology\Result\Pythagorean\InclusionNumber[]  $inclusionNumber
-     * @param NameChart $nameChart
+     * @param \Prokerala\Api\Numerology\Result\Pythagorean\InclusionNumber[] $inclusionNumber
+     * @param NameChart                                                      $nameChart
      */
     public function __construct($inclusionNumber, $nameChart)
     {

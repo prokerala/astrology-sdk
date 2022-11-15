@@ -66,7 +66,7 @@ class Oauth2 implements AuthenticationTypeInterface
         if ($cache) {
             $this->cache = $cache;
             $accessToken = $cache->get(self::CACHE_KEY);
-            assert(is_string($accessToken));
+            \assert(\is_string($accessToken));
             $this->accessToken = $accessToken;
         }
         $this->httpRequestFactory = $httpRequestFactory;
@@ -87,8 +87,8 @@ class Oauth2 implements AuthenticationTypeInterface
     }
 
     /**
-     * @param string $message
-     * @param int    $code
+     * @param  string $message
+     * @param  int    $code
      * @return void
      */
     public function handleError($message, $code)

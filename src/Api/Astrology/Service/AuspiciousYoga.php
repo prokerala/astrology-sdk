@@ -25,6 +25,7 @@ final class AuspiciousYoga
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<AuspiciousPeriodResult> */
     use TimeZoneAwareTrait;
 

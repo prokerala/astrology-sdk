@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class KarmicDebtNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<KarmicDebt> */
     use TimeZoneAwareTrait;
 

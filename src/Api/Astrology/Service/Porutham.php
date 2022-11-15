@@ -24,7 +24,7 @@ final class Porutham
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string $slug */
+    /** @var string */
     protected $slug = '/astrology/porutham';
 
     /** @var Transformer<MatchResult> */
@@ -46,8 +46,7 @@ final class Porutham
     /**
      * Fetch result from API.
      *
-     * @param bool $detailed_report
-     * @param string $la
+     * @param bool   $detailed_report
      * @param string $system
      *
      * @return AdvancedMatchResult|MatchResult

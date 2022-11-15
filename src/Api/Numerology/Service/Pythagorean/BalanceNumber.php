@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BalanceNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<Balance> */
     use TimeZoneAwareTrait;
 

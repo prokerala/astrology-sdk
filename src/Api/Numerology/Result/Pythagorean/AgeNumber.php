@@ -24,12 +24,6 @@ class AgeNumber
      */
     private $description;
 
-    /**
-     * @param string $name
-     * @param string $age
-     * @param int|null $number
-     * @param string $description
-     */
     public function __construct(string $name, string $age, ?int $number, string $description)
     {
         $this->name = $name;

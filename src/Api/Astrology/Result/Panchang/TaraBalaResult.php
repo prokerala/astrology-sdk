@@ -11,8 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-use Prokerala\Api\Astrology\Result\EventTiming\Nakshatra;
-
 final class TaraBalaResult
 {
     /**
@@ -46,11 +44,6 @@ final class TaraBalaResult
     private $nakshatras;
 
     /**
-     * @param int $id
-     * @param string $name
-     * @param string $type
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
      * @param \Prokerala\Api\Astrology\Result\Element\NakshatraElement[] $nakshatras
      */
     public function __construct(int $id, string $name, string $type, \DateTimeInterface $start, \DateTimeInterface $end, array $nakshatras)

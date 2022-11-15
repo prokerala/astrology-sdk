@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Panchang;
 
-
 final class ChandraBalaResult
 {
     /**
@@ -31,8 +30,6 @@ final class ChandraBalaResult
 
     /**
      * @param \Prokerala\Api\Astrology\Result\Element\Rasi[] $rasis
-     * @param \DateTimeInterface $start
-     * @param \DateTimeInterface $end
      */
     public function __construct(array $rasis, \DateTimeInterface $start, \DateTimeInterface $end)
     {
@@ -58,5 +55,4 @@ final class ChandraBalaResult
     {
         return $this->start;
     }
-
 }

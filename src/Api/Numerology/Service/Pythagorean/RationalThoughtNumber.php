@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class RationalThoughtNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<RationalThought> */
     use TimeZoneAwareTrait;
 

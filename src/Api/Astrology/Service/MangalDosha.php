@@ -26,7 +26,7 @@ final class MangalDosha
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string $slug */
+    /** @var string */
     protected $slug = '/astrology/mangal-dosha';
 
     /** @var Transformer<MangalDoshaResult> */

@@ -25,6 +25,7 @@ final class Yoga
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 

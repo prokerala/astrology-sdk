@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Numerology\Result\Chaldean;
 
-
 class WholeNameNumber
 {
     /** @var string */

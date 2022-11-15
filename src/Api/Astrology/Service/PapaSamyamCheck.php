@@ -23,7 +23,7 @@ final class PapaSamyamCheck
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string $slug */
+    /** @var string */
     protected $slug = '/astrology/papasamyam-check';
 
     /** @var Transformer<PapaSamyamCheckResult> */

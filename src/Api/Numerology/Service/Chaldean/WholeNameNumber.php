@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class WholeNameNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<WholeName> */
     use TimeZoneAwareTrait;
 

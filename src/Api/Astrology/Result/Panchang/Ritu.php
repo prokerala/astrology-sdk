@@ -22,6 +22,7 @@ final class Ritu implements ResultInterface
      * @var RituResult
      */
     private $vedicRitu;
+
     /**
      * @var RituResult
      */
@@ -33,20 +34,13 @@ final class Ritu implements ResultInterface
         $this->drikRitu = $drikRitu;
     }
 
-    /**
-     * @return RituResult
-     */
     public function getVedicRitu(): RituResult
     {
         return $this->vedicRitu;
     }
 
-    /**
-     * @return RituResult
-     */
     public function getDrikRitu(): RituResult
     {
         return $this->drikRitu;
     }
-
 }

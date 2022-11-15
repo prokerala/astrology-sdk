@@ -25,6 +25,7 @@ final class Solstice
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<SolsticeResult> */
     use TimeZoneAwareTrait;
 

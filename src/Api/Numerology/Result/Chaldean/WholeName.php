@@ -16,6 +16,7 @@ class WholeName implements ResultInterface
      * @var WholeNameNumber
      */
     private $wholeNameNumber;
+
     /**
      * @var NameChart
      */
@@ -27,9 +28,6 @@ class WholeName implements ResultInterface
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return NameChart
-     */
     public function getNameChart(): NameChart
     {
         return $this->nameChart;

@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class CornerstoneNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<CornerStone> */
     use TimeZoneAwareTrait;
 

@@ -47,44 +47,28 @@ final class RituResult
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getVedicName(): string
     {
         return $this->vedicName;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
-
 }

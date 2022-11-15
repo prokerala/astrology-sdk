@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PersonalityNumber
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<Personality> */
     use TimeZoneAwareTrait;
 

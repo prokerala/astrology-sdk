@@ -54,13 +54,13 @@ final class Planet
     private $rasiLord;
 
     /**
-     * @param int $id
+     * @param int    $id
      * @param string $name
-     * @param float $longitude
-     * @param bool $is_reverse
-     * @param int $position
+     * @param float  $longitude
+     * @param bool   $is_reverse
+     * @param int    $position
      * @param string $degree
-     * @param int $rasi
+     * @param int    $rasi
      * @param string $rasi_lord
      */
     public function __construct($id, $name, $longitude, $is_reverse, $position, $degree, $rasi, $rasi_lord)

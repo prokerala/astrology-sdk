@@ -25,6 +25,7 @@ final class DishaShool
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<DishaShoolResult> */
     use TimeZoneAwareTrait;
 

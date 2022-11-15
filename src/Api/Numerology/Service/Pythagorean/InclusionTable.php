@@ -22,6 +22,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class InclusionTable
 {
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<InclusionTableResult> */
     use TimeZoneAwareTrait;
 

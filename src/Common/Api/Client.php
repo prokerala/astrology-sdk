@@ -30,14 +30,17 @@ final class Client
      * @var AuthenticationTypeInterface
      */
     private $authClient;
+
     /**
      * @var ClientInterface
      */
     private $httpClient;
+
     /**
      * @var RequestFactoryInterface
      */
     private $httpRequestFactory;
+
     /**
      * @var int
      */

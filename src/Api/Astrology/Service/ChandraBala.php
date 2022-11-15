@@ -25,6 +25,7 @@ final class ChandraBala
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<ChandraBalaResult> */
     use TimeZoneAwareTrait;
 

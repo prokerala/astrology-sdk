@@ -26,6 +26,7 @@ final class Kundli
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
+
     /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 

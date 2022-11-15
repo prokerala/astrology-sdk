@@ -20,8 +20,8 @@ final class ValidationException extends \InvalidArgumentException
 
     /**
      * @param list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}> $errors
-     * @param int $code
-     * @param null|\Throwable $previous
+     * @param int                                                                                                                          $code
+     * @param null|\Throwable                                                                                                              $previous
      */
     public function __construct($errors, $code = 0, $previous = null)
     {
