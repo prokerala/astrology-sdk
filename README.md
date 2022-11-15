@@ -6,7 +6,7 @@ Prokerala Astrology SDK provides convenient access to Prokerala Astrology API fo
 
 ## Requirements
 
-PHP needs to be a minimum version of PHP 7.1.0
+PHP needs to be a minimum version of PHP 8.0
 
 ## Installation
 
@@ -21,7 +21,7 @@ This is the recommended method for installation of the SDK.
 If you have `composer` already installed, and just want to get started quickly, the following command will install the SDK and its dependencies:
 
 ```sh
-composer require prokerala/astrology-sdk:^0.4 nyholm/psr7 guzzlehttp/guzzle symfony/cache
+composer require prokerala/astrology-sdk:^1.0 nyholm/psr7 guzzlehttp/guzzle symfony/cache
 ```
 
 That's it. The SDK is now ready to use. You can skip to the **Usage** section below.
@@ -50,7 +50,7 @@ composer require symfony/cache
 Now that you have all the dependencies installed, install the SDK by running the following command.
 
 ```sh
-composer require prokerala/astrology-sdk:^0.4
+composer require prokerala/astrology-sdk:^1.0
 ```
 
 ### Manual Installation
@@ -123,4 +123,4 @@ Please check out our [API Demo](https://api.prokerala.com/demo) for a sample imp
 
 ## License
 
-Copyright &copy; 2019-2020 [Ennexa Technologies Private Limited](https://www.ennexa.com). The Prokerala [Astrology](https://www.prokerala.com/astrology/) API PHP SDK is released under the [MIT License](https://github.com/prokerala/astrology-sdk/blob/master/LICENSE).
+Copyright &copy; 2019-2022 [Ennexa Technologies Private Limited](https://www.ennexa.com). The Prokerala [Astrology](https://www.prokerala.com/astrology/) API PHP SDK is released under the [MIT License](https://github.com/prokerala/astrology-sdk/blob/master/LICENSE).
