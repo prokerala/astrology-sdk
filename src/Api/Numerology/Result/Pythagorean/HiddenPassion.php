@@ -11,20 +11,8 @@ class HiddenPassion implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var HiddenPassionNumber
-     */
-    private $hiddenPassionNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(HiddenPassionNumber $hiddenPassionNumber, NameChart $nameChart)
+    public function __construct(private HiddenPassionNumber $hiddenPassionNumber, private NameChart $nameChart)
     {
-        $this->hiddenPassionNumber = $hiddenPassionNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

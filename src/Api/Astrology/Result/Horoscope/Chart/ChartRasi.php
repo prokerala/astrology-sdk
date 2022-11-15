@@ -18,27 +18,13 @@ final class ChartRasi implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var int */
-    private $id;
-
-    /** @var string */
-    private $name;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[]
-     */
-    private $planetPosition;
-
     /**
      * @param int                                                               $id
      * @param string                                                            $name
      * @param \Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet[] $planetPosition
      */
-    public function __construct($id, $name, array $planetPosition)
+    public function __construct(private $id, private $name, private array $planetPosition)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->planetPosition = $planetPosition;
     }
 
     /**

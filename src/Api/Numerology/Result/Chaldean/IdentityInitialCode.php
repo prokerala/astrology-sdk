@@ -12,20 +12,8 @@ class IdentityInitialCode implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var IdentityInitialCodeNumber
-     */
-    private $identityInitialCodeNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber, NameChart $nameChart)
+    public function __construct(private IdentityInitialCodeNumber $identityInitialCodeNumber, private NameChart $nameChart)
     {
-        $this->identityInitialCodeNumber = $identityInitialCodeNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

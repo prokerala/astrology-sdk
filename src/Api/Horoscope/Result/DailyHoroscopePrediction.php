@@ -7,36 +7,12 @@ namespace Prokerala\Api\Horoscope\Result;
 class DailyHoroscopePrediction
 {
     /**
-     * @var string
-     */
-    private $signName;
-
-    /**
-     * @var int
-     */
-    private $signId;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $date;
-
-    /**
-     * @var string
-     */
-    private $prediction;
-
-    /**
      * @param string $signName
      * @param int    $signId
      * @param string $prediction
      */
-    public function __construct($signName, $signId, \DateTimeInterface $date, $prediction)
+    public function __construct(private $signName, private $signId, private \DateTimeInterface $date, private $prediction)
     {
-        $this->signName = $signName;
-        $this->signId = $signId;
-        $this->date = $date;
-        $this->prediction = $prediction;
     }
 
     /**

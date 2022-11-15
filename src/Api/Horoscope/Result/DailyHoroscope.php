@@ -11,14 +11,8 @@ class DailyHoroscope implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DailyHoroscopePrediction
-     */
-    private $dailyPrediction;
-
-    public function __construct(DailyHoroscopePrediction $dailyPrediction)
+    public function __construct(private DailyHoroscopePrediction $dailyPrediction)
     {
-        $this->dailyPrediction = $dailyPrediction;
     }
 
     public function getDailyHoroscopePrediction(): DailyHoroscopePrediction

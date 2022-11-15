@@ -19,16 +19,10 @@ final class ChandraBala implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var ChandraBalaResult[]
-     */
-    private $chandraBala;
-
-    /**
      * @param ChandraBalaResult[] $chandraBala
      */
-    public function __construct(array $chandraBala)
+    public function __construct(private array $chandraBala)
     {
-        $this->chandraBala = $chandraBala;
     }
 
     public function getChandraBala(): array

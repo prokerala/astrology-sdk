@@ -14,41 +14,13 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 final class PlanetDoshaDetails
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var int
-     */
-    private $position;
-
-    /**
-     * @var bool
-     */
-    private $hasDosha;
-
-    /**
      * @param int    $id
      * @param string $name
      * @param int    $position
      * @param bool   $hasDosha
      */
-    public function __construct(
-        $id,
-        $name,
-        $position,
-        $hasDosha
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->position = $position;
-        $this->hasDosha = $hasDosha;
+    public function __construct(private $id, private $name, private $position, private $hasDosha)
+    {
     }
 
     /**

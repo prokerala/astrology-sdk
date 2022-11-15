@@ -20,22 +20,10 @@ final class Papasamyam implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var float
-     */
-    private $totalPoints;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails
-     */
-    private $papaSamyam;
-
-    /**
      * @param float $totalPoints
      */
-    public function __construct($totalPoints, PapaSamyamDetails $papaSamyam)
+    public function __construct(private $totalPoints, private PapaSamyamDetails $papaSamyam)
     {
-        $this->totalPoints = $totalPoints;
-        $this->papaSamyam = $papaSamyam;
     }
 
     /**

@@ -15,38 +15,8 @@ use Prokerala\Api\Astrology\Result\Element\Planet;
 
 final class Hora
 {
-    /**
-     * @var Planet
-     */
-    private $hora;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var bool
-     */
-    private $isDay;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    public function __construct(Planet $hora, string $type, bool $isDay, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(private Planet $hora, private string $type, private bool $isDay, private \DateTimeInterface $start, private \DateTimeInterface $end)
     {
-        $this->hora = $hora;
-        $this->type = $type;
-        $this->isDay = $isDay;
-        $this->start = $start;
-        $this->end = $end;
     }
 
     public function getEnd(): \DateTimeInterface

@@ -11,14 +11,8 @@ class LifePath implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var LifePathNumber
-     */
-    private $lifePathNumber;
-
-    public function __construct(LifePathNumber $lifePathNumber)
+    public function __construct(private LifePathNumber $lifePathNumber)
     {
-        $this->lifePathNumber = $lifePathNumber;
     }
 
     public function getLifePathNumber(): LifePathNumber

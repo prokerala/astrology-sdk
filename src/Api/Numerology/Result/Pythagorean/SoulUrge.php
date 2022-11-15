@@ -11,20 +11,8 @@ class SoulUrge implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var SoulUrgeNumber
-     */
-    private $soulUrgeNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(SoulUrgeNumber $soulUrgeNumber, NameChart $nameChart)
+    public function __construct(private SoulUrgeNumber $soulUrgeNumber, private NameChart $nameChart)
     {
-        $this->soulUrgeNumber = $soulUrgeNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

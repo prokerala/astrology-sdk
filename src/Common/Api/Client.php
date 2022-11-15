@@ -27,30 +27,12 @@ final class Client
     public const BASE_URI = 'https://api.prokerala.com/v2';
 
     /**
-     * @var AuthenticationTypeInterface
-     */
-    private $authClient;
-
-    /**
-     * @var ClientInterface
-     */
-    private $httpClient;
-
-    /**
-     * @var RequestFactoryInterface
-     */
-    private $httpRequestFactory;
-
-    /**
      * @var int
      */
     private $apiCreditUsed = 0;
 
-    public function __construct(AuthenticationTypeInterface $authClient, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory)
+    public function __construct(private AuthenticationTypeInterface $authClient, private ClientInterface $httpClient, private RequestFactoryInterface $httpRequestFactory)
     {
-        $this->authClient = $authClient;
-        $this->httpClient = $httpClient;
-        $this->httpRequestFactory = $httpRequestFactory;
     }
 
     /**
@@ -74,7 +56,7 @@ final class Client
             if (401 === $response->getStatusCode()) {
                 $this->authClient->handleError($response->message, $response->getStatusCode());
             }
-        } catch (RetryableExceptionInterface $e) {
+        } catch (RetryableExceptionInterface) {
             $request = $this->authClient->process($request);
             $response = $this->request($request);
         }

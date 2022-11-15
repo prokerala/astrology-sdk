@@ -14,39 +14,14 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 final class MangalDosha
 {
     /**
-     * @var bool
-     */
-    private $hasDosha;
-
-    /**
-     * @var bool
-     */
-    private $hasException;
-
-    /**
-     * @var null|string
-     */
-    private $doshaType;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
      * MangalDosha constructor.
      *
      * @param bool        $hasDosha
      * @param bool        $hasException
-     * @param null|string $doshaType
      * @param string      $description
      */
-    public function __construct($hasDosha, $hasException, $doshaType, $description)
+    public function __construct(private $hasDosha, private $hasException, private ?string $doshaType, private $description)
     {
-        $this->hasDosha = $hasDosha;
-        $this->hasException = $hasException;
-        $this->doshaType = $doshaType;
-        $this->description = $description;
     }
 
     /**

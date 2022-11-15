@@ -29,15 +29,11 @@ final class DailyPrediction
     /** @var TransformerAlias<DailyHoroscope> */
     private $transformer;
 
-    /** @var Client */
-    private $apiClient;
-
     /**
-     * @param Client $client Api client
+     * @param Client $apiClient Api client
      */
-    public function __construct(Client $client)
+    public function __construct(private Client $apiClient)
     {
-        $this->apiClient = $client;
         $this->transformer = new TransformerAlias(DailyHoroscope::class);
         $this->addDateTimeTransformer($this->transformer);
     }

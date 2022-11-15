@@ -19,61 +19,6 @@ final class AdvancedPanchang implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var string
-     */
-    private $vaara;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
-     */
-    private $nakshatra;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
-     */
-    private $tithi;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
-     */
-    private $karana;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
-     */
-    private $yoga;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunrise;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunset;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonrise;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonset;
-
-    /**
-     * @var Muhurat\Muhurat[]
-     */
-    private $auspiciousPeriod;
-
-    /**
-     * @var Muhurat\Muhurat[]
-     */
-    private $inauspiciousPeriod;
-
-    /**
      * AdvancedPanchang constructor.
      *
      * @param string                                                  $vaara
@@ -84,30 +29,8 @@ final class AdvancedPanchang implements ResultInterface
      * @param Muhurat\Muhurat[]                                       $auspiciousPeriod
      * @param Muhurat\Muhurat[]                                       $inauspiciousPeriod
      */
-    public function __construct(
-        $vaara,
-        array $nakshatra,
-        array $tithi,
-        array $karana,
-        array $yoga,
-        \DateTimeInterface $sunrise,
-        \DateTimeInterface $sunset,
-        \DateTimeInterface $moonrise,
-        \DateTimeInterface $moonset,
-        $auspiciousPeriod,
-        $inauspiciousPeriod
-    ) {
-        $this->vaara = $vaara;
-        $this->nakshatra = $nakshatra;
-        $this->tithi = $tithi;
-        $this->karana = $karana;
-        $this->yoga = $yoga;
-        $this->sunrise = $sunrise;
-        $this->sunset = $sunset;
-        $this->moonrise = $moonrise;
-        $this->moonset = $moonset;
-        $this->auspiciousPeriod = $auspiciousPeriod;
-        $this->inauspiciousPeriod = $inauspiciousPeriod;
+    public function __construct(private $vaara, private array $nakshatra, private array $tithi, private array $karana, private array $yoga, private \DateTimeInterface $sunrise, private \DateTimeInterface $sunset, private \DateTimeInterface $moonrise, private \DateTimeInterface $moonset, private $auspiciousPeriod, private $inauspiciousPeriod)
+    {
     }
 
     /**

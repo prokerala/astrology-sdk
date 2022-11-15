@@ -29,50 +29,18 @@ final class Planet
         5 => 'Jupiter', 6 => 'Saturn', 101 => 'Rahu', 102 => 'Ketu', 100 => 'Ascendant',
     ];
 
-    /** @var int */
-    private $id;
-
-    /** @var string */
-    private $name;
-
-    /** @var float */
-    private $longitude;
-
-    /** @var bool */
-    private $isReverse;
-
-    /** @var int */
-    private $position;
-
-    /** @var string */
-    private $degree;
-
-    /** @var int */
-    private $rasi;
-
-    /** @var string */
-    private $rasiLord;
-
     /**
      * @param int    $id
      * @param string $name
      * @param float  $longitude
-     * @param bool   $is_reverse
+     * @param bool $isReverse
      * @param int    $position
      * @param string $degree
      * @param int    $rasi
-     * @param string $rasi_lord
+     * @param string $rasiLord
      */
-    public function __construct($id, $name, $longitude, $is_reverse, $position, $degree, $rasi, $rasi_lord)
+    public function __construct(private $id, private $name, private $longitude, private $isReverse, private $position, private $degree, private $rasi, private $rasiLord)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->longitude = $longitude;
-        $this->isReverse = $is_reverse;
-        $this->position = $position;
-        $this->degree = $degree;
-        $this->rasi = $rasi;
-        $this->rasiLord = $rasi_lord;
     }
 
     /**

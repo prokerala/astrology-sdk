@@ -19,39 +19,13 @@ final class KaalSarpDosha implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var null|string
-     */
-    private $type;
-
-    /**
-     * @var null|string
-     */
-    private $doshaType;
-
-    /**
-     * @var bool
-     */
-    private $hasDosha;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
      * KaalSarpDosha constructor.
      *
-     * @param null|string $type
-     * @param null|string $doshaType
      * @param bool        $hasDosha
      * @param string      $description
      */
-    public function __construct($type, $doshaType, $hasDosha, $description)
+    public function __construct(private ?string $type, private ?string $doshaType, private $hasDosha, private $description)
     {
-        $this->type = $type;
-        $this->doshaType = $doshaType;
-        $this->hasDosha = $hasDosha;
-        $this->description = $description;
     }
 
     /**

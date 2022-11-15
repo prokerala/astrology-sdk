@@ -19,18 +19,12 @@ final class InauspiciousPeriod implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Muhurat\Muhurat[]
-     */
-    private $muhurat;
-
-    /**
      * InauspiciousPeriod constructor.
      *
      * @param Muhurat\Muhurat[] $muhurat
      */
-    public function __construct(array $muhurat)
+    public function __construct(private array $muhurat)
     {
-        $this->muhurat = $muhurat;
     }
 
     /**

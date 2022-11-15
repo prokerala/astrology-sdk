@@ -20,58 +20,14 @@ final class AdvancedPorutham implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Porutham\Profile
-     */
-    private $girlInfo;
-
-    /**
-     * @var Porutham\Profile
-     */
-    private $boyInfo;
-
-    /**
-     * @var float
-     */
-    private $maximumPoints;
-
-    /**
-     * @var float
-     */
-    private $totalPoints;
-
-    /**
-     * @var Message
-     */
-    private $message;
-
-    /**
-     * @var Porutham\AdvancedMatch[]
-     */
-    private $matches;
-
-    /**
      * AdvancedPorutham constructor.
      *
-     * @param Porutham\Profile         $girlInfo
-     * @param Porutham\Profile         $boyInfo
      * @param float                    $maximumPoints
      * @param float                    $totalPoints
      * @param Porutham\AdvancedMatch[] $matches
      */
-    public function __construct(
-        Profile $girlInfo,
-        Profile $boyInfo,
-        $maximumPoints,
-        $totalPoints,
-        Message $message,
-        array $matches
-    ) {
-        $this->girlInfo = $girlInfo;
-        $this->boyInfo = $boyInfo;
-        $this->maximumPoints = $maximumPoints;
-        $this->totalPoints = $totalPoints;
-        $this->message = $message;
-        $this->matches = $matches;
+    public function __construct(private Profile $girlInfo, private Profile $boyInfo, private $maximumPoints, private $totalPoints, private Message $message, private array $matches)
+    {
     }
 
     /**

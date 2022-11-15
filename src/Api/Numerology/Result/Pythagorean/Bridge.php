@@ -11,14 +11,8 @@ class Bridge implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BridgeNumber
-     */
-    private $bridgeNumber;
-
-    public function __construct(BridgeNumber $bridgeNumber)
+    public function __construct(private BridgeNumber $bridgeNumber)
     {
-        $this->bridgeNumber = $bridgeNumber;
     }
 
     public function getBridgeNumber(): BridgeNumber

@@ -19,32 +19,8 @@ final class KundliMatching implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var ProfileInfo */
-    private $girlInfo;
-
-    /** @var ProfileInfo */
-    private $boyInfo;
-
-    /**
-     * @var Message
-     */
-    private $message;
-
-    /**
-     * @var GunaMilan
-     */
-    private $gunaMilan;
-
-    public function __construct(
-        ProfileInfo $girlInfo,
-        ProfileInfo $boyInfo,
-        Message $message,
-        GunaMilan $gunaMilan
-    ) {
-        $this->girlInfo = $girlInfo;
-        $this->boyInfo = $boyInfo;
-        $this->message = $message;
-        $this->gunaMilan = $gunaMilan;
+    public function __construct(private ProfileInfo $girlInfo, private ProfileInfo $boyInfo, private Message $message, private GunaMilan $gunaMilan)
+    {
     }
 
     /**

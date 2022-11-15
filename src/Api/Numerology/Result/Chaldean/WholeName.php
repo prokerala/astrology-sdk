@@ -12,20 +12,8 @@ class WholeName implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var WholeNameNumber
-     */
-    private $wholeNameNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(WholeNameNumber $wholeNameNumber, NameChart $nameChart)
+    public function __construct(private WholeNameNumber $wholeNameNumber, private NameChart $nameChart)
     {
-        $this->wholeNameNumber = $wholeNameNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

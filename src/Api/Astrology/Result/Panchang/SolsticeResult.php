@@ -13,26 +13,8 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class SolsticeResult
 {
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $vedicName;
-
-    public function __construct(int $id, string $name, string $vedicName)
+    public function __construct(private int $id, private string $name, private string $vedicName)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->vedicName = $vedicName;
     }
 
     public function getId(): int

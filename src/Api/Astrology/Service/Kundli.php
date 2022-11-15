@@ -61,7 +61,7 @@ final class Kundli
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en'): AdvancedKundliResult|KundliResult
     {
         $slug = $this->slug;
         if ($detailed_report) {

@@ -12,20 +12,8 @@ class DailyName implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DailyNameNumber
-     */
-    private $dailyNameNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(DailyNameNumber $dailyNameNumber, NameChart $nameChart)
+    public function __construct(private DailyNameNumber $dailyNameNumber, private NameChart $nameChart)
     {
-        $this->dailyNameNumber = $dailyNameNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

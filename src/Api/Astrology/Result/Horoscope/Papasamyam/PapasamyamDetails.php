@@ -14,18 +14,12 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Papasamyam;
 final class PapasamyamDetails
 {
     /**
-     * @var PapaPlanet[]
-     */
-    private $papaPlanet;
-
-    /**
      * PapasamyamDetails constructor.
      *
      * @param PapaPlanet[] $papaPlanet
      */
-    public function __construct(array $papaPlanet)
+    public function __construct(private array $papaPlanet)
     {
-        $this->papaPlanet = $papaPlanet;
     }
 
     /**

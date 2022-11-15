@@ -18,28 +18,10 @@ use Prokerala\Api\Astrology\Result\Horoscope\Koot;
 final class ProfileInfo
 {
     /**
-     * @var Koot
-     */
-    private $koot;
-
-    /**
-     * @var Nakshatra
-     */
-    private $nakshatra;
-
-    /**
-     * @var Rasi
-     */
-    private $rasi;
-
-    /**
      * ProfileInfo constructor.
      */
-    public function __construct(Koot $koot, Nakshatra $nakshatra, Rasi $rasi)
+    public function __construct(private Koot $koot, private Nakshatra $nakshatra, private Rasi $rasi)
     {
-        $this->koot = $koot;
-        $this->nakshatra = $nakshatra;
-        $this->rasi = $rasi;
     }
 
     /**

@@ -11,14 +11,8 @@ class PersonalMonth implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalMonthNumber
-     */
-    private $personalMonthNumber;
-
-    public function __construct(PersonalMonthNumber $personalMonthNumber)
+    public function __construct(private PersonalMonthNumber $personalMonthNumber)
     {
-        $this->personalMonthNumber = $personalMonthNumber;
     }
 
     public function getPersonalMonthNumber(): PersonalMonthNumber

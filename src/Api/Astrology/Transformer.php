@@ -29,16 +29,10 @@ final class Transformer
     private $paramConverters = [];
 
     /**
-     * @var class-string<T>
-     */
-    private $class;
-
-    /**
      * @param class-string<T> $class
      */
-    public function __construct($class)
+    public function __construct(private $class)
     {
-        $this->class = $class;
     }
 
     /**
@@ -164,7 +158,7 @@ final class Transformer
             $resolvedTypes = [];
             $types = explode('|', $match[1]);
             foreach ($types as $type) {
-                $isArray = '[]' === substr($type, -2);
+                $isArray = str_ends_with($type, '[]');
                 if ($isArray) {
                     $type = substr($type, 0, -2);
                 }
@@ -196,7 +190,7 @@ final class Transformer
      * @return mixed
      * @throws ParameterMismatchException
      */
-    private function parseParameter($data, $dataType, $paramTypes)
+    private function parseParameter(mixed $data, $dataType, $paramTypes)
     {
         $isEmptyArray = \is_array($data) && empty($data);
         // Hack for empty arrays, since we cannot determine the type of the array
@@ -236,10 +230,9 @@ final class Transformer
     }
 
     /**
-     * @param  mixed  $val
      * @return string
      */
-    private function getType($val)
+    private function getType(mixed $val)
     {
         if (null === $val) {
             return 'NULL';

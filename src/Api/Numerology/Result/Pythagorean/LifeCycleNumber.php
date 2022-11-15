@@ -7,22 +7,10 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 class LifeCycleNumber
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var AgeNumber[]
-     */
-    private $cycles;
-
-    /**
      * @param AgeNumber[] $cycles
      */
-    public function __construct(string $name, array $cycles)
+    public function __construct(private string $name, private array $cycles)
     {
-        $this->name = $name;
-        $this->cycles = $cycles;
     }
 
     public function getName(): string

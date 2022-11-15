@@ -11,20 +11,8 @@ class Capstone implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var CapstoneNumber
-     */
-    private $capstoneNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(CapstoneNumber $capstoneNumber, NameChart $nameChart)
+    public function __construct(private CapstoneNumber $capstoneNumber, private NameChart $nameChart)
     {
-        $this->capstoneNumber = $capstoneNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

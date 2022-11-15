@@ -31,25 +31,13 @@ final class Karana
         'Chatushpada', 'Naga', 'Kimstughna',
     ];
 
-    /** @var int */
-    private $id;
-
-    /** @var int */
-    private $index;
-
-    /** @var string */
-    private $name;
-
     /**
      * @param int    $id
      * @param int    $index
      * @param string $name
      */
-    public function __construct($id, $index, $name)
+    public function __construct(private $id, private $index, private $name)
     {
-        $this->id = $id;
-        $this->index = $index;
-        $this->name = $name;
     }
 
     /**

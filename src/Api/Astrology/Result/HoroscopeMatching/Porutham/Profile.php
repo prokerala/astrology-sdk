@@ -17,22 +17,10 @@ use Prokerala\Api\Astrology\Result\Element\Rasi;
 final class Profile
 {
     /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    private $nakshatra;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $rasi;
-
-    /**
      * Profile constructor.
      */
-    public function __construct(Nakshatra $nakshatra, Rasi $rasi)
+    public function __construct(private Nakshatra $nakshatra, private Rasi $rasi)
     {
-        $this->nakshatra = $nakshatra;
-        $this->rasi = $rasi;
     }
 
     /**

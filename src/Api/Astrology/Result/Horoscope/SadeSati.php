@@ -19,30 +19,11 @@ final class SadeSati implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var bool
-     */
-    private $isInSadeSati;
-
-    /**
-     * @var null|string
-     */
-    private $transitPhase;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
      * @param bool        $isInSadeSati
-     * @param null|string $transitPhase
      * @param string      $description
      */
-    public function __construct($isInSadeSati, $transitPhase, $description)
+    public function __construct(private $isInSadeSati, private ?string $transitPhase, private $description)
     {
-        $this->isInSadeSati = $isInSadeSati;
-        $this->transitPhase = $transitPhase;
-        $this->description = $description;
     }
 
     /**

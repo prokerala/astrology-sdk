@@ -11,20 +11,8 @@ class RationalThought implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var RationalThoughtNumber
-     */
-    private $rationalThoughtNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(RationalThoughtNumber $rationalThoughtNumber, NameChart $nameChart)
+    public function __construct(private RationalThoughtNumber $rationalThoughtNumber, private NameChart $nameChart)
     {
-        $this->rationalThoughtNumber = $rationalThoughtNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

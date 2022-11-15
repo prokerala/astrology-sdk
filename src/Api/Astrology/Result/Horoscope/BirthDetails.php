@@ -22,43 +22,8 @@ final class BirthDetails implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    private $nakshatra;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $chandraRasi;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $sooryaRasi;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Zodiac
-     */
-    private $zodiac;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
-     */
-    private $additionalInfo;
-
-    public function __construct(
-        Nakshatra $nakshatra,
-        Rasi $chandraRasi,
-        Rasi $sooryaRasi,
-        Zodiac $zodiac,
-        NakshatraInfo $additionalInfo
-    ) {
-        $this->nakshatra = $nakshatra;
-        $this->chandraRasi = $chandraRasi;
-        $this->sooryaRasi = $sooryaRasi;
-        $this->zodiac = $zodiac;
-        $this->additionalInfo = $additionalInfo;
+    public function __construct(private Nakshatra $nakshatra, private Rasi $chandraRasi, private Rasi $sooryaRasi, private Zodiac $zodiac, private NakshatraInfo $additionalInfo)
+    {
     }
 
     /**

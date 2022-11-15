@@ -18,15 +18,11 @@ final class AuspiciousYoga implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var AuspiciousYogaPeriod[] */
-    private $auspiciousYoga;
-
     /**
      * @param AuspiciousYogaPeriod[] $auspiciousYoga
      */
-    public function __construct(array $auspiciousYoga)
+    public function __construct(private array $auspiciousYoga)
     {
-        $this->auspiciousYoga = $auspiciousYoga;
     }
 
     /**

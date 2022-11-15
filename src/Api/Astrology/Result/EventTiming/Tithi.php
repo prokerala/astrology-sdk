@@ -14,36 +14,6 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 final class Tithi
 {
     /**
-     * @var int
-     */
-    private $index;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $paksha;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    /**
      * Tithi constructor.
      *
      * @param int    $index
@@ -51,20 +21,8 @@ final class Tithi
      * @param string $name
      * @param string $paksha
      */
-    public function __construct(
-        $index,
-        $id,
-        $name,
-        $paksha,
-        \DateTimeInterface $start,
-        \DateTimeInterface $end
-    ) {
-        $this->index = $index;
-        $this->id = $id;
-        $this->name = $name;
-        $this->paksha = $paksha;
-        $this->start = $start;
-        $this->end = $end;
+    public function __construct(private $index, private $id, private $name, private $paksha, private \DateTimeInterface $start, private \DateTimeInterface $end)
+    {
     }
 
     /**

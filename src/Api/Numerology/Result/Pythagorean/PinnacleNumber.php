@@ -7,22 +7,10 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 class PinnacleNumber
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var AgeNumber[]
-     */
-    private $pinnacles;
-
-    /**
      * @param AgeNumber[] $pinnacles
      */
-    public function __construct(string $name, array $pinnacles)
+    public function __construct(private string $name, private array $pinnacles)
     {
-        $this->name = $name;
-        $this->pinnacles = $pinnacles;
     }
 
     public function getName(): string

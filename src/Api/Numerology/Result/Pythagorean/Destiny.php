@@ -11,20 +11,8 @@ class Destiny implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DestinyNumber
-     */
-    private $destinyNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(DestinyNumber $destinyNumber, NameChart $nameChart)
+    public function __construct(private DestinyNumber $destinyNumber, private NameChart $nameChart)
     {
-        $this->destinyNumber = $destinyNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

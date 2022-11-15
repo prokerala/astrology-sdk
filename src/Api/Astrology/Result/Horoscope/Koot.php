@@ -13,30 +13,6 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 final class Koot
 {
-    /** @var string */
-    private $varna;
-
-    /** @var string */
-    private $vasya;
-
-    /** @var string */
-    private $tara;
-
-    /** @var string */
-    private $yoni;
-
-    /** @var string */
-    private $grahaMaitri;
-
-    /** @var string */
-    private $gana;
-
-    /** @var string */
-    private $bhakoot;
-
-    /** @var string */
-    private $nadi;
-
     /**
      * Guna constructor.
      *
@@ -49,16 +25,8 @@ final class Koot
      * @param string $bhakoot
      * @param string $nadi
      */
-    public function __construct($varna, $vasya, $tara, $yoni, $grahaMaitri, $gana, $bhakoot, $nadi)
+    public function __construct(private $varna, private $vasya, private $tara, private $yoni, private $grahaMaitri, private $gana, private $bhakoot, private $nadi)
     {
-        $this->varna = $varna;
-        $this->vasya = $vasya;
-        $this->tara = $tara;
-        $this->yoni = $yoni;
-        $this->grahaMaitri = $grahaMaitri;
-        $this->gana = $gana;
-        $this->bhakoot = $bhakoot;
-        $this->nadi = $nadi;
     }
 
     /**

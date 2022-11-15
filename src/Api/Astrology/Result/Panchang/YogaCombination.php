@@ -6,20 +6,8 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 class YogaCombination
 {
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    public function __construct(string $type, string $description)
+    public function __construct(private string $type, private string $description)
     {
-        $this->type = $type;
-        $this->description = $description;
     }
 
     public function getType(): string

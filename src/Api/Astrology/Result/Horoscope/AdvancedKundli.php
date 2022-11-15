@@ -19,41 +19,13 @@ final class AdvancedKundli implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var BirthDetails
-     */
-    private $nakshatraDetails;
-
-    /**
-     * @var AdvancedMangalDosha
-     */
-    private $mangalDosha;
-
-    /**
-     * @var Yoga\AdvancedYogaDetails[]
-     */
-    private $yogaDetails;
-
-    /**
-     * @var Dasha\DashaPeriod[]
-     */
-    private $dashaPeriods;
-
-    /**
      * AdvancedKundli constructor.
      *
      * @param Yoga\AdvancedYogaDetails[] $yogaDetails
      * @param Dasha\DashaPeriod[]        $dashaPeriods
      */
-    public function __construct(
-        BirthDetails $nakshatraDetails,
-        AdvancedMangalDosha $mangalDosha,
-        array $yogaDetails,
-        array $dashaPeriods
-    ) {
-        $this->nakshatraDetails = $nakshatraDetails;
-        $this->mangalDosha = $mangalDosha;
-        $this->yogaDetails = $yogaDetails;
-        $this->dashaPeriods = $dashaPeriods;
+    public function __construct(private BirthDetails $nakshatraDetails, private AdvancedMangalDosha $mangalDosha, private array $yogaDetails, private array $dashaPeriods)
+    {
     }
 
     /**

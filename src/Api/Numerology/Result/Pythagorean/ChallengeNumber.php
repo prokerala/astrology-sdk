@@ -6,21 +6,11 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class ChallengeNumber
 {
-    /** @var string */
-    private $name;
-
-    /**
-     * @var AgeNumber[]
-     */
-    private $challenges;
-
     /**
      * @param AgeNumber[] $challenges
      */
-    public function __construct(string $name, array $challenges)
+    public function __construct(private string $name, private array $challenges)
     {
-        $this->name = $name;
-        $this->challenges = $challenges;
     }
 
     public function getName(): string

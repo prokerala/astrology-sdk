@@ -6,26 +6,8 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class Cycle
 {
-    /**
-     * @var string
-     */
-    private $character;
-
-    /**
-     * @var int
-     */
-    private $number;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    public function __construct(string $character, int $number, string $description)
+    public function __construct(private string $character, private int $number, private string $description)
     {
-        $this->character = $character;
-        $this->number = $number;
-        $this->description = $description;
     }
 
     public function getCharacter(): string

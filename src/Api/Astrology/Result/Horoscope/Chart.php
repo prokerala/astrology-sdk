@@ -18,20 +18,6 @@ final class Chart implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var string */
-    private $chartType;
-
-    /** @var string */
-    private $chartName;
-
-    /** @var string */
-    private $chartShortName;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[]
-     */
-    private $chartRasi;
-
     /**
      * Chart constructor.
      *
@@ -40,12 +26,8 @@ final class Chart implements ResultInterface
      * @param string                                                      $chartShortName
      * @param \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[] $chartRasi
      */
-    public function __construct($chartType, $chartName, $chartShortName, array $chartRasi)
+    public function __construct(private $chartType, private $chartName, private $chartShortName, private array $chartRasi)
     {
-        $this->chartType = $chartType;
-        $this->chartName = $chartName;
-        $this->chartShortName = $chartShortName;
-        $this->chartRasi = $chartRasi;
     }
 
     /**

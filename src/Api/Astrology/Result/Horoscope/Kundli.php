@@ -19,30 +19,12 @@ final class Kundli implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var BirthDetails
-     */
-    private $nakshatraDetails;
-
-    /**
-     * @var MangalDosha
-     */
-    private $mangalDosha;
-
-    /**
-     * @var Yoga\YogaDetails[]
-     */
-    private $yogaDetails;
-
-    /**
      * Kundli constructor.
      *
      * @param Yoga\YogaDetails[] $yogaDetails
      */
-    public function __construct(BirthDetails $nakshatraDetails, MangalDosha $mangalDosha, array $yogaDetails)
+    public function __construct(private BirthDetails $nakshatraDetails, private MangalDosha $mangalDosha, private array $yogaDetails)
     {
-        $this->nakshatraDetails = $nakshatraDetails;
-        $this->mangalDosha = $mangalDosha;
-        $this->yogaDetails = $yogaDetails;
     }
 
     /**

@@ -16,43 +16,13 @@ use Prokerala\Api\Astrology\Result\Element\Planet;
 final class Nakshatra
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var Planet
-     */
-    private $lord;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    /**
      * Nakshatra constructor.
      *
      * @param int    $id
      * @param string $name
      */
-    public function __construct($id, $name, Planet $lord, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(private $id, private $name, private Planet $lord, private \DateTimeInterface $start, private \DateTimeInterface $end)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->lord = $lord;
-        $this->start = $start;
-        $this->end = $end;
     }
 
     /**

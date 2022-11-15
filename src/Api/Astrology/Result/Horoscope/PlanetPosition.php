@@ -19,18 +19,12 @@ final class PlanetPosition implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var PlanetPosition\Planet[]
-     */
-    private $planetPosition;
-
-    /**
      * PlanetPosition constructor.
      *
      * @param PlanetPosition\Planet[] $planetPosition
      */
-    public function __construct(array $planetPosition)
+    public function __construct(private array $planetPosition)
     {
-        $this->planetPosition = $planetPosition;
     }
 
     /**

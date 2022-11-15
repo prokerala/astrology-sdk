@@ -11,14 +11,8 @@ class PersonalYear implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalYearNumber
-     */
-    private $personalYearNumber;
-
-    public function __construct(PersonalYearNumber $personalYearNumber)
+    public function __construct(private PersonalYearNumber $personalYearNumber)
     {
-        $this->personalYearNumber = $personalYearNumber;
     }
 
     public function getPersonalYearNumber(): PersonalYearNumber

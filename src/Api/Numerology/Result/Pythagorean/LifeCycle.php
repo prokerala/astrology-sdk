@@ -11,14 +11,8 @@ class LifeCycle implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var LifeCycleNumber
-     */
-    private $lifeCycle;
-
-    public function __construct(LifeCycleNumber $lifeCycle)
+    public function __construct(private LifeCycleNumber $lifeCycle)
     {
-        $this->lifeCycle = $lifeCycle;
     }
 
     public function getLifeCycleNumber(): LifeCycleNumber

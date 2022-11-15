@@ -13,38 +13,8 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class RituResult
 {
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $vedicName;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    public function __construct(int $id, string $name, string $vedicName, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(private int $id, private string $name, private string $vedicName, private \DateTimeInterface $start, private \DateTimeInterface $end)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->vedicName = $vedicName;
-        $this->start = $start;
-        $this->end = $end;
     }
 
     public function getId(): int

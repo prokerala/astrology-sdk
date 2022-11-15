@@ -18,14 +18,8 @@ final class Solstice implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var SolsticeResult
-     */
-    private $solstice;
-
-    public function __construct(SolsticeResult $solstice)
+    public function __construct(private SolsticeResult $solstice)
     {
-        $this->solstice = $solstice;
     }
 
     public function getDishaShool(): SolsticeResult

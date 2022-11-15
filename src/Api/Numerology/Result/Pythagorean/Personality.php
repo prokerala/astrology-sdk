@@ -9,14 +9,8 @@ class Personality implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalityNumber
-     */
-    private $personalityNumber;
-
-    public function __construct(PersonalityNumber $personalityNumber)
+    public function __construct(private PersonalityNumber $personalityNumber)
     {
-        $this->personalityNumber = $personalityNumber;
     }
 
     public function getPersonalityNumber(): PersonalityNumber

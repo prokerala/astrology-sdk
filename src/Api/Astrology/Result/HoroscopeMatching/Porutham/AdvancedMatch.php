@@ -18,36 +18,6 @@ final class AdvancedMatch
     use StringableTrait;
 
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var bool
-     */
-    private $hasPorutham;
-
-    /**
-     * @var null|string
-     */
-    private $poruthamStatus;
-
-    /**
-     * @var float
-     */
-    private $points;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var int|int
-     */
-    private $id;
-
-    /**
      * Match constructor.
      *
      * @param int         $id
@@ -55,22 +25,9 @@ final class AdvancedMatch
      * @param bool        $hasPorutham
      * @param float       $points
      * @param string      $description
-     * @param null|string $poruthamStatus
      */
-    public function __construct(
-        $id,
-        $name,
-        $hasPorutham,
-        $points,
-        $description,
-        $poruthamStatus = null
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->hasPorutham = $hasPorutham;
-        $this->poruthamStatus = $poruthamStatus;
-        $this->points = $points;
-        $this->description = $description;
+    public function __construct(private $id, private $name, private $hasPorutham, private $points, private $description, private ?string $poruthamStatus = null)
+    {
     }
 
     /**

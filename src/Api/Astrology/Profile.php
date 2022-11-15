@@ -13,20 +13,8 @@ namespace Prokerala\Api\Astrology;
 
 final class Profile
 {
-    /**
-     * @var Location
-     */
-    private $location;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $datetime;
-
-    public function __construct(Location $location, \DateTimeInterface $datetime)
+    public function __construct(private Location $location, private \DateTimeInterface $datetime)
     {
-        $this->location = $location;
-        $this->datetime = $datetime;
     }
 
     /**

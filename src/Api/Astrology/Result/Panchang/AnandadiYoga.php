@@ -19,16 +19,10 @@ final class AnandadiYoga implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var AnandadiYogaResult[]
-     */
-    private $anandadiYoga;
-
-    /**
      * @param AnandadiYogaResult[] $anandadiYoga
      */
-    public function __construct(array $anandadiYoga)
+    public function __construct(private array $anandadiYoga)
     {
-        $this->anandadiYoga = $anandadiYoga;
     }
 
     /**

@@ -19,18 +19,12 @@ final class Yoga implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Yoga\AdvancedYogaDetails[]
-     */
-    private $yogaDetails;
-
-    /**
      * Kundli constructor.
      *
      * @param Yoga\AdvancedYogaDetails[] $yogaDetails
      */
-    public function __construct(array $yogaDetails)
+    public function __construct(private array $yogaDetails)
     {
-        $this->yogaDetails = $yogaDetails;
     }
 
     /**

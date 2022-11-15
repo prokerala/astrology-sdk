@@ -14,28 +14,10 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 final class AuspiciousYogaPeriod
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var AuspiciousYoga\Period[]
-     */
-    private $period;
-
-    /**
      * @param AuspiciousYoga\Period[] $period
      */
-    public function __construct(int $id, string $name, array $period)
+    public function __construct(private int $id, private string $name, private array $period)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->period = $period;
     }
 
     public function getId(): int

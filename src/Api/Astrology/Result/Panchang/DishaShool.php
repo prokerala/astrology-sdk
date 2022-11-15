@@ -18,14 +18,8 @@ final class DishaShool implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DishaShoolResult
-     */
-    private $dishaShool;
-
-    public function __construct(DishaShoolResult $dishaShool)
+    public function __construct(private DishaShoolResult $dishaShool)
     {
-        $this->dishaShool = $dishaShool;
     }
 
     public function getDishaShool(): DishaShoolResult

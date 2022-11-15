@@ -14,18 +14,12 @@ namespace Prokerala\Common\Api\Exception;
 final class ValidationException extends \InvalidArgumentException
 {
     /**
-     * @var list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}>
-     */
-    private $errors;
-
-    /**
      * @param list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}> $errors
      * @param int                                                                                                                          $code
      * @param null|\Throwable                                                                                                              $previous
      */
-    public function __construct($errors, $code = 0, $previous = null)
+    public function __construct(private $errors, $code = 0, $previous = null)
     {
-        $this->errors = $errors;
         parent::__construct('Input is invalid', $code, $previous);
     }
 

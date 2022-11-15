@@ -13,22 +13,14 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching;
 
 final class Message
 {
-    /** @var string */
-    private $type;
-
-    /** @var string */
-    private $description;
-
     /**
      * Message constructor.
      *
      * @param string $type
      * @param string $description
      */
-    public function __construct($type, $description)
+    public function __construct(private $type, private $description)
     {
-        $this->type = $type;
-        $this->description = $description;
     }
 
     /**

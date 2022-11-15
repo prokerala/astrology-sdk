@@ -11,20 +11,8 @@ class Cornerstone implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var CornerstoneNumber
-     */
-    private $cornerstoneNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(CornerstoneNumber $cornerstoneNumber, NameChart $nameChart)
+    public function __construct(private CornerstoneNumber $cornerstoneNumber, private NameChart $nameChart)
     {
-        $this->cornerstoneNumber = $cornerstoneNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

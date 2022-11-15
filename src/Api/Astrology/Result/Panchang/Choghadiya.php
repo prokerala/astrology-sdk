@@ -19,18 +19,12 @@ final class Choghadiya implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Choghadiya\Period[]
-     */
-    private $muhurat;
-
-    /**
      * Choghadiya constructor.
      *
      * @param Choghadiya\Period[] $muhurat
      */
-    public function __construct(array $muhurat)
+    public function __construct(private array $muhurat)
     {
-        $this->muhurat = $muhurat;
     }
 
     /**

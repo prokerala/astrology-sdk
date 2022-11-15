@@ -19,59 +19,16 @@ final class AdvancedMangalDosha implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var bool
-     */
-    private $hasDosha;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var bool
-     */
-    private $hasException;
-
-    /**
-     * @var null|string
-     */
-    private $type;
-
-    /**
-     * @var string[]
-     */
-    private $exceptions;
-
-    /**
-     * @var string[]
-     */
-    private $remedies;
-
-    /**
      * AdvancedMangalDosha constructor.
      *
      * @param bool        $hasDosha
      * @param string      $description
      * @param bool        $hasException
-     * @param null|string $type
      * @param string[]    $exceptions
      * @param string[]    $remedies
      */
-    public function __construct(
-        $hasDosha,
-        $description,
-        $hasException,
-        $type,
-        array $exceptions,
-        array $remedies
-    ) {
-        $this->hasDosha = $hasDosha;
-        $this->description = $description;
-        $this->hasException = $hasException;
-        $this->type = $type;
-        $this->exceptions = $exceptions;
-        $this->remedies = $remedies;
+    public function __construct(private $hasDosha, private $description, private $hasException, private ?string $type, private array $exceptions, private array $remedies)
+    {
     }
 
     /**

@@ -12,23 +12,11 @@ class InclusionTableResult implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var InclusionNumber[]
-     */
-    private $inclusionNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    /**
      * @param \Prokerala\Api\Numerology\Result\Pythagorean\InclusionNumber[] $inclusionNumber
      * @param NameChart                                                      $nameChart
      */
-    public function __construct($inclusionNumber, $nameChart)
+    public function __construct(private $inclusionNumber, private $nameChart)
     {
-        $this->inclusionNumber = $inclusionNumber;
-        $this->nameChart = $nameChart;
     }
 
     /**

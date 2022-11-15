@@ -13,44 +13,8 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class AnandadiYogaResult
 {
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    public function __construct(int $id, string $name, \DateTimeInterface $start, \DateTimeInterface $end, string $type, string $description)
+    public function __construct(private int $id, private string $name, private \DateTimeInterface $start, private \DateTimeInterface $end, private string $type, private string $description)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->start = $start;
-        $this->end = $end;
-        $this->type = $type;
-        $this->description = $description;
     }
 
     public function getId(): int

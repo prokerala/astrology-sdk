@@ -30,30 +30,14 @@ final class Tithi
     public const PURNIMA = 15;
     public const AMAVASYA = 16;
 
-    /** @var string */
-    private $paksha;
-
-    /** @var int */
-    private $id;
-
-    /** @var int */
-    private $index;
-
-    /** @var string */
-    private $name;
-
     /**
      * @param int    $index
      * @param int    $id
      * @param string $name
      * @param string $paksha
      */
-    public function __construct($index, $id, $name, $paksha)
+    public function __construct(private $index, private $id, private $name, private $paksha)
     {
-        $this->id = $id;
-        $this->paksha = $paksha;
-        $this->index = $index;
-        $this->name = $name;
     }
 
     /**

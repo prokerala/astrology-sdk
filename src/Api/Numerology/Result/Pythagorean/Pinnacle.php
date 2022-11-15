@@ -11,14 +11,8 @@ class Pinnacle implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PinnacleNumber
-     */
-    private $pinnacleNumber;
-
-    public function __construct(PinnacleNumber $pinnacleNumber)
+    public function __construct(private PinnacleNumber $pinnacleNumber)
     {
-        $this->pinnacleNumber = $pinnacleNumber;
     }
 
     public function getPinnacleNumber(): PinnacleNumber

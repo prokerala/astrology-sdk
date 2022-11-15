@@ -14,47 +14,12 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 final class Antardasha
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    /**
-     * @var Pratyantardasha[]
-     */
-    private $pratyantardasha;
-
-    /**
      * @param int               $id
      * @param string            $name
      * @param Pratyantardasha[] $pratyantardasha
      */
-    public function __construct(
-        $id,
-        $name,
-        \DateTimeInterface $start,
-        \DateTimeInterface $end,
-        array $pratyantardasha
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->start = $start;
-        $this->end = $end;
-        $this->pratyantardasha = $pratyantardasha;
+    public function __construct(private $id, private $name, private \DateTimeInterface $start, private \DateTimeInterface $end, private array $pratyantardasha)
+    {
     }
 
     /**

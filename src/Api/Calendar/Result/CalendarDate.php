@@ -18,14 +18,8 @@ final class CalendarDate implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var CalendarDateResult
-     */
-    private $calendarDate;
-
-    public function __construct(CalendarDateResult $calendarDate)
+    public function __construct(private CalendarDateResult $calendarDate)
     {
-        $this->calendarDate = $calendarDate;
     }
 
     public function getCalendarDate(): CalendarDateResult

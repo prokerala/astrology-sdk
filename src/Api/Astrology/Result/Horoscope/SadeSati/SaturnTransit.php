@@ -14,31 +14,6 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\SadeSati;
 final class SaturnTransit
 {
     /**
-     * @var string
-     */
-    private $saturnSign;
-
-    /**
-     * @var string
-     */
-    private $phase;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
      * @var null
      */
     private $isRetrograde;
@@ -49,13 +24,8 @@ final class SaturnTransit
      * @param string $description
      * @param null   $isRetrograde
      */
-    public function __construct($saturnSign, $phase, \DateTimeInterface $start, \DateTimeInterface $end, $description, $isRetrograde = null)
+    public function __construct(private $saturnSign, private $phase, private \DateTimeInterface $start, private \DateTimeInterface $end, private $description, $isRetrograde = null)
     {
-        $this->saturnSign = $saturnSign;
-        $this->phase = $phase;
-        $this->start = $start;
-        $this->end = $end;
-        $this->description = $description;
         $this->isRetrograde = $isRetrograde;
     }
 

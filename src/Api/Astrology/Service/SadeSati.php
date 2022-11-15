@@ -56,7 +56,7 @@ final class SadeSati
      *
      * @return AdvancedSadeSatiResult|SadeSatiResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, bool $detailed_report = false)
+    public function process(Location $location, \DateTimeInterface $datetime, bool $detailed_report = false): AdvancedSadeSatiResult|SadeSatiResult
     {
         $slug = $this->slug;
         if ($detailed_report) {

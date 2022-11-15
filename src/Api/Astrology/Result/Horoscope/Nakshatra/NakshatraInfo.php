@@ -13,42 +13,6 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Nakshatra;
 
 final class NakshatraInfo
 {
-    /** @var string */
-    private $deity;
-
-    /** @var string */
-    private $ganam;
-
-    /** @var string */
-    private $symbol;
-
-    /** @var string */
-    private $animalSign;
-
-    /** @var string */
-    private $nadi;
-
-    /** @var string */
-    private $color;
-
-    /** @var string */
-    private $bestDirection;
-
-    /** @var string */
-    private $syllables;
-
-    /** @var string */
-    private $birthStone;
-
-    /** @var string */
-    private $gender;
-
-    /** @var string */
-    private $planet;
-
-    /** @var string */
-    private $enemyYoni;
-
     /**
      * @param string $deity
      * @param string $ganam
@@ -63,32 +27,8 @@ final class NakshatraInfo
      * @param string $planet
      * @param string $enemyYoni
      */
-    public function __construct(
-        $deity,
-        $ganam,
-        $symbol,
-        $animalSign,
-        $nadi,
-        $color,
-        $bestDirection,
-        $syllables,
-        $birthStone,
-        $gender,
-        $planet,
-        $enemyYoni
-    ) {
-        $this->deity = $deity;
-        $this->ganam = $ganam;
-        $this->symbol = $symbol;
-        $this->animalSign = $animalSign;
-        $this->nadi = $nadi;
-        $this->color = $color;
-        $this->bestDirection = $bestDirection;
-        $this->syllables = $syllables;
-        $this->birthStone = $birthStone;
-        $this->gender = $gender;
-        $this->planet = $planet;
-        $this->enemyYoni = $enemyYoni;
+    public function __construct(private $deity, private $ganam, private $symbol, private $animalSign, private $nadi, private $color, private $bestDirection, private $syllables, private $birthStone, private $gender, private $planet, private $enemyYoni)
+    {
     }
 
     /**

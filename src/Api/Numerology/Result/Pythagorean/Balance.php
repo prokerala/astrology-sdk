@@ -11,20 +11,8 @@ class Balance implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BalanceNumber
-     */
-    private $balanceNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(BalanceNumber $balanceNumber, NameChart $nameChart)
+    public function __construct(private BalanceNumber $balanceNumber, private NameChart $nameChart)
     {
-        $this->balanceNumber = $balanceNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

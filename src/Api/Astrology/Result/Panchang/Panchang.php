@@ -19,51 +19,6 @@ final class Panchang implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var string
-     */
-    private $vaara;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
-     */
-    private $nakshatra;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
-     */
-    private $tithi;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
-     */
-    private $karana;
-
-    /**
-     * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
-     */
-    private $yoga;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunrise;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunset;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonrise;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonset;
-
-    /**
      * Panchang constructor.
      *
      * @param string                                                  $vaara
@@ -72,26 +27,8 @@ final class Panchang implements ResultInterface
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]      $yoga
      */
-    public function __construct(
-        $vaara,
-        array $nakshatra,
-        array $tithi,
-        array $karana,
-        array $yoga,
-        \DateTimeInterface $sunrise,
-        \DateTimeInterface $sunset,
-        \DateTimeInterface $moonrise,
-        \DateTimeInterface $moonset
-    ) {
-        $this->vaara = $vaara;
-        $this->nakshatra = $nakshatra;
-        $this->tithi = $tithi;
-        $this->karana = $karana;
-        $this->yoga = $yoga;
-        $this->sunrise = $sunrise;
-        $this->sunset = $sunset;
-        $this->moonrise = $moonrise;
-        $this->moonset = $moonset;
+    public function __construct(private $vaara, private array $nakshatra, private array $tithi, private array $karana, private array $yoga, private \DateTimeInterface $sunrise, private \DateTimeInterface $sunset, private \DateTimeInterface $moonrise, private \DateTimeInterface $moonset)
+    {
     }
 
     /**

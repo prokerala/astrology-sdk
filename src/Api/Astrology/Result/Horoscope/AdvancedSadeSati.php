@@ -19,39 +19,14 @@ final class AdvancedSadeSati implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var bool
-     */
-    private $isInSadeSati;
-
-    /**
-     * @var null|string
-     */
-    private $transitPhase;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var SadeSati\SaturnTransit[]
-     */
-    private $transits;
-
-    /**
      * SadeSati constructor.
      *
      * @param bool                     $isInSadeSati
-     * @param null|string              $transitPhase
      * @param string                   $description
      * @param SadeSati\SaturnTransit[] $transits
      */
-    public function __construct($isInSadeSati, $transitPhase, $description, array $transits)
+    public function __construct(private $isInSadeSati, private ?string $transitPhase, private $description, private array $transits)
     {
-        $this->isInSadeSati = $isInSadeSati;
-        $this->transitPhase = $transitPhase;
-        $this->description = $description;
-        $this->transits = $transits;
     }
 
     /**

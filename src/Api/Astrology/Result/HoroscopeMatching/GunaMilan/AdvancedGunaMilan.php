@@ -14,32 +14,14 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 final class AdvancedGunaMilan
 {
     /**
-     * @var float
-     */
-    private $totalPoints;
-
-    /**
-     * @var float
-     */
-    private $maximumPoints;
-
-    /**
-     * @var GunaKoot[]
-     */
-    private $guna;
-
-    /**
      * AdvancedGunaMilan constructor.
      *
      * @param float      $totalPoints
      * @param float      $maximumPoints
      * @param GunaKoot[] $guna
      */
-    public function __construct($totalPoints, $maximumPoints, array $guna)
+    public function __construct(private $totalPoints, private $maximumPoints, private array $guna)
     {
-        $this->totalPoints = $totalPoints;
-        $this->maximumPoints = $maximumPoints;
-        $this->guna = $guna;
     }
 
     /**

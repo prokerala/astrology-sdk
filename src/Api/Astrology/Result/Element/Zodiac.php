@@ -14,23 +14,11 @@ namespace Prokerala\Api\Astrology\Result\Element;
 final class Zodiac
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * @param int    $id
      * @param string $name
      */
-    public function __construct($id, $name)
+    public function __construct(private $id, private $name)
     {
-        $this->id = $id;
-        $this->name = $name;
     }
 
     /**

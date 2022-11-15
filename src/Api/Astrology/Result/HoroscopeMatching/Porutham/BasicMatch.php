@@ -18,35 +18,14 @@ final class BasicMatch
     use StringableTrait;
 
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var bool
-     */
-    private $hasPorutham;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
      * Match constructor.
      *
      * @param int    $id
      * @param string $name
      * @param bool   $hasPorutham
      */
-    public function __construct(
-        $id,
-        $name,
-        $hasPorutham
-    ) {
-        $this->name = $name;
-        $this->hasPorutham = $hasPorutham;
-        $this->id = $id;
+    public function __construct(private $id, private $name, private $hasPorutham)
+    {
     }
 
     /**

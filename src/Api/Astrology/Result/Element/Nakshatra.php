@@ -14,38 +14,14 @@ namespace Prokerala\Api\Astrology\Result\Element;
 final class Nakshatra
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var Planet
-     */
-    private $lord;
-
-    /**
-     * @var int
-     */
-    private $pada;
-
-    /**
      * Nakshatra constructor.
      *
      * @param int    $id
      * @param string $name
      * @param int    $pada
      */
-    public function __construct($id, $name, Planet $lord, $pada)
+    public function __construct(private $id, private $name, private Planet $lord, private $pada)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->lord = $lord;
-        $this->pada = $pada;
     }
 
     /**

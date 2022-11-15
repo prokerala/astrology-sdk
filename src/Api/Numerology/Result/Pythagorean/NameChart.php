@@ -7,30 +7,12 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 class NameChart
 {
     /**
-     * @var CharacterValues[]
-     */
-    private $firstName;
-
-    /**
-     * @var CharacterValues[]
-     */
-    private $lastName;
-
-    /**
-     * @var CharacterValues[]
-     */
-    private $middleName;
-
-    /**
      * @param CharacterValues[] $firstName
      * @param CharacterValues[] $lastName
      * @param CharacterValues[] $middleName
      */
-    public function __construct($firstName, $lastName, $middleName)
+    public function __construct(private $firstName, private $lastName, private $middleName)
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->middleName = $middleName;
     }
 
     /**

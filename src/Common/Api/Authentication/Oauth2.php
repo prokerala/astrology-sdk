@@ -29,39 +29,15 @@ class Oauth2 implements AuthenticationTypeInterface
     /** @var string */
     private $accessToken;
 
-    /** @var string */
-    private $clientId;
-
-    /** @var string */
-    private $clientSecret;
-
-    /** @var ClientInterface */
-    private $httpClient;
-
-    /** @var null|CacheInterface */
-    private $cache;
-
-    /** @var RequestFactoryInterface */
-    private $httpRequestFactory;
-
     /** @var int */
     private $tokenExpiresAt = 0;
-
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
 
     /**
      * @param string              $clientId
      * @param string              $clientSecret
-     * @param null|CacheInterface $cache
      */
-    public function __construct($clientId, $clientSecret, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory, StreamFactoryInterface $streamFactory, $cache = null)
+    public function __construct(private $clientId, private $clientSecret, private ClientInterface $httpClient, private RequestFactoryInterface $httpRequestFactory, private StreamFactoryInterface $streamFactory, private ?\Psr\SimpleCache\CacheInterface $cache = null)
     {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->httpClient = $httpClient;
-        $this->cache = $cache;
-
         // Try loading access token from cache
         if ($cache) {
             $this->cache = $cache;
@@ -69,8 +45,6 @@ class Oauth2 implements AuthenticationTypeInterface
             \assert(\is_string($accessToken));
             $this->accessToken = $accessToken;
         }
-        $this->httpRequestFactory = $httpRequestFactory;
-        $this->streamFactory = $streamFactory;
     }
 
     /**

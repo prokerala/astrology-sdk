@@ -19,48 +19,13 @@ final class AdvancedKundliMatching implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var ProfileInfo */
-    private $girlInfo;
-
-    /** @var ProfileInfo */
-    private $boyInfo;
-
-    /** @var Message */
-    private $message;
-
-    /** @var AdvancedGunaMilan */
-    private $gunaMilan;
-
-    /** @var MangalDosha */
-    private $girlMangalDoshaDetails;
-
-    /** @var MangalDosha */
-    private $boyMangalDoshaDetails;
-
-    /** @var string[] */
-    private $exceptions;
-
     /**
      * AdvancedKundliMatching constructor.
      *
      * @param string[] $exceptions
      */
-    public function __construct(
-        ProfileInfo $girlInfo,
-        ProfileInfo $boyInfo,
-        Message $message,
-        AdvancedGunaMilan $gunaMilan,
-        MangalDosha $girlMangalDoshaDetails,
-        MangalDosha $boyMangalDoshaDetails,
-        array $exceptions
-    ) {
-        $this->girlInfo = $girlInfo;
-        $this->boyInfo = $boyInfo;
-        $this->message = $message;
-        $this->gunaMilan = $gunaMilan;
-        $this->girlMangalDoshaDetails = $girlMangalDoshaDetails;
-        $this->boyMangalDoshaDetails = $boyMangalDoshaDetails;
-        $this->exceptions = $exceptions;
+    public function __construct(private ProfileInfo $girlInfo, private ProfileInfo $boyInfo, private Message $message, private AdvancedGunaMilan $gunaMilan, private MangalDosha $girlMangalDoshaDetails, private MangalDosha $boyMangalDoshaDetails, private array $exceptions)
+    {
     }
 
     /**

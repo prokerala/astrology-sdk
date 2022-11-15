@@ -19,16 +19,10 @@ final class HoraTiming implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Hora[]
-     */
-    private $horaTiming;
-
-    /**
      * @param Hora[] $horaTiming
      */
-    public function __construct(array $horaTiming)
+    public function __construct(private array $horaTiming)
     {
-        $this->horaTiming = $horaTiming;
     }
 
     /**

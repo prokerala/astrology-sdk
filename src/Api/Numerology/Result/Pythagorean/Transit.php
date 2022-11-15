@@ -12,37 +12,13 @@ class Transit implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var Cycle[]
-     */
-    private $physical;
-
-    /**
-     * @var Cycle[]
-     */
-    private $mental;
-
-    /**
-     * @var Cycle[]
-     */
-    private $spiritual;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    /**
      * @param Cycle[]   $physical
      * @param Cycle[]   $mental
      * @param Cycle[]   $spiritual
      * @param NameChart $nameChart
      */
-    public function __construct($physical, $mental, $spiritual, $nameChart)
+    public function __construct(private $physical, private $mental, private $spiritual, private $nameChart)
     {
-        $this->physical = $physical;
-        $this->mental = $mental;
-        $this->spiritual = $spiritual;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

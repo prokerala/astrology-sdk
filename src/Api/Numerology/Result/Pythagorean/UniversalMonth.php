@@ -11,14 +11,8 @@ class UniversalMonth implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var UniversalMonthNumber
-     */
-    private $universalMonthNumber;
-
-    public function __construct(UniversalMonthNumber $universalMonthNumber)
+    public function __construct(private UniversalMonthNumber $universalMonthNumber)
     {
-        $this->universalMonthNumber = $universalMonthNumber;
     }
 
     public function getUniversalMonthNumber(): UniversalMonthNumber

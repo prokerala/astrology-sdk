@@ -19,42 +19,14 @@ final class ThirumanaPorutham implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var float
-     */
-    private $maximumPoints;
-
-    /**
-     * @var float
-     */
-    private $obtainedPoints;
-
-    /**
-     * @var Porutham\BasicMatch[]
-     */
-    private $matches;
-
-    /**
-     * @var Message
-     */
-    private $message;
-
-    /**
      * ThirumanaPorutham constructor.
      *
      * @param float                 $maximumPoints
      * @param float                 $obtainedPoints
      * @param Porutham\BasicMatch[] $matches
      */
-    public function __construct(
-        $maximumPoints,
-        $obtainedPoints,
-        Message $message,
-        array $matches
-    ) {
-        $this->maximumPoints = $maximumPoints;
-        $this->obtainedPoints = $obtainedPoints;
-        $this->matches = $matches;
-        $this->message = $message;
+    public function __construct(private $maximumPoints, private $obtainedPoints, private Message $message, private array $matches)
+    {
     }
 
     /**

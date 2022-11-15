@@ -6,26 +6,8 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 class Number
 {
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var ?int
-     */
-    private $number;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    public function __construct(string $name, ?int $number, string $description)
+    public function __construct(private string $name, private ?int $number, private string $description)
     {
-        $this->name = $name;
-        $this->number = $number;
-        $this->description = $description;
     }
 
     public function getName(): string

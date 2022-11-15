@@ -19,42 +19,14 @@ final class AdvancedNakshatraPorutham implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var float
-     */
-    private $maximumPoints;
-
-    /**
-     * @var float
-     */
-    private $obtainedPoints;
-
-    /**
-     * @var Message
-     */
-    private $message;
-
-    /**
-     * @var Porutham\AdvancedMatch[]
-     */
-    private $matches;
-
-    /**
      * AdvancedNakshatraPorutham constructor.
      *
      * @param float                    $maximumPoints
      * @param float                    $obtainedPoints
      * @param Porutham\AdvancedMatch[] $matches
      */
-    public function __construct(
-        $maximumPoints,
-        $obtainedPoints,
-        Message $message,
-        array $matches
-    ) {
-        $this->maximumPoints = $maximumPoints;
-        $this->obtainedPoints = $obtainedPoints;
-        $this->message = $message;
-        $this->matches = $matches;
+    public function __construct(private $maximumPoints, private $obtainedPoints, private Message $message, private array $matches)
+    {
     }
 
     /**

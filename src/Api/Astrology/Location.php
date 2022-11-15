@@ -14,30 +14,12 @@ namespace Prokerala\Api\Astrology;
 final class Location
 {
     /**
-     * @var float
-     */
-    private $latitude;
-
-    /**
-     * @var float
-     */
-    private $longitude;
-
-    /**
-     * @var float
-     */
-    private $altitude;
-
-    /**
      * @var \DateTimeZone
      */
     private $timezone;
 
-    public function __construct(float $latitude, float $longitude, float $altitude = 0, ?\DateTimeZone $timezone = null)
+    public function __construct(private float $latitude, private float $longitude, private float $altitude = 0, ?\DateTimeZone $timezone = null)
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->altitude = $altitude;
         if (!$timezone) {
             $timezone = new \DateTimeZone(date_default_timezone_get());
         }

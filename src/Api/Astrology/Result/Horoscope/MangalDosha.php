@@ -19,25 +19,13 @@ final class MangalDosha implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var bool
-     */
-    private $hasDosha;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
      * MangalDosha constructor.
      *
      * @param bool   $hasDosha
      * @param string $description
      */
-    public function __construct($hasDosha, $description)
+    public function __construct(private $hasDosha, private $description)
     {
-        $this->hasDosha = $hasDosha;
-        $this->description = $description;
     }
 
     /**

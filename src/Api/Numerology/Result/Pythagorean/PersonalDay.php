@@ -11,14 +11,8 @@ class PersonalDay implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalDayNumber
-     */
-    private $personalDayNumber;
-
-    public function __construct(PersonalDayNumber $personalDayNumber)
+    public function __construct(private PersonalDayNumber $personalDayNumber)
     {
-        $this->personalDayNumber = $personalDayNumber;
     }
 
     public function getPersonalDayNumber(): PersonalDayNumber

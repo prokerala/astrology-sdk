@@ -45,7 +45,7 @@ final class ThirumanaPorutham
      *
      * @return AdvancedPorutham|Porutham
      */
-    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false, string $la = 'en')
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false, string $la = 'en'): AdvancedPorutham|\Prokerala\Api\Astrology\Service\Porutham
     {
         $slug = $this->slug;
         if ($detailed_report) {

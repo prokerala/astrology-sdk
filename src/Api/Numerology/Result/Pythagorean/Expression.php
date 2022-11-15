@@ -11,20 +11,8 @@ class Expression implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var ExpressionNumber
-     */
-    private $expressionNumber;
-
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
-
-    public function __construct(ExpressionNumber $expressionNumber, NameChart $nameChart)
+    public function __construct(private ExpressionNumber $expressionNumber, private NameChart $nameChart)
     {
-        $this->expressionNumber = $expressionNumber;
-        $this->nameChart = $nameChart;
     }
 
     public function getNameChart(): NameChart

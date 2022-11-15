@@ -7,22 +7,10 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 class KarmicDebtNumber
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var Number[]
-     */
-    private $debts;
-
-    /**
      * @param Number[] $debts
      */
-    public function __construct(string $name, array $debts)
+    public function __construct(private string $name, private array $debts)
     {
-        $this->name = $name;
-        $this->debts = $debts;
     }
 
     public function getName(): string

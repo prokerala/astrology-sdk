@@ -11,14 +11,8 @@ class KarmicDebt implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var KarmicDebtNumber
-     */
-    private $karmicDebtNumber;
-
-    public function __construct(KarmicDebtNumber $karmicDebtNumber)
+    public function __construct(private KarmicDebtNumber $karmicDebtNumber)
     {
-        $this->karmicDebtNumber = $karmicDebtNumber;
     }
 
     public function getKarmicDebtNumber(): KarmicDebtNumber
