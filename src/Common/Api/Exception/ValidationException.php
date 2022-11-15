@@ -14,12 +14,12 @@ namespace Prokerala\Common\Api\Exception;
 final class ValidationException extends \InvalidArgumentException
 {
     /**
-     * @var list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}>
+     * @var list<\stdClass>
      */
     private $errors;
 
     /**
-     * @param list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}> $errors
+     * @param list<\stdClass> $errors
      * @param int                                                                                                                          $code
      * @param null|\Throwable                                                                                                              $previous
      */
@@ -32,7 +32,7 @@ final class ValidationException extends \InvalidArgumentException
     /**
      * Get validation errors.
      *
-     * @return list<array{source:array{pointer?: string, parameter?: string, header?: string},code: string, title: string, detail: string}>
+     * @return list<\stdClass>
      */
     public function getValidationErrors()
     {

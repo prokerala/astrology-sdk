@@ -61,7 +61,7 @@ final class Client
      * @param string $path  section path
      * @param array  $input request parameters
      *
-     * @return \stdClass
+     * @return \stdClass|string
      */
     public function process($path, $input)
     {
@@ -72,42 +72,28 @@ final class Client
             $request = $this->authClient->process($request);
             $response = $this->request($request);
             if (401 === $response->getStatusCode()) {
-                $this->authClient->handleError($response->message, $response->getStatusCode());
+                $this->authClient->handleError($response->getBody(), $response->getStatusCode());
             }
-        } catch (RetryableExceptionInterface $e) {
+        } catch (RetryableExceptionInterface) {
             $request = $this->authClient->process($request);
             $response = $this->request($request);
         }
 
-        $responseType = $response->getHeader('content-type');
-        $responseBody = (string)$response->getBody();
-
         $apiCredits = $response->getHeader('X-Api-Credits')[0] ?? null;
         $this->apiCreditUsed = isset($apiCredits) ? (int)$apiCredits : 0;
 
-        if (isset($responseType[0]) && 'application/json' == $responseType[0]) {
-            /** @var \stdClass $responseData */
-            $responseData = json_decode($responseBody);
-        } else {
-            $responseData = $responseBody;
+        $responseData = $this->parseResponse($response);
+
+        $statusCode = $response->getStatusCode();
+        assert(200 === $statusCode || is_object($responseData));
+
+        if (200 === $statusCode) {
+            return $responseData;
         }
 
-        switch ($response->getStatusCode()) {
-            case 200:
-                return $responseData;
+        assert($responseData instanceof \stdClass);
+        $this->handleError($statusCode, $responseData->errors);
 
-            case 401:
-                throw new AuthenticationException($responseData->errors[0]->detail);
-
-            case 400:
-                throw new ValidationException($responseData->errors);
-
-            case 500:
-                throw new ServerException($responseData->errors[0]->detail);
-
-            default:
-                throw new Exception($responseData->errors[0]->detail);
-        }
     }
 
     /**
@@ -124,5 +110,35 @@ final class Client
     private function request(RequestInterface $request)
     {
         return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * @return \stdClass|string
+     */
+    private function parseResponse(ResponseInterface $response)
+    {
+        $responseType = $response->getHeader('content-type');
+        $responseBody = (string)$response->getBody();
+
+        if (!isset($responseType[0]) || 'application/json' !== $responseType[0]) {
+            return $responseBody;
+        }
+
+        /** @var \stdClass */
+        return json_decode($responseBody, null, 512, \JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @param list<\stdClass> $errors
+     * @return never
+     */
+    private function handleError(int $statusCode, array $errors)
+    {
+        throw match ($statusCode) {
+            401 => throw new AuthenticationException($errors[0]->detail),
+            400 => throw new ValidationException($errors),
+            500 => throw new ServerException($errors[0]->detail),
+            default => throw new Exception($errors[0]->detail),
+        };
     }
 }
