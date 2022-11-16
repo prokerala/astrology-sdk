@@ -33,10 +33,10 @@ final class Kundli
     protected string $slug = '/astrology/kundli';
 
     /** @var Transformer<KundliResult> */
-    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
+    private Transformer $basicResponseTransformers;
 
     /** @var Transformer<AdvancedKundliResult> */
-    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
+    private Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -76,6 +76,7 @@ final class Kundli
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
         if ($detailed_report) {
             return $this->advancedResponseTransformer->transform($apiResponse->data);
         }

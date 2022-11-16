@@ -26,13 +26,13 @@ final class Ritu
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @use TimeZoneAwareTrait<SolsticeResult> */
+    /** @use TimeZoneAwareTrait<RituResult> */
     use TimeZoneAwareTrait;
 
     protected string $slug = '/astrology/ritu';
 
     /** @var Transformer<RituResult> */
-    private \Prokerala\Api\Astrology\Transformer $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -64,6 +64,7 @@ final class Ritu
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
 
         return $this->transformer->transform($apiResponse->data);
     }

@@ -31,6 +31,9 @@ final class ChandraBala implements ResultInterface
         $this->chandraBala = $chandraBala;
     }
 
+    /**
+     * @return ChandraBalaResult[]
+     */
     public function getChandraBala(): array
     {
         return $this->chandraBala;

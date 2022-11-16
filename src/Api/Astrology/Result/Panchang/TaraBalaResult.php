@@ -66,6 +66,9 @@ final class TaraBalaResult
         return $this->end;
     }
 
+    /**
+     * @return \Prokerala\Api\Astrology\Result\Element\NakshatraElement[]
+     */
     public function getNakshatras(): array
     {
         return $this->nakshatras;

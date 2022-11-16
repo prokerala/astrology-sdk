@@ -69,6 +69,7 @@ final class SadeSati
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
         if ($detailed_report) {
             return $this->advancedResponseTransformer->transform($apiResponse->data);
         }

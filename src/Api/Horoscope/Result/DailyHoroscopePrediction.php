@@ -10,7 +10,7 @@ class DailyHoroscopePrediction
 
     private int $signId;
 
-    private \DateTimeImmutable $date;
+    private \DateTimeInterface $date;
 
     private string $prediction;
 

@@ -24,15 +24,17 @@ final class CompatibilityReport
     /**
      * Fetch result from API.
      *
-     * @param array $input Chart type
+     * @param array<string,mixed> $input
+     * @param array<string,mixed> $options
      */
-    public function process(array $input, array $options)
+    public function process(array $input, array $options): string
     {
         $parameters = [
             'input' => $input,
             'options' => $options,
         ];
 
+        /** @var string */
         return $this->apiClient->process($this->slug, $parameters);
     }
 }

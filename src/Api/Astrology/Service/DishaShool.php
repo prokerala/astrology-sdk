@@ -64,6 +64,7 @@ final class DishaShool
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
 
         return $this->transformer->transform($apiResponse->data);
     }

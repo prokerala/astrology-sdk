@@ -49,15 +49,12 @@ final class DashaPeriod
      *
      * @param Location           $location        Location details
      * @param \DateTimeInterface $datetime        Date and time
-     * @param bool               $detailed_report Return detailed result
      *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
     public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): VimsottariDashaResult
     {
-        $slug = $this->slug;
-
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
@@ -65,7 +62,8 @@ final class DashaPeriod
             'la' => $la,
         ];
 
-        $apiResponse = $this->apiClient->process($slug, $parameters);
+        $apiResponse = $this->apiClient->process($this->slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
 
         return $this->basicResponseTransformers->transform($apiResponse->data);
     }

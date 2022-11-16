@@ -108,9 +108,14 @@ final class Planet
     /**
      * Get planet rasi.
      */
-    public function getRasi(): string
+    public function getRasi(): int
     {
         return $this->rasi;
+    }
+
+    public function getRasiLord(): string
+    {
+        return $this->rasiLord;
     }
 
     /**

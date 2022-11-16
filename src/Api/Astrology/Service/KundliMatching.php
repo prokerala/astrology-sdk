@@ -26,11 +26,11 @@ final class KundliMatching
 
     protected string $slug = '/astrology/kundli-matching';
 
-    /** @var Transformer<KundliMatching> */
-    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
+    /** @var Transformer<MatchResult> */
+    private Transformer $basicResponseTransformer;
 
     /** @var Transformer<AdvancedMatchResult> */
-    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
+    private Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -67,6 +67,7 @@ final class KundliMatching
         ];
 
         $apiResponse = $this->apiClient->process($slug, $parameters);
+        assert($apiResponse instanceof \stdClass);
 
         if ($detailed_report) {
             return $this->advancedResponseTransformer->transform($apiResponse->data);
