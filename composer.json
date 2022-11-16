@@ -47,6 +47,7 @@
         "nyholm/psr7": "^1.0",
         "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5",
-        "symfony/cache": "~3.4|~4.0|~5.0"
+        "symfony/cache": "~3.4|~4.0|~5.0",
+        "symfony/dotenv": "^6.1"
     }
 }

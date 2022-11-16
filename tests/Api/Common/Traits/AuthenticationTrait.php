@@ -20,8 +20,8 @@ trait AuthenticationTrait
 {
     public function getClient(): Client
     {
-        $clientId = 'client_id';
-        $clientSecret = 'client_secret';
+        $clientId = $_ENV['CLIENT_ID'] ?? '';
+        $clientSecret = $_ENV['CLIENT_SECRET'] ?? '';
 
         $psr17Factory = new Psr17Factory();
         $httpClient = new HttpClient(['verify' => false]);
