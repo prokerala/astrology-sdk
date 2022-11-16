@@ -16,14 +16,12 @@ final class ValidationException extends \InvalidArgumentException
     /**
      * @var list<\stdClass>
      */
-    private $errors;
+    private array $errors;
 
     /**
      * @param list<\stdClass> $errors
-     * @param int                                                                                                                          $code
-     * @param null|\Throwable                                                                                                              $previous
      */
-    public function __construct($errors, $code = 0, $previous = null)
+    public function __construct($errors, int $code = 0, ?\Throwable $previous = null)
     {
         $this->errors = $errors;
         parent::__construct('Input is invalid', $code, $previous);

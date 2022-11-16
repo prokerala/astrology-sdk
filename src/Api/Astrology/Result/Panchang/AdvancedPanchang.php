@@ -18,65 +18,49 @@ final class AdvancedPanchang implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var string
-     */
-    private $vaara;
+    private string $vaara;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
-    private $nakshatra;
+    private array $nakshatra;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
-    private $tithi;
+    private array $tithi;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
-    private $karana;
+    private array $karana;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
-    private $yoga;
+    private array $yoga;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunrise;
+    private \DateTimeInterface $sunrise;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $sunset;
+    private \DateTimeInterface $sunset;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonrise;
+    private \DateTimeInterface $moonrise;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $moonset;
+    private \DateTimeInterface $moonset;
 
     /**
      * @var Muhurat\Muhurat[]
      */
-    private $auspiciousPeriod;
+    private array $auspiciousPeriod;
 
     /**
      * @var Muhurat\Muhurat[]
      */
-    private $inauspiciousPeriod;
+    private array $inauspiciousPeriod;
 
     /**
      * AdvancedPanchang constructor.
      *
-     * @param string                                                  $vaara
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[] $nakshatra
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]     $tithi
      * @param \Prokerala\Api\Astrology\Result\EventTiming\Karana[]    $karana
@@ -85,7 +69,7 @@ final class AdvancedPanchang implements ResultInterface
      * @param Muhurat\Muhurat[]                                       $inauspiciousPeriod
      */
     public function __construct(
-        $vaara,
+        string $vaara,
         array $nakshatra,
         array $tithi,
         array $karana,
@@ -94,8 +78,8 @@ final class AdvancedPanchang implements ResultInterface
         \DateTimeInterface $sunset,
         \DateTimeInterface $moonrise,
         \DateTimeInterface $moonset,
-        $auspiciousPeriod,
-        $inauspiciousPeriod
+        array $auspiciousPeriod,
+        array $inauspiciousPeriod
     ) {
         $this->vaara = $vaara;
         $this->nakshatra = $nakshatra;
@@ -110,10 +94,7 @@ final class AdvancedPanchang implements ResultInterface
         $this->inauspiciousPeriod = $inauspiciousPeriod;
     }
 
-    /**
-     * @return string
-     */
-    public function getVaara()
+    public function getVaara(): string
     {
         return $this->vaara;
     }
@@ -121,7 +102,7 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return \Prokerala\Api\Astrology\Result\EventTiming\Nakshatra[]
      */
-    public function getNakshatra()
+    public function getNakshatra(): array
     {
         return $this->nakshatra;
     }
@@ -129,7 +110,7 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return \Prokerala\Api\Astrology\Result\EventTiming\Tithi[]
      */
-    public function getTithi()
+    public function getTithi(): array
     {
         return $this->tithi;
     }
@@ -137,7 +118,7 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return \Prokerala\Api\Astrology\Result\EventTiming\Karana[]
      */
-    public function getKarana()
+    public function getKarana(): array
     {
         return $this->karana;
     }
@@ -145,39 +126,27 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return \Prokerala\Api\Astrology\Result\EventTiming\Yoga[]
      */
-    public function getYoga()
+    public function getYoga(): array
     {
         return $this->yoga;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getSunrise()
+    public function getSunrise(): \DateTimeInterface
     {
         return $this->sunrise;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getSunset()
+    public function getSunset(): \DateTimeInterface
     {
         return $this->sunset;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getMoonrise()
+    public function getMoonrise(): \DateTimeInterface
     {
         return $this->moonrise;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getMoonset()
+    public function getMoonset(): \DateTimeInterface
     {
         return $this->moonset;
     }
@@ -185,7 +154,7 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return Muhurat\Muhurat[]
      */
-    public function getAuspiciousPeriod()
+    public function getAuspiciousPeriod(): array
     {
         return $this->auspiciousPeriod;
     }
@@ -193,7 +162,7 @@ final class AdvancedPanchang implements ResultInterface
     /**
      * @return Muhurat\Muhurat[]
      */
-    public function getInauspiciousPeriod()
+    public function getInauspiciousPeriod(): array
     {
         return $this->inauspiciousPeriod;
     }

@@ -13,49 +13,26 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 final class Tithi
 {
-    /**
-     * @var int
-     */
-    private $index;
+    private int $index;
 
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $paksha;
+    private string $paksha;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * Tithi constructor.
-     *
-     * @param int    $index
-     * @param int    $id
-     * @param string $name
-     * @param string $paksha
      */
     public function __construct(
-        $index,
-        $id,
-        $name,
-        $paksha,
+        int $index,
+        int $id,
+        string $name,
+        string $paksha,
         \DateTimeInterface $start,
         \DateTimeInterface $end
     ) {
@@ -67,50 +44,32 @@ final class Tithi
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
-    public function getIndex()
+    public function getIndex(): int
     {
         return $this->index;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getPaksha()
+    public function getPaksha(): string
     {
         return $this->paksha;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

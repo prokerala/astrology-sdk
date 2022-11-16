@@ -18,10 +18,7 @@ final class CalendarDate implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var CalendarDateResult
-     */
-    private $calendarDate;
+    private CalendarDateResult $calendarDate;
 
     public function __construct(CalendarDateResult $calendarDate)
     {

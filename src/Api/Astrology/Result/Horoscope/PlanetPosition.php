@@ -21,7 +21,7 @@ final class PlanetPosition implements ResultInterface
     /**
      * @var PlanetPosition\Planet[]
      */
-    private $planetPosition;
+    private array $planetPosition;
 
     /**
      * PlanetPosition constructor.
@@ -36,7 +36,7 @@ final class PlanetPosition implements ResultInterface
     /**
      * @return PlanetPosition\Planet[]
      */
-    public function getPlanetPosition()
+    public function getPlanetPosition(): array
     {
         return $this->planetPosition;
     }

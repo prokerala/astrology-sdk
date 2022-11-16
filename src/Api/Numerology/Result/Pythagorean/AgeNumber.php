@@ -4,25 +4,13 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class AgeNumber
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $age;
+    private string $age;
 
-    /**
-     * @var null|int
-     */
-    private $number;
+    private ?int $number;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     public function __construct(string $name, string $age, ?int $number, string $description)
     {

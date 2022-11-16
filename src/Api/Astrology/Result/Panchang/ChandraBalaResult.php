@@ -16,17 +16,11 @@ final class ChandraBalaResult
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\Rasi[]
      */
-    private $rasis;
+    private array $rasis;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * @param \Prokerala\Api\Astrology\Result\Element\Rasi[] $rasis

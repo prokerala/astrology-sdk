@@ -18,34 +18,23 @@ final class NakshatraPorutham implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var float
-     */
-    private $maximumPoints;
+    private float $maximumPoints;
 
-    /**
-     * @var float
-     */
-    private $obtainedPoints;
+    private float $obtainedPoints;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
     /**
      * @var Porutham\BasicMatch[]
      */
-    private $matches;
+    private array $matches;
 
     /**
-     * @param float                 $maximumPoints
-     * @param float                 $obtainedPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(
-        $maximumPoints,
-        $obtainedPoints,
+        float $maximumPoints,
+        float $obtainedPoints,
         Message $message,
         array $matches
     ) {
@@ -55,26 +44,17 @@ final class NakshatraPorutham implements ResultInterface
         $this->matches = $matches;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaximumPoints()
+    public function getMaximumPoints(): float
     {
         return $this->maximumPoints;
     }
 
-    /**
-     * @return float
-     */
-    public function getObtainedPoints()
+    public function getObtainedPoints(): float
     {
         return $this->obtainedPoints;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
@@ -82,7 +62,7 @@ final class NakshatraPorutham implements ResultInterface
     /**
      * @return Porutham\BasicMatch[]
      */
-    public function getMatches()
+    public function getMatches(): array
     {
         return $this->matches;
     }

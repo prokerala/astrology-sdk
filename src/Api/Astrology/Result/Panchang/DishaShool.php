@@ -18,10 +18,7 @@ final class DishaShool implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DishaShoolResult
-     */
-    private $dishaShool;
+    private DishaShoolResult $dishaShool;
 
     public function __construct(DishaShoolResult $dishaShool)
     {

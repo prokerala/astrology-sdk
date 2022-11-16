@@ -11,10 +11,7 @@ class DailyHoroscope implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DailyHoroscopePrediction
-     */
-    private $dailyPrediction;
+    private DailyHoroscopePrediction $dailyPrediction;
 
     public function __construct(DailyHoroscopePrediction $dailyPrediction)
     {

@@ -13,45 +13,21 @@ namespace Prokerala\Api\Calendar\Result;
 
 final class CalendarDateResult
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var int
-     */
-    private $year;
+    private int $year;
 
-    /**
-     * @var int
-     */
-    private $month;
+    private int $month;
 
-    /**
-     * @var int
-     */
-    private $day;
+    private int $day;
 
-    /**
-     * @var null|int
-     */
-    private $leap;
+    private ?int $leap;
 
-    /**
-     * @var null|string
-     */
-    private $yearName;
+    private ?string $yearName;
 
-    /**
-     * @var string
-     */
-    private $monthName;
+    private string $monthName;
 
     public function __construct(int $id, string $name, int $year, int $month, int $day, ?int $leap, ?string $yearName, string $monthName)
     {

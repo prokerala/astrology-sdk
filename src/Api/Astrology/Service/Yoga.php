@@ -29,10 +29,10 @@ final class Yoga
     /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 
-    protected $slug = '/astrology/yoga';
+    protected string $slug = '/astrology/yoga';
 
     /** @var Transformer<YogaResult> */
-    private $basicResponseTransformers;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
 
     /**
      * @param Client $client Api client
@@ -51,11 +51,10 @@ final class Yoga
      * @param \DateTimeInterface $datetime        Date and time
      * @param bool               $detailed_report Return detailed result
      *
-     * @return YogaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): YogaResult
     {
         $slug = $this->slug;
 

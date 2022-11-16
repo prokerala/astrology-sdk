@@ -26,14 +26,13 @@ final class MangalDosha
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/mangal-dosha';
+    protected string $slug = '/astrology/mangal-dosha';
 
     /** @var Transformer<MangalDoshaResult> */
-    private $basicResponseTransformers;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
 
     /** @var Transformer<AdvancedMangalDoshaResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -56,7 +55,7 @@ final class MangalDosha
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

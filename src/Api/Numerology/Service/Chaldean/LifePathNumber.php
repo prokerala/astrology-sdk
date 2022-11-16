@@ -26,11 +26,10 @@ final class LifePathNumber
     /** @use TimeZoneAwareTrait<LifePath> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/chaldean/life-path-number';
+    protected string $slug = '/numerology/chaldean/life-path-number';
 
     /** @var Transformer<LifePath> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class LifePathNumber
     /**
      * Fetch result from API.
      *
-     * @return LifePath
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(\DateTimeImmutable $datetime)
+    public function process(\DateTimeImmutable $datetime): LifePath
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

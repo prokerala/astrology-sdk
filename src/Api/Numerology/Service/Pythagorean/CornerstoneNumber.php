@@ -26,11 +26,10 @@ final class CornerstoneNumber
     /** @use TimeZoneAwareTrait<CornerStone> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/cornerstone-number';
+    protected string $slug = '/numerology/cornerstone-number';
 
     /** @var Transformer<Cornerstone> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class CornerstoneNumber
     /**
      * Fetch result from API.
      *
-     * @return Cornerstone
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Cornerstone
     {
         $parameters = [
             'first_name' => $firstName,

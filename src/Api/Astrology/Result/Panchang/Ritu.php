@@ -18,15 +18,9 @@ final class Ritu implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var RituResult
-     */
-    private $vedicRitu;
+    private RituResult $vedicRitu;
 
-    /**
-     * @var RituResult
-     */
-    private $drikRitu;
+    private RituResult $drikRitu;
 
     public function __construct(RituResult $vedicRitu, RituResult $drikRitu)
     {

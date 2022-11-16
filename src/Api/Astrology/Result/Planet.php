@@ -29,41 +29,23 @@ final class Planet
         5 => 'Jupiter', 6 => 'Saturn', 101 => 'Rahu', 102 => 'Ketu', 100 => 'Ascendant',
     ];
 
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var float */
-    private $longitude;
+    private float $longitude;
 
-    /** @var bool */
-    private $isReverse;
+    private bool $isReverse;
 
-    /** @var int */
-    private $position;
+    private int $position;
 
-    /** @var string */
-    private $degree;
+    private string $degree;
 
-    /** @var int */
-    private $rasi;
+    private int $rasi;
 
-    /** @var string */
-    private $rasiLord;
+    private string $rasiLord;
 
-    /**
-     * @param int    $id
-     * @param string $name
-     * @param float  $longitude
-     * @param bool   $is_reverse
-     * @param int    $position
-     * @param string $degree
-     * @param int    $rasi
-     * @param string $rasi_lord
-     */
-    public function __construct($id, $name, $longitude, $is_reverse, $position, $degree, $rasi, $rasi_lord)
+    public function __construct(int $id, string $name, float $longitude, bool $is_reverse, int $position, string $degree, int $rasi, string $rasi_lord)
     {
         $this->id = $id;
         $this->name = $name;
@@ -77,70 +59,56 @@ final class Planet
 
     /**
      * Get planet name.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * Get planet id.
-     *
-     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
      * Get planet longitude.
-     *
-     * @return float
      */
-    public function getLongitude()
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 
     /**
      * Check whether the planet is in retrograde motion.
-     *
-     * @return bool
      */
-    public function isRetrograde()
+    public function isRetrograde(): bool
     {
         return $this->isReverse;
     }
 
     /**
      * Get planet position.
-     *
-     * @return int
      */
-    public function getPosition()
+    public function getPosition(): int
     {
         return $this->position;
     }
 
     /**
      * Get longitude degree.
-     *
-     * @return string
      */
-    public function getDegree()
+    public function getDegree(): string
     {
         return $this->degree;
     }
 
     /**
      * Get planet rasi.
-     *
-     * @return string
      */
-    public function getRasi()
+    public function getRasi(): string
     {
         return $this->rasi;
     }
@@ -150,7 +118,7 @@ final class Planet
      *
      * @return string[]
      */
-    public function getPlanetList()
+    public function getPlanetList(): array
     {
         return self::PLANET_LIST;
     }

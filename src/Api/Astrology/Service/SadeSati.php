@@ -28,14 +28,13 @@ final class SadeSati
     /** @use TimeZoneAwareTrait<SadeSatiResult|AdvancedSadeSatiResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/sade-sati';
+    protected string $slug = '/astrology/sade-sati';
 
     /** @var Transformer<AdvancedSadeSatiResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /** @var Transformer<SadeSatiResult> */
-    private $basicResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
 
     /**
      * @param Client $client Api client

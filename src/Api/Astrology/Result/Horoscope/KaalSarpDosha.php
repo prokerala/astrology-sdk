@@ -18,35 +18,18 @@ final class KaalSarpDosha implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var null|string
-     */
-    private $type;
+    private ?string $type;
 
-    /**
-     * @var null|string
-     */
-    private $doshaType;
+    private ?string $doshaType;
 
-    /**
-     * @var bool
-     */
-    private $hasDosha;
+    private bool $hasDosha;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * KaalSarpDosha constructor.
-     *
-     * @param null|string $type
-     * @param null|string $doshaType
-     * @param bool        $hasDosha
-     * @param string      $description
      */
-    public function __construct($type, $doshaType, $hasDosha, $description)
+    public function __construct(?string $type, ?string $doshaType, bool $hasDosha, string $description)
     {
         $this->type = $type;
         $this->doshaType = $doshaType;
@@ -54,42 +37,27 @@ final class KaalSarpDosha implements ResultInterface
         $this->description = $description;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getDoshaType()
+    public function getDoshaType(): ?string
     {
         return $this->doshaType;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasDosha()
+    public function hasDosha(): bool
     {
         return $this->hasDosha;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return null|\stdClass
-     */
-    public function getApiResponse()
+    public function getApiResponse(): ?\stdClass
     {
         return $this->apiResponse;
     }

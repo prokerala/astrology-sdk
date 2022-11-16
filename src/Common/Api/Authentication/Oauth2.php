@@ -19,7 +19,6 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\SimpleCache\CacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
-use stdClass;
 
 class Oauth2 implements AuthenticationTypeInterface
 {
@@ -28,7 +27,7 @@ class Oauth2 implements AuthenticationTypeInterface
     public const CACHE_KEY = 'prokerala_api_client.oauth_access_token';
     public const TOKEN_ENDPOINT = 'https://api.prokerala.com/token';
 
-    private ?string $accessToken;
+    private ?string $accessToken = null;
 
     private string $clientId;
 
@@ -60,6 +59,7 @@ class Oauth2 implements AuthenticationTypeInterface
         // Try loading access token from cache
         if ($cache) {
             $this->cache = $cache;
+
             try {
                 /** @var null|string $accessToken */
                 $accessToken = $cache->get(self::CACHE_KEY);
@@ -81,12 +81,12 @@ class Oauth2 implements AuthenticationTypeInterface
             $this->requestAccessToken();
         }
 
-        assert(is_string($this->accessToken));
+        \assert(\is_string($this->accessToken));
 
         return $this->accessToken;
     }
 
-    public function handleError(stdClass $response, int $code): void
+    public function handleError(\stdClass $response, int $code): void
     {
         $this->cache?->delete(self::CACHE_KEY);
 
@@ -120,7 +120,7 @@ class Oauth2 implements AuthenticationTypeInterface
             throw new AuthenticationException("Failed to fetch access token. Request failed with error - {$e->getMessage()}", 0, $e);
         }
 
-        /** @var null|stdClass $responseData */
+        /** @var null|\stdClass $responseData */
         $responseData = json_decode($response->getBody(), false);
         if (!$responseData) {
             throw new AuthenticationException('Failed to parse token');

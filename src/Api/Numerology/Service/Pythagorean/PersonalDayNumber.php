@@ -26,11 +26,10 @@ final class PersonalDayNumber
     /** @use TimeZoneAwareTrait<PersonalDay> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/personal-day-number';
+    protected string $slug = '/numerology/personal-day-number';
 
     /** @var Transformer<PersonalDay> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class PersonalDayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return PersonalDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, int $referenceYear)
+    public function process(\DateTimeInterface $datetime, int $referenceYear): PersonalDay
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

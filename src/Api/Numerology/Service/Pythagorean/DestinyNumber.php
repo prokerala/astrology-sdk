@@ -26,11 +26,10 @@ final class DestinyNumber
     /** @use TimeZoneAwareTrait<Destiny> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/destiny-number';
+    protected string $slug = '/numerology/destiny-number';
 
     /** @var Transformer<Destiny> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class DestinyNumber
     /**
      * Fetch result from API.
      *
-     * @return Destiny
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Destiny
     {
         $parameters = [
             'first_name' => $firstName,

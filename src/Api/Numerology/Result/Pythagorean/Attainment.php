@@ -11,15 +11,9 @@ class Attainment implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var AttainmentNumber
-     */
-    private $attainmentNumber;
+    private AttainmentNumber $attainmentNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(AttainmentNumber $attainmentNumber, NameChart $nameChart)
     {

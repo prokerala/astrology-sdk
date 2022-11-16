@@ -6,15 +6,9 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class CharacterValues
 {
-    /**
-     * @var string
-     */
-    private $character;
+    private string $character;
 
-    /**
-     * @var int
-     */
-    private $number;
+    private int $number;
 
     public function __construct(string $character, int $number)
     {

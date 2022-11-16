@@ -13,60 +13,31 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\GunaMilan;
 
 final class GunaKoot
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $girlKoot;
+    private string $girlKoot;
 
-    /**
-     * @var string
-     */
-    private $boyKoot;
+    private string $boyKoot;
 
-    /**
-     * @var float
-     */
-    private $maximumPoints;
+    private float $maximumPoints;
 
-    /**
-     * @var float
-     */
-    private $obtainedPoints;
+    private float $obtainedPoints;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * GunaKoot constructor.
-     *
-     * @param int    $id
-     * @param string $name
-     * @param string $girlKoot
-     * @param string $boyKoot
-     * @param float  $maximumPoints
-     * @param float  $obtainedPoints
-     * @param string $description
      */
     public function __construct(
-        $id,
-        $name,
-        $girlKoot,
-        $boyKoot,
-        $maximumPoints,
-        $obtainedPoints,
-        $description
+        int $id,
+        string $name,
+        string $girlKoot,
+        string $boyKoot,
+        float $maximumPoints,
+        float $obtainedPoints,
+        string $description
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -77,58 +48,37 @@ final class GunaKoot
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getGirlKoot()
+    public function getGirlKoot(): string
     {
         return $this->girlKoot;
     }
 
-    /**
-     * @return string
-     */
-    public function getBoyKoot()
+    public function getBoyKoot(): string
     {
         return $this->boyKoot;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaximumPoints()
+    public function getMaximumPoints(): float
     {
         return $this->maximumPoints;
     }
 
-    /**
-     * @return float
-     */
-    public function getObtainedPoints()
+    public function getObtainedPoints(): float
     {
         return $this->obtainedPoints;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

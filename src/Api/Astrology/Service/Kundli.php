@@ -30,13 +30,13 @@ final class Kundli
     /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
     use TimeZoneAwareTrait;
 
-    protected $slug = '/astrology/kundli';
+    protected string $slug = '/astrology/kundli';
 
     /** @var Transformer<KundliResult> */
-    private $basicResponseTransformers;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
 
     /** @var Transformer<AdvancedKundliResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -61,7 +61,7 @@ final class Kundli
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

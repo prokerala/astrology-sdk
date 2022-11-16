@@ -23,11 +23,10 @@ final class PapaSamyamCheck
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/papasamyam-check';
+    protected string $slug = '/astrology/papasamyam-check';
 
     /** @var Transformer<PapaSamyamCheckResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -40,10 +39,8 @@ final class PapaSamyamCheck
 
     /**
      * Fetch result from API.
-     *
-     * @return PapaSamyamCheckResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, string $la = 'en')
+    public function process(Profile $girl_profile, Profile $boy_profile, string $la = 'en'): PapaSamyamCheckResult
     {
         $girl_location = $girl_profile->getLocation();
         $boy_location = $boy_profile->getLocation();

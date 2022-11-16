@@ -13,56 +13,29 @@ namespace Prokerala\Api\Astrology\Result\Panchang\Choghadiya;
 
 final class Period
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
-    /**
-     * @var null|string
-     */
-    private $vela;
+    private ?string $vela;
 
-    /**
-     * @var bool
-     */
-    private $isDay;
+    private bool $isDay;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * Period constructor.
-     *
-     * @param int         $id
-     * @param string      $name
-     * @param string      $type
-     * @param null|string $vela
-     * @param bool        $isDay
      */
     public function __construct(
-        $id,
-        $name,
-        $type,
-        $vela,
-        $isDay,
+        int $id,
+        string $name,
+        string $type,
+        ?string $vela,
+        bool $isDay,
         \DateTimeInterface $start,
         \DateTimeInterface $end
     ) {
@@ -75,58 +48,37 @@ final class Period
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getVela()
+    public function getVela(): ?string
     {
         return $this->vela;
     }
 
-    /**
-     * @return bool
-     */
-    public function getIsDay()
+    public function getIsDay(): bool
     {
         return $this->isDay;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

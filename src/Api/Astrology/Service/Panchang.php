@@ -30,14 +30,13 @@ final class Panchang
     /** @use TimeZoneAwareTrait<PanchangResult|AdvancedPanchangResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/panchang';
+    protected string $slug = '/astrology/panchang';
 
     /** @var Transformer<PanchangResult> */
-    private $basicResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
 
     /** @var Transformer<AdvancedPanchangResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -62,7 +61,7 @@ final class Panchang
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, $detailed_report = false, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

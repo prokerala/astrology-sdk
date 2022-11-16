@@ -21,7 +21,7 @@ final class AnandadiYoga implements ResultInterface
     /**
      * @var AnandadiYogaResult[]
      */
-    private $anandadiYoga;
+    private array $anandadiYoga;
 
     /**
      * @param AnandadiYogaResult[] $anandadiYoga

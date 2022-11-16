@@ -18,27 +18,22 @@ use Prokerala\Common\Api\Client;
  */
 trait ClientAwareTrait
 {
-    /** @var Client */
-    protected $apiClient;
+    protected Client $apiClient;
 
     /**
      * Set API Client.
      *
      * @param Client $client Api client
-     *
-     * @return void
      */
-    public function setApiClient(Client $client)
+    public function setApiClient(Client $client): void
     {
         $this->apiClient = $client;
     }
 
     /**
      * Get API client.
-     *
-     * @return Client
      */
-    public function getApiClient()
+    public function getApiClient(): Client
     {
         return $this->apiClient;
     }

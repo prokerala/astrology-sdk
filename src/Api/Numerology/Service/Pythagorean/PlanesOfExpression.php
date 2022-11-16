@@ -26,11 +26,10 @@ final class PlanesOfExpression
     /** @use TimeZoneAwareTrait<PlanesOfExpressionResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/planes-of-expression-number';
+    protected string $slug = '/numerology/planes-of-expression-number';
 
     /** @var Transformer<PlanesOfExpressionResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class PlanesOfExpression
     /**
      * Fetch result from API.
      *
-     * @return PlanesOfExpressionResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): PlanesOfExpressionResult
     {
         $parameters = [
             'first_name' => $firstName,

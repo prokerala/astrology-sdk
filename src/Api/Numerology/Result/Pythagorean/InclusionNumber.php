@@ -6,20 +6,11 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class InclusionNumber
 {
-    /**
-     * @var int
-     */
-    private $characterNumber;
+    private int $characterNumber;
 
-    /**
-     * @var int
-     */
-    private $repeatedNumber;
+    private int $repeatedNumber;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     public function __construct(int $characterNumber, int $repeatedNumber, string $description)
     {

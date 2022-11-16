@@ -21,7 +21,7 @@ final class Yoga implements ResultInterface
     /**
      * @var Yoga\AdvancedYogaDetails[]
      */
-    private $yogaDetails;
+    private array $yogaDetails;
 
     /**
      * Kundli constructor.
@@ -36,7 +36,7 @@ final class Yoga implements ResultInterface
     /**
      * @return Yoga\AdvancedYogaDetails[]
      */
-    public function getYogaDetails()
+    public function getYogaDetails(): array
     {
         return $this->yogaDetails;
     }

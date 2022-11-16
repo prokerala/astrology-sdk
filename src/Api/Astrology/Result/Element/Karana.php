@@ -31,21 +31,13 @@ final class Karana
         'Chatushpada', 'Naga', 'Kimstughna',
     ];
 
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var int */
-    private $index;
+    private int $index;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /**
-     * @param int    $id
-     * @param int    $index
-     * @param string $name
-     */
-    public function __construct($id, $index, $name)
+    public function __construct(int $id, int $index, string $name)
     {
         $this->id = $id;
         $this->index = $index;
@@ -54,30 +46,24 @@ final class Karana
 
     /**
      * Get karana name.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * Get karana index.
-     *
-     * @return int
      */
-    public function getIndex()
+    public function getIndex(): int
     {
         return $this->index;
     }
 
     /**
      * Get karana id.
-     *
-     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -87,7 +73,7 @@ final class Karana
      *
      * @return string[]
      */
-    public function getKaranaList()
+    public function getKaranaList(): array
     {
         return self::KARANA_LIST;
     }

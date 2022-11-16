@@ -6,15 +6,12 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class LifeCycleNumber
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
     /**
      * @var AgeNumber[]
      */
-    private $cycles;
+    private array $cycles;
 
     /**
      * @param AgeNumber[] $cycles

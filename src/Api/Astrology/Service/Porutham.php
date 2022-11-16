@@ -24,14 +24,13 @@ final class Porutham
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/porutham';
+    protected string $slug = '/astrology/porutham';
 
     /** @var Transformer<MatchResult> */
-    private $basicResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
 
     /** @var Transformer<AdvancedMatchResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -46,12 +45,9 @@ final class Porutham
     /**
      * Fetch result from API.
      *
-     * @param bool   $detailed_report
-     * @param string $system
-     *
      * @return AdvancedMatchResult|MatchResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, $system, $detailed_report = false, string $la = 'en')
+    public function process(Profile $girl_profile, Profile $boy_profile, string $system, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

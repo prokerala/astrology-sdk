@@ -11,49 +11,34 @@
 
 namespace Prokerala\Api\Astrology\Result\EventTiming;
 
+use Prokerala\Api\Astrology\Result\Element\Planet;
+
 final class Rasi
 {
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var \Prokerala\Api\Astrology\Result\Element\Planet */
-    private $lord;
+    private Planet $lord;
 
-    /**
-     * @param int                                            $id
-     * @param string                                         $name
-     * @param \Prokerala\Api\Astrology\Result\Element\Planet $lord
-     */
-    public function __construct($id, $name, $lord)
+    public function __construct(int $id, string $name, Planet $lord)
     {
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Planet
-     */
-    public function getLord()
+    public function getLord(): Planet
     {
         return $this->lord;
     }

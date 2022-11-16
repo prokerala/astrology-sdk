@@ -13,43 +13,26 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 
 final class Koot
 {
-    /** @var string */
-    private $varna;
+    private string $varna;
 
-    /** @var string */
-    private $vasya;
+    private string $vasya;
 
-    /** @var string */
-    private $tara;
+    private string $tara;
 
-    /** @var string */
-    private $yoni;
+    private string $yoni;
 
-    /** @var string */
-    private $grahaMaitri;
+    private string $grahaMaitri;
 
-    /** @var string */
-    private $gana;
+    private string $gana;
 
-    /** @var string */
-    private $bhakoot;
+    private string $bhakoot;
 
-    /** @var string */
-    private $nadi;
+    private string $nadi;
 
     /**
      * Guna constructor.
-     *
-     * @param string $varna
-     * @param string $vasya
-     * @param string $tara
-     * @param string $yoni
-     * @param string $grahaMaitri
-     * @param string $gana
-     * @param string $bhakoot
-     * @param string $nadi
      */
-    public function __construct($varna, $vasya, $tara, $yoni, $grahaMaitri, $gana, $bhakoot, $nadi)
+    public function __construct(string $varna, string $vasya, string $tara, string $yoni, string $grahaMaitri, string $gana, string $bhakoot, string $nadi)
     {
         $this->varna = $varna;
         $this->vasya = $vasya;
@@ -61,66 +44,42 @@ final class Koot
         $this->nadi = $nadi;
     }
 
-    /**
-     * @return string
-     */
-    public function getVarna()
+    public function getVarna(): string
     {
         return $this->varna;
     }
 
-    /**
-     * @return string
-     */
-    public function getVasya()
+    public function getVasya(): string
     {
         return $this->vasya;
     }
 
-    /**
-     * @return string
-     */
-    public function getTara()
+    public function getTara(): string
     {
         return $this->tara;
     }
 
-    /**
-     * @return string
-     */
-    public function getYoni()
+    public function getYoni(): string
     {
         return $this->yoni;
     }
 
-    /**
-     * @return string
-     */
-    public function getGrahaMaitri()
+    public function getGrahaMaitri(): string
     {
         return $this->grahaMaitri;
     }
 
-    /**
-     * @return string
-     */
-    public function getGana()
+    public function getGana(): string
     {
         return $this->gana;
     }
 
-    /**
-     * @return string
-     */
-    public function getBhakoot()
+    public function getBhakoot(): string
     {
         return $this->bhakoot;
     }
 
-    /**
-     * @return string
-     */
-    public function getNadi()
+    public function getNadi(): string
     {
         return $this->nadi;
     }
@@ -128,7 +87,7 @@ final class Koot
     /**
      * @return array<string,string>
      */
-    public function getKoot()
+    public function getKoot(): array
     {
         return [
             'varna' => $this->varna,

@@ -22,7 +22,7 @@ final class Ayanamsa
      *
      * @return array<int,string>
      */
-    public function getAyanamsaList()
+    public function getAyanamsaList(): array
     {
         return [
             self::LAHIRI => 'Lahiri',

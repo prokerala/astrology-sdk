@@ -13,29 +13,21 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Yoga;
 
 final class AdvancedYogaDetails
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * @var Yoga[]
      */
-    private $yogaList;
+    private array $yogaList;
 
     /**
-     * @param string $name
-     * @param string $description
      * @param Yoga[] $yogaList
      */
     public function __construct(
-        $name,
-        $description,
+        string $name,
+        string $description,
         array $yogaList
     ) {
         $this->name = $name;
@@ -43,18 +35,12 @@ final class AdvancedYogaDetails
         $this->yogaList = $yogaList;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -62,7 +48,7 @@ final class AdvancedYogaDetails
     /**
      * @return Yoga[]
      */
-    public function getYogaList()
+    public function getYogaList(): array
     {
         return $this->yogaList;
     }

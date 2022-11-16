@@ -26,11 +26,10 @@ final class UniversalMonthNumber
     /** @use TimeZoneAwareTrait<UniversalMonth> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/universal-month-number';
+    protected string $slug = '/numerology/universal-month-number';
 
     /** @var Transformer<UniversalMonth> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class UniversalMonthNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return UniversalMonth
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): UniversalMonth
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -17,55 +17,30 @@ final class Planet
 {
     use StringableTrait;
 
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $vedicName;
+    private string $vedicName;
 
-    /**
-     * Lord constructor.
-     *
-     * @param int    $id
-     * @param string $name
-     * @param string $vedicName
-     */
-    public function __construct($id, $name, $vedicName)
+    public function __construct(int $id, string $name, string $vedicName)
     {
         $this->id = $id;
         $this->name = $name;
         $this->vedicName = $vedicName;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getVedicName()
+    public function getVedicName(): string
     {
         return $this->vedicName;
     }

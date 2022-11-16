@@ -26,11 +26,10 @@ final class TransitNumber
     /** @use TimeZoneAwareTrait<Transit> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/transit-number';
+    protected string $slug = '/numerology/transit-number';
 
     /** @var Transformer<Transit> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class TransitNumber
     /**
      * Fetch result from API.
      *
-     * @return Transit
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Transit
     {
         $parameters = [
             'first_name' => $firstName,

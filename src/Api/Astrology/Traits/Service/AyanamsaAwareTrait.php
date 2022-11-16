@@ -16,27 +16,20 @@ namespace Prokerala\Api\Astrology\Traits\Service;
  */
 trait AyanamsaAwareTrait
 {
-    /** @var int */
-    private $ayanamsa = 1;
+    private int $ayanamsa = 1;
 
     /**
      * Set ayanamsa system.
-     *
-     * @param int $ayanamsa
-     *
-     * @return void
      */
-    public function setAyanamsa($ayanamsa)
+    public function setAyanamsa(int $ayanamsa): void
     {
         $this->ayanamsa = $ayanamsa;
     }
 
     /**
      * Get configured ayanamsa system.
-     *
-     * @return int
      */
-    public function getAyanamsa()
+    public function getAyanamsa(): int
     {
         return $this->ayanamsa;
     }

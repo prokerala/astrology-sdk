@@ -26,11 +26,10 @@ final class SubconsciousSelfNumber
     /** @use TimeZoneAwareTrait<SubconsciousSelf> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/subconscious-self-number';
+    protected string $slug = '/numerology/subconscious-self-number';
 
     /** @var Transformer<SubconsciousSelf> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class SubconsciousSelfNumber
     /**
      * Fetch result from API.
      *
-     * @return SubconsciousSelf
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): SubconsciousSelf
     {
         $parameters = [
             'first_name' => $firstName,

@@ -29,11 +29,10 @@ final class AnandadiYoga
     /** @use TimeZoneAwareTrait<AnandadiYogaResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/anandadi-yoga';
+    protected string $slug = '/astrology/anandadi-yoga';
 
     /** @var Transformer<AnandadiYogaResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class AnandadiYoga
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return AnandadiYogaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): AnandadiYogaResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -29,10 +29,10 @@ final class DashaPeriod
     /** @use TimeZoneAwareTrait<VimsottariDashaResult> */
     use TimeZoneAwareTrait;
 
-    protected $slug = '/astrology/dasha-periods';
+    protected string $slug = '/astrology/dasha-periods';
 
     /** @var Transformer<VimsottariDashaResult> */
-    private $basicResponseTransformers;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
 
     /**
      * @param Client $client Api client
@@ -51,11 +51,10 @@ final class DashaPeriod
      * @param \DateTimeInterface $datetime        Date and time
      * @param bool               $detailed_report Return detailed result
      *
-     * @return VimsottariDashaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): VimsottariDashaResult
     {
         $slug = $this->slug;
 

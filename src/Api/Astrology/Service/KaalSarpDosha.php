@@ -25,10 +25,10 @@ final class KaalSarpDosha
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    protected $slug = '/astrology/kaal-sarp-dosha';
+    protected string $slug = '/astrology/kaal-sarp-dosha';
 
     /** @var Transformer<KaalSarpDoshaResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +45,11 @@ final class KaalSarpDosha
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return KaalSarpDoshaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): KaalSarpDoshaResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

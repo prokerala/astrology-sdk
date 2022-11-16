@@ -26,11 +26,10 @@ final class BirthdayNumber
     /** @use TimeZoneAwareTrait<BirthDay> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/birthday-number';
+    protected string $slug = '/numerology/birthday-number';
 
     /** @var Transformer<BirthDay> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class BirthdayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return BirthDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): BirthDay
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

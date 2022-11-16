@@ -15,56 +15,27 @@ use Prokerala\Api\Astrology\Result\Element\Rasi;
 
 final class Planet
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var float
-     */
-    private $longitude;
+    private float $longitude;
 
-    /**
-     * @var bool
-     */
-    private $isRetrograde;
+    private bool $isRetrograde;
 
-    /**
-     * @var int
-     */
-    private $position;
+    private int $position;
 
-    /**
-     * @var float
-     */
-    private $degree;
+    private float $degree;
 
-    /**
-     * @var Rasi
-     */
-    private $rasi;
+    private Rasi $rasi;
 
-    /**
-     * @param int    $id
-     * @param string $name
-     * @param float  $longitude
-     * @param bool   $isRetrograde
-     * @param int    $position
-     * @param float  $degree
-     */
     public function __construct(
-        $id,
-        $name,
-        $longitude,
-        $isRetrograde,
-        $position,
-        $degree,
+        int $id,
+        string $name,
+        float $longitude,
+        bool $isRetrograde,
+        int $position,
+        float $degree,
         Rasi $rasi
     ) {
         $this->id = $id;
@@ -76,58 +47,37 @@ final class Planet
         $this->rasi = $rasi;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return float
-     */
-    public function getLongitude()
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 
-    /**
-     * @return bool
-     */
-    public function isRetrograde()
+    public function isRetrograde(): bool
     {
         return $this->isRetrograde;
     }
 
-    /**
-     * @return int
-     */
-    public function getPosition()
+    public function getPosition(): int
     {
         return $this->position;
     }
 
-    /**
-     * @return float
-     */
-    public function getDegree()
+    public function getDegree(): float
     {
         return $this->degree;
     }
 
-    /**
-     * @return Rasi
-     */
-    public function getRasi()
+    public function getRasi(): Rasi
     {
         return $this->rasi;
     }

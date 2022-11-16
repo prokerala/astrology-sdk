@@ -6,10 +6,7 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class ArrayNumber
 {
-    /**
-     * @var array
-     */
-    private $array;
+    private array $array;
 
     public function __construct(array $array)
     {

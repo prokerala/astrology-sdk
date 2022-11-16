@@ -29,11 +29,10 @@ final class CalendarDate
     /** @use TimeZoneAwareTrait<CalendarDateResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/calendar';
+    protected string $slug = '/calendar';
 
     /** @var Transformer<CalendarDateResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class CalendarDate
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return CalendarDateResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $calendar, \DateTimeInterface $date, string $la = 'en')
+    public function process(string $calendar, \DateTimeInterface $date, string $la = 'en'): CalendarDateResult
     {
         $parameters = [
             'calendar' => $calendar,

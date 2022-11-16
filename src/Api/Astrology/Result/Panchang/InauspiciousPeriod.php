@@ -21,7 +21,7 @@ final class InauspiciousPeriod implements ResultInterface
     /**
      * @var Muhurat\Muhurat[]
      */
-    private $muhurat;
+    private array $muhurat;
 
     /**
      * InauspiciousPeriod constructor.
@@ -36,7 +36,7 @@ final class InauspiciousPeriod implements ResultInterface
     /**
      * @return Muhurat\Muhurat[]
      */
-    public function getMuhurat()
+    public function getMuhurat(): array
     {
         return $this->muhurat;
     }

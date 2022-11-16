@@ -26,11 +26,10 @@ final class KarmicDebtNumber
     /** @use TimeZoneAwareTrait<KarmicDebt> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/karmic-debt-number';
+    protected string $slug = '/numerology/karmic-debt-number';
 
     /** @var Transformer<KarmicDebt> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class KarmicDebtNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return KarmicDebt
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName): KarmicDebt
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

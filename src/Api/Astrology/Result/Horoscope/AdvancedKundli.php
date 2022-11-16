@@ -18,25 +18,19 @@ final class AdvancedKundli implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BirthDetails
-     */
-    private $nakshatraDetails;
+    private BirthDetails $nakshatraDetails;
 
-    /**
-     * @var AdvancedMangalDosha
-     */
-    private $mangalDosha;
+    private AdvancedMangalDosha $mangalDosha;
 
     /**
      * @var Yoga\AdvancedYogaDetails[]
      */
-    private $yogaDetails;
+    private array $yogaDetails;
 
     /**
      * @var Dasha\DashaPeriod[]
      */
-    private $dashaPeriods;
+    private array $dashaPeriods;
 
     /**
      * AdvancedKundli constructor.
@@ -56,18 +50,12 @@ final class AdvancedKundli implements ResultInterface
         $this->dashaPeriods = $dashaPeriods;
     }
 
-    /**
-     * @return BirthDetails
-     */
-    public function getNakshatraDetails()
+    public function getNakshatraDetails(): BirthDetails
     {
         return $this->nakshatraDetails;
     }
 
-    /**
-     * @return AdvancedMangalDosha
-     */
-    public function getMangalDosha()
+    public function getMangalDosha(): AdvancedMangalDosha
     {
         return $this->mangalDosha;
     }
@@ -75,7 +63,7 @@ final class AdvancedKundli implements ResultInterface
     /**
      * @return Yoga\AdvancedYogaDetails[]
      */
-    public function getYogaDetails()
+    public function getYogaDetails(): array
     {
         return $this->yogaDetails;
     }
@@ -83,7 +71,7 @@ final class AdvancedKundli implements ResultInterface
     /**
      * @return Dasha\DashaPeriod[]
      */
-    public function getDashaPeriods()
+    public function getDashaPeriods(): array
     {
         return $this->dashaPeriods;
     }

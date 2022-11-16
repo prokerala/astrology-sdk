@@ -26,11 +26,10 @@ final class CapstoneNumber
     /** @use TimeZoneAwareTrait<CapStone> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/capstone-number';
+    protected string $slug = '/numerology/capstone-number';
 
     /** @var Transformer<Capstone> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class CapstoneNumber
     /**
      * Fetch result from API.
      *
-     * @return Capstone
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Capstone
     {
         $parameters = [
             'first_name' => $firstName,

@@ -26,11 +26,10 @@ final class WholeNameNumber
     /** @use TimeZoneAwareTrait<WholeName> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/chaldean/whole-name-number';
+    protected string $slug = '/numerology/chaldean/whole-name-number';
 
     /** @var Transformer<WholeName> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class WholeNameNumber
     /**
      * Fetch result from API.
      *
-     * @return WholeName
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): WholeName
     {
         $parameters = [
             'first_name' => $firstName,

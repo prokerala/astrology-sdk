@@ -26,11 +26,10 @@ final class HiddenPassionNumber
     /** @use TimeZoneAwareTrait<HiddenPassion> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/hidden-passion-number';
+    protected string $slug = '/numerology/hidden-passion-number';
 
     /** @var Transformer<HiddenPassion> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class HiddenPassionNumber
     /**
      * Fetch result from API.
      *
-     * @return HiddenPassion
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): HiddenPassion
     {
         $parameters = [
             'first_name' => $firstName,

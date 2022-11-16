@@ -19,20 +19,11 @@ final class PapaSamyamCheck implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var Papasamyam
-     */
-    private $girlPapasamyam;
+    private Papasamyam $girlPapasamyam;
 
-    /**
-     * @var Papasamyam
-     */
-    private $boyPapasamyam;
+    private Papasamyam $boyPapasamyam;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
     public function __construct(
         Papasamyam $girlPapasamyam,
@@ -44,26 +35,17 @@ final class PapaSamyamCheck implements ResultInterface
         $this->message = $message;
     }
 
-    /**
-     * @return Papasamyam
-     */
-    public function getGirlPapasamyam()
+    public function getGirlPapasamyam(): Papasamyam
     {
         return $this->girlPapasamyam;
     }
 
-    /**
-     * @return Papasamyam
-     */
-    public function getBoyPapasamyam()
+    public function getBoyPapasamyam(): Papasamyam
     {
         return $this->boyPapasamyam;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }

@@ -21,7 +21,7 @@ final class ChandraBala implements ResultInterface
     /**
      * @var ChandraBalaResult[]
      */
-    private $chandraBala;
+    private array $chandraBala;
 
     /**
      * @param ChandraBalaResult[] $chandraBala

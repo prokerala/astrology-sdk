@@ -13,69 +13,43 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Nakshatra;
 
 final class NakshatraInfo
 {
-    /** @var string */
-    private $deity;
+    private string $deity;
 
-    /** @var string */
-    private $ganam;
+    private string $ganam;
 
-    /** @var string */
-    private $symbol;
+    private string $symbol;
 
-    /** @var string */
-    private $animalSign;
+    private string $animalSign;
 
-    /** @var string */
-    private $nadi;
+    private string $nadi;
 
-    /** @var string */
-    private $color;
+    private string $color;
 
-    /** @var string */
-    private $bestDirection;
+    private string $bestDirection;
 
-    /** @var string */
-    private $syllables;
+    private string $syllables;
 
-    /** @var string */
-    private $birthStone;
+    private string $birthStone;
 
-    /** @var string */
-    private $gender;
+    private string $gender;
 
-    /** @var string */
-    private $planet;
+    private string $planet;
 
-    /** @var string */
-    private $enemyYoni;
+    private string $enemyYoni;
 
-    /**
-     * @param string $deity
-     * @param string $ganam
-     * @param string $symbol
-     * @param string $animalSign
-     * @param string $nadi
-     * @param string $color
-     * @param string $bestDirection
-     * @param string $syllables
-     * @param string $birthStone
-     * @param string $gender
-     * @param string $planet
-     * @param string $enemyYoni
-     */
     public function __construct(
-        $deity,
-        $ganam,
-        $symbol,
-        $animalSign,
-        $nadi,
-        $color,
-        $bestDirection,
-        $syllables,
-        $birthStone,
-        $gender,
-        $planet,
-        $enemyYoni
+        string $deity,
+        string $ganam,
+        string $symbol,
+        string $animalSign,
+        string $nadi,
+        string $color,
+        string $bestDirection,
+        string $syllables,
+        string $birthStone,
+        string $gender,
+        string $planet,
+        string $enemyYoni
     ) {
         $this->deity = $deity;
         $this->ganam = $ganam;
@@ -91,98 +65,62 @@ final class NakshatraInfo
         $this->enemyYoni = $enemyYoni;
     }
 
-    /**
-     * @return string
-     */
-    public function getDeity()
+    public function getDeity(): string
     {
         return $this->deity;
     }
 
-    /**
-     * @return string
-     */
-    public function getGanam()
+    public function getGanam(): string
     {
         return $this->ganam;
     }
 
-    /**
-     * @return string
-     */
-    public function getSymbol()
+    public function getSymbol(): string
     {
         return $this->symbol;
     }
 
-    /**
-     * @return string
-     */
-    public function getAnimalSign()
+    public function getAnimalSign(): string
     {
         return $this->animalSign;
     }
 
-    /**
-     * @return string
-     */
-    public function getNadi()
+    public function getNadi(): string
     {
         return $this->nadi;
     }
 
-    /**
-     * @return string
-     */
-    public function getColor()
+    public function getColor(): string
     {
         return $this->color;
     }
 
-    /**
-     * @return string
-     */
-    public function getBestDirection()
+    public function getBestDirection(): string
     {
         return $this->bestDirection;
     }
 
-    /**
-     * @return string
-     */
-    public function getSyllables()
+    public function getSyllables(): string
     {
         return $this->syllables;
     }
 
-    /**
-     * @return string
-     */
-    public function getBirthStone()
+    public function getBirthStone(): string
     {
         return $this->birthStone;
     }
 
-    /**
-     * @return string
-     */
-    public function getGender()
+    public function getGender(): string
     {
         return $this->gender;
     }
 
-    /**
-     * @return string
-     */
-    public function getPlanet()
+    public function getPlanet(): string
     {
         return $this->planet;
     }
 
-    /**
-     * @return string
-     */
-    public function getEnemyYoni()
+    public function getEnemyYoni(): string
     {
         return $this->enemyYoni;
     }

@@ -19,7 +19,7 @@ final class AuspiciousPeriod implements ResultInterface
     use RawResponseTrait;
 
     /** @var Muhurat\Muhurat[] */
-    private $muhurat;
+    private array $muhurat;
 
     /**
      * @param Muhurat\Muhurat[] $muhurat
@@ -32,7 +32,7 @@ final class AuspiciousPeriod implements ResultInterface
     /**
      * @return Muhurat\Muhurat[]
      */
-    public function getMuhurat()
+    public function getMuhurat(): array
     {
         return $this->muhurat;
     }

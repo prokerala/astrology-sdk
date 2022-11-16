@@ -23,17 +23,11 @@ final class Weekday
 
     public const WEEKDAY_LIST = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /**
-     * @param int    $id
-     * @param string $name
-     */
-    public function __construct($id, $name)
+    public function __construct(int $id, string $name)
     {
         $this->id = $id;
         $this->name = $name;
@@ -41,20 +35,16 @@ final class Weekday
 
     /**
      * Get week day.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * Get week day id.
-     *
-     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -64,7 +54,7 @@ final class Weekday
      *
      * @return list<string>
      */
-    public function getWeekdayList()
+    public function getWeekdayList(): array
     {
         return self::WEEKDAY_LIST;
     }

@@ -24,14 +24,13 @@ final class KundliMatching
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/kundli-matching';
+    protected string $slug = '/astrology/kundli-matching';
 
     /** @var Transformer<KundliMatching> */
-    private $basicResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
 
     /** @var Transformer<AdvancedMatchResult> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -46,11 +45,9 @@ final class KundliMatching
     /**
      * Fetch result from API.
      *
-     * @param bool $detailed_report
-     *
      * @return AdvancedMatchResult|MatchResult
      */
-    public function process(Profile $girl_profile, Profile $boy_profile, $detailed_report = false, string $la = 'en')
+    public function process(Profile $girl_profile, Profile $boy_profile, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

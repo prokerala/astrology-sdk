@@ -29,11 +29,10 @@ final class ChandraBala
     /** @use TimeZoneAwareTrait<ChandraBalaResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/chandra-bala';
+    protected string $slug = '/astrology/chandra-bala';
 
     /** @var Transformer<ChandraBalaResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class ChandraBala
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return ChandraBalaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): ChandraBalaResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

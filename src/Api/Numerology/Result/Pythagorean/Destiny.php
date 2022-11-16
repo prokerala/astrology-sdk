@@ -11,15 +11,9 @@ class Destiny implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DestinyNumber
-     */
-    private $destinyNumber;
+    private DestinyNumber $destinyNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(DestinyNumber $destinyNumber, NameChart $nameChart)
     {

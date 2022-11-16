@@ -26,11 +26,10 @@ final class EssenceNumber
     /** @use TimeZoneAwareTrait<EssenceResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/essence-number';
+    protected string $slug = '/numerology/essence-number';
 
     /** @var Transformer<EssenceResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class EssenceNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return EssenceResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName, \DateTimeImmutable $dateOfBirth)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName, \DateTimeImmutable $dateOfBirth): EssenceResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -26,11 +26,10 @@ final class LifePathNumber
     /** @use TimeZoneAwareTrait<LifePath> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/life-path-number';
+    protected string $slug = '/numerology/life-path-number';
 
     /** @var Transformer<LifePath> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class LifePathNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return LifePath
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): LifePath
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -11,10 +11,7 @@ class Birthday implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BirthdayNumber
-     */
-    private $birthdayNumber;
+    private BirthdayNumber $birthdayNumber;
 
     public function __construct(BirthdayNumber $birthdayNumber)
     {

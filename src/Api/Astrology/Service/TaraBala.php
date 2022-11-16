@@ -29,11 +29,10 @@ final class TaraBala
     /** @use TimeZoneAwareTrait<TaraBalaResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/tara-bala';
+    protected string $slug = '/astrology/tara-bala';
 
     /** @var Transformer<TaraBalaResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class TaraBala
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return TaraBalaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): TaraBalaResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

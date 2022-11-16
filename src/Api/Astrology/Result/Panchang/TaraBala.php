@@ -19,9 +19,9 @@ final class TaraBala implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var TaraBalaResult
+     * @var TaraBalaResult[]
      */
-    private $taraBala;
+    private array $taraBala;
 
     /**
      * @param TaraBalaResult[] $taraBala
@@ -31,6 +31,9 @@ final class TaraBala implements ResultInterface
         $this->taraBala = $taraBala;
     }
 
+    /**
+     * @return TaraBalaResult[]
+     */
     public function getTaraBala(): array
     {
         return $this->taraBala;

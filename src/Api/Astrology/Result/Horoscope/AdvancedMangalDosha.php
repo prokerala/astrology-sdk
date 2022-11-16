@@ -18,51 +18,35 @@ final class AdvancedMangalDosha implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var bool
-     */
-    private $hasDosha;
+    private bool $hasDosha;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
-    /**
-     * @var bool
-     */
-    private $hasException;
+    private bool $hasException;
 
-    /**
-     * @var null|string
-     */
-    private $type;
+    private ?string $type;
 
     /**
      * @var string[]
      */
-    private $exceptions;
+    private array $exceptions;
 
     /**
      * @var string[]
      */
-    private $remedies;
+    private array $remedies;
 
     /**
      * AdvancedMangalDosha constructor.
      *
-     * @param bool        $hasDosha
-     * @param string      $description
-     * @param bool        $hasException
-     * @param null|string $type
-     * @param string[]    $exceptions
-     * @param string[]    $remedies
+     * @param string[] $exceptions
+     * @param string[] $remedies
      */
     public function __construct(
-        $hasDosha,
-        $description,
-        $hasException,
-        $type,
+        bool $hasDosha,
+        string $description,
+        bool $hasException,
+        ?string $type,
         array $exceptions,
         array $remedies
     ) {
@@ -74,34 +58,22 @@ final class AdvancedMangalDosha implements ResultInterface
         $this->remedies = $remedies;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasDosha()
+    public function hasDosha(): bool
     {
         return $this->hasDosha;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasException()
+    public function hasException(): bool
     {
         return $this->hasException;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -109,7 +81,7 @@ final class AdvancedMangalDosha implements ResultInterface
     /**
      * @return string[]
      */
-    public function getExceptions()
+    public function getExceptions(): array
     {
         return $this->exceptions;
     }
@@ -117,7 +89,7 @@ final class AdvancedMangalDosha implements ResultInterface
     /**
      * @return string[]
      */
-    public function getRemedies()
+    public function getRemedies(): array
     {
         return $this->remedies;
     }

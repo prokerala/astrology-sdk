@@ -13,15 +13,9 @@ namespace Prokerala\Api\Astrology\Result\Panchang\Muhurat;
 
 final class Period
 {
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * Period constructor.
@@ -32,18 +26,12 @@ final class Period
         $this->end = $end;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

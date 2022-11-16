@@ -13,55 +13,33 @@ namespace Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham;
 
 final class Porutham
 {
-    /**
-     * @var bool
-     */
-    private $hasPorutham;
+    private bool $hasPorutham;
 
-    /**
-     * @var int
-     */
-    private $point;
+    private int $point;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * Porutham constructor.
-     *
-     * @param bool   $hasPorutham
-     * @param int    $point
-     * @param string $description
      */
-    public function __construct($hasPorutham, $point, $description)
+    public function __construct(bool $hasPorutham, int $point, string $description)
     {
         $this->hasPorutham = $hasPorutham;
         $this->point = $point;
         $this->description = $description;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasPorutham()
+    public function hasPorutham(): bool
     {
         return $this->hasPorutham;
     }
 
-    /**
-     * @return int
-     */
-    public function getPoint()
+    public function getPoint(): int
     {
         return $this->point;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

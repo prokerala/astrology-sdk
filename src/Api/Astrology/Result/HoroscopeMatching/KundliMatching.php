@@ -19,21 +19,13 @@ final class KundliMatching implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var ProfileInfo */
-    private $girlInfo;
+    private ProfileInfo $girlInfo;
 
-    /** @var ProfileInfo */
-    private $boyInfo;
+    private ProfileInfo $boyInfo;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
-    /**
-     * @var GunaMilan
-     */
-    private $gunaMilan;
+    private GunaMilan $gunaMilan;
 
     public function __construct(
         ProfileInfo $girlInfo,
@@ -47,34 +39,22 @@ final class KundliMatching implements ResultInterface
         $this->gunaMilan = $gunaMilan;
     }
 
-    /**
-     * @return ProfileInfo
-     */
-    public function getGirlInfo()
+    public function getGirlInfo(): ProfileInfo
     {
         return $this->girlInfo;
     }
 
-    /**
-     * @return ProfileInfo
-     */
-    public function getBoyInfo()
+    public function getBoyInfo(): ProfileInfo
     {
         return $this->boyInfo;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
 
-    /**
-     * @return GunaMilan
-     */
-    public function getGunaMilan()
+    public function getGunaMilan(): GunaMilan
     {
         return $this->gunaMilan;
     }

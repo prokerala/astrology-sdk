@@ -26,11 +26,10 @@ final class MaturityNumber
     /** @use TimeZoneAwareTrait<Maturity> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/maturity-number';
+    protected string $slug = '/numerology/maturity-number';
 
     /** @var Transformer<Maturity> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class MaturityNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return Maturity
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName): Maturity
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

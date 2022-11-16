@@ -11,15 +11,9 @@ class Maturity implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var MaturityNumber
-     */
-    private $maturityNumber;
+    private MaturityNumber $maturityNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(MaturityNumber $maturityNumber, NameChart $nameChart)
     {

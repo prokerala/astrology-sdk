@@ -11,10 +11,7 @@ class PersonalYear implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalYearNumber
-     */
-    private $personalYearNumber;
+    private PersonalYearNumber $personalYearNumber;
 
     public function __construct(PersonalYearNumber $personalYearNumber)
     {

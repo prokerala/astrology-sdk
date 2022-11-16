@@ -26,11 +26,10 @@ final class PersonalYearNumber
     /** @use TimeZoneAwareTrait<PersonalYear> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/personal-year-number';
+    protected string $slug = '/numerology/personal-year-number';
 
     /** @var Transformer<PersonalYear> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class PersonalYearNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return PersonalYear
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, int $referenceDate)
+    public function process(\DateTimeInterface $datetime, int $referenceDate): PersonalYear
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

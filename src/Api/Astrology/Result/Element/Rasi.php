@@ -17,54 +17,30 @@ final class Rasi
 {
     use StringableTrait;
 
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var Planet
-     */
-    private $lord;
+    private Planet $lord;
 
-    /**
-     * Rasi constructor.
-     *
-     * @param int    $id
-     * @param string $name
-     */
-    public function __construct($id, $name, Planet $lord)
+    public function __construct(int $id, string $name, Planet $lord)
     {
         $this->id = $id;
         $this->name = $name;
         $this->lord = $lord;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return Planet
-     */
-    public function getLord()
+    public function getLord(): Planet
     {
         return $this->lord;
     }

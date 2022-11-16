@@ -13,30 +13,15 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\SadeSati;
 
 final class SaturnTransit
 {
-    /**
-     * @var string
-     */
-    private $saturnSign;
+    private string $saturnSign;
 
-    /**
-     * @var string
-     */
-    private $phase;
+    private string $phase;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * @var null
@@ -44,12 +29,9 @@ final class SaturnTransit
     private $isRetrograde;
 
     /**
-     * @param string $saturnSign
-     * @param string $phase
-     * @param string $description
-     * @param null   $isRetrograde
+     * @param null $isRetrograde
      */
-    public function __construct($saturnSign, $phase, \DateTimeInterface $start, \DateTimeInterface $end, $description, $isRetrograde = null)
+    public function __construct(string $saturnSign, string $phase, \DateTimeInterface $start, \DateTimeInterface $end, string $description, $isRetrograde = null)
     {
         $this->saturnSign = $saturnSign;
         $this->phase = $phase;
@@ -59,42 +41,27 @@ final class SaturnTransit
         $this->isRetrograde = $isRetrograde;
     }
 
-    /**
-     * @return string
-     */
-    public function getSaturnSign()
+    public function getSaturnSign(): string
     {
         return $this->saturnSign;
     }
 
-    /**
-     * @return string
-     */
-    public function getPhase()
+    public function getPhase(): string
     {
         return $this->phase;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

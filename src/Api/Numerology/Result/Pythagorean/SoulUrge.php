@@ -11,15 +11,9 @@ class SoulUrge implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var SoulUrgeNumber
-     */
-    private $soulUrgeNumber;
+    private SoulUrgeNumber $soulUrgeNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(SoulUrgeNumber $soulUrgeNumber, NameChart $nameChart)
     {

@@ -26,11 +26,10 @@ final class LifeCycleNumber
     /** @use TimeZoneAwareTrait<LifeCycleResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/life-cycle-number';
+    protected string $slug = '/numerology/life-cycle-number';
 
     /** @var TransformerAlias<LifeCycleResult> */
-    private $transformer;
+    private TransformerAlias $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class LifeCycleNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return LifeCycleResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): LifeCycleResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

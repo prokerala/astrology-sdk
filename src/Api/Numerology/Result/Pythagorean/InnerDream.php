@@ -11,15 +11,9 @@ class InnerDream implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var InnerDreamNumber
-     */
-    private $innerDreamNumber;
+    private InnerDreamNumber $innerDreamNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(InnerDreamNumber $innerDreamNumber, NameChart $nameChart)
     {

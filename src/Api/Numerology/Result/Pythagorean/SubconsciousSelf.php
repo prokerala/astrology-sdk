@@ -11,15 +11,9 @@ class SubconsciousSelf implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var SubconsciousSelfNumber
-     */
-    private $subconsciousSelfNumber;
+    private SubconsciousSelfNumber $subconsciousSelfNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(SubconsciousSelfNumber $subconsciousSelfNumber, NameChart $nameChart)
     {

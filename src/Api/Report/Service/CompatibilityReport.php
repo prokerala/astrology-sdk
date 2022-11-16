@@ -13,8 +13,7 @@ final class CompatibilityReport
     use ClientAwareTrait;
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/report/compatibility-reading/instant';
+    protected string $slug = '/report/compatibility-reading/instant';
 
     /**
      * @param Client $client Api client
@@ -27,10 +26,9 @@ final class CompatibilityReport
     /**
      * Fetch result from API.
      *
-     * @param array $input   Chart type
-     * @param array $options
+     * @param array $input Chart type
      */
-    public function process($input, $options)
+    public function process(array $input, array $options)
     {
         $parameters = [
             'input' => $input,

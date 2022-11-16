@@ -17,58 +17,36 @@ final class BasicMatch
 {
     use StringableTrait;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var bool
-     */
-    private $hasPorutham;
+    private bool $hasPorutham;
 
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
     /**
      * Match constructor.
-     *
-     * @param int    $id
-     * @param string $name
-     * @param bool   $hasPorutham
      */
     public function __construct(
-        $id,
-        $name,
-        $hasPorutham
+        int $id,
+        string $name,
+        bool $hasPorutham
     ) {
         $this->name = $name;
         $this->hasPorutham = $hasPorutham;
         $this->id = $id;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasPorutham()
+    public function hasPorutham(): bool
     {
         return $this->hasPorutham;
     }

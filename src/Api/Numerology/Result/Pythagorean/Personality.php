@@ -9,10 +9,7 @@ class Personality implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var PersonalityNumber
-     */
-    private $personalityNumber;
+    private PersonalityNumber $personalityNumber;
 
     public function __construct(PersonalityNumber $personalityNumber)
     {

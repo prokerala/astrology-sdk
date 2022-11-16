@@ -18,36 +18,25 @@ final class ThirumanaPorutham implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var float
-     */
-    private $maximumPoints;
+    private float $maximumPoints;
 
-    /**
-     * @var float
-     */
-    private $obtainedPoints;
+    private float $obtainedPoints;
 
     /**
      * @var Porutham\BasicMatch[]
      */
-    private $matches;
+    private array $matches;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
     /**
      * ThirumanaPorutham constructor.
      *
-     * @param float                 $maximumPoints
-     * @param float                 $obtainedPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(
-        $maximumPoints,
-        $obtainedPoints,
+        float $maximumPoints,
+        float $obtainedPoints,
         Message $message,
         array $matches
     ) {
@@ -57,26 +46,17 @@ final class ThirumanaPorutham implements ResultInterface
         $this->message = $message;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaximumPoints()
+    public function getMaximumPoints(): float
     {
         return $this->maximumPoints;
     }
 
-    /**
-     * @return float
-     */
-    public function getObtainedPoints()
+    public function getObtainedPoints(): float
     {
         return $this->obtainedPoints;
     }
@@ -84,7 +64,7 @@ final class ThirumanaPorutham implements ResultInterface
     /**
      * @return Porutham\BasicMatch[]
      */
-    public function getMatches()
+    public function getMatches(): array
     {
         return $this->matches;
     }

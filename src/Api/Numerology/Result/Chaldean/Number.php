@@ -6,20 +6,11 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 class Number
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var ?int
-     */
-    private $number;
+    private ?int $number;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     public function __construct(string $name, ?int $number, string $description)
     {

@@ -21,7 +21,6 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use stdClass;
 
 final class Client
 {
@@ -47,10 +46,10 @@ final class Client
      *
      * @internal
      *
-     * @param string $path  section path
-     * @param array<string,mixed>  $input request parameters
+     * @param string              $path  section path
+     * @param array<string,mixed> $input request parameters
      *
-     * @return stdClass|string
+     * @return \stdClass|string
      */
     public function process(string $path, array $input)
     {
@@ -62,7 +61,7 @@ final class Client
             $response = $this->request($request);
             $responseData = $this->parseResponse($response);
 
-            if (401 === $response->getStatusCode() && $responseData instanceof stdClass) {
+            if (401 === $response->getStatusCode() && $responseData instanceof \stdClass) {
                 $this->authClient->handleError($responseData, $response->getStatusCode());
             }
         } catch (TokenExpiredException) {
@@ -80,7 +79,7 @@ final class Client
             return $responseData;
         }
 
-        assert($responseData instanceof stdClass);
+        \assert($responseData instanceof \stdClass);
         $this->handleError($statusCode, $responseData->errors);
     }
 
@@ -95,7 +94,7 @@ final class Client
     }
 
     /**
-     * @return stdClass|string
+     * @return \stdClass|string
      */
     private function parseResponse(ResponseInterface $response)
     {
@@ -106,12 +105,12 @@ final class Client
             return $responseBody;
         }
 
-        /** @var stdClass */
+        /** @var \stdClass */
         return json_decode($responseBody, null, 512, \JSON_THROW_ON_ERROR);
     }
 
     /**
-     * @param list<stdClass> $errors
+     * @param  list<\stdClass> $errors
      * @return never
      */
     private function handleError(int $statusCode, array $errors)

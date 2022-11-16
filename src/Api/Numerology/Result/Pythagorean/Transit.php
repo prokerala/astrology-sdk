@@ -14,30 +14,26 @@ class Transit implements ResultInterface
     /**
      * @var Cycle[]
      */
-    private $physical;
+    private array $physical;
 
     /**
      * @var Cycle[]
      */
-    private $mental;
+    private array $mental;
 
     /**
      * @var Cycle[]
      */
-    private $spiritual;
+    private array $spiritual;
+
+    private NameChart $nameChart;
 
     /**
-     * @var NameChart
+     * @param Cycle[] $physical
+     * @param Cycle[] $mental
+     * @param Cycle[] $spiritual
      */
-    private $nameChart;
-
-    /**
-     * @param Cycle[]   $physical
-     * @param Cycle[]   $mental
-     * @param Cycle[]   $spiritual
-     * @param NameChart $nameChart
-     */
-    public function __construct($physical, $mental, $spiritual, $nameChart)
+    public function __construct(array $physical, array $mental, array $spiritual, NameChart $nameChart)
     {
         $this->physical = $physical;
         $this->mental = $mental;

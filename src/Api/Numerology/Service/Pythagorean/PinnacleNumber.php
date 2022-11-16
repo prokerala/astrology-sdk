@@ -26,11 +26,10 @@ final class PinnacleNumber
     /** @use TimeZoneAwareTrait<PinnacleResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/pinnacle-number';
+    protected string $slug = '/numerology/pinnacle-number';
 
     /** @var Transformer<PinnacleResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class PinnacleNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return PinnacleResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): PinnacleResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

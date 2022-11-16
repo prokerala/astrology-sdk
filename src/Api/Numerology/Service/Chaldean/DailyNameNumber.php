@@ -26,11 +26,10 @@ final class DailyNameNumber
     /** @use TimeZoneAwareTrait<DailyName> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/chaldean/daily-name-number';
+    protected string $slug = '/numerology/chaldean/daily-name-number';
 
     /** @var Transformer<DailyName> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class DailyNameNumber
     /**
      * Fetch result from API.
      *
-     * @return DailyName
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): DailyName
     {
         $parameters = [
             'first_name' => $firstName,

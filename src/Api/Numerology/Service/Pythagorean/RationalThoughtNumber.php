@@ -26,11 +26,10 @@ final class RationalThoughtNumber
     /** @use TimeZoneAwareTrait<RationalThought> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/rational-thought-number';
+    protected string $slug = '/numerology/rational-thought-number';
 
     /** @var Transformer<RationalThought> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class RationalThoughtNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return RationalThought
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName): RationalThought
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

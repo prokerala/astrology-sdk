@@ -13,35 +13,23 @@ namespace Prokerala\Api\Astrology\Result\Panchang\Muhurat;
 
 final class Muhurat
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
     /**
      * @var Period[]
      */
-    private $period;
+    private array $period;
 
     /**
      * Muhurat constructor.
      *
-     * @param int      $id
-     * @param string   $name
-     * @param string   $type
      * @param Period[] $period
      */
-    public function __construct($id, $name, $type, array $period)
+    public function __construct(int $id, string $name, string $type, array $period)
     {
         $this->id = $id;
         $this->name = $name;
@@ -49,26 +37,17 @@ final class Muhurat
         $this->period = $period;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -76,7 +55,7 @@ final class Muhurat
     /**
      * @return Period[]
      */
-    public function getPeriod()
+    public function getPeriod(): array
     {
         return $this->period;
     }

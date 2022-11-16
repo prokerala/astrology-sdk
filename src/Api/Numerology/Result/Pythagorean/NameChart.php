@@ -9,24 +9,24 @@ class NameChart
     /**
      * @var CharacterValues[]
      */
-    private $firstName;
+    private array $firstName;
 
     /**
      * @var CharacterValues[]
      */
-    private $lastName;
+    private array $lastName;
 
     /**
      * @var CharacterValues[]
      */
-    private $middleName;
+    private array $middleName;
 
     /**
      * @param CharacterValues[] $firstName
      * @param CharacterValues[] $lastName
      * @param CharacterValues[] $middleName
      */
-    public function __construct($firstName, $lastName, $middleName)
+    public function __construct(array $firstName, array $lastName, array $middleName)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;

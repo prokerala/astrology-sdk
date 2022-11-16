@@ -16,23 +16,14 @@ namespace Prokerala\Api\Astrology\Traits\Result;
  */
 trait RawResponseTrait
 {
-    /**
-     * @var null|\stdClass
-     */
-    private $apiResponse;
+    private ?\stdClass $apiResponse;
 
-    /**
-     * @return void
-     */
-    public function setRawResponse(\stdClass $data)
+    public function setRawResponse(\stdClass $data): void
     {
         $this->apiResponse = $data;
     }
 
-    /**
-     * @return null|\stdClass
-     */
-    public function getRawResponse()
+    public function getRawResponse(): ?\stdClass
     {
         return $this->apiResponse;
     }

@@ -12,15 +12,9 @@ class IdentityInitialCode implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var IdentityInitialCodeNumber
-     */
-    private $identityInitialCodeNumber;
+    private IdentityInitialCodeNumber $identityInitialCodeNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(IdentityInitialCodeNumber $identityInitialCodeNumber, NameChart $nameChart)
     {

@@ -18,20 +18,14 @@ final class Kundli implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BirthDetails
-     */
-    private $nakshatraDetails;
+    private BirthDetails $nakshatraDetails;
 
-    /**
-     * @var MangalDosha
-     */
-    private $mangalDosha;
+    private MangalDosha $mangalDosha;
 
     /**
      * @var Yoga\YogaDetails[]
      */
-    private $yogaDetails;
+    private array $yogaDetails;
 
     /**
      * Kundli constructor.
@@ -45,18 +39,12 @@ final class Kundli implements ResultInterface
         $this->yogaDetails = $yogaDetails;
     }
 
-    /**
-     * @return BirthDetails
-     */
-    public function getNakshatraDetails()
+    public function getNakshatraDetails(): BirthDetails
     {
         return $this->nakshatraDetails;
     }
 
-    /**
-     * @return MangalDosha
-     */
-    public function getMangalDosha()
+    public function getMangalDosha(): MangalDosha
     {
         return $this->mangalDosha;
     }
@@ -64,7 +52,7 @@ final class Kundli implements ResultInterface
     /**
      * @return Yoga\YogaDetails[]
      */
-    public function getYogaDetails()
+    public function getYogaDetails(): array
     {
         return $this->yogaDetails;
     }

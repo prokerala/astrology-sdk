@@ -11,10 +11,7 @@ class Challenge implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var ChallengeNumber
-     */
-    private $challengeNumber;
+    private ChallengeNumber $challengeNumber;
 
     public function __construct(ChallengeNumber $challengeNumber)
     {

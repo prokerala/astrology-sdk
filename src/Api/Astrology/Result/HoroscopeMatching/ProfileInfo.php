@@ -17,20 +17,11 @@ use Prokerala\Api\Astrology\Result\Horoscope\Koot;
 
 final class ProfileInfo
 {
-    /**
-     * @var Koot
-     */
-    private $koot;
+    private Koot $koot;
 
-    /**
-     * @var Nakshatra
-     */
-    private $nakshatra;
+    private Nakshatra $nakshatra;
 
-    /**
-     * @var Rasi
-     */
-    private $rasi;
+    private Rasi $rasi;
 
     /**
      * ProfileInfo constructor.
@@ -42,26 +33,17 @@ final class ProfileInfo
         $this->rasi = $rasi;
     }
 
-    /**
-     * @return Koot
-     */
-    public function getKoot()
+    public function getKoot(): Koot
     {
         return $this->koot;
     }
 
-    /**
-     * @return Nakshatra
-     */
-    public function getNakshatra()
+    public function getNakshatra(): Nakshatra
     {
         return $this->nakshatra;
     }
 
-    /**
-     * @return Rasi
-     */
-    public function getRasi()
+    public function getRasi(): Rasi
     {
         return $this->rasi;
     }

@@ -29,11 +29,10 @@ final class Choghadiya
     /** @use TimeZoneAwareTrait<ChoghadiyaResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/choghadiya';
+    protected string $slug = '/astrology/choghadiya';
 
     /** @var Transformer<ChoghadiyaResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class Choghadiya
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return ChoghadiyaResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): ChoghadiyaResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -29,11 +29,10 @@ final class DishaShool
     /** @use TimeZoneAwareTrait<DishaShoolResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/disha-shool';
+    protected string $slug = '/astrology/disha-shool';
 
     /** @var Transformer<DishaShoolResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class DishaShool
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return DishaShoolResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): DishaShoolResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

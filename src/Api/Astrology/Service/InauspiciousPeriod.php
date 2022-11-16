@@ -27,11 +27,10 @@ final class InauspiciousPeriod
     /** @use TimeZoneAwareTrait<InauspiciousPeriodResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/inauspicious-period';
+    protected string $slug = '/astrology/inauspicious-period';
 
     /** @var Transformer<InauspiciousPeriodResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -48,10 +47,8 @@ final class InauspiciousPeriod
      *
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
-     *
-     * @return InauspiciousPeriodResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): InauspiciousPeriodResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -11,10 +11,7 @@ class UniversalYear implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var UniversalYearNumber
-     */
-    private $universalYearNumber;
+    private UniversalYearNumber $universalYearNumber;
 
     public function __construct(UniversalYearNumber $universalYearNumber)
     {

@@ -26,11 +26,10 @@ final class InnerDreamNumber
     /** @use TimeZoneAwareTrait<InnerDream> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/inner-dream-number';
+    protected string $slug = '/numerology/inner-dream-number';
 
     /** @var Transformer<InnerDream> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class InnerDreamNumber
     /**
      * Fetch result from API.
      *
-     * @return InnerDream
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel)
+    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel): InnerDream
     {
         $parameters = [
             'first_name' => $firstName,

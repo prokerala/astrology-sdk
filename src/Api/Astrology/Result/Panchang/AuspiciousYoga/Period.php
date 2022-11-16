@@ -6,20 +6,14 @@ namespace Prokerala\Api\Astrology\Result\Panchang\AuspiciousYoga;
 
 class Period
 {
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * @var Combination[]
      */
-    private $combination;
+    private array $combination;
 
     /**
      * @param Combination[] $combination

@@ -21,7 +21,7 @@ final class Choghadiya implements ResultInterface
     /**
      * @var Choghadiya\Period[]
      */
-    private $muhurat;
+    private array $muhurat;
 
     /**
      * Choghadiya constructor.
@@ -36,7 +36,7 @@ final class Choghadiya implements ResultInterface
     /**
      * @return Choghadiya\Period[]
      */
-    public function getMuhurat()
+    public function getMuhurat(): array
     {
         return $this->muhurat;
     }

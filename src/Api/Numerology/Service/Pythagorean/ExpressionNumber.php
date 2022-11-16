@@ -26,11 +26,10 @@ final class ExpressionNumber
     /** @use TimeZoneAwareTrait<Expression> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/expression-number';
+    protected string $slug = '/numerology/expression-number';
 
     /** @var Transformer<Expression> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class ExpressionNumber
     /**
      * Fetch result from API.
      *
-     * @return Expression
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Expression
     {
         $parameters = [
             'first_name' => $firstName,

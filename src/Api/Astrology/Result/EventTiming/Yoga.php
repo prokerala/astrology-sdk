@@ -13,31 +13,15 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 final class Yoga
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
-    /**
-     * @param int    $id
-     * @param string $name
-     */
-    public function __construct($id, $name, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(int $id, string $name, \DateTimeInterface $start, \DateTimeInterface $end)
     {
         $this->id = $id;
         $this->name = $name;
@@ -45,34 +29,22 @@ final class Yoga
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

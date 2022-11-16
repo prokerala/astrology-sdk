@@ -26,11 +26,10 @@ final class ChallengeNumber
     /** @use TimeZoneAwareTrait<ChallengeNumberResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/challenge-number';
+    protected string $slug = '/numerology/challenge-number';
 
     /** @var Transformer<ChallengeNumberResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class ChallengeNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return ChallengeNumberResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): ChallengeNumberResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

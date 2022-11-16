@@ -26,11 +26,10 @@ final class UniversalDayNumber
     /** @use TimeZoneAwareTrait<UniversalDay> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/universal-day-number';
+    protected string $slug = '/numerology/universal-day-number';
 
     /** @var Transformer<UniversalDay> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class UniversalDayNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return UniversalDay
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): UniversalDay
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

@@ -26,11 +26,10 @@ final class KarmicLessonNumber
     /** @use TimeZoneAwareTrait<KarmicLessonResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/karmic-lesson-number';
+    protected string $slug = '/numerology/karmic-lesson-number';
 
     /** @var Transformer<KarmicLessonResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class KarmicLessonNumber
     /**
      * Fetch result from API.
      *
-     * @return KarmicLessonResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): KarmicLessonResult
     {
         $parameters = [
             'first_name' => $firstName,

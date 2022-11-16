@@ -29,11 +29,10 @@ final class AuspiciousYoga
     /** @use TimeZoneAwareTrait<AuspiciousPeriodResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/auspicious-yoga';
+    protected string $slug = '/astrology/auspicious-yoga';
 
     /** @var Transformer<AuspiciousPeriodResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class AuspiciousYoga
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return AuspiciousPeriodResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): AuspiciousPeriodResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

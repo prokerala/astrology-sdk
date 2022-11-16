@@ -23,11 +23,10 @@ final class Papasamyam
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/papasamyam';
+    protected string $slug = '/astrology/papasamyam';
 
     /** @var Transformer<PapasamyamResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -43,10 +42,8 @@ final class Papasamyam
      *
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
-     *
-     * @return PapasamyamResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): PapasamyamResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

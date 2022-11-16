@@ -26,11 +26,10 @@ final class BalanceNumber
     /** @use TimeZoneAwareTrait<Balance> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/balance-number';
+    protected string $slug = '/numerology/balance-number';
 
     /** @var Transformer<Balance> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class BalanceNumber
     /**
      * Fetch result from API.
      *
-     * @return Balance
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): Balance
     {
         $parameters = [
             'first_name' => $firstName,

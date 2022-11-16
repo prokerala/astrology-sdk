@@ -6,13 +6,12 @@ namespace Prokerala\Api\Numerology\Result\Chaldean;
 
 class WholeNameNumber
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
     /**
      * @var Number[]
      */
-    private $energies;
+    private array $energies;
 
     /**
      * @param Number[] $energies

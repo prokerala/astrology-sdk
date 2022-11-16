@@ -26,11 +26,10 @@ final class AttainmentNumber
     /** @use TimeZoneAwareTrait<Attainment> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/attainment-number';
+    protected string $slug = '/numerology/attainment-number';
 
     /** @var TransformerAlias<Attainment> */
-    private $transformer;
+    private TransformerAlias $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,11 +46,10 @@ final class AttainmentNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return Attainment
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName): Attainment
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

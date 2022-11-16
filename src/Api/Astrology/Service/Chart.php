@@ -21,8 +21,7 @@ final class Chart
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/chart';
+    protected string $slug = '/astrology/chart';
 
     /**
      * @param Client $client Api client
@@ -38,10 +37,8 @@ final class Chart
      * @param Location           $location   Location details
      * @param \DateTimeInterface $datetime   Date and time
      * @param string             $chart_type Chart type
-     *
-     * @return string
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $chart_type, string $chart_style, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $chart_type, string $chart_style, string $la = 'en'): string
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

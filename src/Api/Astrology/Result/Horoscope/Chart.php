@@ -18,29 +18,23 @@ final class Chart implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var string */
-    private $chartType;
+    private string $chartType;
 
-    /** @var string */
-    private $chartName;
+    private string $chartName;
 
-    /** @var string */
-    private $chartShortName;
+    private string $chartShortName;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[]
      */
-    private $chartRasi;
+    private array $chartRasi;
 
     /**
      * Chart constructor.
      *
-     * @param string                                                      $chartType
-     * @param string                                                      $chartName
-     * @param string                                                      $chartShortName
      * @param \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[] $chartRasi
      */
-    public function __construct($chartType, $chartName, $chartShortName, array $chartRasi)
+    public function __construct(string $chartType, string $chartName, string $chartShortName, array $chartRasi)
     {
         $this->chartType = $chartType;
         $this->chartName = $chartName;
@@ -48,26 +42,17 @@ final class Chart implements ResultInterface
         $this->chartRasi = $chartRasi;
     }
 
-    /**
-     * @return string
-     */
-    public function getChartType()
+    public function getChartType(): string
     {
         return $this->chartType;
     }
 
-    /**
-     * @return string
-     */
-    public function getChartName()
+    public function getChartName(): string
     {
         return $this->chartName;
     }
 
-    /**
-     * @return string
-     */
-    public function getChartShortName()
+    public function getChartShortName(): string
     {
         return $this->chartShortName;
     }
@@ -75,7 +60,7 @@ final class Chart implements ResultInterface
     /**
      * @return \Prokerala\Api\Astrology\Result\Horoscope\Chart\ChartRasi[]
      */
-    public function getChartRasi()
+    public function getChartRasi(): array
     {
         return $this->chartRasi;
     }

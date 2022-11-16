@@ -26,11 +26,10 @@ final class PersonalMonthNumber
     /** @use TimeZoneAwareTrait<PersonalMonth> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/personal-month-number';
+    protected string $slug = '/numerology/personal-month-number';
 
     /** @var Transformer<PersonalMonth> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class PersonalMonthNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return PersonalMonth
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, int $referenceYear)
+    public function process(\DateTimeInterface $datetime, int $referenceYear): PersonalMonth
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

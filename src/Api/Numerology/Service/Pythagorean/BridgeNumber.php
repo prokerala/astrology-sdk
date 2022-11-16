@@ -26,11 +26,10 @@ final class BridgeNumber
     /** @use TimeZoneAwareTrait<BridgeResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/bridge-number';
+    protected string $slug = '/numerology/bridge-number';
 
     /** @var TransformerAlias<BridgeResult> */
-    private $transformer;
+    private TransformerAlias $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,11 +46,10 @@ final class BridgeNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return BridgeResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName)
+    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName): BridgeResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

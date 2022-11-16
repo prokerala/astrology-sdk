@@ -30,25 +30,15 @@ final class Tithi
     public const PURNIMA = 15;
     public const AMAVASYA = 16;
 
-    /** @var string */
-    private $paksha;
+    private string $paksha;
 
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var int */
-    private $index;
+    private int $index;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /**
-     * @param int    $index
-     * @param int    $id
-     * @param string $name
-     * @param string $paksha
-     */
-    public function __construct($index, $id, $name, $paksha)
+    public function __construct(int $index, int $id, string $name, string $paksha)
     {
         $this->id = $id;
         $this->paksha = $paksha;
@@ -58,40 +48,32 @@ final class Tithi
 
     /**
      * Get tithi name.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * Get tithi sequential index.
-     *
-     * @return int
      */
-    public function getIndex()
+    public function getIndex(): int
     {
         return $this->index;
     }
 
     /**
      * Get tithi id.
-     *
-     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
      * Get tithi paksha.
-     *
-     * @return string
      */
-    public function getPaksha()
+    public function getPaksha(): string
     {
         return $this->paksha;
     }

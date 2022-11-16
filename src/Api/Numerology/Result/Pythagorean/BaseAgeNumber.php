@@ -6,25 +6,13 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class BaseAgeNumber
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var int
-     */
-    private $number;
+    private int $number;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
-    /**
-     * @var string
-     */
-    private $age;
+    private string $age;
 
     public function __construct(string $name, int $number, string $description, string $age)
     {

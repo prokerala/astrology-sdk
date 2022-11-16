@@ -11,39 +11,17 @@ class PlanesOfExpression implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var Number
-     */
-    private $physical;
+    private Number $physical;
 
-    /**
-     * @var Number
-     */
-    private $mental;
+    private Number $mental;
 
-    /**
-     * @var Number
-     */
-    private $emotional;
+    private Number $emotional;
 
-    /**
-     * @var Number
-     */
-    private $spiritual;
+    private Number $spiritual;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
-    /**
-     * @param Number    $physical
-     * @param Number    $mental
-     * @param Number    $emotional
-     * @param Number    $spiritual
-     * @param NameChart $nameChart
-     */
-    public function __construct($physical, $mental, $emotional, $spiritual, $nameChart)
+    public function __construct(Number $physical, Number $mental, Number $emotional, Number $spiritual, NameChart $nameChart)
     {
         $this->physical = $physical;
         $this->mental = $mental;

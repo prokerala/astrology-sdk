@@ -23,14 +23,12 @@ final class DailyPrediction
     /** @use TimeZoneAwareTrait<DailyHoroscope> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/horoscope/daily';
+    protected string $slug = '/horoscope/daily';
 
     /** @var TransformerAlias<DailyHoroscope> */
-    private $transformer;
+    private TransformerAlias $transformer;
 
-    /** @var Client */
-    private $apiClient;
+    private Client $apiClient;
 
     /**
      * @param Client $client Api client
@@ -47,11 +45,10 @@ final class DailyPrediction
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return DailyHoroscope
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      */
-    public function process(\DateTimeInterface $datetime, string $sign)
+    public function process(\DateTimeInterface $datetime, string $sign): DailyHoroscope
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

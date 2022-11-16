@@ -11,10 +11,7 @@ class Bridge implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var BridgeNumber
-     */
-    private $bridgeNumber;
+    private BridgeNumber $bridgeNumber;
 
     public function __construct(BridgeNumber $bridgeNumber)
     {

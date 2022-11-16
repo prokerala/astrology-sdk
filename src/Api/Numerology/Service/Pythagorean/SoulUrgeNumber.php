@@ -26,11 +26,10 @@ final class SoulUrgeNumber
     /** @use TimeZoneAwareTrait<SoulUrge> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/soul-urge-number';
+    protected string $slug = '/numerology/soul-urge-number';
 
     /** @var Transformer<SoulUrge> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class SoulUrgeNumber
     /**
      * Fetch result from API.
      *
-     * @return SoulUrge
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel)
+    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel): SoulUrge
     {
         $parameters = [
             'first_name' => $firstName,

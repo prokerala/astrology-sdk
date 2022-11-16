@@ -15,15 +15,11 @@ interface ResultInterface
 {
     /**
      * @internal
-     *
-     * @return void
      */
-    public function setRawResponse(\stdClass $data);
+    public function setRawResponse(\stdClass $data): void;
 
     /**
      * Get the raw response returned by the API server.
-     *
-     * @return null|\stdClass
      */
-    public function getRawResponse();
+    public function getRawResponse(): ?\stdClass;
 }

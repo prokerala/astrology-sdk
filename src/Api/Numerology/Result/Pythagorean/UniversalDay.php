@@ -11,10 +11,7 @@ class UniversalDay implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var UniversalDayNumber
-     */
-    private $universalDayNumber;
+    private UniversalDayNumber $universalDayNumber;
 
     public function __construct(UniversalDayNumber $universalDayNumber)
     {

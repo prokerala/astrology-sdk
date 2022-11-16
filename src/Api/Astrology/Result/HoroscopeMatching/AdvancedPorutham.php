@@ -19,50 +19,33 @@ final class AdvancedPorutham implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var Porutham\Profile
-     */
-    private $girlInfo;
+    private Profile $girlInfo;
 
-    /**
-     * @var Porutham\Profile
-     */
-    private $boyInfo;
+    private Profile $boyInfo;
 
-    /**
-     * @var float
-     */
-    private $maximumPoints;
+    private float $maximumPoints;
 
-    /**
-     * @var float
-     */
-    private $totalPoints;
+    private float $totalPoints;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
     /**
      * @var Porutham\AdvancedMatch[]
      */
-    private $matches;
+    private array $matches;
 
     /**
      * AdvancedPorutham constructor.
      *
      * @param Porutham\Profile         $girlInfo
      * @param Porutham\Profile         $boyInfo
-     * @param float                    $maximumPoints
-     * @param float                    $totalPoints
      * @param Porutham\AdvancedMatch[] $matches
      */
     public function __construct(
         Profile $girlInfo,
         Profile $boyInfo,
-        $maximumPoints,
-        $totalPoints,
+        float $maximumPoints,
+        float $totalPoints,
         Message $message,
         array $matches
     ) {
@@ -74,42 +57,27 @@ final class AdvancedPorutham implements ResultInterface
         $this->matches = $matches;
     }
 
-    /**
-     * @return Profile
-     */
-    public function getGirlInfo()
+    public function getGirlInfo(): Profile
     {
         return $this->girlInfo;
     }
 
-    /**
-     * @return Profile
-     */
-    public function getBoyInfo()
+    public function getBoyInfo(): Profile
     {
         return $this->boyInfo;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaximumPoints()
+    public function getMaximumPoints(): float
     {
         return $this->maximumPoints;
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalPoints()
+    public function getTotalPoints(): float
     {
         return $this->totalPoints;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
@@ -117,7 +85,7 @@ final class AdvancedPorutham implements ResultInterface
     /**
      * @return Porutham\AdvancedMatch[]
      */
-    public function getMatches()
+    public function getMatches(): array
     {
         return $this->matches;
     }

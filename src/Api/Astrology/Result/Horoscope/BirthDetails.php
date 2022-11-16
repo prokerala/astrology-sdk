@@ -22,30 +22,15 @@ final class BirthDetails implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    private $nakshatra;
+    private Nakshatra $nakshatra;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $chandraRasi;
+    private Rasi $chandraRasi;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $sooryaRasi;
+    private Rasi $sooryaRasi;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Zodiac
-     */
-    private $zodiac;
+    private Zodiac $zodiac;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Horoscope\Nakshatra\NakshatraInfo
-     */
-    private $additionalInfo;
+    private NakshatraInfo $additionalInfo;
 
     public function __construct(
         Nakshatra $nakshatra,
@@ -61,42 +46,27 @@ final class BirthDetails implements ResultInterface
         $this->additionalInfo = $additionalInfo;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    public function getNakshatra()
+    public function getNakshatra(): Nakshatra
     {
         return $this->nakshatra;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    public function getChandraRasi()
+    public function getChandraRasi(): Rasi
     {
         return $this->chandraRasi;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    public function getSooryaRasi()
+    public function getSooryaRasi(): Rasi
     {
         return $this->sooryaRasi;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Zodiac
-     */
-    public function getZodiac()
+    public function getZodiac(): Zodiac
     {
         return $this->zodiac;
     }
 
-    /**
-     * @return NakshatraInfo
-     */
-    public function getAdditionalInfo()
+    public function getAdditionalInfo(): NakshatraInfo
     {
         return $this->additionalInfo;
     }

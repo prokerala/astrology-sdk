@@ -26,11 +26,10 @@ final class InclusionTable
     /** @use TimeZoneAwareTrait<InclusionTableResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/inclusion-table-number';
+    protected string $slug = '/numerology/inclusion-table-number';
 
     /** @var Transformer<InclusionTableResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class InclusionTable
     /**
      * Fetch result from API.
      *
-     * @return InclusionTableResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): InclusionTableResult
     {
         $parameters = [
             'first_name' => $firstName,

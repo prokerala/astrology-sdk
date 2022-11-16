@@ -15,38 +15,20 @@ use Prokerala\Api\Astrology\Result\Element\Planet;
 
 final class Nakshatra
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var Planet
-     */
-    private $lord;
+    private Planet $lord;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * Nakshatra constructor.
-     *
-     * @param int    $id
-     * @param string $name
      */
-    public function __construct($id, $name, Planet $lord, \DateTimeInterface $start, \DateTimeInterface $end)
+    public function __construct(int $id, string $name, Planet $lord, \DateTimeInterface $start, \DateTimeInterface $end)
     {
         $this->id = $id;
         $this->name = $name;
@@ -55,42 +37,27 @@ final class Nakshatra
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return Planet
-     */
-    public function getLord()
+    public function getLord(): Planet
     {
         return $this->lord;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

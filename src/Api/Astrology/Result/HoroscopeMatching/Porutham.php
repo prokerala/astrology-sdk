@@ -19,48 +19,31 @@ final class Porutham implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var Profile
-     */
-    private $girlInfo;
+    private Profile $girlInfo;
 
-    /**
-     * @var Profile
-     */
-    private $boyInfo;
+    private Profile $boyInfo;
 
-    /**
-     * @var float
-     */
-    private $maximumPoints;
+    private float $maximumPoints;
 
-    /**
-     * @var float
-     */
-    private $totalPoints;
+    private float $totalPoints;
 
-    /**
-     * @var Message
-     */
-    private $message;
+    private Message $message;
 
     /**
      * @var Porutham\BasicMatch[]
      */
-    private $matches;
+    private array $matches;
 
     /**
      * Porutham constructor.
      *
-     * @param float                 $maximumPoints
-     * @param float                 $totalPoints
      * @param Porutham\BasicMatch[] $matches
      */
     public function __construct(
         Profile $girlInfo,
         Profile $boyInfo,
-        $maximumPoints,
-        $totalPoints,
+        float $maximumPoints,
+        float $totalPoints,
         Message $message,
         array $matches
     ) {
@@ -72,42 +55,27 @@ final class Porutham implements ResultInterface
         $this->matches = $matches;
     }
 
-    /**
-     * @return Profile
-     */
-    public function getGirlInfo()
+    public function getGirlInfo(): Profile
     {
         return $this->girlInfo;
     }
 
-    /**
-     * @return Profile
-     */
-    public function getBoyInfo()
+    public function getBoyInfo(): Profile
     {
         return $this->boyInfo;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaximumPoints()
+    public function getMaximumPoints(): float
     {
         return $this->maximumPoints;
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalPoints()
+    public function getTotalPoints(): float
     {
         return $this->totalPoints;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
@@ -115,7 +83,7 @@ final class Porutham implements ResultInterface
     /**
      * @return Porutham\BasicMatch[]
      */
-    public function getMatches()
+    public function getMatches(): array
     {
         return $this->matches;
     }

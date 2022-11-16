@@ -29,11 +29,10 @@ final class Ritu
     /** @use TimeZoneAwareTrait<SolsticeResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/ritu';
+    protected string $slug = '/astrology/ritu';
 
     /** @var Transformer<RituResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class Ritu
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return RituResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): RituResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

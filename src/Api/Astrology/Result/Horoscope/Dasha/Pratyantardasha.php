@@ -13,35 +13,20 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 final class Pratyantardasha
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * Pratyantardasha constructor.
-     *
-     * @param int    $id
-     * @param string $name
      */
     public function __construct(
-        $id,
-        $name,
+        int $id,
+        string $name,
         \DateTimeInterface $start,
         \DateTimeInterface $end
     ) {
@@ -51,34 +36,22 @@ final class Pratyantardasha
         $this->end = $end;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }

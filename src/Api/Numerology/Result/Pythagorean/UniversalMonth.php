@@ -11,10 +11,7 @@ class UniversalMonth implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var UniversalMonthNumber
-     */
-    private $universalMonthNumber;
+    private UniversalMonthNumber $universalMonthNumber;
 
     public function __construct(UniversalMonthNumber $universalMonthNumber)
     {

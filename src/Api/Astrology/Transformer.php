@@ -26,12 +26,12 @@ final class Transformer
      * @var callable[]
      * @psalm-var array<"string"|"int",array<class-string,callable>>
      */
-    private $paramConverters = [];
+    private array $paramConverters = [];
 
     /**
      * @var class-string<T>
      */
-    private $class;
+    private string $class;
 
     /**
      * @param class-string<T> $class
@@ -44,11 +44,8 @@ final class Transformer
     /**
      * @param "int"|"string" $from
      * @param class-string   $to
-     * @param null|callable  $converter
-     *
-     * @return void
      */
-    public function setParamConverter($from, $to, $converter)
+    public function setParamConverter($from, $to, ?callable $converter): void
     {
         if (null === $converter) {
             unset($this->paramConverters[$from][$to]);
@@ -73,12 +70,11 @@ final class Transformer
     /**
      * @template C of object
      * @param class-string<C> $className
-     * @param \stdClass       $data
      *
      * @return object
      * @return C
      */
-    private function create($className, $data)
+    private function create($className, \stdClass $data)
     {
         if (!$data instanceof \stdClass) {
             throw new \RuntimeException('Cannot create object from ' . \gettype($data));
@@ -105,9 +101,7 @@ final class Transformer
         $arguments = [];
         foreach ($params as $param) {
             $paramName = $param->getName();
-            $dataKey = preg_replace_callback('/[A-Z]/', function ($match) {
-                return '_' . lcfirst($match[0]);
-            }, $paramName) ?? $paramName;
+            $dataKey = preg_replace_callback('/[A-Z]/', fn ($match) => '_' . lcfirst($match[0]), $paramName) ?? $paramName;
 
             $paramValue = null;
             if (property_exists($data, $dataKey)) {
@@ -142,11 +136,9 @@ final class Transformer
     }
 
     /**
-     * @param string $namespace
-     *
      * @return array<string, list<string>>
      */
-    private function parsePhpDoc(\ReflectionMethod $method, $namespace)
+    private function parsePhpDoc(\ReflectionMethod $method, string $namespace): array
     {
         $phpDoc = $method->getDocComment() ?: '';
 
@@ -196,7 +188,7 @@ final class Transformer
      * @return mixed
      * @throws ParameterMismatchException
      */
-    private function parseParameter($data, $dataType, $paramTypes)
+    private function parseParameter($data, ?string $dataType, array $paramTypes)
     {
         $isEmptyArray = \is_array($data) && empty($data);
         // Hack for empty arrays, since we cannot determine the type of the array
@@ -236,10 +228,9 @@ final class Transformer
     }
 
     /**
-     * @param  mixed  $val
-     * @return string
+     * @param mixed $val
      */
-    private function getType($val)
+    private function getType($val): string
     {
         if (null === $val) {
             return 'NULL';

@@ -23,11 +23,10 @@ final class PlanetPosition
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/planet-position';
+    protected string $slug = '/astrology/planet-position';
 
     /** @var Transformer<PlanetPositionResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -43,11 +42,8 @@ final class PlanetPosition
      *
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
-     * @param null|string        $planets
-     *
-     * @return PlanetPositionResult
      */
-    public function process(Location $location, \DateTimeInterface $datetime, $planets = null, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, ?string $planets = null, string $la = 'en'): PlanetPositionResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

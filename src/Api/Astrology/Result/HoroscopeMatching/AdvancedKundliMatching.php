@@ -19,26 +19,20 @@ final class AdvancedKundliMatching implements ResultInterface
 {
     use RawResponseTrait;
 
-    /** @var ProfileInfo */
-    private $girlInfo;
+    private ProfileInfo $girlInfo;
 
-    /** @var ProfileInfo */
-    private $boyInfo;
+    private ProfileInfo $boyInfo;
 
-    /** @var Message */
-    private $message;
+    private Message $message;
 
-    /** @var AdvancedGunaMilan */
-    private $gunaMilan;
+    private AdvancedGunaMilan $gunaMilan;
 
-    /** @var MangalDosha */
-    private $girlMangalDoshaDetails;
+    private MangalDosha $girlMangalDoshaDetails;
 
-    /** @var MangalDosha */
-    private $boyMangalDoshaDetails;
+    private MangalDosha $boyMangalDoshaDetails;
 
     /** @var string[] */
-    private $exceptions;
+    private array $exceptions;
 
     /**
      * AdvancedKundliMatching constructor.
@@ -63,50 +57,32 @@ final class AdvancedKundliMatching implements ResultInterface
         $this->exceptions = $exceptions;
     }
 
-    /**
-     * @return ProfileInfo
-     */
-    public function getGirlInfo()
+    public function getGirlInfo(): ProfileInfo
     {
         return $this->girlInfo;
     }
 
-    /**
-     * @return ProfileInfo
-     */
-    public function getBoyInfo()
+    public function getBoyInfo(): ProfileInfo
     {
         return $this->boyInfo;
     }
 
-    /**
-     * @return Message
-     */
-    public function getMessage()
+    public function getMessage(): Message
     {
         return $this->message;
     }
 
-    /**
-     * @return AdvancedGunaMilan
-     */
-    public function getGunaMilan()
+    public function getGunaMilan(): AdvancedGunaMilan
     {
         return $this->gunaMilan;
     }
 
-    /**
-     * @return MangalDosha
-     */
-    public function getGirlMangalDoshaDetails()
+    public function getGirlMangalDoshaDetails(): MangalDosha
     {
         return $this->girlMangalDoshaDetails;
     }
 
-    /**
-     * @return MangalDosha
-     */
-    public function getBoyMangalDoshaDetails()
+    public function getBoyMangalDoshaDetails(): MangalDosha
     {
         return $this->boyMangalDoshaDetails;
     }
@@ -114,7 +90,7 @@ final class AdvancedKundliMatching implements ResultInterface
     /**
      * @return string[]
      */
-    public function getExceptions()
+    public function getExceptions(): array
     {
         return $this->exceptions;
     }

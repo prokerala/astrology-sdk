@@ -22,14 +22,13 @@ final class NakshatraPorutham
 {
     use ClientAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/nakshatra-porutham';
+    protected string $slug = '/astrology/nakshatra-porutham';
 
     /** @var Transformer<Porutham> */
-    private $basicResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformer;
 
     /** @var Transformer<AdvancedPorutham> */
-    private $advancedResponseTransformer;
+    private \Prokerala\Api\Astrology\Transformer $advancedResponseTransformer;
 
     /**
      * @param Client $client Api client
@@ -42,11 +41,9 @@ final class NakshatraPorutham
     }
 
     /**
-     * @param bool $detailed_report
-     *
      * @return AdvancedPorutham|Porutham
      */
-    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, $detailed_report = false, string $la = 'en')
+    public function process(NakshatraProfile $girl_profile, NakshatraProfile $boy_profile, bool $detailed_report = false, string $la = 'en')
     {
         $slug = $this->slug;
         if ($detailed_report) {

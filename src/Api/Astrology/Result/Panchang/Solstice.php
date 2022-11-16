@@ -18,10 +18,7 @@ final class Solstice implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var SolsticeResult
-     */
-    private $solstice;
+    private SolsticeResult $solstice;
 
     public function __construct(SolsticeResult $solstice)
     {

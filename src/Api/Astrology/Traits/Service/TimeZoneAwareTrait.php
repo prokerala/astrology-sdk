@@ -19,23 +19,14 @@ use Prokerala\Api\Astrology\Transformer;
  */
 trait TimeZoneAwareTrait
 {
-    /** @var null|\DateTimeZone */
-    private $tz;
+    private ?\DateTimeZone $tz;
 
-    /**
-     * @param null|\DateTimeZone $tz
-     *
-     * @return void
-     */
-    public function setTimeZone($tz)
+    public function setTimeZone(?\DateTimeZone $tz): void
     {
         $this->tz = $tz;
     }
 
-    /**
-     * @return \DateTimeZone
-     */
-    public function getTimeZone()
+    public function getTimeZone(): \DateTimeZone
     {
         if (!isset($this->tz)) {
             $this->tz = new \DateTimeZone(date_default_timezone_get());
@@ -46,13 +37,9 @@ trait TimeZoneAwareTrait
 
     /**
      * @param Transformer<T> $transformer
-     *
-     * @return void
      */
-    private function addDateTimeTransformer($transformer)
+    private function addDateTimeTransformer(Transformer $transformer): void
     {
-        $transformer->setParamConverter('string', \DateTimeInterface::class, function ($data) {
-            return (new \DateTimeImmutable($data))->setTimezone($this->getTimeZone());
-        });
+        $transformer->setParamConverter('string', \DateTimeInterface::class, fn ($data) => (new \DateTimeImmutable($data))->setTimezone($this->getTimeZone()));
     }
 }

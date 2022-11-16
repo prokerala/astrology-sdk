@@ -12,15 +12,9 @@ class DailyName implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var DailyNameNumber
-     */
-    private $dailyNameNumber;
+    private DailyNameNumber $dailyNameNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(DailyNameNumber $dailyNameNumber, NameChart $nameChart)
     {

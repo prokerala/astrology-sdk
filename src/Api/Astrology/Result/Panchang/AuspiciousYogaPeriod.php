@@ -13,20 +13,14 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class AuspiciousYogaPeriod
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
     /**
      * @var AuspiciousYoga\Period[]
      */
-    private $period;
+    private array $period;
 
     /**
      * @param AuspiciousYoga\Period[] $period

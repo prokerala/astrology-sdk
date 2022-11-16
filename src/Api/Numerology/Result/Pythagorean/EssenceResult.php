@@ -11,15 +11,9 @@ class EssenceResult implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var ArrayNumber
-     */
-    private $arrayNumber;
+    private ArrayNumber $arrayNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(ArrayNumber $arrayNumber, NameChart $nameChart)
     {

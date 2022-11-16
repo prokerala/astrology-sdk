@@ -13,33 +13,15 @@ namespace Prokerala\Api\Astrology\Result\EventTiming;
 
 final class ChandraRasi
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $lord;
+    private string $lord;
 
-    /**
-     * @var string
-     */
-    private $lordEn;
+    private string $lordEn;
 
-    /**
-     * @param int    $id
-     * @param string $name
-     * @param string $lord
-     * @param string $lordEn
-     */
-    public function __construct($id, $name, $lord, $lordEn)
+    public function __construct(int $id, string $name, string $lord, string $lordEn)
     {
         $this->id = $id;
         $this->name = $name;
@@ -47,34 +29,22 @@ final class ChandraRasi
         $this->lordEn = $lordEn;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getLord()
+    public function getLord(): string
     {
         return $this->lord;
     }
 
-    /**
-     * @return string
-     */
-    public function getLordEn()
+    public function getLordEn(): string
     {
         return $this->lordEn;
     }

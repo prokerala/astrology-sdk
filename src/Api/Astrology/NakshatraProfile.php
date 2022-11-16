@@ -13,15 +13,9 @@ namespace Prokerala\Api\Astrology;
 
 final class NakshatraProfile
 {
-    /**
-     * @var int
-     */
-    private $nakshatra;
+    private int $nakshatra;
 
-    /**
-     * @var int
-     */
-    private $nakshatra_pada;
+    private int $nakshatra_pada;
 
     public function __construct(int $nakshatra, int $nakshatra_pada)
     {
@@ -31,20 +25,16 @@ final class NakshatraProfile
 
     /**
      * Function returns the nakshatra id.
-     *
-     * @return int
      */
-    public function getNakshatra()
+    public function getNakshatra(): int
     {
         return $this->nakshatra;
     }
 
     /**
      * Function returns the nakshatra pada.
-     *
-     * @return int
      */
-    public function getNakshatraPada()
+    public function getNakshatraPada(): int
     {
         return $this->nakshatra_pada;
     }

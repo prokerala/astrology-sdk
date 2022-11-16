@@ -13,25 +13,13 @@ namespace Prokerala\Api\Astrology;
 
 final class Location
 {
-    /**
-     * @var float
-     */
-    private $latitude;
+    private float $latitude;
 
-    /**
-     * @var float
-     */
-    private $longitude;
+    private float $longitude;
 
-    /**
-     * @var float
-     */
-    private $altitude;
+    private float $altitude;
 
-    /**
-     * @var \DateTimeZone
-     */
-    private $timezone;
+    private \DateTimeZone $timezone;
 
     public function __construct(float $latitude, float $longitude, float $altitude = 0, ?\DateTimeZone $timezone = null)
     {
@@ -46,50 +34,40 @@ final class Location
 
     /**
      * Get the location latitude.
-     *
-     * @return float
      */
-    public function getLatitude()
+    public function getLatitude(): float
     {
         return $this->latitude;
     }
 
     /**
      * Get the location longitude.
-     *
-     * @return float
      */
-    public function getLongitude()
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 
     /**
      * Get the location timezone.
-     *
-     * @return \DateTimeZone
      */
-    public function getTimeZone()
+    public function getTimeZone(): \DateTimeZone
     {
         return $this->timezone;
     }
 
     /**
      * Get the location altitude.
-     *
-     * @return float
      */
-    public function getAltitude()
+    public function getAltitude(): float
     {
         return $this->altitude;
     }
 
     /**
      * Get the location coordinates.
-     *
-     * @return string
      */
-    public function getCoordinates()
+    public function getCoordinates(): string
     {
         return "{$this->latitude},{$this->longitude}";
     }

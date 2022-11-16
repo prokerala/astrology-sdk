@@ -13,39 +13,25 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Dasha;
 
 final class Antardasha
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * @var Pratyantardasha[]
      */
-    private $pratyantardasha;
+    private array $pratyantardasha;
 
     /**
-     * @param int               $id
-     * @param string            $name
      * @param Pratyantardasha[] $pratyantardasha
      */
     public function __construct(
-        $id,
-        $name,
+        int $id,
+        string $name,
         \DateTimeInterface $start,
         \DateTimeInterface $end,
         array $pratyantardasha
@@ -57,34 +43,22 @@ final class Antardasha
         $this->pratyantardasha = $pratyantardasha;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStart()
+    public function getStart(): \DateTimeInterface
     {
         return $this->start;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEnd()
+    public function getEnd(): \DateTimeInterface
     {
         return $this->end;
     }
@@ -92,7 +66,7 @@ final class Antardasha
     /**
      * @return Pratyantardasha[]
      */
-    public function getPratyantardasha()
+    public function getPratyantardasha(): array
     {
         return $this->pratyantardasha;
     }

@@ -6,15 +6,12 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class PinnacleNumber
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
     /**
      * @var AgeNumber[]
      */
-    private $pinnacles;
+    private array $pinnacles;
 
     /**
      * @param AgeNumber[] $pinnacles

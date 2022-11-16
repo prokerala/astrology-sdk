@@ -16,7 +16,7 @@ final class PapasamyamDetails
     /**
      * @var PapaPlanet[]
      */
-    private $papaPlanet;
+    private array $papaPlanet;
 
     /**
      * PapasamyamDetails constructor.
@@ -31,7 +31,7 @@ final class PapasamyamDetails
     /**
      * @return PapaPlanet[]
      */
-    public function getPapaPlanet()
+    public function getPapaPlanet(): array
     {
         return $this->papaPlanet;
     }

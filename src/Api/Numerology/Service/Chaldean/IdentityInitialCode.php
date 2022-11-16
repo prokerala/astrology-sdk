@@ -26,11 +26,10 @@ final class IdentityInitialCode
     /** @use TimeZoneAwareTrait<IdentityInitialCodeResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/chaldean/identity-initial-code-number';
+    protected string $slug = '/numerology/chaldean/identity-initial-code-number';
 
     /** @var Transformer<IdentityInitialCodeResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class IdentityInitialCode
     /**
      * Fetch result from API.
      *
-     * @return IdentityInitialCodeResult
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(string $firstName, string $middleName, string $lastName)
+    public function process(string $firstName, string $middleName, string $lastName): IdentityInitialCodeResult
     {
         $parameters = [
             'first_name' => $firstName,

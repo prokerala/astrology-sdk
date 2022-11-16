@@ -17,53 +17,28 @@ final class AdvancedMatch
 {
     use StringableTrait;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var bool
-     */
-    private $hasPorutham;
+    private bool $hasPorutham;
 
-    /**
-     * @var null|string
-     */
-    private $poruthamStatus;
+    private ?string $poruthamStatus;
 
-    /**
-     * @var float
-     */
-    private $points;
+    private float $points;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
-    /**
-     * @var int|int
-     */
-    private $id;
+    private int $id;
 
     /**
      * Match constructor.
-     *
-     * @param int         $id
-     * @param string      $name
-     * @param bool        $hasPorutham
-     * @param float       $points
-     * @param string      $description
-     * @param null|string $poruthamStatus
      */
     public function __construct(
-        $id,
-        $name,
-        $hasPorutham,
-        $points,
-        $description,
-        $poruthamStatus = null
+        int $id,
+        string $name,
+        bool $hasPorutham,
+        float $points,
+        string $description,
+        ?string $poruthamStatus = null
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -73,50 +48,32 @@ final class AdvancedMatch
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasPorutham()
+    public function hasPorutham(): bool
     {
         return $this->hasPorutham;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getPoruthamStatus()
+    public function getPoruthamStatus(): ?string
     {
         return $this->poruthamStatus;
     }
 
-    /**
-     * @return float
-     */
-    public function getPoints()
+    public function getPoints(): float
     {
         return $this->points;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

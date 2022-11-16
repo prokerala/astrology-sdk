@@ -19,6 +19,11 @@ final class VimsottariDasha implements ResultInterface
     use RawResponseTrait;
 
     /**
+     * @var Dasha\VimsottariDasha[]
+     */
+    private array $dashaPeriods;
+
+    /**
      * @param Dasha\VimsottariDasha[] $dashaPeriods
      */
     public function __construct(

@@ -18,35 +18,23 @@ final class AdvancedSadeSati implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var bool
-     */
-    private $isInSadeSati;
+    private bool $isInSadeSati;
 
-    /**
-     * @var null|string
-     */
-    private $transitPhase;
+    private ?string $transitPhase;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
     /**
      * @var SadeSati\SaturnTransit[]
      */
-    private $transits;
+    private array $transits;
 
     /**
      * SadeSati constructor.
      *
-     * @param bool                     $isInSadeSati
-     * @param null|string              $transitPhase
-     * @param string                   $description
      * @param SadeSati\SaturnTransit[] $transits
      */
-    public function __construct($isInSadeSati, $transitPhase, $description, array $transits)
+    public function __construct(bool $isInSadeSati, ?string $transitPhase, string $description, array $transits)
     {
         $this->isInSadeSati = $isInSadeSati;
         $this->transitPhase = $transitPhase;
@@ -54,26 +42,17 @@ final class AdvancedSadeSati implements ResultInterface
         $this->transits = $transits;
     }
 
-    /**
-     * @return bool
-     */
-    public function isInSadeSati()
+    public function isInSadeSati(): bool
     {
         return $this->isInSadeSati;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getTransitPhase()
+    public function getTransitPhase(): ?string
     {
         return $this->transitPhase;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -81,7 +60,7 @@ final class AdvancedSadeSati implements ResultInterface
     /**
      * @return SadeSati\SaturnTransit[]
      */
-    public function getTransits()
+    public function getTransits(): array
     {
         return $this->transits;
     }

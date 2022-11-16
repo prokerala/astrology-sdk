@@ -13,35 +13,20 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class TaraBalaResult
 {
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     /**
      * @var \Prokerala\Api\Astrology\Result\Element\NakshatraElement[]
      */
-    private $nakshatras;
+    private array $nakshatras;
 
     /**
      * @param \Prokerala\Api\Astrology\Result\Element\NakshatraElement[] $nakshatras

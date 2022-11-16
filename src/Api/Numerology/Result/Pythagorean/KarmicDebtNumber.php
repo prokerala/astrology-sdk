@@ -6,15 +6,12 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 class KarmicDebtNumber
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
     /**
      * @var Number[]
      */
-    private $debts;
+    private array $debts;
 
     /**
      * @param Number[] $debts

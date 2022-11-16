@@ -26,11 +26,10 @@ final class UniversalYearNumber
     /** @use TimeZoneAwareTrait<UniversalYear> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/universal-year-number';
+    protected string $slug = '/numerology/universal-year-number';
 
     /** @var Transformer<UniversalYear> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -47,12 +46,11 @@ final class UniversalYearNumber
      *
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return UniversalYear
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime)
+    public function process(\DateTimeInterface $datetime): UniversalYear
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

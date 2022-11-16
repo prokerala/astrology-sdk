@@ -13,25 +13,13 @@ namespace Prokerala\Api\Astrology\Result\Panchang;
 
 final class DishaShoolResult
 {
-    /**
-     * @var string
-     */
-    private $direction;
+    private string $direction;
 
-    /**
-     * @var string
-     */
-    private $remedy;
+    private string $remedy;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $start;
+    private \DateTimeInterface $start;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $end;
+    private \DateTimeInterface $end;
 
     public function __construct(string $direction, string $remedy, \DateTimeInterface $start, \DateTimeInterface $end)
     {

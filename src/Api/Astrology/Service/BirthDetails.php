@@ -29,11 +29,10 @@ final class BirthDetails
     /** @use TimeZoneAwareTrait<NakshatraResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/birth-details';
+    protected string $slug = '/astrology/birth-details';
 
     /** @var Transformer<NakshatraResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class BirthDetails
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return NakshatraResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): NakshatraResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

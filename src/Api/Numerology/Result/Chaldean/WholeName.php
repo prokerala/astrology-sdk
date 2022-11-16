@@ -12,15 +12,9 @@ class WholeName implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var WholeNameNumber
-     */
-    private $wholeNameNumber;
+    private WholeNameNumber $wholeNameNumber;
 
-    /**
-     * @var NameChart
-     */
-    private $nameChart;
+    private NameChart $nameChart;
 
     public function __construct(WholeNameNumber $wholeNameNumber, NameChart $nameChart)
     {

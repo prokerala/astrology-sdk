@@ -13,40 +13,24 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Yoga;
 
 final class YogaDetails
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $description;
+    private string $description;
 
-    /**
-     * @param string $name
-     * @param string $description
-     */
     public function __construct(
-        $name,
-        $description
+        string $name,
+        string $description
     ) {
         $this->name = $name;
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }

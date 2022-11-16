@@ -16,15 +16,9 @@ use Prokerala\Api\Astrology\Result\Element\Rasi;
 
 final class Profile
 {
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    private $nakshatra;
+    private Nakshatra $nakshatra;
 
-    /**
-     * @var \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    private $rasi;
+    private Rasi $rasi;
 
     /**
      * Profile constructor.
@@ -35,18 +29,12 @@ final class Profile
         $this->rasi = $rasi;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Nakshatra
-     */
-    public function getNakshatra()
+    public function getNakshatra(): Nakshatra
     {
         return $this->nakshatra;
     }
 
-    /**
-     * @return \Prokerala\Api\Astrology\Result\Element\Rasi
-     */
-    public function getRasi()
+    public function getRasi(): Rasi
     {
         return $this->rasi;
     }

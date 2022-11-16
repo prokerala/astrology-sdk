@@ -26,11 +26,10 @@ final class PersonalityNumber
     /** @use TimeZoneAwareTrait<Personality> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/personality-number';
+    protected string $slug = '/numerology/personality-number';
 
     /** @var Transformer<Personality> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class PersonalityNumber
     /**
      * Fetch result from API.
      *
-     * @return Personality
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel)
+    public function process(string $firstName, string $middleName, string $lastName, bool $additionalVowel): Personality
     {
         $parameters = [
             'first_name' => $firstName,

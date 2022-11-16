@@ -14,18 +14,14 @@ class InclusionTableResult implements ResultInterface
     /**
      * @var InclusionNumber[]
      */
-    private $inclusionNumber;
+    private array $inclusionNumber;
+
+    private NameChart $nameChart;
 
     /**
-     * @var NameChart
+     * @param InclusionNumber[] $inclusionNumber
      */
-    private $nameChart;
-
-    /**
-     * @param \Prokerala\Api\Numerology\Result\Pythagorean\InclusionNumber[] $inclusionNumber
-     * @param NameChart                                                      $nameChart
-     */
-    public function __construct($inclusionNumber, $nameChart)
+    public function __construct(array $inclusionNumber, NameChart $nameChart)
     {
         $this->inclusionNumber = $inclusionNumber;
         $this->nameChart = $nameChart;

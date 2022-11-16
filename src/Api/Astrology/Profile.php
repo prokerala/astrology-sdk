@@ -13,15 +13,9 @@ namespace Prokerala\Api\Astrology;
 
 final class Profile
 {
-    /**
-     * @var Location
-     */
-    private $location;
+    private Location $location;
 
-    /**
-     * @var \DateTimeInterface
-     */
-    private $datetime;
+    private \DateTimeInterface $datetime;
 
     public function __construct(Location $location, \DateTimeInterface $datetime)
     {
@@ -31,20 +25,16 @@ final class Profile
 
     /**
      * Get birth time.
-     *
-     * @return \DateTimeInterface
      */
-    public function getDateTime()
+    public function getDateTime(): \DateTimeInterface
     {
         return $this->datetime;
     }
 
     /**
      * Get birth location.
-     *
-     * @return Location
      */
-    public function getLocation()
+    public function getLocation(): Location
     {
         return $this->location;
     }

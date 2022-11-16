@@ -29,11 +29,10 @@ final class Hora
     /** @use TimeZoneAwareTrait<HoraTiming> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/hora';
+    protected string $slug = '/astrology/hora';
 
     /** @var Transformer<HoraTiming> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class Hora
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return HoraTiming
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): HoraTiming
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

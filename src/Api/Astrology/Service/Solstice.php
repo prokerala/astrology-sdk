@@ -29,11 +29,10 @@ final class Solstice
     /** @use TimeZoneAwareTrait<SolsticeResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/astrology/solstice';
+    protected string $slug = '/astrology/solstice';
 
     /** @var Transformer<SolsticeResult> */
-    private $transformer;
+    private \Prokerala\Api\Astrology\Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -51,12 +50,11 @@ final class Solstice
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      *
-     * @return SolsticeResult
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en')
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): SolsticeResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),

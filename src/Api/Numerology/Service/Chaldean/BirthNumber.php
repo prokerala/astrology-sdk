@@ -26,11 +26,10 @@ final class BirthNumber
     /** @use TimeZoneAwareTrait<BirthResult> */
     use TimeZoneAwareTrait;
 
-    /** @var string */
-    protected $slug = '/numerology/chaldean/birth-number';
+    protected string $slug = '/numerology/chaldean/birth-number';
 
     /** @var Transformer<BirthResult> */
-    private $transformer;
+    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -45,12 +44,11 @@ final class BirthNumber
     /**
      * Fetch result from API.
      *
-     * @return BirthResult
      *@throws RateLimitExceededException
      **
      * @throws QuotaExceededException
      */
-    public function process(\DateTimeImmutable $datetime)
+    public function process(\DateTimeImmutable $datetime): BirthResult
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
