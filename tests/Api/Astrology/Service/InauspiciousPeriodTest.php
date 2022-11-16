@@ -13,8 +13,6 @@ namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Panchang\InauspiciousPeriod as InauspiciousPeriodResult;
-use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
-use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Period;
 use Prokerala\Api\Astrology\Service\InauspiciousPeriod;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
@@ -23,104 +21,23 @@ use Prokerala\Test\BaseTestCase;
  * @internal
  * @coversNothing
  */
-class InauspiciousPeriodTest extends BaseTestCase
+final class InauspiciousPeriodTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    public const INPUT = [
-        'datetime' => '1967-08-29T09:00:00+05:30',
-        'latitude' => '19.0821978',
-        'longitude' => '72.7411014', // Mumbai
-    ];
-    public const EXPECTED_RESULT = [
-        'muhurat' => [
-            [
-                'id' => 4,
-                'name' => 'Rahu',
-                'type' => 'Inauspicious',
-                'period' => [
-                    [
-                        'start' => '1967-08-29T15:46:42+05:30',
-                        'end' => '1967-08-29T17:20:01+05:30',
-                    ],
-                ],
-            ],
-            [
-                'id' => 5,
-                'name' => 'Yamaganda',
-                'type' => 'Inauspicious',
-                'period' => [
-                    [
-                        'start' => '1967-08-29T09:33:23+05:30',
-                        'end' => '1967-08-29T11:06:43+05:30',
-                    ],
-                ],
-            ],
-            [
-                'id' => 6,
-                'name' => 'Gulika',
-                'type' => 'Inauspicious',
-                'period' => [
-                    [
-                        'start' => '1967-08-29T12:40:02+05:30',
-                        'end' => '1967-08-29T14:13:22+05:30',
-                    ],
-                ],
-            ],
-            [
-                'id' => 7,
-                'name' => 'Dur Muhurat',
-                'type' => 'Inauspicious',
-                'period' => [
-                    [
-                        'start' => '1967-08-29T08:56:02+05:30',
-                        'end' => '1967-08-29T09:45:48+05:30',
-                    ],
-                    [
-                        'start' => '1967-08-29T23:30:45+05:30',
-                        'end' => '1967-08-30T00:16:59+05:30',
-                    ],
-                ],
-            ],
-            [
-                'id' => 8,
-                'name' => 'Varjyam',
-                'type' => 'Inauspicious',
-                'period' => [
-                    [
-                        'start' => '1967-08-29T17:37:15+05:30',
-                        'end' => '1967-08-29T19:19:15+05:30',
-                    ],
-                ],
-            ],
-        ],
-    ];
-
-    public function testProcess()
+    /**
+     * @covers \Prokerala\Api\Astrology\Service\InauspiciousPeriod::process
+     */
+    public function testProcess(): void
     {
-        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
-        $tz = $datetime->getTimezone();
-        $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->getClient();
-        $method = new InauspiciousPeriod($client);
-        $test_result = $method->process($location, $datetime);
-        $result = self::EXPECTED_RESULT;
-        $arMuhurat = [];
-        $apiResponseMuhurat = [];
-        foreach ($result['muhurat'] as $muhurat) {
-            $periods = [];
-            $apiResponsePeriod = [];
-            foreach ($muhurat['period'] as $period) {
-                $start = new \DateTimeImmutable($period['start']);
-                $end = new \DateTimeImmutable($period['end']);
-                $periods[] = new Period($start, $end);
-                $apiResponsePeriod[] = (object)['start' => $period['start'], 'end' => $period['end']];
-            }
-            $arMuhurat[] = new Muhurat($muhurat['id'], $muhurat['name'], $muhurat['type'], $periods);
-            $apiResponseMuhurat['muhurat'][] = (object)['id' => $muhurat['id'], 'name' => $muhurat['name'], 'type' => $muhurat['type'], 'period' => $apiResponsePeriod];
-        }
-        $expected_result = new InauspiciousPeriodResult($arMuhurat);
-        $expected_result->setRawResponse((object)$apiResponseMuhurat);
-        $this->assertEquals($expected_result, $test_result);
+        $service = new InauspiciousPeriod($this->getClient());
+
+        $tz = new \DateTimeZone('Asia/Kolkata');
+        $datetime = new \DateTimeImmutable('2000-01-01', $tz);
+        $location = new Location(21.2, 78.1, 0, $tz);
+        $la = 'en';
+        $result = $service->process($location, $datetime, $la);
+
+        $this->assertInstanceOf(InauspiciousPeriodResult::class, $result);
     }
 }

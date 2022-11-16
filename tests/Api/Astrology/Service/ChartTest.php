@@ -12,8 +12,7 @@
 namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\KaalSarpDosha as KaalSarpDoshaResult;
-use Prokerala\Api\Astrology\Service\KaalSarpDosha;
+use Prokerala\Api\Astrology\Service\Chart;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
 
@@ -21,23 +20,26 @@ use Prokerala\Test\BaseTestCase;
  * @internal
  * @coversNothing
  */
-final class KaalSarpDoshaTest extends BaseTestCase
+final class ChartTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
     /**
-     * @covers \Prokerala\Api\Astrology\Service\KaalSarpDosha::process
+     * @covers \Prokerala\Api\Astrology\Service\Chart::process
      */
     public function testProcess(): void
     {
-        $service = new KaalSarpDosha($this->getClient());
+        $service = new Chart($this->getClient());
 
         $tz = new \DateTimeZone('Asia/Kolkata');
         $datetime = new \DateTimeImmutable('2000-01-01', $tz);
         $location = new Location(21.2, 78.1, 0, $tz);
         $la = 'en';
-        $result = $service->process($location, $datetime, $la);
+        $chartType = 'rasi';
+        $chartStyle = 'north-indian';
 
-        $this->assertInstanceOf(KaalSarpDoshaResult::class, $result);
+        $result = $service->process($location, $datetime, $chartType, $chartStyle, $la);
+
+        $this->assertIsString($result);
     }
 }

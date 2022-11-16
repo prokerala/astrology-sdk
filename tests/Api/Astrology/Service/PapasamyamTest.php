@@ -13,9 +13,6 @@ namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam as PapasamyamResult;
-use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapaPlanet;
-use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PapasamyamDetails;
-use Prokerala\Api\Astrology\Result\Horoscope\Papasamyam\PlanetDoshaDetails;
 use Prokerala\Api\Astrology\Service\Papasamyam;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
@@ -24,138 +21,23 @@ use Prokerala\Test\BaseTestCase;
  * @internal
  * @coversNothing
  */
-class PapasamyamTest extends BaseTestCase
+final class PapasamyamTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
-    public const INPUT = [
-        'datetime' => '2020-05-12T09:20:00+05:30',
-        'latitude' => '22.6757521',
-        'longitude' => '88.0495418', // Kolkata
-    ];
-
-    public const EXPECTED_RESULT = [
-        'total_points' => 3.5,
-        'papa_samyam' => [
-            'papa_planet' => [
-                [
-                    'name' => 'Ascendant',
-                    'planet_dosha' => [
-                        [
-                            'id' => 4,
-                            'name' => 'Mars',
-                            'position' => 9,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 6,
-                            'name' => 'Saturn',
-                            'position' => 8,
-                            'has_dosha' => true,
-                        ],
-                        [
-                            'id' => 0,
-                            'name' => 'Sun',
-                            'position' => 11,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 101,
-                            'name' => 'Rahu',
-                            'position' => 1,
-                            'has_dosha' => true,
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'Moon',
-                    'planet_dosha' => [
-                        [
-                            'id' => 4,
-                            'name' => 'Mars',
-                            'position' => 3,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 6,
-                            'name' => 'Saturn',
-                            'position' => 2,
-                            'has_dosha' => true,
-                        ],
-                        [
-                            'id' => 0,
-                            'name' => 'Sun',
-                            'position' => 5,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 101,
-                            'name' => 'Rahu',
-                            'position' => 7,
-                            'has_dosha' => true,
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'Venus',
-                    'planet_dosha' => [
-                        [
-                            'id' => 4,
-                            'name' => 'Mars',
-                            'position' => 10,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 6,
-                            'name' => 'Saturn',
-                            'position' => 9,
-                            'has_dosha' => false,
-                        ],
-                        [
-                            'id' => 0,
-                            'name' => 'Sun',
-                            'position' => 12,
-                            'has_dosha' => true,
-                        ],
-                        [
-                            'id' => 101,
-                            'name' => 'Rahu',
-                            'position' => 2,
-                            'has_dosha' => true,
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ];
-
-    public function testProcess()
+    /**
+     * @covers \Prokerala\Api\Astrology\Service\Papasamyam::process
+     */
+    public function testProcess(): void
     {
-        $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
-        $tz = $datetime->getTimezone();
-        $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->getClient();
-        $method = new Papasamyam($client);
-        $test_result = $method->process($location, $datetime);
-        $result = self::EXPECTED_RESULT;
+        $service = new Papasamyam($this->getClient());
 
-        $arPapaPlanets = [];
-        $arPapaPlanetObject = [];
-        foreach ($result['papa_samyam']['papa_planet'] as $papa_planet) {
-            $arPlanetDosha = [];
-            $arPlanetDoshaObject = [];
-            foreach ($papa_planet['planet_dosha'] as $planet_dosha) {
-                $arPlanetDosha[] = new PlanetDoshaDetails($planet_dosha['id'], $planet_dosha['name'], $planet_dosha['position'], $planet_dosha['has_dosha']);
-                $arPlanetDoshaObject[] = (object)$planet_dosha;
-            }
-            $arPapaPlanets[] = new PapaPlanet($papa_planet['name'], $arPlanetDosha);
-            $arPapaPlanetObject[] = (object)['name' => $papa_planet['name'], 'planet_dosha' => $arPlanetDoshaObject];
-        }
-        $papasamyamDetails = new PapasamyamDetails($arPapaPlanets);
-        $papasamyamDetailObject = (object)['papa_planet' => $arPapaPlanetObject];
+        $tz = new \DateTimeZone('Asia/Kolkata');
+        $datetime = new \DateTimeImmutable('2000-01-01', $tz);
+        $location = new Location(21.2, 78.1, 0, $tz);
+        $la = 'en';
+        $result = $service->process($location, $datetime, $la);
 
-        $expected_result = new PapasamyamResult($result['total_points'], $papasamyamDetails);
-        $expected_result->setRawResponse((object)['total_points' => $result['total_points'], 'papa_samyam' => $papasamyamDetailObject]);
-        $this->assertEquals($expected_result, $test_result);
+        $this->assertInstanceOf(PapasamyamResult::class, $result);
     }
 }

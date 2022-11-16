@@ -12,8 +12,8 @@
 namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\KaalSarpDosha as KaalSarpDoshaResult;
-use Prokerala\Api\Astrology\Service\KaalSarpDosha;
+use Prokerala\Api\Astrology\Result\Panchang\Solstice as SolsticeResult;
+use Prokerala\Api\Astrology\Service\Solstice;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
 
@@ -21,16 +21,16 @@ use Prokerala\Test\BaseTestCase;
  * @internal
  * @coversNothing
  */
-final class KaalSarpDoshaTest extends BaseTestCase
+final class SolsticeTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
     /**
-     * @covers \Prokerala\Api\Astrology\Service\KaalSarpDosha::process
+     * @covers \Prokerala\Api\Astrology\Service\Solstice::process
      */
     public function testProcess(): void
     {
-        $service = new KaalSarpDosha($this->getClient());
+        $service = new Solstice($this->getClient());
 
         $tz = new \DateTimeZone('Asia/Kolkata');
         $datetime = new \DateTimeImmutable('2000-01-01', $tz);
@@ -38,6 +38,6 @@ final class KaalSarpDoshaTest extends BaseTestCase
         $la = 'en';
         $result = $service->process($location, $datetime, $la);
 
-        $this->assertInstanceOf(KaalSarpDoshaResult::class, $result);
+        $this->assertInstanceOf(SolsticeResult::class, $result);
     }
 }
