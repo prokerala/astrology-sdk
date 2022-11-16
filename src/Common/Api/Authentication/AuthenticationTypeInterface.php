@@ -17,18 +17,11 @@ interface AuthenticationTypeInterface
 {
     /**
      * @internal
-     *
-     * @return RequestInterface
      */
-    public function process(RequestInterface $request);
+    public function process(RequestInterface $request): RequestInterface;
 
     /**
      * @internal
-     *
-     * @param string $message
-     * @param int    $code
-     *
-     * @return void
      */
-    public function handleError($message, $code);
+    public function handleError(\stdClass $response, int $code): void;
 }

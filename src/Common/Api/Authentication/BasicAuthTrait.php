@@ -18,10 +18,7 @@ use Psr\Http\Message\RequestInterface;
  */
 trait BasicAuthTrait
 {
-    /**
-     * @return RequestInterface
-     */
-    public function process(RequestInterface $request)
+    public function process(RequestInterface $request): RequestInterface
     {
         $token = $this->getToken();
 

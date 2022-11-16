@@ -12,12 +12,14 @@
 namespace Prokerala\Common\Api\Authentication;
 
 use Prokerala\Common\Api\Exception\AuthenticationException;
+use Prokerala\Common\Api\Exception\TokenExpiredException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\SimpleCache\CacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
+use stdClass;
 
 class Oauth2 implements AuthenticationTypeInterface
 {
@@ -26,37 +28,30 @@ class Oauth2 implements AuthenticationTypeInterface
     public const CACHE_KEY = 'prokerala_api_client.oauth_access_token';
     public const TOKEN_ENDPOINT = 'https://api.prokerala.com/token';
 
-    /** @var string */
-    private $accessToken;
+    private ?string $accessToken;
 
-    /** @var string */
-    private $clientId;
+    private string $clientId;
 
-    /** @var string */
-    private $clientSecret;
+    private string $clientSecret;
 
-    /** @var ClientInterface */
-    private $httpClient;
+    private ClientInterface $httpClient;
 
-    /** @var null|CacheInterface */
-    private $cache;
+    private ?CacheInterface $cache;
 
-    /** @var RequestFactoryInterface */
-    private $httpRequestFactory;
+    private RequestFactoryInterface $httpRequestFactory;
 
-    /** @var int */
-    private $tokenExpiresAt = 0;
+    private int $tokenExpiresAt = 0;
 
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
+    private StreamFactoryInterface $streamFactory;
 
-    /**
-     * @param string              $clientId
-     * @param string              $clientSecret
-     * @param null|CacheInterface $cache
-     */
-    public function __construct($clientId, $clientSecret, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory, StreamFactoryInterface $streamFactory, $cache = null)
-    {
+    public function __construct(
+        string $clientId,
+        string $clientSecret,
+        ClientInterface $httpClient,
+        RequestFactoryInterface $httpRequestFactory,
+        StreamFactoryInterface $streamFactory,
+        ?CacheInterface $cache = null
+    ) {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->httpClient = $httpClient;
@@ -65,45 +60,45 @@ class Oauth2 implements AuthenticationTypeInterface
         // Try loading access token from cache
         if ($cache) {
             $this->cache = $cache;
-            $accessToken = $cache->get(self::CACHE_KEY);
-            \assert(\is_string($accessToken));
-            $this->accessToken = $accessToken;
+            try {
+                /** @var null|string $accessToken */
+                $accessToken = $cache->get(self::CACHE_KEY);
+                $this->accessToken = $accessToken;
+            } catch (InvalidArgumentException) {
+                // Ignore and continue
+            }
         }
         $this->httpRequestFactory = $httpRequestFactory;
         $this->streamFactory = $streamFactory;
     }
 
     /**
-     * @return string
      * @throws AuthenticationException
      */
-    public function getToken()
+    public function getToken(): string
     {
         if (!$this->accessToken || time() > $this->tokenExpiresAt) {
             $this->requestAccessToken();
         }
 
+        assert(is_string($this->accessToken));
+
         return $this->accessToken;
     }
 
-    /**
-     * @param  string $message
-     * @param  int    $code
-     * @return void
-     */
-    public function handleError($message, $code)
+    public function handleError(stdClass $response, int $code): void
     {
-        // TODO: Implement handleError() method.
-        if ($this->cache) {
-            $this->cache->delete(self::CACHE_KEY);
+        $this->cache?->delete(self::CACHE_KEY);
+
+        if (isset($response->errors[0]) && ('643' === $response->errors[0]->code)) {
+            throw new TokenExpiredException($response->errors[0]->detail);
         }
     }
 
     /**
-     * @return void
      * @throws AuthenticationException
      */
-    private function requestAccessToken()
+    private function requestAccessToken(): void
     {
         $data = [
             'grant_type' => 'client_credentials',
@@ -125,8 +120,8 @@ class Oauth2 implements AuthenticationTypeInterface
             throw new AuthenticationException("Failed to fetch access token. Request failed with error - {$e->getMessage()}", 0, $e);
         }
 
-        /** @var null|\stdClass $responseData */
-        $responseData = json_decode($response->getBody(), false, 512);
+        /** @var null|stdClass $responseData */
+        $responseData = json_decode($response->getBody(), false);
         if (!$responseData) {
             throw new AuthenticationException('Failed to parse token');
         }
