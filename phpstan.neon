@@ -3,3 +3,29 @@ parameters:
   reportUnmatchedIgnoredErrors: false
   paths:
     - src/
+  ignoreErrors:
+    -
+      message: "#^Parameter \\#1 \\$transformer of method Prokerala\\\\Api\\\\Astrology\\\\Service\\\\Kundli\\:\\:addDateTimeTransformer\\(\\) expects Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\AdvancedKundli\\|Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\Kundli\\>, Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\AdvancedKundli\\> given\\.$#"
+      count: 1
+      path: src/Api/Astrology/Service/Kundli.php
+
+    -
+      message: "#^Parameter \\#1 \\$transformer of method Prokerala\\\\Api\\\\Astrology\\\\Service\\\\Kundli\\:\\:addDateTimeTransformer\\(\\) expects Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\AdvancedKundli\\|Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\Kundli\\>, Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\Kundli\\> given\\.$#"
+      count: 1
+      path: src/Api/Astrology/Service/Kundli.php
+
+    -
+      message: "#^Parameter \\#1 \\$transformer of method Prokerala\\\\Api\\\\Astrology\\\\Service\\\\Panchang\\:\\:addDateTimeTransformer\\(\\) expects Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\AdvancedPanchang\\|Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\Panchang\\>, Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\AdvancedPanchang\\> given\\.$#"
+      count: 1
+      path: src/Api/Astrology/Service/Panchang.php
+
+    -
+      message: "#^Parameter \\#1 \\$transformer of method Prokerala\\\\Api\\\\Astrology\\\\Service\\\\Panchang\\:\\:addDateTimeTransformer\\(\\) expects Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\AdvancedPanchang\\|Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\Panchang\\>, Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Panchang\\\\Panchang\\> given\\.$#"
+      count: 1
+      path: src/Api/Astrology/Service/Panchang.php
+
+    -
+      message: "#^Parameter \\#1 \\$transformer of method Prokerala\\\\Api\\\\Astrology\\\\Service\\\\SadeSati\\:\\:addDateTimeTransformer\\(\\) expects Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\AdvancedSadeSati\\|Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\SadeSati\\>, Prokerala\\\\Api\\\\Astrology\\\\Transformer\\<Prokerala\\\\Api\\\\Astrology\\\\Result\\\\Horoscope\\\\AdvancedSadeSati\\> given\\.$#"
+      count: 1
+      path: src/Api/Astrology/Service/SadeSati.php
+
