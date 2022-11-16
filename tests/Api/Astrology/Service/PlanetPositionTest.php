@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Planet as Lord;
@@ -17,8 +17,8 @@ use Prokerala\Api\Astrology\Result\Element\Rasi;
 use Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition as PlanetPositionResult;
 use Prokerala\Api\Astrology\Result\Horoscope\PlanetPosition\Planet;
 use Prokerala\Api\Astrology\Service\PlanetPosition;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -213,7 +213,7 @@ class PlanetPositionTest extends BaseTestCase
         $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->setClient();
+        $client = $this->getClient();
         $method = new PlanetPosition($client);
         $test_result = $method->process($location, $datetime);
 

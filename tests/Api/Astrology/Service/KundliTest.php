@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Nakshatra;
@@ -29,8 +29,8 @@ use Prokerala\Api\Astrology\Result\Horoscope\Yoga\AdvancedYogaDetails as Advance
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga\Yoga;
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga\YogaDetails as BasicYogaResult;
 use Prokerala\Api\Astrology\Service\Kundli;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -5364,7 +5364,7 @@ class KundliTest extends BaseTestCase
         $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->setClient();
+        $client = $this->getClient();
 
         $basic_result = self::EXPECTED_OUTPUT;
         unset($basic_result['dasha_periods'], $basic_result['mangal_dosha']['has_exception'], $basic_result['mangal_dosha']['type'], $basic_result['mangal_dosha']['exceptions'], $basic_result['mangal_dosha']['remedies']);

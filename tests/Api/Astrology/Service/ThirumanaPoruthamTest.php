@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\NakshatraProfile;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\AdvancedThirumanaPorutham as AdvancedThirumanaPoruthamResult;
@@ -18,8 +18,8 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\AdvancedMatch as A
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Porutham\BasicMatch as BasicMatchResult;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\ThirumanaPorutham as BasicThirumanaPoruthamResult;
 use Prokerala\Api\Astrology\Service\ThirumanaPorutham;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -155,7 +155,7 @@ class ThirumanaPoruthamTest extends BaseTestCase
         $boy_nakshatra_pada = self::BOY_INPUT['nakshatra_pada'];
         $boy_profile = new NakshatraProfile($boy_nakshatra, $boy_nakshatra_pada);
 
-        $client = $this->setClient();
+        $client = $this->getClient();
 
         $thirumana_porutham = new ThirumanaPorutham($client);
         $test_basic_result = $thirumana_porutham->process($girl_profile, $boy_profile);

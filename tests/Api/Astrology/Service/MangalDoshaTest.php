@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\AdvancedMangalDosha as AdvancedMangalDoshaResult;
 use Prokerala\Api\Astrology\Result\Horoscope\MangalDosha as BasicMangalDoshaResult;
 use Prokerala\Api\Astrology\Service\MangalDosha;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -64,7 +64,7 @@ class MangalDoshaTest extends BaseTestCase
         $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->setClient();
+        $client = $this->getClient();
 
         $mangalDosha = new MangalDosha($client);
         $test_basic_result = $mangalDosha->process($location, $datetime);

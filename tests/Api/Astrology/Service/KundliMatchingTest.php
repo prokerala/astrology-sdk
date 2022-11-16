@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Profile;
@@ -26,8 +26,8 @@ use Prokerala\Api\Astrology\Result\HoroscopeMatching\MangalDosha;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\Message;
 use Prokerala\Api\Astrology\Result\HoroscopeMatching\ProfileInfo;
 use Prokerala\Api\Astrology\Service\KundliMatching;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -217,7 +217,7 @@ class KundliMatchingTest extends BaseTestCase
         $boy_location = new Location(self::BOY_INPUT['latitude'], self::BOY_INPUT['longitude']);
         $boy_dob = new \DateTimeImmutable(self::BOY_INPUT['datetime']);
         $boy_profile = new Profile($boy_location, $boy_dob);
-        $client = $this->setClient();
+        $client = $this->getClient();
 
         $kundali_matching = new KundliMatching($client);
         $basic_test_result = $kundali_matching->process($girl_profile, $boy_profile);

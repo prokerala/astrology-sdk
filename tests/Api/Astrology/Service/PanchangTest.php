@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Service;
+namespace Prokerala\Test\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Element\Planet;
@@ -22,8 +22,8 @@ use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Muhurat;
 use Prokerala\Api\Astrology\Result\Panchang\Muhurat\Period;
 use Prokerala\Api\Astrology\Result\Panchang\Panchang as BasicPanchangResult;
 use Prokerala\Api\Astrology\Service\Panchang;
-use Prokerala\Tests\Api\Astrology\Traits\AuthenticationTrait;
-use Prokerala\Tests\BaseTestCase;
+use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
+use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
@@ -227,7 +227,7 @@ class PanchangTest extends BaseTestCase
         $datetime = new \DateTimeImmutable(self::INPUT['datetime']);
         $tz = $datetime->getTimezone();
         $location = new Location(self::INPUT['latitude'], self::INPUT['longitude'], 0, $tz);
-        $client = $this->setClient();
+        $client = $this->getClient();
 
         $panchang = new Panchang($client);
         $test_basic_result = $panchang->process($location, $datetime);

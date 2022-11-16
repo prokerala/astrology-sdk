@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests;
+namespace Prokerala\Test;
 
 use PHPUnit\Framework\TestCase;
 

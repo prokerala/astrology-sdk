@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Tests\Api\Astrology\Traits;
+namespace Prokerala\Test\Api\Common\Traits;
 
 use GuzzleHttp\Client as HttpClient;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -18,7 +18,7 @@ use Prokerala\Common\Api\Client;
 
 trait AuthenticationTrait
 {
-    public function setClient()
+    public function getClient(): Client
     {
         $clientId = 'client_id';
         $clientSecret = 'client_secret';
