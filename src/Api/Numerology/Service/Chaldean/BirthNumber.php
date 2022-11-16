@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Chaldean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Chaldean\Birth as BirthResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BirthNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<BirthResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/chaldean/birth-number';
 
@@ -38,7 +34,6 @@ final class BirthNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(BirthResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

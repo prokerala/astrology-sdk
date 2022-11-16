@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\Maturity;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class MaturityNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<Maturity> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/maturity-number';
 
@@ -38,7 +34,6 @@ final class MaturityNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(Maturity::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

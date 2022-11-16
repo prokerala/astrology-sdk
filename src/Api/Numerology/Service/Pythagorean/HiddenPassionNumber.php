@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\HiddenPassion;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class HiddenPassionNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<HiddenPassion> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/hidden-passion-number';
 
@@ -38,7 +34,6 @@ final class HiddenPassionNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(HiddenPassion::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

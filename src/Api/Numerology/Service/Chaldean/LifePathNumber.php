@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Chaldean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Chaldean\LifePath;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class LifePathNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<LifePath> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/chaldean/life-path-number';
 
@@ -38,7 +34,6 @@ final class LifePathNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(LifePath::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

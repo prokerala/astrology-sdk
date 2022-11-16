@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\SubconsciousSelf;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class SubconsciousSelfNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<SubconsciousSelf> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/subconscious-self-number';
 
@@ -38,7 +34,6 @@ final class SubconsciousSelfNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(SubconsciousSelf::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

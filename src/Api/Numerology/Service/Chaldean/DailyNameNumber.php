@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Chaldean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Chaldean\DailyName;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class DailyNameNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<DailyName> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/chaldean/daily-name-number';
 
@@ -38,7 +34,6 @@ final class DailyNameNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(DailyName::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

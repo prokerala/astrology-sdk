@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\EssenceResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class EssenceNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<EssenceResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/essence-number';
 
@@ -38,7 +34,6 @@ final class EssenceNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(EssenceResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

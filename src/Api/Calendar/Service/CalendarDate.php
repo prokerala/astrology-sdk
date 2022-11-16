@@ -11,9 +11,6 @@
 
 namespace Prokerala\Api\Calendar\Service;
 
-use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Calendar\Result\CalendarDate as CalendarDateResult;
 use Prokerala\Common\Api\Client;
@@ -23,11 +20,7 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class CalendarDate
 {
-    use AyanamsaAwareTrait;
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<CalendarDateResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/calendar';
 
@@ -41,18 +34,13 @@ final class CalendarDate
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(CalendarDateResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
      * Fetch result from API.
      *
-     * @param Location           $location Location details
-     * @param \DateTimeInterface $datetime Date and time
-     *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
-     **
      */
     public function process(string $calendar, \DateTimeInterface $date, string $la = 'en'): CalendarDateResult
     {

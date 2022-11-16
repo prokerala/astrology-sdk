@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\SoulUrge;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class SoulUrgeNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<SoulUrge> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/soul-urge-number';
 
@@ -38,7 +34,6 @@ final class SoulUrgeNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(SoulUrge::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

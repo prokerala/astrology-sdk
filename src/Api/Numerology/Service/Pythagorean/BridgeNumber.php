@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer as TransformerAlias;
 use Prokerala\Api\Numerology\Result\Pythagorean\Bridge as BridgeResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BridgeNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<BridgeResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/bridge-number';
 
@@ -38,7 +34,6 @@ final class BridgeNumber
     {
         $this->apiClient = $client;
         $this->transformer = new TransformerAlias(BridgeResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

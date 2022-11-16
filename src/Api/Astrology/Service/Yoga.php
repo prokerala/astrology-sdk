@@ -14,7 +14,6 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga as YogaResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -26,13 +25,10 @@ final class Yoga
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @use TimeZoneAwareTrait<KundliResult|AdvancedKundliResult> */
-    use TimeZoneAwareTrait;
-
     protected string $slug = '/astrology/yoga';
 
     /** @var Transformer<YogaResult> */
-    private \Prokerala\Api\Astrology\Transformer $basicResponseTransformers;
+    private Transformer $basicResponseTransformers;
 
     /**
      * @param Client $client Api client
@@ -41,7 +37,6 @@ final class Yoga
     {
         $this->apiClient = $client;
         $this->basicResponseTransformers = new Transformer(YogaResult::class);
-        $this->addDateTimeTransformer($this->basicResponseTransformers);
     }
 
     /**

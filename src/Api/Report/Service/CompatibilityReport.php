@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Report\Service;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
 final class CompatibilityReport
 {
     use ClientAwareTrait;
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/report/compatibility-reading/instant';
 

@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\InclusionTableResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class InclusionTable
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<InclusionTableResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/inclusion-table-number';
 
@@ -38,7 +34,6 @@ final class InclusionTable
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(InclusionTableResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

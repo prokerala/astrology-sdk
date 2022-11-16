@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\Pinnacle as PinnacleResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class PinnacleNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<PinnacleResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/pinnacle-number';
 
@@ -38,7 +34,6 @@ final class PinnacleNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(PinnacleResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

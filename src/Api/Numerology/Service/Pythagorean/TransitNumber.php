@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\Transit;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class TransitNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<Transit> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/transit-number';
 
@@ -38,7 +34,6 @@ final class TransitNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(Transit::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

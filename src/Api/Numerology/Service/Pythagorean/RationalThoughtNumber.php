@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\RationalThought;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class RationalThoughtNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<RationalThought> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/rational-thought-number';
 
@@ -38,7 +34,6 @@ final class RationalThoughtNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(RationalThought::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

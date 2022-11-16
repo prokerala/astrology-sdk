@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer as TransformerAlias;
 use Prokerala\Api\Numerology\Result\Pythagorean\LifeCycle as LifeCycleResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class LifeCycleNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<LifeCycleResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/life-cycle-number';
 
@@ -38,7 +34,6 @@ final class LifeCycleNumber
     {
         $this->apiClient = $client;
         $this->transformer = new TransformerAlias(LifeCycleResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

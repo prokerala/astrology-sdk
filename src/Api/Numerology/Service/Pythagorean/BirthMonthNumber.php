@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\BirthMonth;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class BirthMonthNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<BirthMonth> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/birth-month-number';
 
@@ -38,7 +34,6 @@ final class BirthMonthNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(BirthMonth::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

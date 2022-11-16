@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\Capstone;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class CapstoneNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<CapStone> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/capstone-number';
 
@@ -38,7 +34,6 @@ final class CapstoneNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(Capstone::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

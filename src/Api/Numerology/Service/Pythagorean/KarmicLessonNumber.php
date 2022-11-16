@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\KarmicLessonResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class KarmicLessonNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<KarmicLessonResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/karmic-lesson-number';
 
@@ -38,7 +34,6 @@ final class KarmicLessonNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(KarmicLessonResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\UniversalYear;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class UniversalYearNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<UniversalYear> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/universal-year-number';
 
@@ -38,7 +34,6 @@ final class UniversalYearNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(UniversalYear::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

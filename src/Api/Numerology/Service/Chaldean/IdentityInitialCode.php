@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Chaldean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Chaldean\IdentityInitialCode as IdentityInitialCodeResult;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class IdentityInitialCode
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<IdentityInitialCodeResult> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/chaldean/identity-initial-code-number';
 
@@ -38,7 +34,6 @@ final class IdentityInitialCode
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(IdentityInitialCodeResult::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**

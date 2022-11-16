@@ -11,7 +11,6 @@
 
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Api\Numerology\Result\Pythagorean\Expression;
 use Prokerala\Common\Api\Client;
@@ -22,9 +21,6 @@ use Prokerala\Common\Api\Traits\ClientAwareTrait;
 final class ExpressionNumber
 {
     use ClientAwareTrait;
-
-    /** @use TimeZoneAwareTrait<Expression> */
-    use TimeZoneAwareTrait;
 
     protected string $slug = '/numerology/expression-number';
 
@@ -38,7 +34,6 @@ final class ExpressionNumber
     {
         $this->apiClient = $client;
         $this->transformer = new Transformer(Expression::class);
-        $this->addDateTimeTransformer($this->transformer);
     }
 
     /**
