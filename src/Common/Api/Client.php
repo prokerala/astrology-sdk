@@ -115,7 +115,7 @@ final class Client
      */
     private function handleError(int $statusCode, array $errors)
     {
-        throw match ($statusCode) {
+        match ($statusCode) {
             401 => throw new AuthenticationException($errors[0]->detail),
             400 => throw new ValidationException($errors),
             500 => throw new ServerException($errors[0]->detail),
