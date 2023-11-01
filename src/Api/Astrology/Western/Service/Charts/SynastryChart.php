@@ -13,19 +13,19 @@ namespace Prokerala\Api\Astrology\Western\Service\Charts;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\NatalChart as NatalChartResult;
+use Prokerala\Api\Astrology\Western\Result\Charts\SynastryChart as SynastryChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class NatalChart
+final class SynastryChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/natal-chart';
+    protected string $slug = '/astrology/synastry-chart';
 
-    /** @var Transformer<NatalChartResult> */
+    /** @var Transformer<SynastryChartResult> */
     private Transformer $transformer;
 
     /**
@@ -34,7 +34,7 @@ final class NatalChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(NatalChartResult::class);
+        $this->transformer = new Transformer(SynastryChartResult::class);
     }
 
     /**
@@ -44,22 +44,30 @@ final class NatalChart
      * @throws QuotaExceededException
      */
     public function process(
-        Location $location,
-        \DateTimeImmutable $datetime,
+        Location $primaryBirthLocation,
+        \DateTimeImmutable $primaryBirthTime,
+        Location $secondaryBirthLocation,
+        \DateTimeImmutable $secondaryBirthTime,
         string $houseSystem,
+        string $chartType,
         string $orb,
-        bool $birthTimeUnknown,
+        bool $primaryBirthTimeUnknown,
+        bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): NatalChartResult
+    ): SynastryChartResult
     {
 
         $parameters = [
-            'coordinates' => $location->getCoordinates(),
-            'datetime' => $datetime->format('c'),
+            'partner_a_dob' => $primaryBirthTime->format('c'),
+            'partner_a_coordinates' => $primaryBirthLocation->getCoordinates(),
+            'partner_b_dob' => $secondaryBirthTime->format('c'),
+            'partner_b_coordinates' => $secondaryBirthLocation->getCoordinates(),
             'house_system' => $houseSystem,
+            'chart_type' => $chartType,
             'orb' => $orb,
-            'birth_time_unknown' => $birthTimeUnknown,
+            'partner_a_birth_time_unknown' => $primaryBirthTimeUnknown,
+            'partner_b_birth_time_unknown' => $secondaryBirthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
         ];

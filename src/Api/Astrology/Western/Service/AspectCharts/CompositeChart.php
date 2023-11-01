@@ -9,23 +9,23 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Western\Service\Charts;
+namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\NatalChart as NatalChartResult;
+use Prokerala\Api\Astrology\Western\Result\AspectCharts\CompositeChart as CompositeChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class NatalChart
+final class CompositeChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/natal-chart';
+    protected string $slug = '/astrology/composite-chart';
 
-    /** @var Transformer<NatalChartResult> */
+    /** @var Transformer<CompositeChartResult> */
     private Transformer $transformer;
 
     /**
@@ -34,7 +34,7 @@ final class NatalChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(NatalChartResult::class);
+        $this->transformer = new Transformer(CompositeChartResult::class);
     }
 
     /**
@@ -44,22 +44,32 @@ final class NatalChart
      * @throws QuotaExceededException
      */
     public function process(
-        Location $location,
-        \DateTimeImmutable $datetime,
+        Location $primaryBirthLocation,
+        \DateTimeImmutable $primaryBirthTime,
+        Location $secondaryBirthLocation,
+        \DateTimeImmutable $secondaryBirthTime,
+        Location $currentLocation,
+        \DateTimeImmutable $transitDateTime,
         string $houseSystem,
         string $orb,
-        bool $birthTimeUnknown,
+        bool $primaryBirthTimeUnknown,
+        bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): NatalChartResult
+    ): CompositeChartResult
     {
 
         $parameters = [
-            'coordinates' => $location->getCoordinates(),
-            'datetime' => $datetime->format('c'),
+            'partner_a_dob' => $primaryBirthTime->format('c'),
+            'partner_a_coordinates' => $primaryBirthLocation->getCoordinates(),
+            'partner_b_dob' => $secondaryBirthTime->format('c'),
+            'partner_b_coordinates' => $secondaryBirthLocation->getCoordinates(),
+            'transit_datetime' => $transitDateTime->format('c'),
+            'current_coordinates' => $currentLocation->getCoordinates(),
             'house_system' => $houseSystem,
             'orb' => $orb,
-            'birth_time_unknown' => $birthTimeUnknown,
+            'partner_a_birth_time_unknown' => $primaryBirthTimeUnknown,
+            'partner_b_birth_time_unknown' => $secondaryBirthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
         ];

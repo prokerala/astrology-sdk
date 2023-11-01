@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Western\Service\Charts;
+namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\NatalChart as NatalChartResult;
+use Prokerala\Api\Astrology\Western\Result\AspectCharts\NatalChart as NatalChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -23,7 +23,7 @@ final class NatalChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/natal-chart';
+    protected string $slug = '/astrology/natal-aspect-chart';
 
     /** @var Transformer<NatalChartResult> */
     private Transformer $transformer;

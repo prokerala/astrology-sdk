@@ -9,23 +9,23 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Prokerala\Api\Astrology\Western\Service\Charts;
+namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\NatalChart as NatalChartResult;
+use Prokerala\Api\Astrology\Western\Result\AspectCharts\SolarReturnChart as SolarReturnChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class NatalChart
+final class SolarReturnChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/natal-chart';
+    protected string $slug = '/astrology/solar-return-chart';
 
-    /** @var Transformer<NatalChartResult> */
+    /** @var Transformer<SolarReturnChartResult> */
     private Transformer $transformer;
 
     /**
@@ -34,7 +34,7 @@ final class NatalChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(NatalChartResult::class);
+        $this->transformer = new Transformer(SolarReturnChartResult::class);
     }
 
     /**
@@ -46,17 +46,21 @@ final class NatalChart
     public function process(
         Location $location,
         \DateTimeImmutable $datetime,
+        Location $transitLocation,
+        int $solarYear,
         string $houseSystem,
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): NatalChartResult
+    ): SolarReturnChartResult
     {
 
         $parameters = [
-            'coordinates' => $location->getCoordinates(),
             'datetime' => $datetime->format('c'),
+            'coordinates' => $location->getCoordinates(),
+            'solar_year' => $solarYear,
+            'current_coordinates' => $transitLocation->getCoordinates(),
             'house_system' => $houseSystem,
             'orb' => $orb,
             'birth_time_unknown' => $birthTimeUnknown,
