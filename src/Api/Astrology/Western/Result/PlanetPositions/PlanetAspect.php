@@ -14,9 +14,9 @@ class PlanetAspect implements ResultInterface
     private Planet $planetOne;
     private Planet $planetTwo;
     private Aspect $aspect;
-    private int $orb;
+    private float $orb;
 
-    public function __construct(Planet $planetOne, Planet $planetTwo, Aspect $aspect, int $orb){
+    public function __construct(Planet $planetOne, Planet $planetTwo, Aspect $aspect, float $orb){
         $this->planetOne = $planetOne;
         $this->planetTwo = $planetTwo;
         $this->aspect = $aspect;
@@ -40,6 +40,6 @@ class PlanetAspect implements ResultInterface
 
     public function getOrb(): int
     {
-        return $this->orb;
+        return (int)$this->orb;
     }
 }

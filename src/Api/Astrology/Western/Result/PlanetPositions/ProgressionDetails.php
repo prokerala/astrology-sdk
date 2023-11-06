@@ -7,7 +7,7 @@ namespace Prokerala\Api\Astrology\Western\Result\PlanetPositions;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class NatalChart implements ResultInterface
+class ProgressionDetails implements ResultInterface
 {
     use RawResponseTrait;
 

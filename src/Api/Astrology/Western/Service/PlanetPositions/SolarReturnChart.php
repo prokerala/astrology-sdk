@@ -13,7 +13,7 @@ namespace Prokerala\Api\Astrology\Western\Service\PlanetPositions;
 
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\SolarReturnChart as SolarReturnChartResult;
+use Prokerala\Api\Astrology\Western\Result\PlanetPositions\SolarReturnChart as SolarReturnChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;

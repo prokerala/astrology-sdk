@@ -4,44 +4,40 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Western\Result\PlanetPositions;
 
-class SolarReturnChart
-{
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
+class SolarReturnChart implements ResultInterface
+{
+    use RawResponseTrait;
+
+    private SolarReturnDetails $solarDetails;
     /**
-     * @var array{list<House>, list<PlanetPosition>, list<PlanetAspect>, list<PlanetAspect>}
+     * @var PlanetAspect[]
      */
-    private array $solarDetails;
-    /**
-     * @var list<PlanetAspect>
-     */
-    private array $solarNatalAspect;
+    private array $solarAspect;
     private string $solarDatetime;
 
     /**
-     * @param array{list<House>, list<PlanetPosition>, list<PlanetAspect>, list<PlanetAspect>} $solarDetails
-     * @param list<PlanetAspect> $solarNatalAspect
+     * @param PlanetAspect[] $solarAspect
      */
-    public function __construct(array $solarDetails, array $solarNatalAspect, string $solarDatetime){
+    public function __construct(SolarReturnDetails $solarDetails, array $solarAspect, string $solarDatetime){
         $this->solarDetails = $solarDetails;
-        $this->solarNatalAspect = $solarNatalAspect;
+        $this->solarAspect = $solarAspect;
         $this->solarDatetime = $solarDatetime;
     }
 
-    /**
-     * @return array{list<House>, list<PlanetPosition>,
-     *      list<PlanetAspect>, list<PlanetAspect>}
-     */
-    public function getSolarDetails(): array
+    public function getSolarDetails(): SolarReturnDetails
     {
         return $this->solarDetails;
     }
 
     /**
-     * @return list<PlanetAspect>
+     * @return PlanetAspect[]
      */
     public function getSolarNatalAspect(): array
     {
-        return $this->solarNatalAspect;
+        return $this->solarAspect;
     }
 
     public function getSolarDatetime(): \DateTimeImmutable

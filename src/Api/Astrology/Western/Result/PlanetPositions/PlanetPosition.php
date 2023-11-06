@@ -27,6 +27,7 @@ class PlanetPosition implements ResultInterface
         $this->isRetrograde = $isRetrograde;
         $this->position = $position;
         $this->degree = $degree;
+        $this->zodiac = $zodiac;
     }
 
     public function getId(): int

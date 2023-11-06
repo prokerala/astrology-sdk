@@ -4,40 +4,36 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Western\Result\PlanetPositions;
 
-class ProgressionChart
-{
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
+class ProgressionChart implements ResultInterface
+{
+    use RawResponseTrait;
+
+    private ProgressionDetails $progressionDetails;
     /**
-     * @var array{list<House>, list<PlanetPosition>, list<PlanetAspect>, list<PlanetAspect>}
-     */
-    private array $progressionDetails;
-    /**
-     * @var list<PlanetAspect>
+     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
      */
     private array $progressionNatalAspect;
     private string $progressionDatetime;
 
     /**
-     * @param array{list<House>, list<PlanetPosition>, list<PlanetAspect>, list<PlanetAspect>} $progressionDetails
-     * @param list<PlanetAspect> $progressionNatalAspect
+     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $progressionNatalAspect
      */
-    public function __construct(array $progressionDetails, array $progressionNatalAspect, string $progressionDatetime){
+    public function __construct(ProgressionDetails $progressionDetails, array $progressionNatalAspect, string $progressionDatetime){
         $this->progressionDetails = $progressionDetails;
         $this->progressionNatalAspect = $progressionNatalAspect;
         $this->progressionDatetime = $progressionDatetime;
     }
 
-    /**
-     * @return array{list<House>, list<PlanetPosition>,
-     *      list<PlanetAspect>, list<PlanetAspect>}
-     */
-    public function getProgressionDetails(): array
+    public function getProgressionDetails(): ProgressionDetails
     {
         return $this->progressionDetails;
     }
 
     /**
-     * @return list<PlanetAspect>
+     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
      */
     public function getProgressionNatalAspect(): array
     {

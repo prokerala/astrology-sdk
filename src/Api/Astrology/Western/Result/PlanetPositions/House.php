@@ -16,11 +16,15 @@ class House implements ResultInterface
     private float $startDegree;
     private float $endDegree;
     /**
-     * @var list<PlanetPosition>
+     * @var PlanetPosition[]
      */
     private array $planetPositions;
 
-    public function __constuct(int $id, int $number, float $startDegree, float $endDegree, array $planetPositions){
+    /**
+     * @param PlanetPosition[] $planetPositions
+     */
+
+    public function __construct(int $id, int $number, float $startDegree, float $endDegree, array $planetPositions){
         $this->id = $id;
         $this->number = $number;
         $this->startDegree = $startDegree;

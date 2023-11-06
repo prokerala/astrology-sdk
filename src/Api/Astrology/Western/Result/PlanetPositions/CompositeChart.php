@@ -4,30 +4,34 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Western\Result\PlanetPositions;
 
-class CompositeChart
+use Prokerala\Api\Astrology\Result\ResultInterface;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class CompositeChart implements ResultInterface
 {
+    use RawResponseTrait;
 
     /**
-     * @var list<PlanetAspect>
+     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
      */
     private array $aspects;
 
     /**
-     * @var list<PlanetPosition>
+     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
      */
-    private array $planetPositions;
+    private array $angles;
 
     /**
-     * @param list<PlanetAspect> $aspects
-     * @param list<PlanetPosition> $planetPositions
+     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $aspects
+     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[] $angles
      */
-    public function __construct(array $aspects, array $planetPositions){
+    public function __construct(array $aspects, array $angles){
     $this->aspects = $aspects;
-    $this->planetPositions = $planetPositions;
+    $this->angles = $angles;
 }
 
     /**
-     * @return list<PlanetAspect>
+     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
      */
     public function getAspect(): array
     {
@@ -35,10 +39,10 @@ class CompositeChart
     }
 
     /**
-     * @return list<PlanetPosition>
+     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
      */
     public function getPlanetPositions(): array
     {
-        return $this->planetPositions;
+        return $this->angles;
     }
 }

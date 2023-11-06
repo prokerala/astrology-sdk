@@ -7,32 +7,32 @@ namespace Prokerala\Api\Astrology\Western\Result\PlanetPositions;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class NatalChart implements ResultInterface
+class TransitDetails implements ResultInterface
 {
     use RawResponseTrait;
 
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\House[]
+     * @var House[]
      */
     private array $houses;
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
+     * @var PlanetPosition[]
      */
     private array $angles;
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @var PlanetAspect[]
      */
     private array $aspects;
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @var PlanetAspect[]
      */
     private array $declinations;
 
     /**
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\House[] $houses
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[] $angles
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $aspects
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $declinations
+     * @param House[] $houses
+     * @param PlanetPosition[] $angles
+     * @param PlanetAspect[] $aspects
+     * @param PlanetAspect[] $declinations
      */
     public function __construct(array $houses, array $angles, array $aspects, array $declinations){
         $this->houses = $houses;
@@ -41,28 +41,28 @@ class NatalChart implements ResultInterface
         $this->declinations = $declinations;
     }
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\House[]
+     * @return House[]
      */
     public function getHouses(): array
     {
         return $this->houses;
     }
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
+     * @return PlanetPosition[]
      */
     public function getAngles(): array
     {
         return $this->angles;
     }
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @return PlanetAspect[]
      */
     public function getAspects(): array
     {
         return $this->aspects;
     }
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @return PlanetAspect[]
      */
     public function getDeclinations(): array
     {
