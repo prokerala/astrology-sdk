@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\Charts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\SynastryChart as SynastryChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -25,16 +23,12 @@ final class SynastryChart
 
     protected string $slug = '/astrology/synastry-chart';
 
-    /** @var Transformer<SynastryChartResult> */
-    private Transformer $transformer;
-
     /**
      * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(SynastryChartResult::class);
     }
 
     /**
@@ -55,7 +49,7 @@ final class SynastryChart
         bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): SynastryChartResult
+    ): string
     {
 
         $parameters = [
@@ -72,9 +66,7 @@ final class SynastryChart
             'aspect_filter' => $aspectFilter,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
+        return $this->apiClient->process($this->slug, $parameters);
 
-        return $this->transformer->transform($apiResponse->data);
     }
 }

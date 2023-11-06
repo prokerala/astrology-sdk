@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\AspectCharts\SolarReturnChart as SolarReturnChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -23,10 +21,7 @@ final class SolarReturnChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/solar-return-chart';
-
-    /** @var Transformer<SolarReturnChartResult> */
-    private Transformer $transformer;
+    protected string $slug = '/astrology/solar-return-aspect-chart';
 
     /**
      * @param Client $client Api client
@@ -34,7 +29,6 @@ final class SolarReturnChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(SolarReturnChartResult::class);
     }
 
     /**
@@ -53,7 +47,7 @@ final class SolarReturnChart
         bool $birthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): SolarReturnChartResult
+    ): string
     {
 
         $parameters = [
@@ -67,10 +61,6 @@ final class SolarReturnChart
             'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
         ];
-
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
-
-        return $this->transformer->transform($apiResponse->data);
+        return $this->apiClient->process($this->slug, $parameters);
     }
 }

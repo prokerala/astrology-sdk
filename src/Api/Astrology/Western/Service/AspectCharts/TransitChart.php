@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\AspectCharts\TransitChart as TransitChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -23,10 +21,7 @@ final class TransitChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/transit-chart';
-
-    /** @var Transformer<TransitChartResult> */
-    private Transformer $transformer;
+    protected string $slug = '/astrology/transit-aspect-chart';
 
     /**
      * @param Client $client Api client
@@ -34,7 +29,6 @@ final class TransitChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(TransitChartResult::class);
     }
 
     /**
@@ -53,7 +47,7 @@ final class TransitChart
         bool $birthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): TransitChartResult
+    ): string
     {
 
         $parameters = [
@@ -68,9 +62,6 @@ final class TransitChart
             'aspect_filter' => $aspectFilter,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
-
-        return $this->transformer->transform($apiResponse->data);
+        return $this->apiClient->process($this->slug, $parameters);
     }
 }

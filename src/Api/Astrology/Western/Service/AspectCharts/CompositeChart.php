@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\AspectCharts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\AspectCharts\CompositeChart as CompositeChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -23,10 +21,7 @@ final class CompositeChart
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/astrology/composite-chart';
-
-    /** @var Transformer<CompositeChartResult> */
-    private Transformer $transformer;
+    protected string $slug = '/astrology/composite-aspect-chart';
 
     /**
      * @param Client $client Api client
@@ -34,7 +29,6 @@ final class CompositeChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(CompositeChartResult::class);
     }
 
     /**
@@ -56,7 +50,7 @@ final class CompositeChart
         bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): CompositeChartResult
+    ): string
     {
 
         $parameters = [
@@ -74,9 +68,7 @@ final class CompositeChart
             'aspect_filter' => $aspectFilter,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
+        return $this->apiClient->process($this->slug, $parameters);
 
-        return $this->transformer->transform($apiResponse->data);
     }
 }

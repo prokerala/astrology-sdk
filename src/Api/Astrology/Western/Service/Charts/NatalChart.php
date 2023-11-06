@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\Charts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\NatalChart as NatalChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -25,16 +23,12 @@ final class NatalChart
 
     protected string $slug = '/astrology/natal-chart';
 
-    /** @var Transformer<NatalChartResult> */
-    private Transformer $transformer;
-
     /**
      * @param Client $client Api client
      */
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(NatalChartResult::class);
     }
 
     /**
@@ -51,9 +45,8 @@ final class NatalChart
         bool $birthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): NatalChartResult
+    ): string
     {
-
         $parameters = [
             'coordinates' => $location->getCoordinates(),
             'datetime' => $datetime->format('c'),
@@ -64,9 +57,6 @@ final class NatalChart
             'aspect_filter' => $aspectFilter,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
-
-        return $this->transformer->transform($apiResponse->data);
+        return $this->apiClient->process($this->slug, $parameters);
     }
 }

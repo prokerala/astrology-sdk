@@ -12,8 +12,6 @@
 namespace Prokerala\Api\Astrology\Western\Service\Charts;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Astrology\Western\Result\Charts\ProgressionChart as ProgressionChartResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -25,8 +23,6 @@ final class ProgressionChart
 
     protected string $slug = '/astrology/progression-chart';
 
-    /** @var Transformer<ProgressionChartResult> */
-    private Transformer $transformer;
 
     /**
      * @param Client $client Api client
@@ -34,7 +30,6 @@ final class ProgressionChart
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(ProgressionChartResult::class);
     }
 
     /**
@@ -53,7 +48,7 @@ final class ProgressionChart
         bool $birthTimeUnknown,
         string $rectificationChart,
         string $aspectFilter
-    ): ProgressionChartResult
+    ): string
     {
 
         $parameters = [
@@ -68,9 +63,6 @@ final class ProgressionChart
             'aspect_filter' => $aspectFilter,
         ];
 
-        $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
-
-        return $this->transformer->transform($apiResponse->data);
+        return $this->apiClient->process($this->slug, $parameters);
     }
 }
