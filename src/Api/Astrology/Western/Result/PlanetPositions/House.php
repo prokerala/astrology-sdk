@@ -15,21 +15,12 @@ class House implements ResultInterface
     private int $number;
     private float $startDegree;
     private float $endDegree;
-    /**
-     * @var PlanetPosition[]
-     */
-    private array $planetPositions;
 
-    /**
-     * @param PlanetPosition[] $planetPositions
-     */
-
-    public function __construct(int $id, int $number, float $startDegree, float $endDegree, array $planetPositions){
+    public function __construct(int $id, int $number, float $startDegree, float $endDegree){
         $this->id = $id;
         $this->number = $number;
         $this->startDegree = $startDegree;
         $this->endDegree = $endDegree;
-        $this->planetPositions = $planetPositions;
     }
 
     public function getId(): int
@@ -50,10 +41,5 @@ class House implements ResultInterface
     public function getEndDegree(): float
     {
         return $this->endDegree;
-    }
-
-    public function getPlanetPositions(): array
-    {
-        return $this->planetPositions;
     }
 }

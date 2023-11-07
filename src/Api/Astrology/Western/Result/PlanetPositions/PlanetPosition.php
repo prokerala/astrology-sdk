@@ -15,18 +15,18 @@ class PlanetPosition implements ResultInterface
     private string $name;
     private float $longitude;
     private bool $isRetrograde;
-    private int $position;
     private float $degree;
+    private int $houseNumber;
     private Zodiac $zodiac;
 
-    public function __construct(int $id, string $name, float $longitude, bool $isRetrograde, int $position, float $degree, Zodiac $zodiac)
+    public function __construct(int $id, string $name, float $longitude, bool $isRetrograde, float $degree, int $houseNumber, Zodiac $zodiac)
     {
         $this->id = $id;
         $this->name = $name;
         $this->longitude = $longitude;
         $this->isRetrograde = $isRetrograde;
-        $this->position = $position;
         $this->degree = $degree;
+        $this->houseNumber = $houseNumber;
         $this->zodiac = $zodiac;
     }
 
@@ -50,9 +50,9 @@ class PlanetPosition implements ResultInterface
         return $this->isRetrograde;
     }
 
-    public function getPosition(): int
+    public function getHouseNumber(): int
     {
-        return $this->position;
+        return $this->houseNumber;
     }
 
     public function getDegree(): float

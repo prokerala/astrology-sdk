@@ -18,6 +18,10 @@ class SolarReturnDetails implements ResultInterface
     /**
      * @var PlanetPosition[]
      */
+    private array $planetPositions;
+    /**
+     * @var PlanetPosition[]
+     */
     private array $angles;
     /**
      * @var PlanetAspect[]
@@ -31,11 +35,13 @@ class SolarReturnDetails implements ResultInterface
     /**
      * @param House[] $houses
      * @param PlanetPosition[] $angles
+     * @param PlanetPosition[] $planetPositions
      * @param PlanetAspect[] $aspects
      * @param PlanetAspect[] $declinations
      */
-    public function __construct(array $houses, array $angles, array $aspects, array $declinations){
+    public function __construct(array $houses, array $planetPositions, array $angles, array $aspects, array $declinations){
         $this->houses = $houses;
+        $this->planetPositions = $planetPositions;
         $this->angles = $angles;
         $this->aspects = $aspects;
         $this->declinations = $declinations;
@@ -46,6 +52,13 @@ class SolarReturnDetails implements ResultInterface
     public function getHouses(): array
     {
         return $this->houses;
+    }
+    /**
+     * @return PlanetPosition[]
+     */
+    public function getPlanetPositions(): array
+    {
+        return $this->planetPositions;
     }
     /**
      * @return PlanetPosition[]

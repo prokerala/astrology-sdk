@@ -38,8 +38,8 @@ class PlanetAspect implements ResultInterface
         return $this->aspect;
     }
 
-    public function getOrb(): int
+    public function getOrb(): float
     {
-        return (int)$this->orb;
+        return $this->orb;
     }
 }

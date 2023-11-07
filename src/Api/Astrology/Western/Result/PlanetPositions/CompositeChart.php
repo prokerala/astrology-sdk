@@ -26,9 +26,9 @@ class CompositeChart implements ResultInterface
      * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[] $angles
      */
     public function __construct(array $aspects, array $angles){
-    $this->aspects = $aspects;
-    $this->angles = $angles;
-}
+        $this->aspects = $aspects;
+        $this->angles = $angles;
+    }
 
     /**
      * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
