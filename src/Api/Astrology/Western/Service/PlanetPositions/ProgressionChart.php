@@ -52,7 +52,6 @@ final class ProgressionChart
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
-        string $aspectFilter
     ): ProgressionChartResult
     {
 
@@ -65,7 +64,6 @@ final class ProgressionChart
             'orb' => $orb,
             'birth_time_unknown' => $birthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
-            'aspect_filter' => $aspectFilter,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

@@ -54,7 +54,6 @@ final class SynastryChart
         bool $primaryBirthTimeUnknown,
         bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
-        string $aspectFilter
     ): SynastryChartResult
     {
 
@@ -69,7 +68,6 @@ final class SynastryChart
             'partner_a_birth_time_unknown' => $primaryBirthTimeUnknown,
             'partner_b_birth_time_unknown' => $secondaryBirthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
-            'aspect_filter' => $aspectFilter,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

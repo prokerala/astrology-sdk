@@ -43,7 +43,6 @@ final class NatalChart
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
-        string $aspectFilter
     ): NatalChartResult
     {
 
@@ -54,7 +53,6 @@ final class NatalChart
             'orb' => $orb,
             'birth_time_unknown' => $birthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
-            'aspect_filter' => $aspectFilter,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
