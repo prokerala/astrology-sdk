@@ -56,13 +56,13 @@ final class ProgressionChart
     {
 
         $parameters = [
-            'datetime' => $datetime->format('c'),
-            'coordinates' => $location->getCoordinates(),
+            'profile[datetime]' => $datetime->format('c'),
+            'profile[coordinates]' => $location->getCoordinates(),
+            'profile[birth_time_unknown]' => $birthTimeUnknown,
             'progression_year' => $progressionYear,
             'current_coordinates' => $transitLocation->getCoordinates(),
             'house_system' => $houseSystem,
             'orb' => $orb,
-            'birth_time_unknown' => $birthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
         ];
 

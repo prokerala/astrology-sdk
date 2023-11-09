@@ -48,13 +48,13 @@ final class NatalChart
     ): string
     {
         $parameters = [
-            'coordinates' => $location->getCoordinates(),
-            'datetime' => $datetime->format('c'),
+            'profile[datetime]' => $datetime->format('c'),
+            'profile[coordinates]' => $location->getCoordinates(),
+            'profile[birth_time_unknown]' => $birthTimeUnknown,
             'house_system' => $houseSystem,
             'orb' => $orb,
-            'birth_time_unknown' => $birthTimeUnknown,
-            'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
+            'birth_time_rectification' => $rectificationChart,
         ];
 
         return $this->apiClient->process($this->slug, $parameters);

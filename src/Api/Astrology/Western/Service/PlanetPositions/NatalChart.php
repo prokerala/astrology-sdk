@@ -47,11 +47,11 @@ final class NatalChart
     {
 
         $parameters = [
-            'coordinates' => $location->getCoordinates(),
-            'datetime' => $datetime->format('c'),
+            'profile[datetime]' => $datetime->format('c'),
+            'profile[coordinates]' => $location->getCoordinates(),
+            'profile[birth_time_unknown]' => $birthTimeUnknown,
             'house_system' => $houseSystem,
             'orb' => $orb,
-            'birth_time_unknown' => $birthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
         ];
 

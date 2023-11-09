@@ -53,15 +53,15 @@ final class SynastryChart
     {
 
         $parameters = [
-            'partner_a_dob' => $primaryBirthTime->format('c'),
-            'partner_a_coordinates' => $primaryBirthLocation->getCoordinates(),
-            'partner_b_dob' => $secondaryBirthTime->format('c'),
-            'partner_b_coordinates' => $secondaryBirthLocation->getCoordinates(),
+            'primary_profile[datetime]' => $primaryBirthTime->format('c'),
+            'primary_profile[coordinates]' => $primaryBirthLocation->getCoordinates(),
+            'primary_profile[birth_time_unknown]' => $primaryBirthTimeUnknown,
+            'secondary_profile[datetime]' => $secondaryBirthTime->format('c'),
+            'secondary_profile[coordinates]' => $secondaryBirthLocation->getCoordinates(),
+            'secondary_profile[birth_time_unknown]' => $secondaryBirthTimeUnknown,
             'house_system' => $houseSystem,
             'chart_type' => $chartType,
             'orb' => $orb,
-            'partner_a_birth_time_unknown' => $primaryBirthTimeUnknown,
-            'partner_b_birth_time_unknown' => $secondaryBirthTimeUnknown,
             'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
         ];
