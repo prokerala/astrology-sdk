@@ -15,16 +15,23 @@ class ProgressionChart implements ResultInterface
     /**
      * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
      */
-    private array $progressionNatalAspect;
-    private string $progressionDatetime;
+    private array $progressionNatalAspects;
+    private int $progressionYear;
+    private string $progressionDate;
 
     /**
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $progressionNatalAspect
+     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $progressionNatalAspects
      */
-    public function __construct(ProgressionDetails $progressionDetails, array $progressionNatalAspect, string $progressionDatetime){
+    public function __construct(
+        ProgressionDetails $progressionDetails,
+        array $progressionNatalAspects,
+        int $progressionYear,
+        string $progressionDate
+    ){
         $this->progressionDetails = $progressionDetails;
-        $this->progressionNatalAspect = $progressionNatalAspect;
-        $this->progressionDatetime = $progressionDatetime;
+        $this->progressionNatalAspects = $progressionNatalAspects;
+        $this->progressionYear = $progressionYear;
+        $this->progressionDate = $progressionDate;
     }
 
     public function getProgressionDetails(): ProgressionDetails
@@ -37,11 +44,16 @@ class ProgressionChart implements ResultInterface
      */
     public function getProgressionNatalAspect(): array
     {
-        return $this->progressionNatalAspect;
+        return $this->progressionNatalAspects;
     }
 
-    public function getProgressionDatetime(): \DateTimeImmutable
+    public function getProgressionDate(): \DateTimeImmutable
     {
-        return new \DateTimeImmutable($this->progressionDatetime);
+        return new \DateTimeImmutable($this->progressionDate);
+    }
+
+    public function getProgressionYear(): int
+    {
+        return $this->progressionYear;
     }
 }

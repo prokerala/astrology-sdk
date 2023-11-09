@@ -14,13 +14,13 @@ class SynastryChart implements ResultInterface
     /**
      * @var PlanetAspect[]
      */
-    private array $aspects;
+    private array $synastryAspects;
 
     /**
-     * @param PlanetAspect[] $aspects
+     * @param PlanetAspect[] $synastryAspects
      */
-    public function __construct(array $aspects){
-        $this->aspects = $aspects;
+    public function __construct(array $synastryAspects){
+        $this->synastryAspects = $synastryAspects;
     }
 
     /**
@@ -28,7 +28,7 @@ class SynastryChart implements ResultInterface
      */
     public function getAspects(): array
     {
-        return $this->aspects;
+        return $this->synastryAspects;
     }
 
 }

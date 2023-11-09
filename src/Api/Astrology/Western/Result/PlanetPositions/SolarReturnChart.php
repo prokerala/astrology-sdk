@@ -11,25 +11,32 @@ class SolarReturnChart implements ResultInterface
 {
     use RawResponseTrait;
 
-    private SolarReturnDetails $solarDetails;
+    private SolarReturnDetails $solarReturnDetails;
     /**
      * @var PlanetAspect[]
      */
-    private array $solarAspect;
-    private string $solarDatetime;
+    private array $solarReturnAspects;
+    private string $solarReturnDatetime;
+    private int $solarReturnYear;
 
     /**
-     * @param PlanetAspect[] $solarAspect
+     * @param PlanetAspect[] $solarReturnAspects
      */
-    public function __construct(SolarReturnDetails $solarDetails, array $solarAspect, string $solarDatetime){
-        $this->solarDetails = $solarDetails;
-        $this->solarAspect = $solarAspect;
-        $this->solarDatetime = $solarDatetime;
+    public function __construct(
+        SolarReturnDetails $solarReturnDetails,
+        array $solarReturnAspects,
+        string $solarReturnDatetime,
+        int $solarReturnYear
+    ){
+        $this->solarReturnDetails = $solarReturnDetails;
+        $this->solarReturnAspects = $solarReturnAspects;
+        $this->solarReturnDatetime = $solarReturnDatetime;
+        $this->solarReturnYear = $solarReturnYear;
     }
 
     public function getSolarDetails(): SolarReturnDetails
     {
-        return $this->solarDetails;
+        return $this->solarReturnDetails;
     }
 
     /**
@@ -37,11 +44,16 @@ class SolarReturnChart implements ResultInterface
      */
     public function getSolarNatalAspect(): array
     {
-        return $this->solarAspect;
+        return $this->solarReturnAspects;
     }
 
     public function getSolarDatetime(): \DateTimeImmutable
     {
-        return new \DateTimeImmutable($this->solarDatetime);
+        return new \DateTimeImmutable($this->solarReturnDatetime);
+    }
+
+    public function getSolarReturnYear(): int
+    {
+        return $this->solarReturnYear;
     }
 }

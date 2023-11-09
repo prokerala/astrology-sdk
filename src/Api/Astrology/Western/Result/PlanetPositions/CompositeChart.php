@@ -12,37 +12,78 @@ class CompositeChart implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @var PlanetAspect[]
      */
-    private array $aspects;
+    private array $compositeAspects;
 
     /**
-     * @var \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
+     * @var PlanetPosition[]
      */
-    private array $angles;
+    private array $compositeAngles;
+    /**
+     * @var House[]
+     */
+    private array $compositeHouses;
+    /**
+     * @var PlanetPosition[]
+     */
+    private array $compositePlanetPositions;
+    private \DateTimeImmutable $transitDatetime;
 
     /**
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[] $aspects
-     * @param \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[] $angles
+     * @param House[] $compositeHouses
+     * @param PlanetPosition[] $compositePlanetPositions
+     * @param PlanetPosition[] $compositeAngles
+     * @param PlanetAspect[] $compositeAspects
      */
-    public function __construct(array $aspects, array $angles){
-        $this->aspects = $aspects;
-        $this->angles = $angles;
+    public function __construct(
+        array $compositeHouses,
+        array $compositePlanetPositions,
+        array $compositeAngles,
+        array $compositeAspects,
+        string $transitDatetime
+    ){
+        $this->compositeAspects = $compositeAspects;
+        $this->compositeAngles = $compositeAngles;
+        $this->compositeHouses = $compositeHouses;
+        $this->compositePlanetPositions = $compositePlanetPositions;
+        $this->transitDatetime = new \DateTimeImmutable($transitDatetime);
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetAspect[]
+     * @return PlanetAspect[]
      */
-    public function getAspect(): array
+    public function getCompositeAspects(): array
     {
-        return $this->aspects;
+        return $this->compositeAspects;
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Western\Result\PlanetPositions\PlanetPosition[]
+     * @return PlanetPosition[]
      */
-    public function getPlanetPositions(): array
+    public function getCompositeAngles(): array
     {
-        return $this->angles;
+        return $this->compositeAngles;
+    }
+
+    /**
+     * @return PlanetPosition[]
+     */
+    public function getCompositePlanetPositions(): array
+    {
+        return $this->compositePlanetPositions;
+    }
+
+    /**
+     * @return House[]
+     */
+    public function getCompositeHouses(): array
+    {
+        return $this->compositeHouses;
+    }
+
+    public function getTransitDatetime(): \DateTimeImmutable
+    {
+        return $this->transitDatetime;
     }
 }

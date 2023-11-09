@@ -19,11 +19,11 @@ class TransitChart implements ResultInterface
     private string $transitDatetime;
 
     /**
-     * @param PlanetAspect[] $transitNatalAspect
+     * @param PlanetAspect[] $transitNatalAspects
      */
-    public function __construct(TransitDetails $transitDetails, array $transitNatalAspect, string $transitDatetime){
+    public function __construct(TransitDetails $transitDetails, array $transitNatalAspects, string $transitDatetime){
         $this->transitDetails = $transitDetails;
-        $this->transitNatalAspect = $transitNatalAspect;
+        $this->transitNatalAspect = $transitNatalAspects;
         $this->transitDatetime = $transitDatetime;
     }
 

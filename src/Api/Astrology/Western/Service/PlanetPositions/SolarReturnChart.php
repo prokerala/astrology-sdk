@@ -59,7 +59,7 @@ final class SolarReturnChart
             'profile[datetime]' => $datetime->format('c'),
             'profile[coordinates]' => $location->getCoordinates(),
             'profile[birth_time_unknown]' => $birthTimeUnknown,
-            'solar_year' => $solarYear,
+            'solar_return_year' => $solarYear,
             'current_coordinates' => $transitLocation->getCoordinates(),
             'house_system' => $houseSystem,
             'orb' => $orb,
