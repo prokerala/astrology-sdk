@@ -13,14 +13,15 @@ class House implements ResultInterface
 
     private int $id;
     private int $number;
-    private float $startDegree;
-    private float $endDegree;
+    private HouseCusp $startCusp;
+    private HouseCusp $endCusp;
 
-    public function __construct(int $id, int $number, float $startDegree, float $endDegree){
+    public function __construct(int $id, int $number, HouseCusp $startCusp, HouseCusp $endCusp)
+    {
         $this->id = $id;
         $this->number = $number;
-        $this->startDegree = $startDegree;
-        $this->endDegree = $endDegree;
+        $this->startCusp = $startCusp;
+        $this->endCusp = $endCusp;
     }
 
     public function getId(): int
@@ -33,13 +34,13 @@ class House implements ResultInterface
         return $this->number;
     }
 
-    public function getStartDegree(): float
+    public function getStartCusp(): HouseCusp
     {
-        return $this->startDegree;
+        return $this->startCusp;
     }
 
-    public function getEndDegree(): float
+    public function getEndCusp(): HouseCusp
     {
-        return $this->endDegree;
+        return $this->endCusp;
     }
 }

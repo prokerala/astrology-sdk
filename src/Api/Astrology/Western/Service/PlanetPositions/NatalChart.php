@@ -42,10 +42,8 @@ final class NatalChart
         string $houseSystem,
         string $orb,
         bool $birthTimeUnknown,
-        string $rectificationChart,
-    ): NatalChartResult
-    {
-
+        string $rectificationChart
+    ): NatalChartResult {
         $parameters = [
             'profile[datetime]' => $datetime->format('c'),
             'profile[coordinates]' => $location->getCoordinates(),
@@ -57,7 +55,7 @@ final class NatalChart
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
 
-        assert($apiResponse instanceof \stdClass);
+        \assert($apiResponse instanceof \stdClass);
 
         return $this->transformer->transform($apiResponse->data);
     }
