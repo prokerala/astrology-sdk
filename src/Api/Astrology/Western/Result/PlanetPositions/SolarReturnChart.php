@@ -15,21 +15,21 @@ class SolarReturnChart implements ResultInterface
     /**
      * @var PlanetAspect[]
      */
-    private array $solarReturnAspects;
+    private array $solarReturnNatalAspects;
     private string $solarReturnDatetime;
     private int $solarReturnYear;
 
     /**
-     * @param PlanetAspect[] $solarReturnAspects
+     * @param PlanetAspect[] $solarReturnNatalAspects
      */
     public function __construct(
         SolarReturnDetails $solarReturnDetails,
-        array $solarReturnAspects,
+        array $solarReturnNatalAspects,
         string $solarReturnDatetime,
         int $solarReturnYear
     ){
         $this->solarReturnDetails = $solarReturnDetails;
-        $this->solarReturnAspects = $solarReturnAspects;
+        $this->solarReturnNatalAspects = $solarReturnNatalAspects;
         $this->solarReturnDatetime = $solarReturnDatetime;
         $this->solarReturnYear = $solarReturnYear;
     }
@@ -44,7 +44,7 @@ class SolarReturnChart implements ResultInterface
      */
     public function getSolarNatalAspect(): array
     {
-        return $this->solarReturnAspects;
+        return $this->solarReturnNatalAspects;
     }
 
     public function getSolarDatetime(): \DateTimeImmutable
