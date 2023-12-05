@@ -20,10 +20,11 @@ trait AyanamsaAwareTrait
 
     /**
      * Set ayanamsa system.
+     * @param int $ayanamsa
      */
-    public function setAyanamsa(int $ayanamsa): void
+    public function setAyanamsa($ayanamsa): void
     {
-        $this->ayanamsa = $ayanamsa;
+        $this->ayanamsa = (int)$ayanamsa;
     }
 
     /**

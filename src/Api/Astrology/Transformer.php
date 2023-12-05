@@ -112,6 +112,7 @@ final class Transformer
                 throw new ParameterValueMissingException("Parameter {$className}::{$paramName} is missing");
             }
 
+
             $dataType = $this->getType($paramValue);
 
             /** @var null|\ReflectionNamedType $reflectionType */

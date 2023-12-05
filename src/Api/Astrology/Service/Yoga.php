@@ -14,6 +14,7 @@ namespace Prokerala\Api\Astrology\Service;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\Yoga as YogaResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
+use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
@@ -25,6 +26,8 @@ final class Yoga
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
+    /** @use TimeZoneAwareTrait<YogaResult> */
+    use TimeZoneAwareTrait;
     protected string $slug = '/astrology/yoga';
 
     /** @var Transformer<YogaResult> */
