@@ -66,16 +66,4 @@ final class PlanetRelationship implements ResultInterface
     {
         return $this->compoundRelationship;
     }
-
-    /**
-     * @return array<string, PlanetRelation[]>
-     */
-    public function getPlanetRelationship(): array
-    {
-        return [
-            'natural_relationship' => $this->naturalRelationship,
-            'temporal_relationship' => $this->temporalRelationship,
-            'compound_relationship' => $this->compoundRelationship
-        ];
-    }
 }
