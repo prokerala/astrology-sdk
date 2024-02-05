@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga;
 
-class Ashtakavarga
+class AshtakavargaRasiResult
 {
     /** @var AshtakavargaChartHouse[] */
     private array $houses;
