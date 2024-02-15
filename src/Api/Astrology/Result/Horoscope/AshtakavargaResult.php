@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+
+namespace Prokerala\Api\Astrology\Result\Horoscope;
+
+use Prokerala\Api\Astrology\Result\Horoscope\Astagavarga\AshtakavargaResult as AshtakavargaResponse;
+use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+
+class AshtakavargaResult
+{
+    use RawResponseTrait;
+    private AshtakavargaResponse $ashtakavarga;
+
+    public function __construct(AshtakavargaResponse $ashtakavarga)
+    {
+        $this->ashtakavarga = $ashtakavarga;
+    }
+
+    public function getAshtakavarga(): AshtakavargaResponse
+    {
+        return $this->ashtakavarga;
+    }
+}
