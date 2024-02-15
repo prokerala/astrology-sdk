@@ -6,7 +6,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope;
 use Prokerala\Api\Astrology\Result\Horoscope\Astagavarga\AshtakavargaResult as AshtakavargaResponse;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class AshtagavargaResult
+class AshtakavargaResult
 {
     use RawResponseTrait;
     private AshtakavargaResponse $ashtakavarga;

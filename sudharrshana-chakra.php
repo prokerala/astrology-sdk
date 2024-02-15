@@ -30,7 +30,7 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
     $method = new \Prokerala\Api\Astrology\Service\SudarshanaChakra($client);
-    $result = $method->process($location, $datetime, 'south-indian');
+    $result = $method->process($location, $datetime);
 
     echo $result;
 } catch (QuotaExceededException $e) {

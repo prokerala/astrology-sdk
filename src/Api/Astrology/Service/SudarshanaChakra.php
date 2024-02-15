@@ -42,13 +42,12 @@ final class SudarshanaChakra
      * @param Location           $location Location details
      * @param \DateTimeInterface $datetime Date and time
      */
-    public function process(Location $location, \DateTimeInterface $datetime, string $chart_style, string $la = 'en'): string
+    public function process(Location $location, \DateTimeInterface $datetime, string $la = 'en'): string
     {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
             'ayanamsa' => $this->getAyanamsa(),
-            'chart_style' => $chart_style,
             'la' => $la,
         ];
 

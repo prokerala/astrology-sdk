@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Astrology\Service;
 
 use Prokerala\Api\Astrology\Location;
-use Prokerala\Api\Astrology\Result\Horoscope\AshtagavargaResult;
+use Prokerala\Api\Astrology\Result\Horoscope\AshtakavargaResult;
 use Prokerala\Api\Astrology\Traits\Service\AyanamsaAwareTrait;
 use Prokerala\Api\Astrology\Traits\Service\TimeZoneAwareTrait;
 use Prokerala\Api\Astrology\Transformer;
@@ -26,12 +26,12 @@ final class Ashtakavarga
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
 
-    /** @use TimeZoneAwareTrait<AshtagavargaResult> */
+    /** @use TimeZoneAwareTrait<AshtakavargaResult> */
     use TimeZoneAwareTrait;
 
     protected string $slug = '/astrology/ashtakavarga';
 
-    /** @var Transformer<AshtagavargaResult> */
+    /** @var Transformer<AshtakavargaResult> */
     private Transformer $transformer;
 
     /**
@@ -40,7 +40,7 @@ final class Ashtakavarga
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(AshtagavargaResult::class);
+        $this->transformer = new Transformer(AshtakavargaResult::class);
         $this->addDateTimeTransformer($this->transformer);
     }
 
@@ -60,7 +60,7 @@ final class Ashtakavarga
         int $planet,
         string $chartStyle,
         string $la = 'en',
-    ): AshtagavargaResult {
+    ): AshtakavargaResult {
         $parameters = [
             'datetime' => $datetime->format('c'),
             'coordinates' => $location->getCoordinates(),
