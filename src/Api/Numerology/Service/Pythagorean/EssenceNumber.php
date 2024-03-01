@@ -39,24 +39,24 @@ final class EssenceNumber
     /**
      * Fetch result from API.
      *
-     * @param \DateTimeInterface $datetime Date and time
+     * @param \DateTimeInterface $dateOfBirth   Date and time
      *
      * @throws QuotaExceededException
      * @throws RateLimitExceededException
      **
      */
-    public function process(\DateTimeInterface $datetime, string $firstName, string $middleName, string $lastName, \DateTimeImmutable $dateOfBirth): EssenceResult
+    public function process(\DateTimeInterface $dateOfBirth, string $firstName, string $middleName, string $lastName, int $referenceYear): EssenceResult
     {
         $parameters = [
-            'datetime' => $datetime->format('c'),
-            'date_of_birth' => $dateOfBirth->format('c'),
+            'datetime' => $dateOfBirth->format('c'),
             'first_name' => $firstName,
             'middle_name' => $middleName,
             'last_name' => $lastName,
+            'reference_year' => $referenceYear,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
-        assert($apiResponse instanceof \stdClass);
+        \assert($apiResponse instanceof \stdClass);
 
         return $this->transformer->transform($apiResponse->data);
     }

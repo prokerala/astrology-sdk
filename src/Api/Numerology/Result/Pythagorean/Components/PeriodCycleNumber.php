@@ -1,23 +1,23 @@
 <?php
+declare(strict_types=1);
 
+namespace Prokerala\Api\Numerology\Result\Pythagorean\Components;
 
-
-namespace Prokerala\Api\Numerology\Result\Pythagorean;
-
-class LifeCycleNumber
+class PeriodCycleNumber
 {
     private string $name;
-
     /**
-     * @var AgeNumber[]
+     * @var PeriodCycle[]
      */
     private array $cycles;
 
     /**
-     * @param AgeNumber[] $cycles
+     * @param PeriodCycle[] $cycles
      */
-    public function __construct(string $name, array $cycles)
-    {
+    public function __construct(
+        string $name,
+        array $cycles,
+    ) {
         $this->name = $name;
         $this->cycles = $cycles;
     }
@@ -27,9 +27,6 @@ class LifeCycleNumber
         return $this->name;
     }
 
-    /**
-     * @return AgeNumber[]
-     */
     public function getCycles(): array
     {
         return $this->cycles;

@@ -1,21 +1,18 @@
 <?php
 
+namespace Prokerala\Api\Numerology\Result\Pythagorean\Components;
 
-
-namespace Prokerala\Api\Numerology\Result\Pythagorean;
-
-class InclusionNumber
+class Essence
 {
     private int $characterNumber;
-
-    private int $repeatedNumber;
+    private int $number;
 
     private string $description;
 
-    public function __construct(int $characterNumber, int $repeatedNumber, string $description)
+    public function __construct(int $characterNumber, int $number, string $description)
     {
         $this->characterNumber = $characterNumber;
-        $this->repeatedNumber = $repeatedNumber;
+        $this->number = $number;
         $this->description = $description;
     }
 
@@ -24,13 +21,14 @@ class InclusionNumber
         return $this->characterNumber;
     }
 
-    public function getRepeatedNumber(): int
+    public function getNumber(): int
     {
-        return $this->repeatedNumber;
+        return $this->number;
     }
 
     public function getDescription(): string
     {
         return $this->description;
     }
+
 }
