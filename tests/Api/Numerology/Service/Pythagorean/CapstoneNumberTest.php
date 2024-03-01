@@ -18,7 +18,7 @@ use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\CapstoneNumber
  */
 final class CapstoneNumberTest extends BaseTestCase
 {

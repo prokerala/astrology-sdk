@@ -18,7 +18,7 @@ use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\EssenceNumber
  */
 final class EssenceNumberTest extends BaseTestCase
 {
@@ -31,13 +31,13 @@ final class EssenceNumberTest extends BaseTestCase
     {
         $service = new EssenceNumber($this->getClient());
 
-        $dateOfBirth = new \DateTimeImmutable();
-        $datetime = new \DateTimeImmutable();
+        $dateOfBirth = new \DateTimeImmutable('2004-02-12T15:19:21+05:30');
+        $referenceYear = 2022;
         $firstName = 'John';
-        $middleName = '';
+        $middleName = 'smith';
         $lastName = 'Doe';
 
-        $result = $service->process($datetime, $firstName, $middleName, $lastName, $dateOfBirth);
+        $result = $service->process($dateOfBirth, $firstName, $middleName, $lastName, $referenceYear);
 
         $this->assertInstanceOf(EssenceResult::class, $result);
     }

@@ -11,14 +11,14 @@
 
 namespace Prokerala\Test\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Numerology\Result\Pythagorean\Transit;
+use Prokerala\Api\Numerology\Result\Pythagorean\TransitCycleNumberResult;
 use Prokerala\Api\Numerology\Service\Pythagorean\TransitNumber;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\TransitNumber
  */
 final class TransitNumberTest extends BaseTestCase
 {
@@ -37,6 +37,6 @@ final class TransitNumberTest extends BaseTestCase
 
         $result = $service->process($firstName, $middleName, $lastName);
 
-        $this->assertInstanceOf(Transit::class, $result);
+        $this->assertInstanceOf(TransitCycleNumberResult::class, $result);
     }
 }

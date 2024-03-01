@@ -18,7 +18,7 @@ use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\PersonalDayNumber
  */
 final class PersonalDayNumberTest extends BaseTestCase
 {
