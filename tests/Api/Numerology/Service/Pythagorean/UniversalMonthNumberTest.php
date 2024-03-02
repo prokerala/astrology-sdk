@@ -18,7 +18,7 @@ use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\UniversalMonthNumber
  */
 final class UniversalMonthNumberTest extends BaseTestCase
 {

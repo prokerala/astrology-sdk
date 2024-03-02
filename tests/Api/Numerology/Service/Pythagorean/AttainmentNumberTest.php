@@ -9,7 +9,7 @@ use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\AttainmentNumber
  */
 class AttainmentNumberTest extends BaseTestCase
 {

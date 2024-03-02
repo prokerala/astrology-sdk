@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Prokerala\Test\Api\Astrology;
+namespace Prokerala\Test\Api\Astrology\Service;
 
+use PHPUnit\Framework\TestCase;
 use Prokerala\Api\Astrology\Location;
 use Prokerala\Api\Astrology\Result\Horoscope\PlanetRelationship\PlanetRelationshipResult;
 use Prokerala\Api\Astrology\Service\PlanetRelationship;
-use PHPUnit\Framework\TestCase;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 
 /**
  * @internal
  * @covers \Prokerala\Api\Astrology\Service\PlanetRelationship
  */
-final class PlanetRelationshipChartTest extends TestCase
+final class PlanetRelationshipTest extends TestCase
 {
 
     use AuthenticationTrait;

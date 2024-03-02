@@ -12,7 +12,7 @@
 namespace Prokerala\Api\Numerology\Service\Pythagorean;
 
 use Prokerala\Api\Astrology\Transformer;
-use Prokerala\Api\Numerology\Result\Pythagorean\Transit;
+use Prokerala\Api\Numerology\Result\Pythagorean\TransitCycleNumberResult;
 use Prokerala\Common\Api\Client;
 use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
@@ -22,9 +22,9 @@ final class TransitNumber
 {
     use ClientAwareTrait;
 
-    protected string $slug = '/numerology/transit-number';
+    protected string $slug = '/numerology/transit-cycle-number';
 
-    /** @var Transformer<Transit> */
+    /** @var Transformer<TransitCycleNumberResult> */
     private Transformer $transformer;
 
     /**
@@ -33,7 +33,7 @@ final class TransitNumber
     public function __construct(Client $client)
     {
         $this->apiClient = $client;
-        $this->transformer = new Transformer(Transit::class);
+        $this->transformer = new Transformer(TransitCycleNumberResult::class);
     }
 
     /**
@@ -43,7 +43,7 @@ final class TransitNumber
      * @throws RateLimitExceededException
      **
      */
-    public function process(string $firstName, string $middleName, string $lastName): Transit
+    public function process(string $firstName, string $middleName, string $lastName): TransitCycleNumberResult
     {
         $parameters = [
             'first_name' => $firstName,

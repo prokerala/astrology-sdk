@@ -1,27 +1,25 @@
 <?php
+declare(strict_types=1);
 
+namespace Prokerala\Api\Numerology\Result\Pythagorean\Components;
 
-
-namespace Prokerala\Api\Numerology\Result\Pythagorean;
-
-class Cycle
+class NumerologyNumber
 {
-    private string $character;
-
+    private string $name;
     private int $number;
 
     private string $description;
 
-    public function __construct(string $character, int $number, string $description)
+    public function __construct(string $name, int $number, string $description)
     {
-        $this->character = $character;
+        $this->name = $name;
         $this->number = $number;
         $this->description = $description;
     }
 
-    public function getCharacter(): string
+    public function getName(): string
     {
-        return $this->character;
+        return $this->name;
     }
 
     public function getNumber(): int

@@ -1,29 +1,28 @@
 <?php
 
-
-
 namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Numerology\Result\Pythagorean\Components\KarmicNumber;
 
 class KarmicLessonResult implements ResultInterface
 {
     use RawResponseTrait;
 
-    private ArrayNumber $arrayNumber;
+    private KarmicNumber $karmicLessonNumber;
 
     private NameChart $nameChart;
 
-    public function __construct(ArrayNumber $arrayNumber, NameChart $nameChart)
+    public function __construct(KarmicNumber $karmicLessonNumber, NameChart $nameChart)
     {
-        $this->arrayNumber = $arrayNumber;
+        $this->karmicLessonNumber = $karmicLessonNumber;
         $this->nameChart = $nameChart;
     }
 
-    public function getArrayNumber(): ArrayNumber
+    public function getKarmicLessonNumber(): KarmicNumber
     {
-        return $this->arrayNumber;
+        return $this->karmicLessonNumber;
     }
 
     public function getNameChart(): NameChart

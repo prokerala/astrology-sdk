@@ -1,30 +1,30 @@
 <?php
 
-
-
 namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Numerology\Result\Pythagorean\Components\EssenceNumber;
 
 class EssenceResult implements ResultInterface
 {
     use RawResponseTrait;
 
-    private ArrayNumber $arrayNumber;
+    private EssenceNumber $essenceNumber;
 
     private NameChart $nameChart;
 
-    public function __construct(ArrayNumber $arrayNumber, NameChart $nameChart)
+    public function __construct(EssenceNumber $essenceNumber, NameChart $nameChart)
     {
-        $this->arrayNumber = $arrayNumber;
+        $this->essenceNumber = $essenceNumber;
         $this->nameChart = $nameChart;
     }
 
-    public function getArrayNumber(): ArrayNumber
+    public function getEssenceNumber(): EssenceNumber
     {
-        return $this->arrayNumber;
+        return $this->essenceNumber;
     }
+
 
     public function getNameChart(): NameChart
     {

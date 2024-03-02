@@ -6,33 +6,25 @@ namespace Prokerala\Api\Numerology\Result\Pythagorean;
 
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
+use Prokerala\Api\Numerology\Result\Pythagorean\Components\InclusionNumber;
 
 class InclusionTableResult implements ResultInterface
 {
     use RawResponseTrait;
 
-    /**
-     * @var InclusionNumber[]
-     */
-    private array $inclusionNumber;
+    private InclusionNumber $inclusionTableNumber;
 
     private NameChart $nameChart;
 
-    /**
-     * @param InclusionNumber[] $inclusionNumber
-     */
-    public function __construct(array $inclusionNumber, NameChart $nameChart)
+    public function __construct(InclusionNumber $inclusionTableNumber, NameChart $nameChart)
     {
-        $this->inclusionNumber = $inclusionNumber;
+        $this->inclusionTableNumber = $inclusionTableNumber;
         $this->nameChart = $nameChart;
     }
 
-    /**
-     * @return InclusionNumber[]
-     */
-    public function getInclusionNumber(): array
+    public function getInclusionTableNumber(): InclusionNumber
     {
-        return $this->inclusionNumber;
+        return $this->inclusionTableNumber;
     }
 
     public function getNameChart(): NameChart

@@ -1,15 +1,12 @@
 <?php
+declare(strict_types=1);
 
+namespace Prokerala\Api\Numerology\Result\Pythagorean\Components;
 
+use Prokerala\Api\Numerology\Result\Pythagorean\NameChart;
 
-namespace Prokerala\Api\Numerology\Result\Pythagorean;
-
-use Prokerala\Api\Astrology\Result\ResultInterface;
-use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
-
-class Transit implements ResultInterface
+class TransitCycleNumber
 {
-    use RawResponseTrait;
 
     /**
      * @var Cycle[]
@@ -26,24 +23,17 @@ class Transit implements ResultInterface
      */
     private array $spiritual;
 
-    private NameChart $nameChart;
 
     /**
      * @param Cycle[] $physical
      * @param Cycle[] $mental
      * @param Cycle[] $spiritual
      */
-    public function __construct(array $physical, array $mental, array $spiritual, NameChart $nameChart)
+    public function __construct(array $physical, array $mental, array $spiritual)
     {
         $this->physical = $physical;
         $this->mental = $mental;
         $this->spiritual = $spiritual;
-        $this->nameChart = $nameChart;
-    }
-
-    public function getNameChart(): NameChart
-    {
-        return $this->nameChart;
     }
 
     /**

@@ -11,30 +11,30 @@
 
 namespace Prokerala\Test\Api\Numerology\Service\Pythagorean;
 
-use Prokerala\Api\Numerology\Result\Pythagorean\LifeCycleNumber as LifeCycleNumberResult;
-use Prokerala\Api\Numerology\Service\Pythagorean\LifeCycleNumber;
+use Prokerala\Api\Numerology\Result\Pythagorean\PeriodCycleNumberResult;
+use Prokerala\Api\Numerology\Service\Pythagorean\PeriodCycleNumber;
 use Prokerala\Test\Api\Common\Traits\AuthenticationTrait;
 use Prokerala\Test\BaseTestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \Prokerala\Api\Numerology\Service\Pythagorean\PeriodCycleNumber
  */
-final class LifeCycleNumberTest extends BaseTestCase
+final class PeriodCycleNumberTest extends BaseTestCase
 {
     use AuthenticationTrait;
 
     /**
-     * @covers \Prokerala\Api\Numerology\Service\Pythagorean\LifeCycleNumber::process
+     * @covers \Prokerala\Api\Numerology\Service\Pythagorean\PeriodCycleNumber::process
      */
     public function testProcess(): void
     {
-        $service = new LifeCycleNumber($this->getClient());
+        $service = new PeriodCycleNumber($this->getClient());
 
         $datetime = new \DateTimeImmutable();
 
         $result = $service->process($datetime);
 
-        $this->assertInstanceOf(LifeCycleNumberResult::class, $result);
+        $this->assertInstanceOf(PeriodCycleNumberResult::class, $result);
     }
 }
