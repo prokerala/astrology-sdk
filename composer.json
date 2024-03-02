@@ -28,7 +28,13 @@
         "psr-4": {
             "Prokerala\\Api\\": "src/Api",
             "Prokerala\\Common\\Api\\": "src/Common/Api"
-        }
+        },
+        "files": [
+            "src/aliases.php"
+        ],
+        "classmap": [
+            "src/aliases.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

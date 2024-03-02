@@ -2,33 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga;
+namespace Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga;
 
+use Prokerala\Api\Astrology\Result\Element\Bhava;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
 
-class AshtakavargaChartHousePlanet
+class AshtakavargaChartHouse
 {
     private Bhava $house;
 
     private Rasi $rasi;
 
-    /** @var AshtakavargaPlanet[] */
-    private array $planets;
-
     private int $score;
 
-    /**
-     * @param AshtakavargaPlanet[] $planets
-     */
     public function __construct(
         Bhava $house,
         Rasi $rasi,
-        array $planets,
         int $score,
     ) {
         $this->house = $house;
         $this->rasi = $rasi;
-        $this->planets = $planets;
         $this->score = $score;
     }
 
@@ -40,11 +33,6 @@ class AshtakavargaChartHousePlanet
     public function getRasi(): Rasi
     {
         return $this->rasi;
-    }
-
-    public function getPlanets(): array
-    {
-        return $this->planets;
     }
 
     public function getScore(): int

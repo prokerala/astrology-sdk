@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-use Prokerala\Api\Astrology\Result\Horoscope\Astagavarga\SarvashtakavargaResult as SarvashtakavargaResponse;
+use Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga\SarvashtakavargaResult as SarvashtakavargaResponse;
+use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
-class SarvashtakavargaResult
+class SarvashtakavargaResult implements ResultInterface
 {
     use RawResponseTrait;
+
     private SarvashtakavargaResponse $sarvashtakavarga;
 
     public function __construct(SarvashtakavargaResponse $sarvashtakavarga)
