@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga;
 
+use Prokerala\Api\Astrology\Result\Element\Bhava;
 use Prokerala\Api\Astrology\Result\Element\Rasi;
 
 class AshtakavargaChartHouse

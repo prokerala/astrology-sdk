@@ -6,7 +6,8 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga {
         return;
     }
 
-    function addAlias() {
+    function addAlias()
+    {
         $oldNamespace = 'Prokerala\\Api\\Astrology\\Result\\Horoscope\\Astagavarga';
         $newNamespace = 'Prokerala\\Api\\Astrology\\Result\\Horoscope\\Ashtakavarga';
 
@@ -17,7 +18,6 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga {
             'AshtakavargaPlanetResult',
             'AshtakavargaRasiResult',
             'AshtakavargaResult',
-            'Bhava',
             'Sarvashtakavarga',
             'SarvashtakavargaResult',
         ];
@@ -27,6 +27,10 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga {
         }
     }
     addAlias();
+    class_alias(
+        "Prokerala\\Api\\Astrology\\Result\\Element\\Bhava",
+        "Prokerala\\Api\\Astrology\\Result\\Horoscope\\Astagavarga\\Bhava"
+    );
 
     /** @phpstan-ignore-next-line */
     if (\false) {
@@ -54,7 +58,7 @@ namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga {
         {
         }
 
-        class Bhava extends \Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga\Bhava
+        class Bhava extends \Prokerala\Api\Astrology\Result\Element\Bhava
         {
         }
 
