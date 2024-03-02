@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga;
+namespace Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga;
 
-class SarvashtakavargaResult
+class AshtakavargaResult
 {
     public function __construct(
         private AshtakavargaPlanetResult $prastara,
         private AshtakavargaRasiResult $trikona,
         private AshtakavargaRasiResult $ekaadhipatya,
-    ) {}
+    ) {
+    }
 
     public function getPrastara(): AshtakavargaPlanetResult
     {

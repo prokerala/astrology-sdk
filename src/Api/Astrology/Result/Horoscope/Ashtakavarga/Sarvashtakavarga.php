@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga;
+namespace Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga;
 
-class AshtakavargaPlanetResult
+class Sarvashtakavarga
 {
-    /** @var AshtakavargaChartHousePlanet[] */
+    /**
+     * @var AshtakavargaChartHouse[]
+     */
     private array $houses;
+
     private int $score;
 
     /**
-     * @param AshtakavargaChartHousePlanet[] $houses
+     * @param AshtakavargaChartHouse[] $houses
      */
     public function __construct(
         array $houses,
@@ -21,6 +24,9 @@ class AshtakavargaPlanetResult
         $this->score = $score;
     }
 
+    /**
+     * @return AshtakavargaChartHouse[]
+     */
     public function getHouses(): array
     {
         return $this->houses;

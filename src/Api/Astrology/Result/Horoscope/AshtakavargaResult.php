@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Prokerala\Api\Astrology\Result\Horoscope;
 
-use Prokerala\Api\Astrology\Result\Horoscope\Astagavarga\AshtakavargaResult as AshtakavargaResponse;
+use Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga\AshtakavargaResult as AshtakavargaResponse;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 

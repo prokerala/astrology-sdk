@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prokerala\Api\Astrology\Result\Horoscope\Astagavarga;
+namespace Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga;
 
 class Bhava
 {
