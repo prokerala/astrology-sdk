@@ -55,9 +55,8 @@ final class CompositeChart
         bool $primaryBirthTimeUnknown,
         bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
-    ): CompositeChartResult
-    {
-
+        string $la = 'en',
+    ): CompositeChartResult {
         $parameters = [
             'primary_profile[datetime]' => $primaryBirthTime->format('c'),
             'primary_profile[coordinates]' => $primaryBirthLocation->getCoordinates(),
@@ -70,6 +69,7 @@ final class CompositeChart
             'house_system' => $houseSystem,
             'orb' => $orb,
             'birth_time_rectification' => $rectificationChart,
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

@@ -52,8 +52,8 @@ final class TransitChart
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
-    ): TransitChartResult
-    {
+        string $la = 'en',
+    ): TransitChartResult {
 
         $parameters = [
             'profile[datetime]' => $datetime->format('c'),
@@ -64,6 +64,7 @@ final class TransitChart
             'house_system' => $houseSystem,
             'orb' => $orb,
             'birth_time_rectification' => $rectificationChart,
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);
