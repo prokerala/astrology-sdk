@@ -52,8 +52,8 @@ final class ProgressionChart
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
-    ): ProgressionChartResult
-    {
+        string $la = 'en',
+    ): ProgressionChartResult {
 
         $parameters = [
             'profile[datetime]' => $datetime->format('c'),
@@ -64,6 +64,7 @@ final class ProgressionChart
             'house_system' => $houseSystem,
             'orb' => $orb,
             'birth_time_rectification' => $rectificationChart,
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

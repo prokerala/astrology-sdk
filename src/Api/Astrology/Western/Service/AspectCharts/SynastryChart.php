@@ -48,9 +48,9 @@ final class SynastryChart
         bool $primaryBirthTimeUnknown,
         bool $secondaryBirthTimeUnknown,
         string $rectificationChart,
-        string $aspectFilter
-    ): string
-    {
+        string $aspectFilter,
+        string $la = 'en',
+    ): string {
 
         $parameters = [
             'primary_profile[datetime]' => $primaryBirthTime->format('c'),
@@ -64,6 +64,7 @@ final class SynastryChart
             'orb' => $orb,
             'birth_time_rectification' => $rectificationChart,
             'aspect_filter' => $aspectFilter,
+            'la' => $la,
         ];
 
         return $this->apiClient->process($this->slug, $parameters);

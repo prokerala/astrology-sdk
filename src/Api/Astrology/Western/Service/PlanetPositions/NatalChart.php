@@ -42,7 +42,8 @@ final class NatalChart
         string $houseSystem,
         string $orb,
         bool $birthTimeUnknown,
-        string $rectificationChart
+        string $rectificationChart,
+        string $la = 'en',
     ): NatalChartResult {
         $parameters = [
             'profile[datetime]' => $datetime->format('c'),
@@ -51,6 +52,7 @@ final class NatalChart
             'house_system' => $houseSystem,
             'orb' => $orb,
             'birth_time_rectification' => $rectificationChart,
+            'la' => $la,
         ];
 
         $apiResponse = $this->apiClient->process($this->slug, $parameters);

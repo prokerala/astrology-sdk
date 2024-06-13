@@ -46,9 +46,9 @@ final class SolarReturnChart
         string $orb,
         bool $birthTimeUnknown,
         string $rectificationChart,
-        string $aspectFilter
-    ): string
-    {
+        string $aspectFilter,
+        string $la = 'en',
+    ): string {
 
         $parameters = [
             'profile[datetime]' => $datetime->format('c'),
@@ -60,6 +60,7 @@ final class SolarReturnChart
             'orb' => $orb,
             'aspect_filter' => $aspectFilter,
             'birth_time_rectification' => $rectificationChart,
+            'la' => $la,
         ];
 
         return $this->apiClient->process($this->slug, $parameters);
