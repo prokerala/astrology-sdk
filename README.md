@@ -21,7 +21,7 @@ This is the recommended method for installation of the SDK.
 If you have `composer` already installed, and just want to get started quickly, the following command will install the SDK and its dependencies:
 
 ```sh
-composer require prokerala/astrology-sdk:^1.0 nyholm/psr7 guzzlehttp/guzzle symfony/cache
+composer require prokerala/astrology-sdk:~1.0 nyholm/psr7 guzzlehttp/guzzle symfony/cache
 ```
 
 That's it. The SDK is now ready to use. You can skip to the **Usage** section below.
@@ -52,7 +52,7 @@ composer require symfony/cache
 Now that you have all the dependencies installed, install the SDK by running the following command.
 
 ```sh
-composer require prokerala/astrology-sdk:^1.0
+composer require prokerala/astrology-sdk:~1.0
 ```
 
 ### Manual Installation
