@@ -28,11 +28,13 @@ That's it. The SDK is now ready to use. You can skip to the **Usage** section be
 
 #### Detailed Instructions
 
-If you do not have `composer` already installed, you can install it with the following command.
+If you do not have `composer` already installed, you can install it with the following command on *nix systems.
 
 ```sh
 curl -sS https://getcomposer.org/installer | php
 ```
+
+If you are on Windows, follow the official documentation at [getcomposer.org](https://getcomposer.org/download/).
 
 The current version of the SDK no longer ships with an HTTP client, instead depends on external implementations of `PSR-17` ([HTTP Message factory](https://www.php-fig.org/psr/psr-17/)) and `PSR-18` ([HTTP client](https://www.php-fig.org/psr/psr-18/)). You may choose any implementation of [PSR-17](https://packagist.org/providers/psr/http-factory-implementation) and [PSR-18](https://packagist.org/providers/php-http/client-implementation), for example, the following command installs `nyholm/psr7` for `PSR-17` and Guzzle HTTP client for `PSR-18`.
 
