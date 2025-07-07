@@ -11,8 +11,6 @@
 
 namespace Prokerala\Api\Astrology\Result\Horoscope\DivisionalPlanetPositions;
 
-use Prokerala\Api\Astrology\Result\Element\Rasi;
-use Prokerala\Api\Astrology\Result\Horoscope\Ashtakavarga\Bhava;
 use Prokerala\Api\Astrology\Result\ResultInterface;
 use Prokerala\Api\Astrology\Traits\Result\RawResponseTrait;
 
