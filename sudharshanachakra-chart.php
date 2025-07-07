@@ -29,7 +29,7 @@ $tz = $datetime->getTimezone();
 $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 
 try {
-    $method = new \Prokerala\Api\Astrology\Service\SudarshanaChakra($client);
+    $method = new \Prokerala\Api\Astrology\Service\SudharshanachakraChart($client);
     $result = $method->process($location, $datetime);
 
     echo $result;

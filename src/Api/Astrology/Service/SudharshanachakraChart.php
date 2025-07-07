@@ -21,7 +21,7 @@ use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\RateLimitExceededException;
 use Prokerala\Common\Api\Traits\ClientAwareTrait;
 
-final class SudarshanaChakra
+final class SudharshanachakraChart
 {
     use AyanamsaAwareTrait;
     use ClientAwareTrait;
