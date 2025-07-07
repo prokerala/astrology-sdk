@@ -34,13 +34,13 @@ $location = new Location($input['latitude'], $input['longitude'], 0, $tz);
 try {
     $method = new AuspiciousYoga($client);
     $result = $method->process($location, $datetime);
-    $arData = $result->getMuhurat();
+    $arData = $result->getAuspiciousYoga();
     $auspiciousPeriodResult = [];
     foreach ($arData as $idx => $data) {
         $auspiciousPeriodResult[$idx] = [
             'id' => $data->getId(),
             'name' => $data->getName(),
-            'type' => $data->getType(),
+            'type' => $data->getName(),
         ];
         $arPeriod = $data->getPeriod();
         foreach ($arPeriod as $period) {
