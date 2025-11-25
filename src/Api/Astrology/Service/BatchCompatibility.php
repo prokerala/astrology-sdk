@@ -50,12 +50,10 @@ final class BatchCompatibility
         $parameters['profile']['coordinates'] = ($parameters['profile']['coordinates'])->getCoordinates();
 
         foreach ($parameters['match_profiles'] as $index => $matchProfile) {
-
             $date = $matchProfile['datetime']->format('c');
-            $cooridates = $matchProfile['coordinates']->getCoordinates();
-
+            $coordinates = $matchProfile['coordinates']->getCoordinates();
             $parameters['match_profiles'][$index]['datetime'] = $date;
-            $parameters['match_profiles'][$index]['coordinates'] = $cooridates;
+            $parameters['match_profiles'][$index]['coordinates'] = $coordinates;
 
         }
         $apiResponse = $this->apiClient->process($this->slug, $parameters,'POST');
