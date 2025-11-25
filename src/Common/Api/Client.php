@@ -21,6 +21,7 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 final class Client
 {
@@ -32,13 +33,16 @@ final class Client
 
     private RequestFactoryInterface $httpRequestFactory;
 
+    private StreamFactoryInterface $streamFactory;
+
     private int $apiCreditUsed = 0;
 
-    public function __construct(AuthenticationTypeInterface $authClient, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory)
+    public function __construct(AuthenticationTypeInterface $authClient, ClientInterface $httpClient, RequestFactoryInterface $httpRequestFactory,StreamFactoryInterface $streamFactory,)
     {
         $this->authClient = $authClient;
         $this->httpClient = $httpClient;
         $this->httpRequestFactory = $httpRequestFactory;
+        $this->streamFactory = $streamFactory;
     }
 
     /**
@@ -51,10 +55,18 @@ final class Client
      *
      * @return \stdClass|string
      */
-    public function process(string $path, array $input)
+    public function process(string $path, array $input, string $method = 'GET')
     {
-        $uri = self::BASE_URI . $path . '?' . http_build_query($input);
-        $request = $this->httpRequestFactory->createRequest('GET', $uri);
+        if ('GET' == $method) {
+            $uri = self::BASE_URI . $path . '?' . http_build_query($input);
+            $request = $this->httpRequestFactory->createRequest('GET', $uri);
+        } else {
+            $uri = self::BASE_URI . $path;
+            $request = $this->httpRequestFactory->createRequest($method, $uri)
+                ->withHeader('Accept', 'application/json')
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                ->withBody($this->streamFactory->createStream(http_build_query($input)));
+        }
 
         try {
             $request = $this->authClient->process($request);
