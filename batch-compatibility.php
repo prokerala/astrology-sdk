@@ -81,10 +81,12 @@ try {
     $batchCompatibilityResult = [];
 
     foreach ($batchCompatibility as $index => $matching) {
-        $type = $matching->getStatus();
-        $description = $matching->getDescription();
-
-        $batchCompatibilityResult[$index] = ['status' => $type, 'description' => $description];
+        if($matching->getResult() !== null && $matching->getError() === null){
+            $batchMarriage = $matching->getResult();
+            $type = $batchMarriage->getStatus();
+            $description = $batchMarriage->getDescription();
+            $batchCompatibilityResult[$index] = ['status' => $type, 'description' => $description];
+        }
     }
     print_r($batchCompatibilityResult);
 } catch (QuotaExceededException $e) {
