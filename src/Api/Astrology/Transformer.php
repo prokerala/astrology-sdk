@@ -117,9 +117,11 @@ final class Transformer
 
             /** @var null|\ReflectionNamedType $reflectionType */
             $reflectionType = $param->getType();
+            $nullable = false;
 
             if (null !== $reflectionType && (!$reflectionType->isBuiltin() || 'array' !== $reflectionType->getName())) {
-                $paramType = $reflectionType->allowsNull() ? ['null', $reflectionType->getName()] : [$reflectionType->getName()];
+                $nullable = $reflectionType->allowsNull();
+                $paramType = [$reflectionType->getName()];
             } elseif (isset($paramTypes[$paramName])) {
                 $paramType = $paramTypes[$paramName];
             } else {
@@ -127,7 +129,7 @@ final class Transformer
             }
 
             try {
-                $arguments[] = $this->parseParameter($paramValue, $dataType, $paramType);
+                $arguments[] = $this->parseParameter($paramValue, $dataType, $paramType, $nullable);
             } catch (ParameterMismatchException $e) {
                 throw new Exception("Failed to parse {$className}::{$paramName} - " . $e->getMessage());
             }
@@ -189,7 +191,7 @@ final class Transformer
      * @return mixed
      * @throws ParameterMismatchException
      */
-    private function parseParameter($data, ?string $dataType, array $paramTypes)
+    private function parseParameter($data, ?string $dataType, array $paramTypes, bool $nullable)
     {
         $isEmptyArray = \is_array($data) && empty($data);
         // Hack for empty arrays, since we cannot determine the type of the array
@@ -206,12 +208,16 @@ final class Transformer
             }
         }
 
-        if (null === $data || \is_scalar($data) || $isEmptyArray || (\is_array($data) && \is_scalar($data[0]))) {
+        if (\is_scalar($data) || $isEmptyArray || (\is_array($data) && \is_scalar($data[0]))) {
             if (null === $dataType) {
                 throw new ParameterMismatchException('Unexpected parameter type');
             }
 
             return $data;
+        }
+
+        if ($nullable && null === $data) {
+            return null;
         }
 
         if ($data instanceof \stdClass) {
