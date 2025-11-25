@@ -11,12 +11,12 @@ class BatchCompatibilityResult implements ResultInterface
     use RawResponseTrait;
 
     /**
-     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityMessage[]
+     * @var \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityStatus[]
      */
     private array $batchCompatibility;
 
     /**
-     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityMessage[] $batchCompatibility
+     * @param \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityStatus[] $batchCompatibility
      */
     public function __construct(array $batchCompatibility)
     {
@@ -24,7 +24,7 @@ class BatchCompatibilityResult implements ResultInterface
     }
 
     /**
-     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityMessage[]
+     * @return \Prokerala\Api\Astrology\Result\HoroscopeMatching\BatchCompatibilityStatus[]
      */
     public function getBatchCompatibility(): array
     {
