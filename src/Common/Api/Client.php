@@ -16,6 +16,7 @@ use Prokerala\Common\Api\Exception\AuthenticationException;
 use Prokerala\Common\Api\Exception\Exception;
 use Prokerala\Common\Api\Exception\ServerException;
 use Prokerala\Common\Api\Exception\TokenExpiredException;
+use Prokerala\Common\Api\Exception\QuotaExceededException;
 use Prokerala\Common\Api\Exception\ValidationException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -117,6 +118,7 @@ final class Client
     {
         match ($statusCode) {
             401 => throw new AuthenticationException($errors[0]->detail),
+            403 => throw new QuotaExceededException($errors[0]->detail),
             400 => throw new ValidationException($errors),
             500 => throw new ServerException($errors[0]->detail),
             default => throw new Exception($errors[0]->detail),
