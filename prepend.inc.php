@@ -27,4 +27,4 @@ $httpClient = new HttpClient();
 
 $authClient = new Oauth2($clientId, $clientSecret, $httpClient, $psr17Factory, $psr17Factory);
 
-$client = new Client($authClient, $httpClient, $psr17Factory);
+$client = new Client($authClient, $httpClient, $psr17Factory,$psr17Factory);
